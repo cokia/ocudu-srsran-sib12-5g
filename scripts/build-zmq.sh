@@ -9,13 +9,14 @@ mkdir -p build/bin artifacts/zmq
 if [[ "$component" != ue ]]; then
  python3 scripts/fetch-upstream.py ocudu
  arch=armv8-a
- [[ $(uname -m) == x86_64 ]] && arch=x86-64
+ [[ $(uname -m) == x86_64 ]] && arch=x86-64-v2
  cmake -S upstream/ocudu -B build/zmq-gnb -G Ninja \
   -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang-18 -DCMAKE_CXX_COMPILER=clang++-18 \
   -DCMAKE_CXX_FLAGS_RELEASE='-O1 -DNDEBUG' -DMARCH="$arch" -DMCPU=generic \
   -DENABLE_ZEROMQ=ON -DENABLE_UHD=OFF -DENABLE_SIDEKIQ=OFF -DENABLE_DIFI=OFF \
   -DENABLE_DPDK=OFF -DENABLE_BACKWARD=OFF -DENABLE_MKL=OFF -DENABLE_FFTZ=OFF -DENABLE_ARMPL=OFF \
   -DBUILD_TESTING=OFF -DENABLE_WERROR=OFF -DASSERT_LEVEL=NORMAL
+ timeout --signal=TERM --kill-after=15s 120s cmake --build build/zmq-gnb --target ocudu_channel_equalizer -j "$jobs"
  timeout --signal=TERM --kill-after=15s 2700s cmake --build build/zmq-gnb --target gnb -j "$jobs"
  cp build/zmq-gnb/apps/gnb/gnb build/bin/gnb-zmq
 fi
