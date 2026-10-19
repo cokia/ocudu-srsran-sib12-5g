@@ -48,8 +48,8 @@ upstream의 `BUILD_AD936X=OFF`만으로는 ad936x subdirectory 처리 및 공용
 4. 불필요한 AD936x `common.h` include를 표준 헤더로 대체한다.
 5. 공용 code가 참조하는 7개 micro 전용 API는 `BLADERF_ERR_UNSUPPORTED`를 반환한다.
 
-원본 checkout은 변경하지 않고 `build/bladerf-source`에 패치를 적용한다. API/ABI 일반 호환 driver로 배포하지 않으며 이 프로젝트의 x40 diagnostic 전용이다. AD936x/no-OS submodule은 가져오지 않는다.
+원본 checkout은 변경하지 않고 `build/bladerf-source`에 패치를 적용한다. API/ABI 일반 호환 driver로 배포하지 않으며 이 프로젝트의 x40 진단 및 실험용 radio plugin에만 사용한다. AD936x/no-OS submodule은 가져오지 않는다.
 
 ## OCUDU 호환성 평가
 
-OCUDU `radio_session`은 단순 IQ read/write 이상의 timed streaming, start alignment, discontinuity notification 및 stop contract를 요구한다. CF32 계열 baseband buffer와 SC16_Q11 scaling, USB latency, timestamp conversion, clock drift, underrun recovery는 실측되지 않았다. **OCUDU bladeRF RU plugin은 미구현이며 호환성은 NOT VERIFIED**다. SoapySDR로 이 문제를 해결했다고 가정하지 않는다. 이 단계의 작동 산출물은 standalone 진단 executable과 공통 offline protocol engine이다.
+OCUDU `radio_session`의 별도 [radio plugin](RADIO_PLUGIN.md)을 구현했다. gateway는 **ci16_t**이며 기존 CF32 설명을 정정한다. SC16_Q11 변환, timed TX/RX, event와 watchdog/stop을 구현하고 실제 gNB mock stream 및 libbladeRF API contract를 검사했다. **실물 timing/USB 지속 처리/RF 수신 호환성은 NOT VERIFIED**다. standalone 진단의 firmware loopback 제약은 그대로 유지하며 RF 활성 plugin과 구분한다. SoapySDR은 사용하지 않는다.

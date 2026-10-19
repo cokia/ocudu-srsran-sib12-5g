@@ -1,0 +1,28 @@
+name: PWS ZMQ 수신과 radio plugin
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+concurrency:
+  group: pws-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  pws-zmq:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - run: bash scripts/build-pws-integration-docker.sh
+      - name: 한글 SIB8 실제 수신과 plugin mock stream
+        run: |
+          mkdir -p artifacts/pws-integration artifacts/radio-plugin
+          timeout 100s docker run --rm --network none --cap-drop ALL --memory 3g --cpus 4 \
+            --entrypoint python pws-lab-zmq:0.1.0 -m controller.pws_integration \
+            receive --profile korean-safety --timeout 60 > artifacts/pws-integration/docker-result.json
+          timeout 45s docker run --rm --network none --cap-drop ALL --memory 2g --cpus 2 \
+            pws-lab-radio-plugin:0.1.0 > artifacts/radio-plugin/docker-result.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: pws-radio-integration
+          path: artifacts/
+          retention-days: 14

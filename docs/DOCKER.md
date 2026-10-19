@@ -59,3 +59,7 @@ bash scripts/stop.sh
 ## ZMQ 수신 확장
 
 OCUDU와 srsUE를 함께 실행하는 별도 이미지는 `scripts/build-zmq-docker.sh`로 생성한다. `docker/compose.zmq.yaml`은 자체 output volume, `network none`, UID 10001, read-only root와 `cap_drop: ALL`을 사용한다. USB, TUN, privileged 설정이 없다. 빌드·실행·로그 수집 명령은 [ZMQ 수신 가이드](ZMQ_SRSUE.md)를 참조한다.
+
+## PWS 수신 / radio plugin 확장
+
+`scripts/build-pws-integration-docker.sh`는 업데이트된 ZMQ image와 RF OFF plugin의 `pws-lab-radio-plugin:0.1.0`을 만든다. `docker/compose.pws.yaml`의 `pws-zmq`/`radio-mock` profile은 독립 실행되며 USB mapping이 없다. 새 [PWS 가이드](PWS_INTEGRATION.md)와 [plugin 가이드](RADIO_PLUGIN.md)에 CLI·결과 해석을 정리했다. 실제 RF 활성 plugin은 별도 native build이며 이 Compose가 자동 시작하지 않는다.

@@ -1,6 +1,6 @@
 # OCUDU PWS Laboratory
 
-OCUDU 5G NR의 **오프라인 PWS/CMAS 검증**, **Dummy RU gNB smoke test**, **Nuand bladeRF x40 standalone 진단**을 분리한 실험실 플랫폼이다. warning message를 gNB 방송 스케줄러나 SDR 송신에 연결하는 경로는 없다.
+OCUDU 5G NR의 **오프라인 PWS/CMAS 검증**, **ZMQ SIB8 수신**, **bladeRF x40 radio plugin 및 standalone 진단**을 제공하는 실험실 플랫폼이다. 공유 메시지 → OCUDU SI scheduler → srsUE 한글 수신을 검증했다. x40 timed USB 송신 코드는 별도 RF 활성 build에 있으며, 기본 build와 Docker는 RF OFF다. **실물 x40/휴대폰 수신은 NOT VERIFIED**다.
 
 **5G NR CMAS는 SIB8이다.** NR SIB12-r16은 sidelink 설정 구조이므로 별도의 ASN.1 구조 검사만 제공한다. LTE SIB12를 NR 경고 메시지로 잘못 매핑하지 않는다.
 
@@ -17,12 +17,23 @@ OCUDU 5G NR의 **오프라인 PWS/CMAS 검증**, **Dummy RU gNB smoke test**, **
 | x40 board/FW/FPGA/USB/library probe | 필요 없음 | 구현; 실제 장치 연결 필요 |
 | RX metadata / firmware loopback | 필요 없음 | 격리/버전 조건 충족 시 실행 |
 | 오류 주입 mock | SDR 없이 별도 build 가능 | 지원 |
-| OCUDU bladeRF RU driver | 해당 없음 | 미구현, timing 호환성 미검증 |
-| live warning interface / OTA PWS | 제공하지 않음 | 제공하지 않음 |
+| OCUDU bladeRF RU driver | 실제 gNB + mock stream PASS | timed USB 구현·build/API 검사 PASS; 실물 timing 미검증 |
+| PWS → SI scheduler → SIB8 수신 | ZMQ 한글/영어/615자 PASS | RF 연결 코드 구현, 실제 RF 수신 미검증 |
+| live warning distribution API | 제공하지 않음 | 제공하지 않음 |
 
-기준 OCUDU: `release_26_10` / `e0db566aac6e6376ddd60e83c84f58698fcc4d70` + 명시적 worker 수를 허용하는 [최소 patch](docs/PATCHES.md).
+기준 OCUDU: `release_26_10` / `e0db566aac6e6376ddd60e83c84f58698fcc4d70` + worker 수와 빈 CPU feature 목록을 보완하는 [최소 patch](docs/PATCHES.md).
 bladeRF: `libbladeRF_v2.6.0` / `09c82087786702d2812f3f0fc909beccf3277233` + 문서화된 x40 전용 patch.
 대상 SDR은 첫 세대 **bladeRF x40**뿐이다. 실제 장치 검증 결과는 mock과 구분하여 [최종 구현 보고서](docs/IMPLEMENTATION_REPORT.md)에 기록한다.
+
+## PWS 수신과 radio plugin
+
+```bash
+bash scripts/build-pws-integration-docker.sh
+docker compose -f docker/compose.pws.yaml --profile pws-zmq run --rm reception
+docker compose -f docker/compose.pws.yaml --profile radio-mock run --rm radio-mock
+```
+
+[PWS 연동 가이드](docs/PWS_INTEGRATION.md), [radio plugin](docs/RADIO_PLUGIN.md), [실제 수신 로그·검증 보고서](docs/RADIO_PWS_REPORT.md)를 참조한다. 기본 `monthly-test`는 ID 4380, `korean-safety`는 4372다. 국내 폰의 화면 분류는 지역/통신사/단말 설정에 따라 달라진다.
 
 ## 빠른 시작: Non-SDR
 
@@ -102,7 +113,7 @@ application:
 
 장비 없이 실제 libbladeRF API를 검사하려면 `scripts/test-libbladerf.sh`를 사용한다. [libbladeRF 검증](docs/LIBBLADERF_TESTING.md)은 upstream 원본 테스트와 실제 adapter의 C API 경계 검사를 구분한다.
 
-Dummy RU 외에 Docker ZMQ와 srsUE로 실제 NR MIB/SIB1 수신을 시험할 수 있다. `scripts/build-zmq-docker.sh`로 별도 이미지를 만들고 [ZMQ srsUE 가이드](docs/ZMQ_SRSUE.md)의 절차를 따른다. PWS 수신이나 NAS/IP 연결 완료를 의미하지 않는다. [추가 검증 결과](docs/FOLLOWUP_REPORT.md), [실제 수신 로그와 한글 왕복 검증](docs/SRSUE_RX_CAPTURE.md)을 참조한다.
+Dummy RU 외에 Docker ZMQ와 srsUE로 실제 NR MIB/SIB1 수신을 시험할 수 있다. `scripts/build-zmq-docker.sh`로 별도 이미지를 만들고 [ZMQ srsUE 가이드](docs/ZMQ_SRSUE.md)의 절차를 따른다. 이 기존 명령의 PASS는 MIB/SIB1/RRC에 한정한다. SIB8은 새 `controller.pws_integration receive`에서 검사하며 NAS/IP 연결 완료는 검증하지 않는다. [추가 검증 결과](docs/FOLLOWUP_REPORT.md), [실제 수신 로그와 한글 왕복 검증](docs/SRSUE_RX_CAPTURE.md)을 참조한다.
 
 ```bash
 bash scripts/test-non-sdr.sh
@@ -120,6 +131,7 @@ bash scripts/stop.sh
 - [설정 전체 참조](docs/CONFIGURATION.md), [PWS 테스트](docs/PWS_TESTING.md)
 - [bladeRF 기술 조사](docs/BLADERF_X40.md), [Docker](docs/DOCKER.md)
 - [테스트 절차](docs/TESTING.md), [문제 해결](docs/TROUBLESHOOTING.md)
+- [국내 휴대폰 안전안내문자 시험의 호환성 평가](docs/DOMESTIC_PHONE_TESTING.md)
 - [최종 구현·검증 보고서](docs/IMPLEMENTATION_REPORT.md)
 - [라이선스/제3자 배포 조건](THIRD_PARTY_NOTICES.md)
 

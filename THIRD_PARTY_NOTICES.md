@@ -4,7 +4,7 @@
 
 | 구성요소 | 라이선스/출처 | 이 프로젝트에서의 처리 |
 |---|---|---|
-| OCUDU 26.10 | 소스 SPDX `BSD-3-Clause-Open-MPI`, 원문 `licenses/OCUDU-LICENSE` | ASN.1/PWS encoder 재사용, 명시적 worker 수를 허용하는 최소 patch. `COPYRIGHTS.txt`와 포함 third-party 고지 보존 |
+| OCUDU 26.10 | 소스 SPDX `BSD-3-Clause-Open-MPI`, 원문 `licenses/OCUDU-LICENSE` | ASN.1/PWS encoder 재사용, worker 수와 빈 CPU feature 목록을 보완하는 최소 patches. `COPYRIGHTS.txt`와 포함 third-party 고지 보존 |
 | libbladeRF 2.6.0 | LGPL-2.1-or-later | 동적 링크. x40 전용 패치는 `patches/bladerf-x40-only.patch`; 교체 가능한 shared library로 제공 |
 | bladeRF의 FPGA HDL/FX3 source | upstream COPYING의 MIT 등 | 분석용 checkout에만 존재. FPGA IP별 예외가 있으므로 firmware/bitstream 배포 없음 |
 | bladeRF-cli | GPL-2.0 | 이 플랫폼에서는 빌드/배포하지 않음 |
@@ -23,6 +23,8 @@
 
 컨테이너/바이너리를 공개 배포할 때는 `scripts/package-source.sh`로 자체 및 upstream 대응 소스를 생성하고, `scripts/collect-dependency-sources.sh`로 Ubuntu source package를 수집하여 **동일 release에 함께 제공**한다. LGPL 라이브러리 교체를 금지하지 않는다. 패키지 빌드 manifest와 scripts를 함께 제공해야 한다. 소스 archive 생성만으로 모든 제3자 바이너리의 대응 소스가 자동 포함되는 것은 아니다.
 
-실험실에서 생성한 Docker 이미지는 로컬 검증용이다. 이 작업은 GitHub push, 이미지 registry 업로드, release 발행을 수행하지 않는다.
+실험실에서 생성한 Docker 이미지는 로컬 검증용이다. 소스는 사용자 요청으로 GitHub에 push한다. 이미지 registry 업로드와 binary release 발행은 수행하지 않는다.
 
 OCUDU/srsUE source의 diff 조각은 해당 upstream license를 유지하며 자체 BSD license로 바뀌지 않는다. patch 범위와 적용 hash는 [patch 문서](docs/PATCHES.md) 및 `dependencies.lock.json`에 기록한다.
+
+추가 radio plugin 자체 코드는 BSD-3-Clause이며 기존 OCUDU/libbladeRF 고지를 유지한다. srsUE SI monitor 및 PHY 수정 patch는 원본 AGPL-3.0-or-later 조건을 유지한다. C++ 정렬에 사용한 개발 도구는 clang-format 18.1.8이며 runtime에 포함하지 않는다.

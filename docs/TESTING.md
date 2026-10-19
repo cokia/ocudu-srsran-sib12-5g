@@ -90,3 +90,12 @@ for file in scripts/*.sh; do bash -n "$file"; done
 ```
 
 C++ diagnostic은 `-Wall -Wextra -Werror`로 빌드한다. `.github/workflows/test.yml`은 lint/unit/실제 ASN.1/mock 검사를, `build.yml`은 두 image의 독립 build/runtime 검사를 수행한다. GitHub-hosted Ubuntu runner만 필요하며 실제 USB hardware test나 privileged runner를 기본 workflow에 넣지 않는다. GitLab CI를 생성하지 않는다.
+
+## PWS 수신 및 radio plugin 추가 검사
+
+- `scripts/test-pws-integration.sh`: 실제 gNB/srsUE의 기존 RRC, 영어 SIB8, 한글 ID 4372, 615자/15 segments. `network none` 필요. 360초 한도.
+- `scripts/test-radio-plugin.sh`: OCUDU gateway contract와 실제 libbladeRF에 링크한 USB API doubles. `--gnb`를 주면 실제 gNB mock stream까지 검사한다.
+- `tests/unit/test_pws_integration.py`: profile 생성, deterministic YAML, segment 순서/중복/충돌/metadata/padding, hardware 실행 거부.
+- `.github/workflows/pws-integration.yml`: GitHub-hosted runner의 Docker build와 ZMQ 수신, plugin mock. USB device/self-hosted runner 요구 없음.
+
+최종 로컬 결과는 [추가 구현 보고서](RADIO_PWS_REPORT.md), 고정 원본 로그는 `docs/evidence/2026-10-19/pws-radio/`에 보존한다. API doubles, ZMQ, 실물 hardware 결과를 서로 대체하지 않는다.

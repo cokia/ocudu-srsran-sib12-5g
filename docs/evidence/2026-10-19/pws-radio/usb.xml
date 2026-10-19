@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="8" failures="0" disabled="0" errors="0" time="0." timestamp="2026-10-19T11:01:45.913" name="AllTests">
+  <testsuite name="UsbTest" tests="8" failures="0" disabled="0" skipped="0" errors="0" time="0." timestamp="2026-10-19T11:01:45.913">
+    <testcase name="ActualLibraryVersionAndConfigureWithoutEnable" file="/lab/tests/radio/usb_test.cpp" line="157" status="run" result="completed" time="0." timestamp="2026-10-19T11:01:45.913" classname="UsbTest" />
+    <testcase name="TimedMetadataAndNoTxNowOrPerBlockBurstEnd" file="/lab/tests/radio/usb_test.cpp" line="171" status="run" result="completed" time="0." timestamp="2026-10-19T11:01:45.913" classname="UsbTest" />
+    <testcase name="VersionModelAndRateFailuresCloseDevice" file="/lab/tests/radio/usb_test.cpp" line="187" status="run" result="completed" time="0." timestamp="2026-10-19T11:01:45.913" classname="UsbTest" />
+    <testcase name="InvalidSerialFailsBeforeOpen" file="/lab/tests/radio/usb_test.cpp" line="198" status="run" result="completed" time="0." timestamp="2026-10-19T11:01:45.913" classname="UsbTest" />
+    <testcase name="EnableFailureDisablesBothDirections" file="/lab/tests/radio/usb_test.cpp" line="205" status="run" result="completed" time="0." timestamp="2026-10-19T11:01:45.913" classname="UsbTest" />
+    <testcase name="LateTimestampAndDisconnectedDeviceAreExplicit" file="/lab/tests/radio/usb_test.cpp" line="213" status="run" result="completed" time="0." timestamp="2026-10-19T11:01:45.913" classname="UsbTest" />
+    <testcase name="ShortReceiveAndOverrunStatusReachSession" file="/lab/tests/radio/usb_test.cpp" line="222" status="run" result="completed" time="0." timestamp="2026-10-19T11:01:45.913" classname="UsbTest" />
+    <testcase name="Q11SaturationAndIntegerScale" file="/lab/tests/radio/usb_test.cpp" line="232" status="run" result="completed" time="0." timestamp="2026-10-19T11:01:45.913" classname="UsbTest" />
+  </testsuite>
+</testsuites>

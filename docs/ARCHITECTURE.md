@@ -1,6 +1,6 @@
 # 아키텍처
 
-세 실행 경계를 분리한다. PWS encoder는 장치를 열지 않고, gNB는 laboratory PWS 파일을 읽지 않으며, bladeRF 진단은 고정 I/Q 패턴만 생성한다.
+기본 offline/진단 모듈과 선택적 PWS 연동을 분리한다. offline encoder는 장치를 열지 않고, standalone 진단은 고정 I/Q 패턴만 생성한다. 새 PWS 연동 controller가 검증한 메시지로 gNB CMAS test 설정을 생성한다. [확장 diagram](PWS_INTEGRATION.md)을 참조한다.
 
 ```mermaid
 flowchart LR
@@ -27,7 +27,7 @@ flowchart LR
   FW --> HR[고정 I/Q 비교 보고서]
 ```
 
-PWS에서 gNB SI scheduler, NGAP warning, F1AP warning, radio driver로 이어지는 연결은 없다. Python controller에도 warning distribution server나 IQ export interface가 없다. CMAS 처리는 실제 NR SIB8 구조이며 NR SIB12는 별도 sidelink 구조 검사다.
+기본 offline 명령은 scheduler에 연결하지 않는다. 별도 `controller.pws_integration`은 기존 OCUDU static CMAS 설정으로 SI scheduler에 연결하며 ZMQ 수신을 검증한다. live NGAP warning 입력은 추가하지 않았다. Python controller에도 warning distribution server나 IQ export interface가 없다. CMAS 처리는 실제 NR SIB8 구조이며 NR SIB12는 별도 sidelink 구조 검사다.
 
 ## 구현 단위
 
@@ -49,7 +49,7 @@ C++ codec는 stdin의 제한된 JSON만 받고 stdout으로 결과를 반환한�
 
 `Device` interface는 message model을 include하지 않는다. standalone 진단은 libbladeRF 없는 mock build도 가능하다. 고장/미연결 장치가 공유 Python 모듈이나 codec의 정상 동작에 영향을 주지 않는다.
 
-ZMQ 확장은 별도의 Non-SDR backend로 `controller/zmq_rx.py`가 실제 gNB와 srsUE를 함께 실행한다. 공유 PWS message는 이 링크로 전달하지 않는다. srsUE NR 경로는 SIB1 수신만 처리하며, 이 프로젝트의 offline SIB8 engine과 연결되지 않는다.
+ZMQ 확장은 별도의 Non-SDR backend로 `controller/zmq_rx.py`가 실제 gNB와 srsUE를 함께 실행한다. 이 기존 명령은 공유 PWS를 전달하지 않는다. 별도 `controller.pws_integration`과 SI monitor patch가 실제 SIB8 수신·재조립을 담당하며, `PWS_LAB_SI_MONITOR`가 없는 기본 srsUE RRC 경로도 회귀 검사한다.
 
 ## 상태와 오류
 
@@ -59,4 +59,4 @@ ZMQ 확장은 별도의 Non-SDR backend로 `controller/zmq_rx.py`가 실제 gNB�
 
 ## OCUDU radio 통합 평가
 
-유지보수 가능한 향후 확장 지점은 `radio_factory` plugin과 `radio_session`이다. 그러나 CF32 계열 baseband buffer와 SC16_Q11 변환, timestamp domain, timed TX, RX continuity, 시작 시각 동기화, stream stop, overflow event mapping, USB jitter budget을 검증해야 한다. 이 repository는 해당 plugin을 제공하지 않는다. standalone 진단을 OCUDU PHY 호환성 검증으로 간주하지 않는다. SoapySDR 지원도 가정하지 않는다.
+`hardware/bladerf-x40/radio_plugin`은 `radio_factory`/`radio_session`을 구현하며 upstream 수정 없이 동적 로딩된다. 고정 OCUDU gateway는 ci16_t이며 SC16_Q11 변환, timestamp 전달, continuity, event, stop/watchdog를 구현했다. 실제 gNB mock stream 및 실제 library를 링크한 API double 검사는 PASS다. USB jitter, 실제 RX/TX timestamp domain, 시작 정렬 및 RF 성능은 NOT VERIFIED다. [plugin 상세](RADIO_PLUGIN.md)를 참조한다.

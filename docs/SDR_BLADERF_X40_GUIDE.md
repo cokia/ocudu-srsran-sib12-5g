@@ -86,4 +86,4 @@ docker compose -f docker/compose.yaml -f docker/compose.hardware.yaml \
 
 ## 미지원
 
-OCUDU bladeRF RU plugin, 외부 RF TX, live PWS/CMAS, 주파수/gain 조정 CLI, firmware flash, bladeRF 2.0/x115, GPS/PTP/PPS timing 보장, full-duplex PHY 성능 보장은 제공하지 않는다. 실제 하드웨어 미연결 시 `BLOCKED`는 예상 결과이며 PASS로 바꾸지 않는다.
+이 standalone 진단 CLI는 외부 RF TX, live PWS/CMAS, 주파수/gain 조정, firmware flash, bladeRF 2.0/x115를 제공하지 않는다. 별도 [OCUDU radio plugin](RADIO_PLUGIN.md)은 timed TX/RX를 구현했으나 실물 검증 전이며 GPS/PTP/PPS와 full-duplex PHY 성능을 보장하지 않는다. 실제 하드웨어 미연결 시 `BLOCKED`는 예상 결과이며 PASS로 바꾸지 않는다.

@@ -1,0 +1,55 @@
+diff --git a/srsue/src/stack/rrc_nr/rrc_nr.cc b/srsue/src/stack/rrc_nr/rrc_nr.cc
+index 8727fa9..8aa53d5 100644
+--- a/srsue/src/stack/rrc_nr/rrc_nr.cc
++++ b/srsue/src/stack/rrc_nr/rrc_nr.cc
+@@ -20,6 +20,7 @@
+  */
+ 
+ #include "srsue/hdr/stack/rrc_nr/rrc_nr.h"
++#include <cstdlib>
+ #include "srsran/common/band_helper.h"
+ #include "srsran/common/security.h"
+ #include "srsran/common/standard_streams.h"
+@@ -377,6 +378,24 @@ void rrc_nr::decode_pdu_bcch_dlsch(srsran::unique_byte_buffer_t pdu)
+   if (dlsch_msg.msg.c1().type() == bcch_dl_sch_msg_type_c::c1_c_::types::sib_type1) {
+     logger.info("Processing SIB1 (1/1)");
+     handle_sib1(dlsch_msg.msg.c1().sib_type1());
++  } else if (std::getenv("PWS_LAB_SI_MONITOR") != nullptr &&
++             dlsch_msg.msg.c1().type() == bcch_dl_sch_msg_type_c::c1_c_::types::sys_info) {
++    const auto& info = dlsch_msg.msg.c1().sys_info();
++    if (info.crit_exts.type() != sys_info_s::crit_exts_c_::types::sys_info) {
++      return;
++    }
++    for (const auto& item : info.crit_exts.sys_info().sib_type_and_info) {
++      if (item.type() != sys_info_ies_s::sib_type_and_info_item_c_::types::sib8) {
++        continue;
++      }
++      const auto& sib = item.sib8();
++      logger.info("LAB_SIB8 id=%u serial=%u segment=%u last=%u dcs=%s payload=%s",
++                  unsigned(sib.msg_id.to_number()), unsigned(sib.serial_num.to_number()),
++                  unsigned(sib.warning_msg_segment_num),
++                  unsigned(sib.warning_msg_segment_type == sib8_s::warning_msg_segment_type_opts::last_segment),
++                  sib.data_coding_scheme_present ? sib.data_coding_scheme.to_string().c_str() : "none",
++                  sib.warning_msg_segment.to_string().c_str());
++    }
+   }
+ }
+ 
+@@ -495,6 +514,17 @@ void rrc_nr::handle_sib1(const sib1_s& sib1)
+   fill_phy_pdcch_cfg_common(sib1.serving_cell_cfg_common.dl_cfg_common.init_dl_bwp.pdcch_cfg_common.setup(),
+                             &phy_cfg.pdcch);
+ 
++  if (std::getenv("PWS_LAB_SI_MONITOR") != nullptr) {
++    const auto& common = sib1.serving_cell_cfg_common.dl_cfg_common.init_dl_bwp.pdcch_cfg_common.setup();
++    if (common.search_space_other_sys_info_present && common.search_space_other_sys_info < SRSRAN_UE_DL_NR_MAX_NOF_SEARCH_SPACE) {
++      auto& search = phy_cfg.pdcch.search_space[common.search_space_other_sys_info];
++      search.type = srsran_search_space_type_common_0A;
++      search.nof_formats = 1;
++      search.formats[0] = srsran_dci_format_nr_1_0;
++      logger.info("LAB_SI searchSpaceOtherSystemInformation=%u", unsigned(common.search_space_other_sys_info));
++    }
++  }
++
+   // Apply Carrier Config
+   fill_phy_carrier_cfg(sib1.serving_cell_cfg_common, &phy_cfg.carrier);
+ 

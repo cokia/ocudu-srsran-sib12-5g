@@ -92,3 +92,7 @@
 이 profile의 field들은 제공된 파일에 명시된다. upstream 전체 기본값을 재정의하지 않으며, 확인하지 않은 추가 radio/network/PWS 옵션을 wrapper로 전달하지 않는다.
 
 별도 `gnb.zmq.yaml` / `srsue.zmq.conf`의 고정 n3/FDD profile은 [ZMQ 설정 표](ZMQ_SRSUE.md)를 따른다. 공유 `pws.example.yaml`의 `radio.backend`는 offline 안전 조건으로 유지하며, 이 값을 바꿔 ZMQ나 장치로 payload를 연결하는 기능은 없다.
+
+## 선택적 PWS / radio 연동 설정
+
+기본 공유 YAML의 RF OFF 조건은 그대로 유지한다. 별도 `controller.pws_integration`은 검증한 text를 실제 OCUDU `cell_cfg.sib.cmas.test`에 복사한다. `--profile monthly-test`는 ID 4380, `--profile korean-safety`는 4372이며 serial 0 / DCS 0x48이다. [모든 새 CLI 필드와 예제](PWS_INTEGRATION.md), [plugin device arguments](RADIO_PLUGIN.md)를 참조한다. `prepare --backend bladerf-x40`가 생성하는 YAML은 `rf=off`여서 그대로 실행해도 hardware stream을 열지 못한다.

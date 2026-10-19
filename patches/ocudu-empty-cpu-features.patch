@@ -1,0 +1,33 @@
+diff --git a/include/ocudu/support/cpu_features.h b/include/ocudu/support/cpu_features.h
+index e98809f..21eb98a 100644
+--- a/include/ocudu/support/cpu_features.h
++++ b/include/ocudu/support/cpu_features.h
+@@ -3,9 +3,9 @@
+ 
+ #pragma once
+ 
+-#include "ocudu/adt/to_array.h"
+ #include "ocudu/support/format/fmt_to_c_str.h"
+ #include "fmt/format.h"
++#include <initializer_list>
+ 
+ #ifdef __aarch64__
+ #include <asm/hwcap.h>
+@@ -137,7 +137,7 @@ inline bool cpu_supports_feature(cpu_feature feature)
+ }
+ 
+ namespace detail {
+-constexpr auto cpu_features_included = to_array<cpu_feature>({
++constexpr std::initializer_list<cpu_feature> cpu_features_included = {
+ #ifdef __x86_64__
+ #ifdef __SSE4_1__
+     cpu_feature::sse4_1,
+@@ -178,7 +178,7 @@ constexpr auto cpu_features_included = to_array<cpu_feature>({
+     cpu_feature::neon,
+ #endif // __ARM_NEON
+ #endif // __aarch64__
+-});
++};
+ } // namespace detail
+ 
+ inline std::string get_cpu_feature_info()

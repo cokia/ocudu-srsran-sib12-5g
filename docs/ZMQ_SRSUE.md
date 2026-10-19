@@ -81,3 +81,7 @@ PASS에는 gNB 시작과 **UE log**의 MIB decode, MIB 설정 완료, `SIB1 rece
 전체 Docker build 2,700초, 개별 gNB build 2,700초, UE build 1,800초, 수신 기본 60초/최대 120초, 각 process 종료 10초, 각 log 32 MiB로 제한한다. 실패하면 기존 산출물을 보존하고 원인을 수정한 뒤 해당 단계만 재개한다.
 
 `zmq-rx.json`, `gnb.log`, `srsue.log`, `audit.jsonl`을 보존한다. 실제 실행 결과는 [추가 검증 보고서](FOLLOWUP_REPORT.md), [수신 로그 캡처와 한글 검증](SRSUE_RX_CAPTURE.md)을 참조한다.
+
+## SIB8 수신 확장
+
+위 `controller.zmq_rx`는 기존 MIB/SIB1/RRC 검사다. 추가 구현한 `controller.pws_integration receive`는 같은 gNB/UE binary에서 SI monitor를 opt-in하여 실제 SIB8을 검사한다. [PWS 수신 가이드](PWS_INTEGRATION.md)에 patch, 실행 명령, 한글/분할 수신 결과를 설명한다. 이 확장에서는 gNB가 laboratory text를 SI scheduler에 전달한다.

@@ -1,10 +1,11 @@
-# 생성 파일 전체 목록
+# 소스 저장소 파일 목록
 
-작업 시작 시 비어 있던 Git 저장소에 추가한 파일 144개다. upstream checkout, build 산출물과 일반 실행 artifact는 `.gitignore`로 제외한다. 공개 검증용으로 선별한 원본 로그와 report만 `docs/evidence/`에 보존한다. 구현 범위는 [최초 보고서](IMPLEMENTATION_REPORT.md), [추가 보고서](FOLLOWUP_REPORT.md), [수신·한글 검증](SRSUE_RX_CAPTURE.md)에 구분한다.
+관리 대상 파일 188개다. upstream checkout, build, 일반 artifacts는 제외하며 선택한 실제 로그만 `docs/evidence/`에 보존한다. 초기 구현은 [최초 보고서](IMPLEMENTATION_REPORT.md), 기존 수신 검증은 [수신·한글](SRSUE_RX_CAPTURE.md), 최신 driver/PWS 연결은 [추가 구현 보고서](RADIO_PWS_REPORT.md)를 참조한다.
 
 ```text
 .dockerignore
 .github/workflows/build.yml
+.github/workflows/pws-integration.yml
 .github/workflows/test.yml
 .github/workflows/zmq.yml
 .gitignore
@@ -33,23 +34,28 @@ controller/message_model.py
 controller/offline_codec/CMakeLists.txt
 controller/offline_codec/main.cpp
 controller/protocol.py
+controller/pws_integration.py
+controller/radio_smoke.py
 controller/reporting.py
 controller/zmq_rx.py
 dependencies.lock.json
 docker/Dockerfile.build
 docker/Dockerfile.controller
 docker/Dockerfile.non-sdr
+docker/Dockerfile.radio-plugin
 docker/Dockerfile.runtime
 docker/Dockerfile.sdr
 docker/Dockerfile.zmq
 docker/Dockerfile.zmq-build
 docker/compose.hardware.yaml
+docker/compose.pws.yaml
 docker/compose.yaml
 docker/compose.zmq.yaml
 docs/ARCHITECTURE.md
 docs/BLADERF_X40.md
 docs/CONFIGURATION.md
 docs/DOCKER.md
+docs/DOMESTIC_PHONE_TESTING.md
 docs/EXECUTION_LIMITS.md
 docs/FILE_INVENTORY.md
 docs/FOLLOWUP_REPORT.md
@@ -58,7 +64,10 @@ docs/INSTALLATION.md
 docs/LIBBLADERF_TESTING.md
 docs/NON_SDR_GUIDE.md
 docs/PATCHES.md
+docs/PWS_INTEGRATION.md
 docs/PWS_TESTING.md
+docs/RADIO_PLUGIN.md
+docs/RADIO_PWS_REPORT.md
 docs/SDR_BLADERF_X40_GUIDE.md
 docs/SRSUE_RX_CAPTURE.md
 docs/TESTING.md
@@ -72,6 +81,22 @@ docs/evidence/2026-10-19/decode-non-sdr.json
 docs/evidence/2026-10-19/decode-sdr-bladerf-x40.json
 docs/evidence/2026-10-19/gnb.log
 docs/evidence/2026-10-19/manifest.json
+docs/evidence/2026-10-19/pws-radio/SHA256SUMS
+docs/evidence/2026-10-19/pws-radio/baseline.json
+docs/evidence/2026-10-19/pws-radio/boundary-srsue.log
+docs/evidence/2026-10-19/pws-radio/boundary.json
+docs/evidence/2026-10-19/pws-radio/english.json
+docs/evidence/2026-10-19/pws-radio/images.json
+docs/evidence/2026-10-19/pws-radio/korean-gnb.log
+docs/evidence/2026-10-19/pws-radio/korean-srsue.log
+docs/evidence/2026-10-19/pws-radio/korean.json
+docs/evidence/2026-10-19/pws-radio/plugin.xml
+docs/evidence/2026-10-19/pws-radio/python-tests.xml
+docs/evidence/2026-10-19/pws-radio/radio-build-manifest.json
+docs/evidence/2026-10-19/pws-radio/radio-gnb.log
+docs/evidence/2026-10-19/pws-radio/radio.json
+docs/evidence/2026-10-19/pws-radio/usb.xml
+docs/evidence/2026-10-19/pws-radio/zmq-build-manifest.json
 docs/evidence/2026-10-19/python.log
 docs/evidence/2026-10-19/python.xml
 docs/evidence/2026-10-19/srsue.log
@@ -86,6 +111,11 @@ hardware/bladerf-x40/driver_adapter/device.h
 hardware/bladerf-x40/driver_adapter/mock_device.cpp
 hardware/bladerf-x40/driver_adapter/real_device.cpp
 hardware/bladerf-x40/loopback_tests/runner.cpp
+hardware/bladerf-x40/radio_plugin/CMakeLists.txt
+hardware/bladerf-x40/radio_plugin/plugin.cpp
+hardware/bladerf-x40/radio_plugin/stream.cpp
+hardware/bladerf-x40/radio_plugin/stream.h
+hardware/bladerf-x40/radio_plugin/usb.cpp
 licenses/OCUDU-COPYRIGHTS.txt
 licenses/OCUDU-LICENSE
 licenses/bladeRF-COPYING
@@ -106,14 +136,22 @@ licenses/ocudu/MIT.txt
 licenses/srsRAN4G-COPYRIGHT
 licenses/srsRAN4G-LICENSE
 patches/bladerf-x40-only.patch
+patches/ocudu-empty-cpu-features.patch
 patches/ocudu-main-pool.patch
 patches/srsue-fftw-estimate.patch
+patches/srsue-other-si-dmrs.patch
+patches/srsue-si-dci.patch
+patches/srsue-si-monitor.patch
+patches/srsue-sib8-monitor.patch
+patches/srsue-type0a-time.patch
 pyproject.toml
 requirements-dev.txt
 requirements.txt
 scripts/bootstrap-python.sh
 scripts/build-docker.sh
 scripts/build-non-sdr.sh
+scripts/build-pws-integration-docker.sh
+scripts/build-radio-plugin.sh
 scripts/build-sdr.sh
 scripts/build-zmq-docker.sh
 scripts/build-zmq.sh
@@ -126,12 +164,15 @@ scripts/install-deps.sh
 scripts/install-runtime.sh
 scripts/package-source.sh
 scripts/run-non-sdr.sh
+scripts/run-pws-integration.sh
 scripts/run-sdr-diag.sh
 scripts/run-zmq-rx.sh
 scripts/stage-runtime.py
 scripts/stop.sh
 scripts/test-libbladerf.sh
 scripts/test-non-sdr.sh
+scripts/test-pws-integration.sh
+scripts/test-radio-plugin.sh
 scripts/test-sdr.sh
 tests/conftest.py
 tests/fixtures/pws.english.yaml
@@ -141,10 +182,13 @@ tests/libbladerf/adapter_test.cpp
 tests/libbladerf/upstream/CMakeLists.txt
 tests/non-sdr/test_isolation.py
 tests/non-sdr/test_zmq_reception.py
+tests/radio/plugin_test.cpp
+tests/radio/usb_test.cpp
 tests/sdr/test_diagnostics.py
 tests/sdr/test_hardware_config.py
 tests/unit/test_cb_data.py
 tests/unit/test_config.py
 tests/unit/test_logging.py
+tests/unit/test_pws_integration.py
 tests/unit/test_upstream_patches.py
 ```

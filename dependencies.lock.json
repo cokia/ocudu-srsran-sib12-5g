@@ -10,6 +10,13 @@
         "original_sha256": "9b05f4a5f030a1d91b7ba251ea7f72f192b8ba9cca265778bf1ea264ffaafe2d",
         "patched_sha256": "ac1fdde6158cf13c85fb97253afd9e627c9dfa4c0fbd855a1af755dfde226d9d",
         "sha256": "88a339f1e7479f458eac624f3f0bbfeb7da19496744baafdccb516c4e158060c"
+      },
+      {
+        "file": "patches/ocudu-empty-cpu-features.patch",
+        "source": "include/ocudu/support/cpu_features.h",
+        "original_sha256": "8767fbec057d0bed517271b73a47ff19d0fc4c45f6ce74925429001583f0cbf5",
+        "patched_sha256": "a735e61ba121b7e1c051bf99fc567ac6deae08f7902da3688dbe55c03e331c18",
+        "sha256": "5f6dac74c4d63c9e94360a7fac7d4c20d2ab7f90b7d6adaab2dd18b61ee6b4b2"
       }
     ]
   },
@@ -35,6 +42,41 @@
         "original_sha256": "7181b255c400dbfac8eadc2990c616df099951b5db1ab0ef13768d10b85c79b5",
         "patched_sha256": "e3295cef2e367e748f0a937b7ef6286764b35f542b9597c0fea65e00128705a2",
         "sha256": "0af9852d8e9f0a5a872bf83e57d1657ac657831a38b794d4bd705a84b772d0c9"
+      },
+      {
+        "file": "patches/srsue-sib8-monitor.patch",
+        "source": "srsue/src/stack/rrc_nr/rrc_nr.cc",
+        "original_sha256": "6ea727a51782f7711a017f07bd0323c4d1aa7f75526cce724b03a5b2a56d6f97",
+        "patched_sha256": "88eeb7dc0a598604628fecde7dd76db2a11269149bde916b1b10378808d614aa",
+        "sha256": "85612e5e30d3998e91ea35f8db4d46a0565337f1388f7c7c4ca124631c163eb5"
+      },
+      {
+        "file": "patches/srsue-si-monitor.patch",
+        "source": "srsue/src/stack/rrc_nr/rrc_nr_procedures.cc",
+        "original_sha256": "c5c1a3a1d8247abc9d8cb1809f86569a7dbe8feb4486cc01bb4d56c80a23db15",
+        "patched_sha256": "c0d406dbf5cb784549111324ba56adee8b8dc21e2c9716a8df584f79fc50c0c7",
+        "sha256": "1b2818e03ca167c2cdc1346f5f2a81eeef71341e4d129cafd54ca086e78df262"
+      },
+      {
+        "file": "patches/srsue-si-dci.patch",
+        "source": "srsue/src/phy/nr/cc_worker.cc",
+        "original_sha256": "ccc6a41e8a1915fa9559674b5c265e4a39e392d92e5cb99563fd7bc1c4bb3672",
+        "patched_sha256": "a8a718528c5d3ce7f16ca4e03a25156db875dc839f8b0ab276bfd2ffb7bbe918",
+        "sha256": "60cc01f2242a8f60f224d7bf90d49cb741a30142b7b051745cd3ba98653acfe2"
+      },
+      {
+        "file": "patches/srsue-type0a-time.patch",
+        "source": "lib/src/phy/phch/ra_dl_nr.c",
+        "original_sha256": "3abe480a68c251f6cff144df4aef11d91f9371e2a35010d0641dfecd6cbb741c",
+        "patched_sha256": "d82318c52b5c46a589dc78fe67452ee0a83433cc9cf30dcd0cfeb57ff9cc8aa8",
+        "sha256": "109a53cd5393e519784a0b217901d7aab4ae1bf39240638703a3dd22e72c9132"
+      },
+      {
+        "file": "patches/srsue-other-si-dmrs.patch",
+        "source": "lib/src/phy/phch/ra_nr.c",
+        "original_sha256": "a61c66dc7edd143551fe6582989ae0dc87508b85b8b1a67a076bb47e48963e73",
+        "patched_sha256": "b27adf94a669fc2229e70b4d9baf38e58d78405bcce7fbca0c1a91deea8e4b45",
+        "sha256": "e3e5f0ca0b5d24b6d53009bc4c055f310c6f0c39721c09e82d2cf5a73eba8e2d"
       }
     ]
   }

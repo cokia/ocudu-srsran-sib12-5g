@@ -64,3 +64,9 @@ Linux, C++17, CMake/Ninja, Clang 18, FFTW, mbedTLS, SCTP, yaml-cpp를 사용한�
 OCUDU의 `external/` include 경로가 우선하므로 codec는 vendored nlohmann-json **3.12.0**을 사용한다. standalone diagnostic은 Ubuntu의 **3.11.3**을 사용한다. vendored fmt는 **11.1.3**, CLI11은 **2.4.2**다. 각 macro와 실제 `build.ninja` include 순서를 확인했다. 버전 번호가 없는 vendored header들은 위 OCUDU commit에 함께 고정되며 출처/저작권은 `licenses/OCUDU-COPYRIGHTS.txt`에 있다.
 
 최초 구현 이후 ZMQ 검증에서 OCUDU의 명시적 worker 수 처리와 srsUE FFTW 계획 방식의 최소 patch를 추가했다. 각 upstream에서 source file 하나만 수정하며 [patch 문서](PATCHES.md)에 근거와 hash 검증을 설명한다. bladeRF에는 AD936x를 빌드하지 않는 x40 전용 패치가 있다. upstream의 라이선스/고지를 `licenses/`에 보존한다. 공개 소스 및 바이너리 배포 조건은 [제3자 고지](../THIRD_PARTY_NOTICES.md)를 따른다.
+
+## 2026-10-19 추가 구현 상태
+
+Upstream 자체에는 bladeRF factory가 없다. 로컬 `hardware/bladerf-x40/radio_plugin`이 기존 dynamic loader를 사용하므로 OCUDU radio source patch는 필요하지 않았다. 실제 gNB 로딩/mock streaming은 검증했고 실물 timing은 미검증이다. pinned gateway buffer는 `ci16_t`; ZMQ의 wire CF32와 구분한다.
+
+PWS 연결은 upstream `apps/units/flexible_o_du/o_du_high/du_high/du_high_config_cli11_schema.cpp`의 `cmas.test`, `du_high_config_translators.cpp`의 `create_sib8_info`/`fill_pws_si_messages`, `lib/du/du_high/du_manager/converters/asn1_sys_info_packer.cpp`의 segmentation, `cbs/cbs_encoder_impl.cpp::fill_cb_data_ucs2`를 재사용했다. static SI의 실제 ZMQ→srsUE 수신을 검증했다. 별도 NGAP WRW/F1AP 동적 warning 전달 시험을 수행한 것은 아니다. [수신 patch](PATCHES.md), [결과](RADIO_PWS_REPORT.md)를 참조한다.

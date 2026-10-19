@@ -1,0 +1,71 @@
+Reading configuration file /lab/configs/srsue.zmq.conf...
+Failed to `mlockall`: 12
+Built in Release mode using commit 6bcbd9e on branch HEAD.
+
+2026-10-19T11:12:26.639726 [UE     ] [I] Using binary /usr/local/bin/srsue with arguments: /lab/configs/srsue.zmq.conf 
+2026-10-19T11:12:26.640093 [UE     ] [I] Built in Release mode using commit 6bcbd9e on branch HEAD.
+Opening 1 channels in RF device=zmq with args=tx_port=tcp://127.0.0.1:2001,rx_port=tcp://127.0.0.1:2000,id=ue,base_srate=23.04e6
+Supported RF device list: zmq file
+CHx base_srate=23.04e6
+CHx id=ue
+Current sample rate is 1.92 MHz with a base rate of 23.04 MHz (x12 decimation)
+CH0 rx_port=tcp://127.0.0.1:2000
+CH0 tx_port=tcp://127.0.0.1:2001
+
+Warning: TX gain was not set. Using open-loop power control (not working properly)
+
+Current sample rate is 23.04 MHz with a base rate of 23.04 MHz (x1 decimation)
+Current sample rate is 23.04 MHz with a base rate of 23.04 MHz (x1 decimation)
+Setting manual TX/RX offset to 0 samples
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+2026-10-19T11:12:27.171683 [RRC    ] [I] using srand seed of 171672
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+Waiting PHY to initialize ... done!
+Attaching UE...
+Closing stdin thread.
+2026-10-19T11:12:27.627748 [RRC-NR ] [I] Proc "Setup Request" - Initiation of Setup request procedure
+2026-10-19T11:12:27.627756 [RRC-NR ] [I] Proc "Cell Selection" - Starting...
+2026-10-19T11:12:27.672165 [RRC-NR ] [I] Proc "Cell Selection" - Cell search found ARFCN=0 PCI=1 epre=-11.2 snr=+78.8 cfo=-0.0 delay=-0.0  sfn=11 ssb_idx=0 hrf=n scs=15 ssb_offset=6 dmrs_typeA_pos=pos2 coreset0=12 ss0=0 barred=n intra_freq_reselection=y spare=0
+2026-10-19T11:12:27.674484 [PHY-SA ] [E] [    0] prach_cfg.freq_offset=1 is not compatible with LTE
+2026-10-19T11:12:27.674858 [RRC-NR ] [I] PHY configuration with MIB parameters completed.
+2026-10-19T11:12:27.732692 [RRC-NR ] [I] Proc "Cell Selection" - Cell selection completed. Starting SIB1 acquisition
+2026-10-19T11:12:27.826565 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (92 B)
+2026-10-19T11:12:27.826570 [RRC-NR ] [I] Processing SIB1 (1/1)
+2026-10-19T11:12:27.826728 [RRC-NR ] [I] SIB1 received, CellID=4095
+2026-10-19T11:12:27.828860 [RRC-NR ] [I] Set Constants and Timers: N310=1, N311=1, t300=1000, t301=1000, t310=1000, t311=3000
+2026-10-19T11:12:27.829003 [RRC-NR ] [I] LAB_SI searchSpaceOtherSystemInformation=1
+2026-10-19T11:12:27.829017 [RRC-NR ] [I] Proc "Cell Selection" - SIB1 acquired successfully
+2026-10-19T11:12:27.829792 [RRC-NR ] [I] PHY configuration with SIB parameters completed.
+2026-10-19T11:12:28.009805 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T11:12:28.009874 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T11:12:28.160600 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T11:12:28.160610 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T11:12:28.162129 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (92 B)
+2026-10-19T11:12:28.162130 [RRC-NR ] [I] Processing SIB1 (1/1)
+2026-10-19T11:12:28.162130 [RRC-NR ] [I] SIB1 already processed
+Stopping ..
+2026-10-19T11:12:28.304782 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T11:12:28.304788 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T11:12:28.435094 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T11:12:28.435103 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T11:12:28.435124 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (92 B)
+2026-10-19T11:12:28.435125 [RRC-NR ] [I] Processing SIB1 (1/1)
+2026-10-19T11:12:28.435129 [RRC-NR ] [I] SIB1 already processed
+2026-10-19T11:12:28.553184 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T11:12:28.553189 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T11:12:28.676258 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T11:12:28.676270 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T11:12:28.681124 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (92 B)
+2026-10-19T11:12:28.681124 [RRC-NR ] [I] Processing SIB1 (1/1)
+2026-10-19T11:12:28.681125 [RRC-NR ] [I] SIB1 already processed
+2026-10-19T11:12:28.815145 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T11:12:28.815154 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T11:12:28.936440 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T11:12:28.936456 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T11:12:28.938863 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (92 B)
+2026-10-19T11:12:28.938864 [RRC-NR ] [I] Processing SIB1 (1/1)
+2026-10-19T11:12:28.938872 [RRC-NR ] [I] SIB1 already processed
+2026-10-19T11:12:29.063239 [RRC-NR ] [I] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T11:12:29.063251 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+---  exiting  ---

@@ -1,0 +1,23 @@
+diff --git a/srsue/src/phy/nr/cc_worker.cc b/srsue/src/phy/nr/cc_worker.cc
+index 46e0590..5bde278 100644
+--- a/srsue/src/phy/nr/cc_worker.cc
++++ b/srsue/src/phy/nr/cc_worker.cc
+@@ -24,6 +24,7 @@
+ #include "srsran/common/buffer_pool.h"
+ #include "srsran/common/string_helpers.h"
+ #include "srsran/srsran.h"
++#include <cstdlib>
+ 
+ namespace srsue {
+ namespace nr {
+@@ -159,6 +160,10 @@ void cc_worker::decode_pdcch_dl()
+ 
+   // Iterate over all received grants
+   for (int i = 0; i < n_dl; i++) {
++    // SI indicator distinguishes other SI from SIB1 when common search spaces overlap.
++    if (std::getenv("PWS_LAB_SI_MONITOR") != nullptr && rnti.type == srsran_rnti_type_si && dci_rx[i].sii == 1) {
++      dci_rx[i].ctx.ss_type = srsran_search_space_type_common_0A;
++    }
+     // Log found DCI
+     if (logger.info.enabled()) {
+       std::array<char, 512> str;

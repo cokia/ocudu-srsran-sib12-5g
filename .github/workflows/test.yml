@@ -18,11 +18,17 @@ jobs:
         run: |
           docker run --rm --network none -e LAB_PYTHON=python3 -v "$PWD:/lab" \
             pws-lab-toolchain:0.1.0 bash scripts/test-libbladerf.sh
+      - name: OCUDU radio plugin 및 실제 libbladeRF timed API contract
+        run: |
+          docker run --rm -v "$PWD:/lab" pws-lab-toolchain:0.1.0 bash scripts/build-radio-plugin.sh
+          docker run --rm --network none -v "$PWD:/lab" pws-lab-toolchain:0.1.0 bash scripts/test-radio-plugin.sh
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
           name: libbladerf-api-results
-          path: artifacts/libbladerf/
+          path: |
+            artifacts/libbladerf/
+            artifacts/radio-plugin/
   lint:
     runs-on: ubuntu-24.04
     timeout-minutes: 10

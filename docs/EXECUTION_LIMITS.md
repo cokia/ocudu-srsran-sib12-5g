@@ -51,3 +51,13 @@
 각 호출은 log, JSON, append-only audit event를 남긴다. PASS는 실행이 성공했을 때만 사용한다. SKIP은 조건 미충족으로 검사하지 않음, BLOCKED는 환경/장치/도구 부재, NOT VERIFIED는 기능은 있으나 해당 동작 검증을 하지 않음을 뜻한다. mock PASS는 실제 hardware PASS가 아니다.
 
 빌드 cache와 기존 사용자의 Docker 이미지/volume은 자동 prune하지 않는다. `clean.sh`는 지정한 프로젝트 build 경로만 지우고 결과와 upstream을 보존한다. hardware 진단 timeout/USB 분리 후에는 firmware loopback 상태와 모듈 비활성화를 확인하고 필요하면 USB 전원을 다시 연결한다.
+
+## PWS 연동 / radio plugin 추가 한도
+
+- plugin compile: 각 target 300초, 2 jobs. 기본 RF OFF와 별도 RF ON directory.
+- C++ plugin/API 검사: 각 executable 25초; CTest 자체 20초.
+- radio mock gNB: 시작 20초 + 유지 1..10초 + 종료 10초. stream watchdog 45초.
+- plugin hardware watchdog: 1..60초, 기본 20초. USB API timeout 250 ms.
+- PWS 수신: 5..120초, 기본 60초. UE/gNB 종료 각 10초, 로그별 32 MiB.
+- 4개 회귀 수신 suite: 360초 checkpoint. 통합 Docker build: 2700초 checkpoint.
+- 자동 reconnect, 무한 재시도, 자동 실물 RF 실행 없음. 실제 하드웨어 미연결은 PASS로 대체하지 않는다.

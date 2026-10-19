@@ -1,0 +1,31 @@
+{
+  "application_version": "0.1.0",
+  "artifact_location": "/lab/output/radio-plugin",
+  "details": {
+    "backend": "bladerf_x40",
+    "exit_code": 0,
+    "physical_hardware": "NOT VERIFIED",
+    "pws_scheduled_configuration": true,
+    "receiver_decode": "NOT VERIFIED",
+    "rf_transmission": false,
+    "rx_samples": 51904512,
+    "transport": "mock",
+    "tx_samples": 51839700
+  },
+  "error": null,
+  "firmware_version": null,
+  "fpga_version": null,
+  "host": {
+    "architecture": "aarch64",
+    "os": "Linux",
+    "python": "3.12.3",
+    "release": "6.8.0-117-generic"
+  },
+  "mode": "non-sdr",
+  "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+  "report_schema_version": 1,
+  "result": "PASS",
+  "sdr_model": null,
+  "test_name": "ocudu-bladerf-plugin-mock",
+  "timestamp": "2026-10-19T11:12:25+00:00"
+}

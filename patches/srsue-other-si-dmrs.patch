@@ -1,0 +1,14 @@
+diff --git a/lib/src/phy/phch/ra_nr.c b/lib/src/phy/phch/ra_nr.c
+index 9aa22c5..b070f47 100644
+--- a/lib/src/phy/phch/ra_nr.c
++++ b/lib/src/phy/phch/ra_nr.c
+@@ -662,7 +662,8 @@ static int ra_dl_dmrs(const srsran_sch_hl_cfg_nr_t* hl_cfg, const srsran_dci_dl_
+     // - for PDSCH transmission carrying SIB1, subcarrier 0 of the lowest-numbered common resource block in the
+     //  CORESET configured by the PBCH
+     //- otherwise, subcarrier 0 in common resource block 0
+-    if (dci->ctx.rnti_type == srsran_rnti_type_si) {
++    cfg->dmrs.reference_point_k_rb = 0;
++    if (dci->ctx.rnti_type == srsran_rnti_type_si && dci->sii == 0) {
+       cfg->dmrs.reference_point_k_rb = dci->ctx.coreset_start_rb;
+     }
+ 

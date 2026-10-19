@@ -1,0 +1,20 @@
+FROM pws-lab-toolchain:0.1.0 AS usb-runtime
+FROM pws-lab-zmq:0.1.0
+USER root
+# 두 base는 같은 Ubuntu snapshot으로 생성한다. libudev/libcap은 ZMQ runtime에 존재한다.
+COPY --from=usb-runtime /usr/lib/*-linux-gnu/libusb-1.0.so.0* /usr/local/lib/
+COPY --from=usb-runtime /usr/share/doc/libusb-1.0-0/copyright /usr/local/share/pws-lab/licenses/libusb-copyright
+WORKDIR /lab
+COPY controller /lab/controller
+COPY configs /lab/configs
+COPY dependencies.lock.json LICENSE THIRD_PARTY_NOTICES.md /lab/
+COPY licenses /usr/local/share/pws-lab/licenses
+COPY --from=lab_build /bin/gnb-zmq /usr/local/bin/gnb-zmq
+COPY --from=lab_build /lib/ /usr/local/lib/
+COPY --from=lab_build /manifest.json /usr/local/share/pws-lab/build-manifest.json
+RUN ldconfig && mkdir -p /lab/output && chown 10001:10001 /lab/output
+ENV GNB_ZMQ_BINARY=/usr/local/bin/gnb-zmq
+USER 10001:10001
+STOPSIGNAL SIGTERM
+ENTRYPOINT ["python", "-m", "controller.radio_smoke"]
+CMD ["--library-directory", "/usr/local/lib", "--output", "/lab/output/radio-plugin"]

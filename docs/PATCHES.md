@@ -31,3 +31,25 @@
 ## 배포와 관리
 
 base commit만으로 patched binary를 완전히 설명할 수 없으므로 patch 목록과 hash도 함께 배포한다. `build/runtime/<mode>/manifest.json`에는 전체 dependency lock과 executable hash를 보관한다. `scripts/package-source.sh`는 base와 patch가 적용된 대응 source 및 프로젝트 patch 파일을 포함한다. upstream merge나 외부 issue 작성은 수행하지 않았다.
+
+## srsUE SIB8 SI monitor
+
+모든 patch의 기준은 `6bcbd9e5bf8686aa7085202cd847c5ddd64a9c16`이며 원본/적용 결과/patch hash를 lock에 고정했다.
+
+| patch | source | 변경 |
+|---|---|---|
+| `srsue-sib8-monitor.patch` | `srsue/src/stack/rrc_nr/rrc_nr.cc` | SIB8 ASN.1 metadata/payload 로그, SIB1의 other-SI search space |
+| `srsue-si-monitor.patch` | `srsue/src/stack/rrc_nr/rrc_nr_procedures.cc` | 환경변수 opt-in 시 SIB1 이후 SI-RNTI 감시 유지 |
+| `srsue-si-dci.patch` | `srsue/src/phy/nr/cc_worker.cc` | 겹치는 common search에서 SI indicator 1을 Type0A로 분류 |
+| `srsue-type0a-time.patch` | `lib/src/phy/phch/ra_dl_nr.c` | 미구현 Row 2를 common time allocation list/Default A로 구현; list 범위 검사 |
+| `srsue-other-si-dmrs.patch` | `lib/src/phy/phch/ra_nr.c` | SIB1만 CORESET0 DMRS 기준점을 사용; other SI는 CRB0 |
+
+Type0A는 [TS 38.214 V16.5.0 Table 5.1.2.1.1-1](https://www.etsi.org/deliver/etsi_ts/138200_138299/138214/16.05.00_60/ts_138214v160500p.pdf), DMRS는 [TS 38.211 V15.2.0 §7.4.1.1.2](https://etsi.org/deliver/etsi_ts/138200_138299/138211/15.02.00_60/ts_138211v150200p.pdf)를 근거로 한다. 패치 전 실제 DCI는 잡혔으나 other SI의 PDSCH CRC가 실패했다. patch 후 실제 SIB8 수신·한글 복원·15 segments 재조립이 PASS다. marker만 삽입하거나 PHY 결과를 대체하지 않았다.
+
+SI monitor는 opt-in이며 기존 연결 모드 회귀도 PASS다. time-allocation/DMRS 수정은 해당 PHY 의미에 맞게 공통 구현에 적용했다. 검증 profile은 n3 FDD, normal CP, SCS 15 kHz, CORESET multiplexing pattern 1에 한정한다. upstream의 다른 미구현 Row, 모든 carrier offset/CORESET 조합까지 해결한 것은 아니다.
+
+## generic CPU의 빈 feature 목록
+
+기존 GitHub `build` run `39238015007`에서 `-march=x86-64`의 `cpu_features.h`가 `to_array<cpu_feature>({})`의 길이를 추론하지 못해 컴파일에 실패했다. `patches/ocudu-empty-cpu-features.patch`는 고정 feature 목록을 빈 경우도 허용하는 `constexpr std::initializer_list`로 바꾼다. CPU 필수 instruction을 추가하거나 runtime feature 검사를 제거하지 않는다. hash와 source `include/ocudu/support/cpu_features.h`는 lock에 고정했다.
+
+ARM64의 feature macro를 비활성화한 별도 compile probe에서 원본의 동일 오류와 수정 후 empty-list compile 성공을 확인했다. 실제 ARM64 gNB도 재빌드했다. GitHub x86-64 전체 빌드 결과는 해당 새 CI run에서 별도 확인해야 한다.

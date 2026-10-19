@@ -6,19 +6,27 @@ PAGE_BYTES = 82
 MAX_PAGES = 15
 
 
-def encode(text: str) -> bytes:
+def padding_bytes(profile: str) -> bytes:
+    if profile == "cr":
+        return b"\x00\r"
+    if profile == "ocudu-zero":
+        return b"\x00\x00"
+    raise LabError("E_CB_PROFILE", "지원하지 않는 CB padding profile입니다.")
+
+
+def encode(text: str, *, padding: str = "cr") -> bytes:
+    pad = padding_bytes(padding)
     if not text or any(ord(c) > 0xFFFF or 0xD800 <= ord(c) <= 0xDFFF for c in text):
         raise LabError("E_ENCODING", "비어 있지 않은 UCS-2 BMP 문자열이 필요합니다.")
     raw = text.encode("utf-16-be")
     if len(raw) > PAGE_BYTES * MAX_PAGES:
         raise LabError("E_LENGTH", "최대 615 UCS-2 문자입니다.")
     chunks = [raw[i : i + PAGE_BYTES] for i in range(0, len(raw), PAGE_BYTES)]
-    return bytes([len(chunks)]) + b"".join(
-        c + b"\x00\r" * ((PAGE_BYTES - len(c)) // 2) + bytes([len(c)]) for c in chunks
-    )
+    return bytes([len(chunks)]) + b"".join(c + pad * ((PAGE_BYTES - len(c)) // 2) + bytes([len(c)]) for c in chunks)
 
 
-def decode(data: bytes) -> str:
+def decode(data: bytes, *, padding: str = "cr") -> str:
+    pad = padding_bytes(padding)
     if not data or not 1 <= data[0] <= MAX_PAGES or len(data) != 1 + data[0] * 83:
         raise LabError("E_CB_LENGTH", "CB Data page 수 또는 길이가 잘못되었습니다.")
     raw = bytearray()
@@ -27,8 +35,8 @@ def decode(data: bytes) -> str:
         size = page[-1]
         if not 2 <= size <= 82 or size % 2 or (i + 1 < data[0] and size != 82):
             raise LabError("E_CB_PAGE", "비정규 page 길이입니다.")
-        if page[size:82] != b"\x00\r" * ((82 - size) // 2):
-            raise LabError("E_CB_PADDING", "UCS-2 CR padding이 잘못되었습니다.")
+        if page[size:82] != pad * ((82 - size) // 2):
+            raise LabError("E_CB_PADDING", "UCS-2 padding이 선택한 profile과 다릅니다.")
         raw.extend(page[:size])
     try:
         text = bytes(raw).decode("utf-16-be")

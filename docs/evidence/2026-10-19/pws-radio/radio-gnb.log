@@ -1,0 +1,1128 @@
+
+--== OCUDU gNB (commit e0db566) ==--
+
+2026-10-19T11:12:21.081799 [GNB     ] [I] Built in Release mode using commit e0db566 on branch HEAD
+2026-10-19T11:12:21.085156 [CONFIG  ] [I] gNB input configuration (only non-default values): 
+log:
+  filename: stdout
+  all_level: info
+buffer_pool:
+  nof_segments: 16384
+  segment_size: 2048
+expert_execution:
+  threads:
+    main_pool:
+      nof_threads: 2
+cu_cp:
+  amf:
+    no_core: true
+    addrs: 127.0.0.1
+    bind_addrs: 127.0.0.1
+    supported_tracking_areas: "plmn_list:\n  - plmn: 00101\n    tai_slice_support_list:\n      - sst: 1\ntac: 7"
+pcap:
+  ngap_enable: false
+  mac_enable: false
+cell_cfg:
+  pci: 1
+  dl_arfcn: 368500
+  band: 3
+  common_scs: 15
+  channel_bandwidth_MHz: 20
+  plmn: 00101
+  tac: 7
+  sib:
+    si_window_length: 10
+    cmas:
+      si_period: 8
+      test:
+        message_id: 4372
+        serial_num: 0
+        data_coding_scheme: 72
+        warning_message: "[시험 데이터] PWS 프로토콜 검증 메시지입니다."
+  pdcch:
+    common:
+      coreset0_index: 12
+      ss0_index: 0
+    dedicated:
+      dci_format_0_1_and_1_1: false
+      ss2_type: common
+  pdsch:
+    mcs_table: qam64
+  pusch:
+    mcs_table: qam64
+  prach:
+    prach_config_index: 1
+ru_sdr:
+  srate: 23.04
+  device_driver: bladerf_x40
+  device_args: mode=mock,rf=off,max_seconds=45
+  tx_gain: 0
+  rx_gain: 0
+2026-10-19T11:12:21.276231 [GNB     ] [W] Could not check scaling governor. filename=/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor error=No such file or directory
+2026-10-19T11:12:21.277322 [GNB     ] [W] Could not check DRM KMS polling. filename=/sys/module/drm_kms_helper/parameters/poll error=Permission denied
+Warning: Scheduling priority of thread "main_pool#0" not changed. Cause: Not enough privileges.
+Warning: Scheduling priority of thread "main_pool#1" not changed. Cause: Not enough privileges.
+2026-10-19T11:12:21.286017 [CONFIG  ] [I] Worker pool "main_pool" instantiated with #workers=2, task_queue_size=2048, backoff_period=50us and priority=96.
+Warning: Scheduling priority of thread "lower_phy_tx#0" not changed. Cause: Not enough privileges.
+Warning: Scheduling priority of thread "lower_phy_rx#0" not changed. Cause: Not enough privileges.
+Warning: Scheduling priority of thread "io_broker_epoll" not changed. Cause: Not enough privileges.
+Lower PHY in dual baseband executor mode.
+2026-10-19T11:12:21.616594 [GTPU    ] [I] GTP-U demux. lif=NG-U name=NG-U-DEMUX queue_size=2046 batch_size=256 warn_on_drop=false test_mode=false
+2026-10-19T11:12:21.620081 [GTPU    ] [I] Tunnel added. teid=0x000000
+2026-10-19T11:12:22.431493 [CONFIG  ] [I] The upper-bound on the number of UEs supported by cell {pci=1, du_cell_index=0} is 160 (the actual number might be lower than that). This is determined by the lowest of the following limits: SR (160), CSI (160), SRS (n/a) and UE contexts per cell (1984). Up to 224 UE contexts can be created in the cell, the extra ones being used to RRC Reject UEs.
+2026-10-19T11:12:22.433321 [DU      ] [I] DU created successfully
+2026-10-19T11:12:22.433341 [DU      ] [I] O-DU created successfully
+Available radio types: zmq and realtime_loopback.
+Cell pci=1, bw=20 MHz, 1T1R, dl_arfcn=368500 (n3), dl_freq=1842.5 MHz, dl_ssb_arfcn=368410, ul_freq=1747.5 MHz
+
+2026-10-19T11:12:22.453061 [GNB     ] [I] SSB derived parameters for cell: 1, band: 3, dl_arfcn:368500, nof_crbs: 106 scs:15kHz, ssb_scs:15kHz:
+	 - SSB offset pointA:40 
+	 - k_SSB:6 
+	 - SSB arfcn:368410 
+	 - Coreset index:12 
+	 - Searchspace index:0
+2026-10-19T11:12:22.453222 [IO-EPOLL] [E] fd=0: Failed to register file descriptor. Cause: epoll_ctl failed with "Operation not permitted"
+2026-10-19T11:12:22.453268 [APP     ] [E] Couldn't register stdin handler
+2026-10-19T11:12:22.453276 [GNB     ] [I] Starting CU-CP...
+2026-10-19T11:12:22.453858 [NGAP    ] [I] "NG Setup Procedure" started...
+2026-10-19T11:12:22.453895 [NGAP    ] [I] Tx PDU: NGSetupRequest
+2026-10-19T11:12:22.453970 [NGAP    ] [I] Rx PDU: NGSetupResponse
+2026-10-19T11:12:22.454276 [NGAP    ] [I] "NG Setup Procedure" finished successfully
+2026-10-19T11:12:22.454294 [CU-CP   ] [I] Connected to AMF. Supported PLMNs: 00101 
+2026-10-19T11:12:22.454326 [GNB     ] [I] CU-CP started successfully
+2026-10-19T11:12:22.454335 [CU-UP   ] [I] CU-UP starting...
+2026-10-19T11:12:22.454560 [CU-CP   ] [I] Added TNL connection to CU-UP 0
+2026-10-19T11:12:22.455092 [CU-UP-E1] [I] e1=0: Tx PDU tid=0 GNB-CU-UP-E1SetupRequest
+2026-10-19T11:12:22.455150 [CU-CP-E1] [I] Rx PDU tid=0: GNB-CU-UP-E1SetupRequest
+2026-10-19T11:12:22.455241 [CU-CP-E1] [I] Tx PDU tid=0: GNB-CU-UP-E1SetupResponse
+2026-10-19T11:12:22.455288 [CU-UP-E1] [I] e1=0: Rx PDU tid=0 GNB-CU-UP-E1SetupResponse
+2026-10-19T11:12:22.455310 [CU-UP-E1] [I] e1=0: "E1AP CU-UP Setup Procedure" finalized
+2026-10-19T11:12:22.455349 [CU-UP   ] [I] CU-UP started successfully
+2026-10-19T11:12:22.455352 [DU      ] [I] Starting DU...
+2026-10-19T11:12:22.455353 [DU      ] [I] Starting DU-High...
+2026-10-19T11:12:22.537686 [CU-CP   ] [I] Added TNL connection to DU 0
+2026-10-19T11:12:22.537896 [DU-MNG  ] [I] SIB1 cell=0: {
+  "cellSelectionInfo": {
+    "q-RxLevMin": -70,
+    "q-QualMin": -20
+  },
+  "cellAccessRelatedInfo": {
+    "plmn-IdentityInfoList": [
+      {
+        "plmn-IdentityList": [
+          {
+            "mcc": [
+              0,
+              0,
+              1
+            ],
+            "mnc": [
+              0,
+              1
+            ]
+          }
+        ],
+        "trackingAreaCode": "000000000000000000000111",
+        "cellIdentity": "000000000000011001101100000000000000",
+        "cellReservedForOperatorUse": "notReserved"
+      }
+    ]
+  },
+  "connEstFailureControl": {
+    "connEstFailCount": "n1",
+    "connEstFailOffsetValidity": "s30",
+    "connEstFailOffset": 1
+  },
+  "servingCellConfigCommon": {
+    "downlinkConfigCommon": {
+      "frequencyInfoDL": {
+        "frequencyBandList": [
+          {
+            "freqBandIndicatorNR": 3
+          }
+        ],
+        "offsetToPointA": 40,
+        "scs-SpecificCarrierList": [
+          {
+            "offsetToCarrier": 0,
+            "subcarrierSpacing": "kHz15",
+            "carrierBandwidth": 106,
+            "txDirectCurrentLocation": 636
+          }
+        ]
+      },
+      "initialDownlinkBWP": {
+        "genericParameters": {
+          "locationAndBandwidth": 28875,
+          "subcarrierSpacing": "kHz15"
+        },
+        "pdcch-ConfigCommon": {
+          {
+            "commonSearchSpaceList": [
+              {
+                "searchSpaceId": 1,
+                "controlResourceSetId": 0,
+                "monitoringSlotPeriodicityAndOffset": {
+                },
+                "monitoringSymbolsWithinSlot": "10000000000000",
+                "nrofCandidates": {
+                  "aggregationLevel1": "n0",
+                  "aggregationLevel2": "n0",
+                  "aggregationLevel4": "n2",
+                  "aggregationLevel8": "n0",
+                  "aggregationLevel16": "n0"
+                },
+                "searchSpaceType": {
+                  "common": {
+                    "dci-Format0-0-AndFormat1-0": {
+                    }
+                  }
+                }
+              }
+            ],
+            "searchSpaceSIB1": 0,
+            "searchSpaceOtherSystemInformation": 1,
+            "pagingSearchSpace": 1,
+            "ra-SearchSpace": 1
+          }
+        },
+        "pdsch-ConfigCommon": {
+          {
+            "pdsch-TimeDomainAllocationList": [
+              {
+                "mappingType": "typeA",
+                "startSymbolAndLength": 40
+              }
+            ]
+          }
+        }
+      },
+      "bcch-Config": {
+        "modificationPeriodCoeff": "n4"
+      },
+      "pcch-Config": {
+        "defaultPagingCycle": "rf128",
+        "nAndPagingFrameOffset": {
+        },
+        "ns": "one"
+      }
+    },
+    "uplinkConfigCommon": {
+      "frequencyInfoUL": {
+        "frequencyBandList": [
+          {
+            "freqBandIndicatorNR": 3
+          }
+        ],
+        "absoluteFrequencyPointA": 347592,
+        "scs-SpecificCarrierList": [
+          {
+            "offsetToCarrier": 0,
+            "subcarrierSpacing": "kHz15",
+            "carrierBandwidth": 106
+          }
+        ]
+      },
+      "initialUplinkBWP": {
+        "genericParameters": {
+          "locationAndBandwidth": 28875,
+          "subcarrierSpacing": "kHz15"
+        },
+        "rach-ConfigCommon": {
+          {
+            "rach-ConfigGeneric": {
+              "prach-ConfigurationIndex": 1,
+              "msg1-FDM": "one",
+              "msg1-FrequencyStart": 8,
+              "zeroCorrelationZoneConfig": 0,
+              "preambleReceivedTargetPower": -100,
+              "preambleTransMax": "n7",
+              "powerRampingStep": "dB4",
+              "ra-ResponseWindow": "sl10"
+            },
+            "ssb-perRACH-OccasionAndCB-PreamblesPerSSB": {
+              "one": "n64"
+            },
+            "ra-ContentionResolutionTimer": "sf64",
+            "prach-RootSequenceIndex": {
+              "l839": 1
+            },
+            "restrictedSetConfig": "unrestrictedSet"
+          }
+        },
+        "pusch-ConfigCommon": {
+          {
+            "pusch-TimeDomainAllocationList": [
+              {
+                "k2": 4,
+                "mappingType": "typeA",
+                "startSymbolAndLength": 27
+              }
+            ],
+            "msg3-DeltaPreamble": 6,
+            "p0-NominalWithGrant": -76
+          }
+        },
+        "pucch-ConfigCommon": {
+          {
+            "pucch-ResourceCommon": 11,
+            "pucch-GroupHopping": "neither",
+            "p0-nominal": -90
+          }
+        }
+      },
+      "timeAlignmentTimerCommon": "infinity"
+    },
+    "n-TimingAdvanceOffset": "n25600",
+    "ssb-PositionsInBurst": {
+      "inOneGroup": "10000000"
+    },
+    "ssb-PeriodicityServingCell": "ms10",
+    "ss-PBCH-BlockPower": -16
+  },
+  "ims-EmergencySupport": "true",
+  "eCallOverIMS-Support": "true",
+  "ue-TimersAndConstants": {
+    "t300": "ms1000",
+    "t301": "ms1000",
+    "t310": "ms1000",
+    "n310": "n1",
+    "t311": "ms3000",
+    "n311": "n1",
+    "t319": "ms1000"
+  }
+}
+2026-10-19T11:12:22.538594 [DU-F1   ] [I] F1 Setup: Sending F1 Setup Request to CU-CP...
+2026-10-19T11:12:22.538616 [DU-F1   ] [I] Tx PDU du=0 tid=0: F1SetupRequest
+2026-10-19T11:12:22.538964 [CU-CP-F1] [I] Rx PDU du=0 tid=0: F1SetupRequest
+2026-10-19T11:12:22.539133 [CU-CP   ] [I] Logical cell nci=0x66c000 realized by du=0 (admin_state=unlocked barred=false)
+2026-10-19T11:12:22.539139 [CU-CP   ] [I] Logical cell nci=0x66c000 operational_state: disabled -> enabled
+2026-10-19T11:12:22.540035 [CU-CP-F1] [I] Tx PDU du=0 tid=0: F1SetupResponse
+2026-10-19T11:12:22.540057 [DU-F1   ] [I] Rx PDU du=0 tid=0: F1SetupResponse
+2026-10-19T11:12:22.540173 [DU-F1   ] [I] F1 Setup: Procedure completed successfully.
+2026-10-19T11:12:22.540195 [SCHED   ] [I] [     0.0] cell=0: Cell scheduling was activated.
+2026-10-19T11:12:22.540366 [MAC     ] [I] [     0.0] cell=0: Cell was activated
+2026-10-19T11:12:22.540431 [DU      ] [I] DU-High started successfully
+2026-10-19T11:12:22.540453 [DU      ] [I] DU started successfully
+==== gNB started ===
+Type <h> to view help
+2026-10-19T11:12:22.541346 [GNB     ] [I] ==== gNB started ===
+2026-10-19T11:12:22.541875 [SCHED   ] [I] [    10.3] Processed slot events pci=1: Cell creation idx=0
+2026-10-19T11:12:22.726645 [FAPI    ] [W] [    28.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 28.2
+2026-10-19T11:12:22.726819 [FAPI    ] [W] [    28.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 28.2
+2026-10-19T11:12:22.726842 [SCHED   ] [I] [    28.3] Processed slot events pci=1: ErrorIndication slot=28.2, ErrorIndication slot=28.2
+2026-10-19T11:12:22.726843 [FAPI    ] [W] [    28.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 28.3
+2026-10-19T11:12:22.726848 [FAPI    ] [W] [    28.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 28.3
+2026-10-19T11:12:22.726853 [SCHED   ] [I] [    28.4] Processed slot events pci=1: ErrorIndication slot=28.3, ErrorIndication slot=28.3
+2026-10-19T11:12:22.726858 [FAPI    ] [W] [    28.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 28.4
+2026-10-19T11:12:22.726859 [FAPI    ] [W] [    28.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 28.4
+2026-10-19T11:12:22.726869 [SCHED   ] [I] [    28.5] Processed slot events pci=1: ErrorIndication slot=28.4, ErrorIndication slot=28.4
+2026-10-19T11:12:22.750240 [FAPI    ] [W] [    30.9] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 29.9
+2026-10-19T11:12:22.750243 [FAPI    ] [W] [    30.9] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 29.9
+2026-10-19T11:12:22.750918 [SCHED   ] [I] [    30.0] Processed slot events pci=1: ErrorIndication slot=29.9, ErrorIndication slot=29.9
+2026-10-19T11:12:22.750923 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 30.0
+2026-10-19T11:12:22.750932 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 30.0
+2026-10-19T11:12:22.750947 [SCHED   ] [I] [    30.1] Processed slot events pci=1: ErrorIndication slot=30.0, ErrorIndication slot=30.0
+2026-10-19T11:12:22.750953 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 30.1
+2026-10-19T11:12:22.750953 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 30.1
+2026-10-19T11:12:22.750968 [SCHED   ] [I] [    30.2] Processed slot events pci=1: ErrorIndication slot=30.1, ErrorIndication slot=30.1
+2026-10-19T11:12:22.750978 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 30.2
+2026-10-19T11:12:22.750978 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 30.2
+2026-10-19T11:12:22.750988 [SCHED   ] [I] [    30.3] Processed slot events pci=1: ErrorIndication slot=30.2, ErrorIndication slot=30.2
+2026-10-19T11:12:22.750989 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 30.3
+2026-10-19T11:12:22.750991 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 30.3
+2026-10-19T11:12:22.750996 [SCHED   ] [I] [    30.4] Processed slot events pci=1: ErrorIndication slot=30.3, ErrorIndication slot=30.3
+2026-10-19T11:12:22.751001 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 30.4
+2026-10-19T11:12:22.751001 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 30.4
+2026-10-19T11:12:22.751014 [SCHED   ] [I] [    30.5] Processed slot events pci=1: ErrorIndication slot=30.4, ErrorIndication slot=30.4
+2026-10-19T11:12:22.751018 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 30.5
+2026-10-19T11:12:22.751018 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 30.5
+2026-10-19T11:12:22.751059 [SCHED   ] [I] [    30.6] Processed slot events pci=1: ErrorIndication slot=30.5, ErrorIndication slot=30.5
+2026-10-19T11:12:22.751060 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 30.6
+2026-10-19T11:12:22.751071 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 30.6
+2026-10-19T11:12:22.751075 [SCHED   ] [I] [    30.7] Processed slot events pci=1: ErrorIndication slot=30.6, ErrorIndication slot=30.6
+2026-10-19T11:12:22.751079 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 30.7
+2026-10-19T11:12:22.751080 [FAPI    ] [W] [    31.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 30.7
+2026-10-19T11:12:22.751088 [SCHED   ] [I] [    30.8] Processed slot events pci=1: ErrorIndication slot=30.7, ErrorIndication slot=30.7
+2026-10-19T11:12:22.763734 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 31.6
+2026-10-19T11:12:22.763737 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 31.6
+2026-10-19T11:12:22.763763 [SCHED   ] [I] [    31.7] Processed slot events pci=1: ErrorIndication slot=31.6, ErrorIndication slot=31.6
+2026-10-19T11:12:22.763764 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 31.7
+2026-10-19T11:12:22.763811 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 31.7
+2026-10-19T11:12:22.763821 [SCHED   ] [I] [    31.8] Processed slot events pci=1: ErrorIndication slot=31.7, ErrorIndication slot=31.7
+2026-10-19T11:12:22.763829 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 31.8
+2026-10-19T11:12:22.763830 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 31.8
+2026-10-19T11:12:22.763941 [SCHED   ] [I] [    31.9] Processed slot events pci=1: ErrorIndication slot=31.8, ErrorIndication slot=31.8
+2026-10-19T11:12:22.763943 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 31.9
+2026-10-19T11:12:22.763948 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 31.9
+2026-10-19T11:12:22.763964 [SCHED   ] [I] [    32.0] Processed slot events pci=1: ErrorIndication slot=31.9, ErrorIndication slot=31.9
+2026-10-19T11:12:22.763970 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 32.0
+2026-10-19T11:12:22.763978 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received TX_Data.request from slot 32.0
+2026-10-19T11:12:22.763978 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 32.0
+2026-10-19T11:12:22.763990 [SCHED   ] [I] [    32.1] Processed slot events pci=1: ErrorIndication slot=32.0, ErrorIndication slot=32.0, ErrorIndication slot=32.0
+2026-10-19T11:12:22.763991 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 32.1
+2026-10-19T11:12:22.764051 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received TX_Data.request from slot 32.1
+2026-10-19T11:12:22.764051 [FAPI    ] [W] [    32.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 32.1
+2026-10-19T11:12:22.764067 [SCHED   ] [I] [    32.2] Processed slot events pci=1: ErrorIndication slot=32.1, ErrorIndication slot=32.1, ErrorIndication slot=32.1
+2026-10-19T11:12:22.774427 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 32.6
+2026-10-19T11:12:22.774431 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 32.6
+2026-10-19T11:12:22.774451 [SCHED   ] [I] [    32.7] Processed slot events pci=1: ErrorIndication slot=32.6, ErrorIndication slot=32.6
+2026-10-19T11:12:22.774453 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 32.7
+2026-10-19T11:12:22.774455 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 32.7
+2026-10-19T11:12:22.774471 [SCHED   ] [I] [    32.8] Processed slot events pci=1: ErrorIndication slot=32.7, ErrorIndication slot=32.7
+2026-10-19T11:12:22.774481 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 32.8
+2026-10-19T11:12:22.774482 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 32.8
+2026-10-19T11:12:22.774492 [SCHED   ] [I] [    32.9] Processed slot events pci=1: ErrorIndication slot=32.8, ErrorIndication slot=32.8
+2026-10-19T11:12:22.774497 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 32.9
+2026-10-19T11:12:22.774497 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 32.9
+2026-10-19T11:12:22.774509 [SCHED   ] [I] [    33.0] Processed slot events pci=1: ErrorIndication slot=32.9, ErrorIndication slot=32.9
+2026-10-19T11:12:22.774512 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 33.0
+2026-10-19T11:12:22.774521 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 33.0
+2026-10-19T11:12:22.774530 [SCHED   ] [I] [    33.1] Processed slot events pci=1: ErrorIndication slot=33.0, ErrorIndication slot=33.0
+2026-10-19T11:12:22.774537 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 33.1
+2026-10-19T11:12:22.774538 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 33.1
+2026-10-19T11:12:22.774550 [SCHED   ] [I] [    33.2] Processed slot events pci=1: ErrorIndication slot=33.1, ErrorIndication slot=33.1
+2026-10-19T11:12:22.774555 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 33.2
+2026-10-19T11:12:22.774556 [FAPI    ] [W] [    33.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 33.2
+2026-10-19T11:12:22.774569 [SCHED   ] [I] [    33.3] Processed slot events pci=1: ErrorIndication slot=33.2, ErrorIndication slot=33.2
+2026-10-19T11:12:22.779319 [PHY     ] [W] [    32.2] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 32.2.
+2026-10-19T11:12:22.780210 [SCHED   ] [W] [    34.0] cell=0, slot=32.2: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=34.0)
+2026-10-19T11:12:22.792318 [PHY     ] [W] [    33.3] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 33.3.
+2026-10-19T11:12:22.795074 [SCHED   ] [W] [    34.9] cell=0, slot=33.3: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=34.9)
+2026-10-19T11:12:22.795128 [FAPI    ] [W] [    35.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 34.9
+2026-10-19T11:12:22.795146 [FAPI    ] [W] [    35.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 34.9
+2026-10-19T11:12:22.795177 [SCHED   ] [I] [    35.0] Processed slot events pci=1: ErrorIndication slot=34.9, ErrorIndication slot=34.9
+2026-10-19T11:12:22.795181 [FAPI    ] [W] [    35.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 35.0
+2026-10-19T11:12:22.795188 [FAPI    ] [W] [    35.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 35.0
+2026-10-19T11:12:22.795195 [SCHED   ] [I] [    35.1] Processed slot events pci=1: ErrorIndication slot=35.0, ErrorIndication slot=35.0
+2026-10-19T11:12:22.795201 [FAPI    ] [W] [    35.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 35.1
+2026-10-19T11:12:22.795202 [FAPI    ] [W] [    35.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 35.1
+2026-10-19T11:12:22.795253 [SCHED   ] [I] [    35.2] Processed slot events pci=1: ErrorIndication slot=35.1, ErrorIndication slot=35.1
+2026-10-19T11:12:22.795256 [FAPI    ] [W] [    35.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 35.2
+2026-10-19T11:12:22.795263 [FAPI    ] [W] [    35.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 35.2
+2026-10-19T11:12:22.795278 [SCHED   ] [I] [    35.3] Processed slot events pci=1: ErrorIndication slot=35.2, ErrorIndication slot=35.2
+2026-10-19T11:12:22.805561 [FAPI    ] [W] [    36.6] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 36.1
+2026-10-19T11:12:22.805600 [FAPI    ] [W] [    36.6] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 36.1
+2026-10-19T11:12:22.805621 [SCHED   ] [I] [    36.2] Processed slot events pci=1: ErrorIndication slot=36.1, ErrorIndication slot=36.1
+2026-10-19T11:12:22.805629 [FAPI    ] [W] [    36.6] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 36.2
+2026-10-19T11:12:22.805631 [FAPI    ] [W] [    36.6] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 36.2
+2026-10-19T11:12:22.806441 [SCHED   ] [I] [    36.3] Processed slot events pci=1: ErrorIndication slot=36.2, ErrorIndication slot=36.2
+2026-10-19T11:12:22.806450 [FAPI    ] [W] [    36.6] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 36.3
+2026-10-19T11:12:22.806460 [FAPI    ] [W] [    36.6] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 36.3
+2026-10-19T11:12:22.806489 [SCHED   ] [I] [    36.4] Processed slot events pci=1: ErrorIndication slot=36.3, ErrorIndication slot=36.3
+2026-10-19T11:12:22.813060 [PHY     ] [W] [    35.3] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 35.3.
+2026-10-19T11:12:22.813177 [SCHED   ] [W] [    36.9] cell=0, slot=35.3: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=36.9)
+2026-10-19T11:12:22.813214 [FAPI    ] [W] [    37.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 36.9
+2026-10-19T11:12:22.813224 [FAPI    ] [W] [    37.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 36.9
+2026-10-19T11:12:22.813239 [SCHED   ] [I] [    37.0] Processed slot events pci=1: ErrorIndication slot=36.9, ErrorIndication slot=36.9
+2026-10-19T11:12:22.813249 [FAPI    ] [W] [    37.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 37.0
+2026-10-19T11:12:22.813251 [FAPI    ] [W] [    37.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 37.0
+2026-10-19T11:12:22.813276 [SCHED   ] [I] [    37.1] Processed slot events pci=1: ErrorIndication slot=37.0, ErrorIndication slot=37.0
+2026-10-19T11:12:22.823178 [FAPI    ] [W] [    38.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 38.0
+2026-10-19T11:12:22.823181 [FAPI    ] [W] [    38.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 38.0
+2026-10-19T11:12:22.823243 [SCHED   ] [I] [    38.1] Processed slot events pci=1: ErrorIndication slot=38.0, ErrorIndication slot=38.0
+2026-10-19T11:12:22.851498 [FAPI    ] [W] [    41.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 40.5
+2026-10-19T11:12:22.851506 [FAPI    ] [W] [    41.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 40.5
+2026-10-19T11:12:22.851516 [SCHED   ] [I] [    40.6] Processed slot events pci=1: ErrorIndication slot=40.5, ErrorIndication slot=40.5
+2026-10-19T11:12:22.851533 [FAPI    ] [W] [    41.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 40.6
+2026-10-19T11:12:22.851534 [FAPI    ] [W] [    41.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 40.6
+2026-10-19T11:12:22.851542 [SCHED   ] [I] [    40.7] Processed slot events pci=1: ErrorIndication slot=40.6, ErrorIndication slot=40.6
+2026-10-19T11:12:22.851578 [FAPI    ] [W] [    41.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 40.7
+2026-10-19T11:12:22.851581 [FAPI    ] [W] [    41.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 40.7
+2026-10-19T11:12:22.851846 [SCHED   ] [I] [    40.8] Processed slot events pci=1: ErrorIndication slot=40.7, ErrorIndication slot=40.7
+2026-10-19T11:12:22.851848 [FAPI    ] [W] [    41.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 40.8
+2026-10-19T11:12:22.851962 [FAPI    ] [W] [    41.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 40.8
+2026-10-19T11:12:22.852082 [SCHED   ] [I] [    40.9] Processed slot events pci=1: ErrorIndication slot=40.8, ErrorIndication slot=40.8
+2026-10-19T11:12:22.852945 [FAPI    ] [W] [    41.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 40.9
+2026-10-19T11:12:22.852946 [FAPI    ] [W] [    41.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 40.9
+2026-10-19T11:12:22.853017 [SCHED   ] [I] [    41.0] Processed slot events pci=1: ErrorIndication slot=40.9, ErrorIndication slot=40.9
+2026-10-19T11:12:22.853027 [FAPI    ] [W] [    41.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 41.0
+2026-10-19T11:12:22.853027 [FAPI    ] [W] [    41.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 41.0
+2026-10-19T11:12:22.853048 [SCHED   ] [I] [    41.1] Processed slot events pci=1: ErrorIndication slot=41.0, ErrorIndication slot=41.0
+2026-10-19T11:12:22.867926 [FAPI    ] [W] [    42.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 41.6
+2026-10-19T11:12:22.869170 [FAPI    ] [W] [    42.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 41.6
+2026-10-19T11:12:22.869205 [SCHED   ] [I] [    41.7] Processed slot events pci=1: ErrorIndication slot=41.6, ErrorIndication slot=41.6
+2026-10-19T11:12:22.869226 [FAPI    ] [W] [    42.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 41.7
+2026-10-19T11:12:22.869227 [FAPI    ] [W] [    42.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 41.7
+2026-10-19T11:12:22.869240 [SCHED   ] [I] [    41.8] Processed slot events pci=1: ErrorIndication slot=41.7, ErrorIndication slot=41.7
+2026-10-19T11:12:22.869244 [FAPI    ] [W] [    42.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 41.8
+2026-10-19T11:12:22.869245 [FAPI    ] [W] [    42.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 41.8
+2026-10-19T11:12:22.869255 [SCHED   ] [I] [    41.9] Processed slot events pci=1: ErrorIndication slot=41.8, ErrorIndication slot=41.8
+2026-10-19T11:12:22.869256 [FAPI    ] [W] [    42.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 41.9
+2026-10-19T11:12:22.869280 [FAPI    ] [W] [    42.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 41.9
+2026-10-19T11:12:22.869314 [SCHED   ] [I] [    42.0] Processed slot events pci=1: ErrorIndication slot=41.9, ErrorIndication slot=41.9
+2026-10-19T11:12:22.869330 [FAPI    ] [W] [    42.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 42.0
+2026-10-19T11:12:22.869331 [FAPI    ] [W] [    42.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 42.0
+2026-10-19T11:12:22.869356 [SCHED   ] [I] [    42.1] Processed slot events pci=1: ErrorIndication slot=42.0, ErrorIndication slot=42.0
+2026-10-19T11:12:22.869374 [FAPI    ] [W] [    42.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 42.1
+2026-10-19T11:12:22.869375 [FAPI    ] [W] [    42.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 42.1
+2026-10-19T11:12:22.869434 [SCHED   ] [I] [    42.2] Processed slot events pci=1: ErrorIndication slot=42.1, ErrorIndication slot=42.1
+2026-10-19T11:12:22.869821 [FAPI    ] [W] [    42.9] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 42.5
+2026-10-19T11:12:22.869826 [FAPI    ] [W] [    42.9] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 42.5
+2026-10-19T11:12:22.869831 [SCHED   ] [I] [    42.6] Processed slot events pci=1: ErrorIndication slot=42.5, ErrorIndication slot=42.5
+2026-10-19T11:12:22.869835 [FAPI    ] [W] [    42.9] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 42.6
+2026-10-19T11:12:22.869836 [FAPI    ] [W] [    42.9] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 42.6
+2026-10-19T11:12:22.869846 [SCHED   ] [I] [    42.7] Processed slot events pci=1: ErrorIndication slot=42.6, ErrorIndication slot=42.6
+2026-10-19T11:12:22.880504 [PHY     ] [W] [    42.2] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 42.2.
+2026-10-19T11:12:22.880505 [SCHED   ] [W] [    43.8] cell=0, slot=42.2: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=43.8)
+2026-10-19T11:12:22.901064 [FAPI    ] [W] [    46.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 45.7
+2026-10-19T11:12:22.901067 [FAPI    ] [W] [    46.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 45.7
+2026-10-19T11:12:22.901077 [SCHED   ] [I] [    45.8] Processed slot events pci=1: ErrorIndication slot=45.7, ErrorIndication slot=45.7
+2026-10-19T11:12:22.901078 [FAPI    ] [W] [    46.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 45.8
+2026-10-19T11:12:22.901084 [FAPI    ] [W] [    46.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 45.8
+2026-10-19T11:12:22.901089 [SCHED   ] [I] [    45.9] Processed slot events pci=1: ErrorIndication slot=45.8, ErrorIndication slot=45.8
+2026-10-19T11:12:22.918098 [PHY     ] [W] [    46.0] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 46.0.
+2026-10-19T11:12:22.918226 [SCHED   ] [W] [    47.8] cell=0, slot=46.0: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=47.8)
+2026-10-19T11:12:22.976441 [FAPI    ] [W] [    53.6] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 53.2
+2026-10-19T11:12:22.976459 [FAPI    ] [W] [    53.6] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 53.2
+2026-10-19T11:12:22.976492 [SCHED   ] [I] [    53.3] Processed slot events pci=1: ErrorIndication slot=53.2, ErrorIndication slot=53.2
+2026-10-19T11:12:22.976531 [FAPI    ] [W] [    53.6] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 53.3
+2026-10-19T11:12:22.976533 [FAPI    ] [W] [    53.6] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 53.3
+2026-10-19T11:12:22.976571 [SCHED   ] [I] [    53.4] Processed slot events pci=1: ErrorIndication slot=53.3, ErrorIndication slot=53.3
+2026-10-19T11:12:23.044624 [FAPI    ] [W] [    60.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 60.2
+2026-10-19T11:12:23.044633 [FAPI    ] [W] [    60.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 60.2
+2026-10-19T11:12:23.044641 [SCHED   ] [I] [    60.3] Processed slot events pci=1: ErrorIndication slot=60.2, ErrorIndication slot=60.2
+2026-10-19T11:12:23.050493 [PHY     ] [W] [    59.3] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 59.3.
+2026-10-19T11:12:23.050537 [SCHED   ] [W] [    61.1] cell=0, slot=59.3: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=61.1)
+2026-10-19T11:12:23.057186 [PHY     ] [W] [    60.0] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 60.0.
+2026-10-19T11:12:23.057255 [SCHED   ] [W] [    61.8] cell=0, slot=60.0: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=61.8)
+2026-10-19T11:12:23.342077 [FAPI    ] [W] [    90.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 89.7
+2026-10-19T11:12:23.342108 [FAPI    ] [W] [    90.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 89.7
+2026-10-19T11:12:23.342143 [SCHED   ] [I] [    89.8] Processed slot events pci=1: ErrorIndication slot=89.7, ErrorIndication slot=89.7
+2026-10-19T11:12:23.342164 [FAPI    ] [W] [    90.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 89.8
+2026-10-19T11:12:23.342165 [FAPI    ] [W] [    90.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 89.8
+2026-10-19T11:12:23.342189 [SCHED   ] [I] [    89.9] Processed slot events pci=1: ErrorIndication slot=89.8, ErrorIndication slot=89.8
+2026-10-19T11:12:23.411998 [PHY     ] [W] [    95.3] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 95.3.
+2026-10-19T11:12:23.412049 [SCHED   ] [W] [    97.1] cell=0, slot=95.3: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=97.1)
+2026-10-19T11:12:23.431777 [FAPI    ] [W] [    99.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 98.7
+2026-10-19T11:12:23.431781 [FAPI    ] [W] [    99.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 98.7
+2026-10-19T11:12:23.431812 [SCHED   ] [I] [    98.8] Processed slot events pci=1: ErrorIndication slot=98.7, ErrorIndication slot=98.7
+2026-10-19T11:12:23.682931 [FAPI    ] [W] [   124.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 123.6
+2026-10-19T11:12:23.682945 [FAPI    ] [W] [   124.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 123.6
+2026-10-19T11:12:23.682960 [SCHED   ] [I] [   123.7] Processed slot events pci=1: ErrorIndication slot=123.6, ErrorIndication slot=123.6
+2026-10-19T11:12:23.682974 [FAPI    ] [W] [   124.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 123.7
+2026-10-19T11:12:23.682980 [FAPI    ] [W] [   124.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 123.7
+2026-10-19T11:12:23.682985 [SCHED   ] [I] [   123.8] Processed slot events pci=1: ErrorIndication slot=123.7, ErrorIndication slot=123.7
+2026-10-19T11:12:23.682994 [FAPI    ] [W] [   124.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 123.8
+2026-10-19T11:12:23.682995 [FAPI    ] [W] [   124.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 123.8
+2026-10-19T11:12:23.683008 [SCHED   ] [I] [   123.9] Processed slot events pci=1: ErrorIndication slot=123.8, ErrorIndication slot=123.8
+2026-10-19T11:12:23.683009 [FAPI    ] [W] [   124.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 123.9
+2026-10-19T11:12:23.683012 [FAPI    ] [W] [   124.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 123.9
+2026-10-19T11:12:23.683021 [SCHED   ] [I] [   124.0] Processed slot events pci=1: ErrorIndication slot=123.9, ErrorIndication slot=123.9
+2026-10-19T11:12:23.683026 [FAPI    ] [W] [   124.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 124.0
+2026-10-19T11:12:23.683030 [FAPI    ] [W] [   124.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 124.0
+2026-10-19T11:12:23.683038 [SCHED   ] [I] [   124.1] Processed slot events pci=1: ErrorIndication slot=124.0, ErrorIndication slot=124.0
+2026-10-19T11:12:23.828713 [FAPI    ] [W] [   138.9] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 138.5
+2026-10-19T11:12:23.828717 [FAPI    ] [W] [   138.9] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 138.5
+2026-10-19T11:12:23.828754 [SCHED   ] [I] [   138.6] Processed slot events pci=1: ErrorIndication slot=138.5, ErrorIndication slot=138.5
+2026-10-19T11:12:23.828755 [FAPI    ] [W] [   138.9] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 138.6
+2026-10-19T11:12:23.828763 [FAPI    ] [W] [   138.9] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 138.6
+2026-10-19T11:12:23.828782 [SCHED   ] [I] [   138.7] Processed slot events pci=1: ErrorIndication slot=138.6, ErrorIndication slot=138.6
+2026-10-19T11:12:23.873277 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 142.3
+2026-10-19T11:12:23.873345 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 142.3
+2026-10-19T11:12:23.873377 [SCHED   ] [I] [   142.4] Processed slot events pci=1: ErrorIndication slot=142.3, ErrorIndication slot=142.3
+2026-10-19T11:12:23.873393 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 142.4
+2026-10-19T11:12:23.873419 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 142.4
+2026-10-19T11:12:23.873483 [SCHED   ] [I] [   142.5] Processed slot events pci=1: ErrorIndication slot=142.4, ErrorIndication slot=142.4
+2026-10-19T11:12:23.873484 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 142.5
+2026-10-19T11:12:23.873509 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 142.5
+2026-10-19T11:12:23.873541 [SCHED   ] [I] [   142.6] Processed slot events pci=1: ErrorIndication slot=142.5, ErrorIndication slot=142.5
+2026-10-19T11:12:23.873547 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 142.6
+2026-10-19T11:12:23.873585 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 142.6
+2026-10-19T11:12:23.873769 [SCHED   ] [I] [   142.7] Processed slot events pci=1: ErrorIndication slot=142.6, ErrorIndication slot=142.6
+2026-10-19T11:12:23.873783 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 142.7
+2026-10-19T11:12:23.873785 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 142.7
+2026-10-19T11:12:23.873839 [SCHED   ] [I] [   142.8] Processed slot events pci=1: ErrorIndication slot=142.7, ErrorIndication slot=142.7
+2026-10-19T11:12:23.873853 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 142.8
+2026-10-19T11:12:23.873868 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 142.8
+2026-10-19T11:12:23.873889 [SCHED   ] [I] [   142.9] Processed slot events pci=1: ErrorIndication slot=142.8, ErrorIndication slot=142.8
+2026-10-19T11:12:23.873897 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 142.9
+2026-10-19T11:12:23.873905 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 142.9
+2026-10-19T11:12:23.873913 [SCHED   ] [I] [   143.0] Processed slot events pci=1: ErrorIndication slot=142.9, ErrorIndication slot=142.9
+2026-10-19T11:12:23.873921 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 143.0
+2026-10-19T11:12:23.873933 [FAPI    ] [W] [   143.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 143.0
+2026-10-19T11:12:23.874044 [SCHED   ] [I] [   143.1] Processed slot events pci=1: ErrorIndication slot=143.0, ErrorIndication slot=143.0
+2026-10-19T11:12:23.885282 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 143.5
+2026-10-19T11:12:23.885369 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 143.5
+2026-10-19T11:12:23.885430 [SCHED   ] [I] [   143.6] Processed slot events pci=1: ErrorIndication slot=143.5, ErrorIndication slot=143.5
+2026-10-19T11:12:23.885441 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 143.6
+2026-10-19T11:12:23.885447 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 143.6
+2026-10-19T11:12:23.885457 [SCHED   ] [I] [   143.7] Processed slot events pci=1: ErrorIndication slot=143.6, ErrorIndication slot=143.6
+2026-10-19T11:12:23.885463 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 143.7
+2026-10-19T11:12:23.885464 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 143.7
+2026-10-19T11:12:23.885483 [SCHED   ] [I] [   143.8] Processed slot events pci=1: ErrorIndication slot=143.7, ErrorIndication slot=143.7
+2026-10-19T11:12:23.885485 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 143.8
+2026-10-19T11:12:23.885492 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 143.8
+2026-10-19T11:12:23.885508 [SCHED   ] [I] [   143.9] Processed slot events pci=1: ErrorIndication slot=143.8, ErrorIndication slot=143.8
+2026-10-19T11:12:23.885515 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 143.9
+2026-10-19T11:12:23.885520 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 143.9
+2026-10-19T11:12:23.885532 [SCHED   ] [I] [   144.0] Processed slot events pci=1: ErrorIndication slot=143.9, ErrorIndication slot=143.9
+2026-10-19T11:12:23.885544 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 144.0
+2026-10-19T11:12:23.885548 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received TX_Data.request from slot 144.0
+2026-10-19T11:12:23.885553 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 144.0
+2026-10-19T11:12:23.885561 [SCHED   ] [I] [   144.1] Processed slot events pci=1: ErrorIndication slot=144.0, ErrorIndication slot=144.0, ErrorIndication slot=144.0
+2026-10-19T11:12:23.885575 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 144.1
+2026-10-19T11:12:23.885576 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received TX_Data.request from slot 144.1
+2026-10-19T11:12:23.885589 [FAPI    ] [W] [   144.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 144.1
+2026-10-19T11:12:23.885613 [SCHED   ] [I] [   144.2] Processed slot events pci=1: ErrorIndication slot=144.1, ErrorIndication slot=144.1, ErrorIndication slot=144.1
+2026-10-19T11:12:23.897693 [FAPI    ] [W] [   145.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 145.0
+2026-10-19T11:12:23.898310 [FAPI    ] [W] [   145.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 145.0
+2026-10-19T11:12:23.898427 [SCHED   ] [I] [   145.1] Processed slot events pci=1: ErrorIndication slot=145.0, ErrorIndication slot=145.0
+2026-10-19T11:12:23.898451 [FAPI    ] [W] [   145.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 145.1
+2026-10-19T11:12:23.898457 [FAPI    ] [W] [   145.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 145.1
+2026-10-19T11:12:23.898532 [SCHED   ] [I] [   145.2] Processed slot events pci=1: ErrorIndication slot=145.1, ErrorIndication slot=145.1
+2026-10-19T11:12:23.898536 [FAPI    ] [W] [   145.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 145.2
+2026-10-19T11:12:23.898559 [FAPI    ] [W] [   145.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 145.2
+2026-10-19T11:12:23.898575 [SCHED   ] [I] [   145.3] Processed slot events pci=1: ErrorIndication slot=145.2, ErrorIndication slot=145.2
+2026-10-19T11:12:23.898576 [FAPI    ] [W] [   145.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 145.3
+2026-10-19T11:12:23.898596 [FAPI    ] [W] [   145.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 145.3
+2026-10-19T11:12:23.898624 [SCHED   ] [I] [   145.4] Processed slot events pci=1: ErrorIndication slot=145.3, ErrorIndication slot=145.3
+2026-10-19T11:12:23.898628 [FAPI    ] [W] [   145.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 145.4
+2026-10-19T11:12:23.898629 [FAPI    ] [W] [   145.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 145.4
+2026-10-19T11:12:23.898661 [SCHED   ] [I] [   145.5] Processed slot events pci=1: ErrorIndication slot=145.4, ErrorIndication slot=145.4
+2026-10-19T11:12:23.898662 [FAPI    ] [W] [   145.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 145.5
+2026-10-19T11:12:23.898672 [FAPI    ] [W] [   145.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 145.5
+2026-10-19T11:12:23.899391 [SCHED   ] [I] [   145.6] Processed slot events pci=1: ErrorIndication slot=145.5, ErrorIndication slot=145.5
+2026-10-19T11:12:23.899499 [PHY     ] [W] [   144.2] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 144.2.
+2026-10-19T11:12:23.899619 [SCHED   ] [W] [   145.9] cell=0, slot=144.2: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=145.9)
+2026-10-19T11:12:23.911515 [FAPI    ] [W] [   147.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 146.5
+2026-10-19T11:12:23.911535 [FAPI    ] [W] [   147.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 146.5
+2026-10-19T11:12:23.911570 [SCHED   ] [I] [   146.6] Processed slot events pci=1: ErrorIndication slot=146.5, ErrorIndication slot=146.5
+2026-10-19T11:12:23.912255 [FAPI    ] [W] [   147.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 146.6
+2026-10-19T11:12:23.912263 [FAPI    ] [W] [   147.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 146.6
+2026-10-19T11:12:23.912551 [SCHED   ] [I] [   146.7] Processed slot events pci=1: ErrorIndication slot=146.6, ErrorIndication slot=146.6
+2026-10-19T11:12:23.912559 [FAPI    ] [W] [   147.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 146.7
+2026-10-19T11:12:23.912580 [FAPI    ] [W] [   147.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 146.7
+2026-10-19T11:12:23.912644 [SCHED   ] [I] [   146.8] Processed slot events pci=1: ErrorIndication slot=146.7, ErrorIndication slot=146.7
+2026-10-19T11:12:23.912648 [FAPI    ] [W] [   147.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 146.8
+2026-10-19T11:12:23.912667 [FAPI    ] [W] [   147.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 146.8
+2026-10-19T11:12:23.912698 [SCHED   ] [I] [   146.9] Processed slot events pci=1: ErrorIndication slot=146.8, ErrorIndication slot=146.8
+2026-10-19T11:12:23.919589 [FAPI    ] [W] [   148.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 147.2
+2026-10-19T11:12:23.919592 [FAPI    ] [W] [   148.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 147.2
+2026-10-19T11:12:23.919605 [SCHED   ] [I] [   147.3] Processed slot events pci=1: ErrorIndication slot=147.2, ErrorIndication slot=147.2
+2026-10-19T11:12:23.919611 [FAPI    ] [W] [   148.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 147.3
+2026-10-19T11:12:23.919612 [FAPI    ] [W] [   148.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 147.3
+2026-10-19T11:12:23.919634 [SCHED   ] [I] [   147.4] Processed slot events pci=1: ErrorIndication slot=147.3, ErrorIndication slot=147.3
+2026-10-19T11:12:23.919635 [FAPI    ] [W] [   148.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 147.4
+2026-10-19T11:12:23.919737 [FAPI    ] [W] [   148.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 147.4
+2026-10-19T11:12:23.919768 [SCHED   ] [I] [   147.5] Processed slot events pci=1: ErrorIndication slot=147.4, ErrorIndication slot=147.4
+2026-10-19T11:12:23.919785 [FAPI    ] [W] [   148.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 147.5
+2026-10-19T11:12:23.919786 [FAPI    ] [W] [   148.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 147.5
+2026-10-19T11:12:23.919828 [SCHED   ] [I] [   147.6] Processed slot events pci=1: ErrorIndication slot=147.5, ErrorIndication slot=147.5
+2026-10-19T11:12:23.919830 [FAPI    ] [W] [   148.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 147.6
+2026-10-19T11:12:23.919837 [FAPI    ] [W] [   148.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 147.6
+2026-10-19T11:12:23.919855 [SCHED   ] [I] [   147.7] Processed slot events pci=1: ErrorIndication slot=147.6, ErrorIndication slot=147.6
+2026-10-19T11:12:23.919856 [FAPI    ] [W] [   148.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 147.7
+2026-10-19T11:12:23.919863 [FAPI    ] [W] [   148.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 147.7
+2026-10-19T11:12:23.919887 [SCHED   ] [I] [   147.8] Processed slot events pci=1: ErrorIndication slot=147.7, ErrorIndication slot=147.7
+2026-10-19T11:12:23.967352 [FAPI    ] [W] [   151.9] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 149.3
+2026-10-19T11:12:23.968456 [SCHED   ] [I] [   149.4] Processed slot events pci=1: ErrorIndication slot=149.3
+2026-10-19T11:12:23.968476 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 149.4
+2026-10-19T11:12:23.968478 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 149.4
+2026-10-19T11:12:23.968523 [SCHED   ] [I] [   149.5] Processed slot events pci=1: ErrorIndication slot=149.4, ErrorIndication slot=149.4
+2026-10-19T11:12:23.968553 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 149.5
+2026-10-19T11:12:23.968555 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 149.5
+2026-10-19T11:12:23.968575 [SCHED   ] [I] [   149.6] Processed slot events pci=1: ErrorIndication slot=149.5, ErrorIndication slot=149.5
+2026-10-19T11:12:23.968586 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 149.6
+2026-10-19T11:12:23.968604 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 149.6
+2026-10-19T11:12:23.968639 [SCHED   ] [I] [   149.7] Processed slot events pci=1: ErrorIndication slot=149.6, ErrorIndication slot=149.6
+2026-10-19T11:12:23.968646 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 149.7
+2026-10-19T11:12:23.968647 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 149.7
+2026-10-19T11:12:23.968681 [SCHED   ] [I] [   149.8] Processed slot events pci=1: ErrorIndication slot=149.7, ErrorIndication slot=149.7
+2026-10-19T11:12:23.968705 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 149.8
+2026-10-19T11:12:23.968707 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 149.8
+2026-10-19T11:12:23.968750 [SCHED   ] [I] [   149.9] Processed slot events pci=1: ErrorIndication slot=149.8, ErrorIndication slot=149.8
+2026-10-19T11:12:23.968751 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 149.9
+2026-10-19T11:12:23.968756 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 149.9
+2026-10-19T11:12:23.968762 [SCHED   ] [I] [   150.0] Processed slot events pci=1: ErrorIndication slot=149.9, ErrorIndication slot=149.9
+2026-10-19T11:12:23.968775 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 150.0
+2026-10-19T11:12:23.968775 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 150.0
+2026-10-19T11:12:23.968800 [SCHED   ] [I] [   150.1] Processed slot events pci=1: ErrorIndication slot=150.0, ErrorIndication slot=150.0
+2026-10-19T11:12:23.968818 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 150.1
+2026-10-19T11:12:23.968819 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 150.1
+2026-10-19T11:12:23.968828 [SCHED   ] [I] [   150.2] Processed slot events pci=1: ErrorIndication slot=150.1, ErrorIndication slot=150.1
+2026-10-19T11:12:23.968829 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 150.2
+2026-10-19T11:12:23.968841 [FAPI    ] [W] [   152.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 150.2
+2026-10-19T11:12:23.968851 [SCHED   ] [I] [   150.3] Processed slot events pci=1: ErrorIndication slot=150.2, ErrorIndication slot=150.2
+2026-10-19T11:12:23.968856 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 150.3
+2026-10-19T11:12:23.968863 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 150.3
+2026-10-19T11:12:23.968876 [SCHED   ] [I] [   150.4] Processed slot events pci=1: ErrorIndication slot=150.3, ErrorIndication slot=150.3
+2026-10-19T11:12:23.968880 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 150.4
+2026-10-19T11:12:23.968880 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 150.4
+2026-10-19T11:12:23.968900 [SCHED   ] [I] [   150.5] Processed slot events pci=1: ErrorIndication slot=150.4, ErrorIndication slot=150.4
+2026-10-19T11:12:23.968900 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 150.5
+2026-10-19T11:12:23.968905 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 150.5
+2026-10-19T11:12:23.968910 [SCHED   ] [I] [   150.6] Processed slot events pci=1: ErrorIndication slot=150.5, ErrorIndication slot=150.5
+2026-10-19T11:12:23.968920 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 150.6
+2026-10-19T11:12:23.968921 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 150.6
+2026-10-19T11:12:23.968935 [SCHED   ] [I] [   150.7] Processed slot events pci=1: ErrorIndication slot=150.6, ErrorIndication slot=150.6
+2026-10-19T11:12:23.968940 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 150.7
+2026-10-19T11:12:23.968941 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 150.7
+2026-10-19T11:12:23.968949 [SCHED   ] [I] [   150.8] Processed slot events pci=1: ErrorIndication slot=150.7, ErrorIndication slot=150.7
+2026-10-19T11:12:23.968950 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 150.8
+2026-10-19T11:12:23.968954 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 150.8
+2026-10-19T11:12:23.968962 [SCHED   ] [I] [   150.9] Processed slot events pci=1: ErrorIndication slot=150.8, ErrorIndication slot=150.8
+2026-10-19T11:12:23.968966 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 150.9
+2026-10-19T11:12:23.968967 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 150.9
+2026-10-19T11:12:23.968974 [SCHED   ] [I] [   151.0] Processed slot events pci=1: ErrorIndication slot=150.9, ErrorIndication slot=150.9
+2026-10-19T11:12:23.968978 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 151.0
+2026-10-19T11:12:23.968978 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 151.0
+2026-10-19T11:12:23.968989 [SCHED   ] [I] [   151.1] Processed slot events pci=1: ErrorIndication slot=151.0, ErrorIndication slot=151.0
+2026-10-19T11:12:23.968996 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 151.1
+2026-10-19T11:12:23.968999 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 151.1
+2026-10-19T11:12:23.969003 [SCHED   ] [I] [   151.2] Processed slot events pci=1: ErrorIndication slot=151.1, ErrorIndication slot=151.1
+2026-10-19T11:12:23.969007 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 151.2
+2026-10-19T11:12:23.969008 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 151.2
+2026-10-19T11:12:23.969020 [SCHED   ] [I] [   151.3] Processed slot events pci=1: ErrorIndication slot=151.2, ErrorIndication slot=151.2
+2026-10-19T11:12:23.969025 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 151.3
+2026-10-19T11:12:23.969026 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 151.3
+2026-10-19T11:12:23.969034 [SCHED   ] [I] [   151.4] Processed slot events pci=1: ErrorIndication slot=151.3, ErrorIndication slot=151.3
+2026-10-19T11:12:23.969034 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 151.4
+2026-10-19T11:12:23.969039 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 151.4
+2026-10-19T11:12:23.969049 [SCHED   ] [I] [   151.5] Processed slot events pci=1: ErrorIndication slot=151.4, ErrorIndication slot=151.4
+2026-10-19T11:12:23.969054 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 151.5
+2026-10-19T11:12:23.969055 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 151.5
+2026-10-19T11:12:23.969063 [SCHED   ] [I] [   151.6] Processed slot events pci=1: ErrorIndication slot=151.5, ErrorIndication slot=151.5
+2026-10-19T11:12:23.969071 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 151.6
+2026-10-19T11:12:23.969072 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 151.6
+2026-10-19T11:12:23.969086 [SCHED   ] [I] [   151.7] Processed slot events pci=1: ErrorIndication slot=151.6, ErrorIndication slot=151.6
+2026-10-19T11:12:23.969087 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 151.7
+2026-10-19T11:12:23.969091 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 151.7
+2026-10-19T11:12:23.969095 [SCHED   ] [I] [   151.8] Processed slot events pci=1: ErrorIndication slot=151.7, ErrorIndication slot=151.7
+2026-10-19T11:12:23.969102 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 151.8
+2026-10-19T11:12:23.969103 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 151.8
+2026-10-19T11:12:23.969113 [SCHED   ] [I] [   151.9] Processed slot events pci=1: ErrorIndication slot=151.8, ErrorIndication slot=151.8
+2026-10-19T11:12:23.969117 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 151.9
+2026-10-19T11:12:23.969117 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 151.9
+2026-10-19T11:12:23.969125 [SCHED   ] [I] [   152.0] Processed slot events pci=1: ErrorIndication slot=151.9, ErrorIndication slot=151.9
+2026-10-19T11:12:23.969130 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 152.0
+2026-10-19T11:12:23.969137 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received TX_Data.request from slot 152.0
+2026-10-19T11:12:23.969138 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 152.0
+2026-10-19T11:12:23.969153 [SCHED   ] [I] [   152.1] Processed slot events pci=1: ErrorIndication slot=152.0, ErrorIndication slot=152.0, ErrorIndication slot=152.0
+2026-10-19T11:12:23.969153 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 152.1
+2026-10-19T11:12:23.969158 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 152.1
+2026-10-19T11:12:23.969167 [SCHED   ] [I] [   152.2] Processed slot events pci=1: ErrorIndication slot=152.1, ErrorIndication slot=152.1
+2026-10-19T11:12:23.969168 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 152.2
+2026-10-19T11:12:23.969174 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 152.2
+2026-10-19T11:12:23.969316 [SCHED   ] [I] [   152.3] Processed slot events pci=1: ErrorIndication slot=152.2, ErrorIndication slot=152.2
+2026-10-19T11:12:23.969348 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 152.3
+2026-10-19T11:12:23.969350 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 152.3
+2026-10-19T11:12:23.969367 [SCHED   ] [I] [   152.4] Processed slot events pci=1: ErrorIndication slot=152.3, ErrorIndication slot=152.3
+2026-10-19T11:12:23.969367 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 152.4
+2026-10-19T11:12:23.969396 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 152.4
+2026-10-19T11:12:23.970311 [SCHED   ] [I] [   152.5] Processed slot events pci=1: ErrorIndication slot=152.4, ErrorIndication slot=152.4
+2026-10-19T11:12:23.970313 [FAPI    ] [W] [   152.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 152.5
+2026-10-19T11:12:23.970377 [FAPI    ] [W] [   153.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 152.5
+2026-10-19T11:12:23.970444 [SCHED   ] [I] [   152.6] Processed slot events pci=1: ErrorIndication slot=152.5, ErrorIndication slot=152.5
+2026-10-19T11:12:23.970469 [FAPI    ] [W] [   153.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 152.6
+2026-10-19T11:12:23.970476 [FAPI    ] [W] [   153.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 152.6
+2026-10-19T11:12:23.970509 [SCHED   ] [I] [   152.7] Processed slot events pci=1: ErrorIndication slot=152.6, ErrorIndication slot=152.6
+2026-10-19T11:12:23.970510 [FAPI    ] [W] [   153.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 152.7
+2026-10-19T11:12:23.970519 [FAPI    ] [W] [   153.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 152.7
+2026-10-19T11:12:23.970536 [SCHED   ] [I] [   152.8] Processed slot events pci=1: ErrorIndication slot=152.7, ErrorIndication slot=152.7
+2026-10-19T11:12:23.970537 [FAPI    ] [W] [   153.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 152.8
+2026-10-19T11:12:23.970542 [FAPI    ] [W] [   153.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 152.8
+2026-10-19T11:12:23.970568 [SCHED   ] [I] [   152.9] Processed slot events pci=1: ErrorIndication slot=152.8, ErrorIndication slot=152.8
+2026-10-19T11:12:23.986734 [PHY     ] [W] [   149.3] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 149.3.
+2026-10-19T11:12:23.987365 [SCHED   ] [W] [   153.4] cell=0, slot=149.3: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=153.4)
+2026-10-19T11:12:23.987428 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 153.4
+2026-10-19T11:12:23.987441 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 153.4
+2026-10-19T11:12:23.987461 [SCHED   ] [I] [   153.5] Processed slot events pci=1: ErrorIndication slot=153.4, ErrorIndication slot=153.4
+2026-10-19T11:12:23.987462 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 153.5
+2026-10-19T11:12:23.987463 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 153.5
+2026-10-19T11:12:23.987487 [SCHED   ] [I] [   153.6] Processed slot events pci=1: ErrorIndication slot=153.5, ErrorIndication slot=153.5
+2026-10-19T11:12:23.987488 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 153.6
+2026-10-19T11:12:23.987501 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 153.6
+2026-10-19T11:12:23.987515 [SCHED   ] [I] [   153.7] Processed slot events pci=1: ErrorIndication slot=153.6, ErrorIndication slot=153.6
+2026-10-19T11:12:23.987519 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 153.7
+2026-10-19T11:12:23.987520 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 153.7
+2026-10-19T11:12:23.987548 [SCHED   ] [I] [   153.8] Processed slot events pci=1: ErrorIndication slot=153.7, ErrorIndication slot=153.7
+2026-10-19T11:12:23.987548 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 153.8
+2026-10-19T11:12:23.987557 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 153.8
+2026-10-19T11:12:23.987579 [SCHED   ] [I] [   153.9] Processed slot events pci=1: ErrorIndication slot=153.8, ErrorIndication slot=153.8
+2026-10-19T11:12:23.987579 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 153.9
+2026-10-19T11:12:23.987584 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 153.9
+2026-10-19T11:12:23.987601 [SCHED   ] [I] [   154.0] Processed slot events pci=1: ErrorIndication slot=153.9, ErrorIndication slot=153.9
+2026-10-19T11:12:23.987608 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 154.0
+2026-10-19T11:12:23.987616 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 154.0
+2026-10-19T11:12:23.987628 [SCHED   ] [I] [   154.1] Processed slot events pci=1: ErrorIndication slot=154.0, ErrorIndication slot=154.0
+2026-10-19T11:12:23.987628 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 154.1
+2026-10-19T11:12:23.987633 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 154.1
+2026-10-19T11:12:23.987653 [SCHED   ] [I] [   154.2] Processed slot events pci=1: ErrorIndication slot=154.1, ErrorIndication slot=154.1
+2026-10-19T11:12:23.987654 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 154.2
+2026-10-19T11:12:23.987658 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 154.2
+2026-10-19T11:12:23.987672 [SCHED   ] [I] [   154.3] Processed slot events pci=1: ErrorIndication slot=154.2, ErrorIndication slot=154.2
+2026-10-19T11:12:23.987676 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 154.3
+2026-10-19T11:12:23.987680 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 154.3
+2026-10-19T11:12:23.987700 [SCHED   ] [I] [   154.4] Processed slot events pci=1: ErrorIndication slot=154.3, ErrorIndication slot=154.3
+2026-10-19T11:12:23.987702 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 154.4
+2026-10-19T11:12:23.987705 [FAPI    ] [W] [   154.7] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 154.4
+2026-10-19T11:12:23.987718 [SCHED   ] [I] [   154.5] Processed slot events pci=1: ErrorIndication slot=154.4, ErrorIndication slot=154.4
+2026-10-19T11:12:23.991469 [FAPI    ] [W] [   155.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 154.9
+2026-10-19T11:12:23.991488 [FAPI    ] [W] [   155.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 154.9
+2026-10-19T11:12:23.991538 [SCHED   ] [I] [   155.0] Processed slot events pci=1: ErrorIndication slot=154.9, ErrorIndication slot=154.9
+2026-10-19T11:12:24.003267 [FAPI    ] [W] [   156.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 155.6
+2026-10-19T11:12:24.003270 [FAPI    ] [W] [   156.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 155.6
+2026-10-19T11:12:24.003366 [SCHED   ] [I] [   155.7] Processed slot events pci=1: ErrorIndication slot=155.6, ErrorIndication slot=155.6
+2026-10-19T11:12:24.003367 [FAPI    ] [W] [   156.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 155.7
+2026-10-19T11:12:24.003374 [FAPI    ] [W] [   156.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 155.7
+2026-10-19T11:12:24.003389 [SCHED   ] [I] [   155.8] Processed slot events pci=1: ErrorIndication slot=155.7, ErrorIndication slot=155.7
+2026-10-19T11:12:24.003390 [FAPI    ] [W] [   156.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 155.8
+2026-10-19T11:12:24.003498 [FAPI    ] [W] [   156.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 155.8
+2026-10-19T11:12:24.003512 [SCHED   ] [I] [   155.9] Processed slot events pci=1: ErrorIndication slot=155.8, ErrorIndication slot=155.8
+2026-10-19T11:12:24.003608 [FAPI    ] [W] [   156.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 155.9
+2026-10-19T11:12:24.003609 [FAPI    ] [W] [   156.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 155.9
+2026-10-19T11:12:24.003751 [SCHED   ] [I] [   156.0] Processed slot events pci=1: ErrorIndication slot=155.9, ErrorIndication slot=155.9
+2026-10-19T11:12:24.003762 [FAPI    ] [W] [   156.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 156.0
+2026-10-19T11:12:24.003988 [FAPI    ] [W] [   156.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 156.0
+2026-10-19T11:12:24.004122 [SCHED   ] [I] [   156.1] Processed slot events pci=1: ErrorIndication slot=156.0, ErrorIndication slot=156.0
+2026-10-19T11:12:24.008264 [PHY     ] [W] [   155.0] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 155.0.
+2026-10-19T11:12:24.008611 [SCHED   ] [W] [   156.8] cell=0, slot=155.0: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=156.8)
+2026-10-19T11:12:24.025972 [FAPI    ] [W] [   158.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 158.0
+2026-10-19T11:12:24.025983 [FAPI    ] [W] [   158.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 158.0
+2026-10-19T11:12:24.026013 [SCHED   ] [I] [   158.1] Processed slot events pci=1: ErrorIndication slot=158.0, ErrorIndication slot=158.0
+2026-10-19T11:12:24.026038 [FAPI    ] [W] [   158.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 158.1
+2026-10-19T11:12:24.026039 [FAPI    ] [W] [   158.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 158.1
+2026-10-19T11:12:24.026054 [SCHED   ] [I] [   158.2] Processed slot events pci=1: ErrorIndication slot=158.1, ErrorIndication slot=158.1
+2026-10-19T11:12:24.040340 [PHY     ] [W] [   158.2] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 158.2.
+2026-10-19T11:12:24.040525 [FAPI    ] [W] [   160.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 159.1
+2026-10-19T11:12:24.040548 [FAPI    ] [W] [   160.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 159.1
+2026-10-19T11:12:24.040588 [SCHED   ] [I] [   159.2] Processed slot events pci=1: ErrorIndication slot=158.2, ErrorIndication slot=159.1, ErrorIndication slot=159.1
+2026-10-19T11:12:24.040820 [FAPI    ] [W] [   160.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 159.2
+2026-10-19T11:12:24.040822 [FAPI    ] [W] [   160.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 159.2
+2026-10-19T11:12:24.040870 [SCHED   ] [I] [   159.3] Processed slot events pci=1: ErrorIndication slot=159.2, ErrorIndication slot=159.2
+2026-10-19T11:12:24.040874 [FAPI    ] [W] [   160.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 159.3
+2026-10-19T11:12:24.040905 [FAPI    ] [W] [   160.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 159.3
+2026-10-19T11:12:24.040937 [SCHED   ] [I] [   159.4] Processed slot events pci=1: ErrorIndication slot=159.3, ErrorIndication slot=159.3
+2026-10-19T11:12:24.040940 [FAPI    ] [W] [   160.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 159.4
+2026-10-19T11:12:24.040954 [FAPI    ] [W] [   160.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 159.4
+2026-10-19T11:12:24.040998 [SCHED   ] [I] [   159.5] Processed slot events pci=1: ErrorIndication slot=159.4, ErrorIndication slot=159.4
+2026-10-19T11:12:24.041017 [FAPI    ] [W] [   160.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 159.5
+2026-10-19T11:12:24.041017 [FAPI    ] [W] [   160.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 159.5
+2026-10-19T11:12:24.041059 [SCHED   ] [I] [   159.6] Processed slot events pci=1: ErrorIndication slot=159.5, ErrorIndication slot=159.5
+2026-10-19T11:12:24.041061 [FAPI    ] [W] [   160.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 159.6
+2026-10-19T11:12:24.041323 [FAPI    ] [W] [   160.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 159.6
+2026-10-19T11:12:24.041343 [SCHED   ] [I] [   159.7] Processed slot events pci=1: ErrorIndication slot=159.6, ErrorIndication slot=159.6
+2026-10-19T11:12:24.041344 [FAPI    ] [W] [   160.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 159.7
+2026-10-19T11:12:24.041460 [FAPI    ] [W] [   160.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 159.7
+2026-10-19T11:12:24.041504 [SCHED   ] [I] [   159.8] Processed slot events pci=1: ErrorIndication slot=159.7, ErrorIndication slot=159.7
+2026-10-19T11:12:24.041514 [FAPI    ] [W] [   160.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 159.8
+2026-10-19T11:12:24.041516 [FAPI    ] [W] [   160.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 159.8
+2026-10-19T11:12:24.041553 [SCHED   ] [I] [   159.9] Processed slot events pci=1: ErrorIndication slot=159.8, ErrorIndication slot=159.8
+2026-10-19T11:12:24.041555 [FAPI    ] [W] [   160.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 159.9
+2026-10-19T11:12:24.041574 [FAPI    ] [W] [   160.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 159.9
+2026-10-19T11:12:24.041639 [SCHED   ] [I] [   160.0] Processed slot events pci=1: ErrorIndication slot=159.9, ErrorIndication slot=159.9
+2026-10-19T11:12:24.059333 [PHY     ] [W] [   160.0] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 160.0.
+2026-10-19T11:12:24.059406 [SCHED   ] [I] [   161.1] Processed slot events pci=1: ErrorIndication slot=160.0
+2026-10-19T11:12:24.059409 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 161.1
+2026-10-19T11:12:24.059413 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 161.1
+2026-10-19T11:12:24.059425 [SCHED   ] [I] [   161.2] Processed slot events pci=1: ErrorIndication slot=161.1, ErrorIndication slot=161.1
+2026-10-19T11:12:24.059434 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 161.2
+2026-10-19T11:12:24.059435 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 161.2
+2026-10-19T11:12:24.059444 [SCHED   ] [I] [   161.3] Processed slot events pci=1: ErrorIndication slot=161.2, ErrorIndication slot=161.2
+2026-10-19T11:12:24.059449 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 161.3
+2026-10-19T11:12:24.059449 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 161.3
+2026-10-19T11:12:24.059461 [SCHED   ] [I] [   161.4] Processed slot events pci=1: ErrorIndication slot=161.3, ErrorIndication slot=161.3
+2026-10-19T11:12:24.059462 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 161.4
+2026-10-19T11:12:24.059466 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 161.4
+2026-10-19T11:12:24.059471 [SCHED   ] [I] [   161.5] Processed slot events pci=1: ErrorIndication slot=161.4, ErrorIndication slot=161.4
+2026-10-19T11:12:24.059476 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 161.5
+2026-10-19T11:12:24.059476 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 161.5
+2026-10-19T11:12:24.059490 [SCHED   ] [I] [   161.6] Processed slot events pci=1: ErrorIndication slot=161.5, ErrorIndication slot=161.5
+2026-10-19T11:12:24.059494 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 161.6
+2026-10-19T11:12:24.059495 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 161.6
+2026-10-19T11:12:24.059504 [SCHED   ] [I] [   161.7] Processed slot events pci=1: ErrorIndication slot=161.6, ErrorIndication slot=161.6
+2026-10-19T11:12:24.059504 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 161.7
+2026-10-19T11:12:24.059508 [FAPI    ] [W] [   162.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 161.7
+2026-10-19T11:12:24.059569 [SCHED   ] [I] [   161.8] Processed slot events pci=1: ErrorIndication slot=161.7, ErrorIndication slot=161.7
+2026-10-19T11:12:24.074938 [FAPI    ] [W] [   163.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 163.1
+2026-10-19T11:12:24.075209 [FAPI    ] [W] [   163.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 163.1
+2026-10-19T11:12:24.075262 [SCHED   ] [I] [   163.2] Processed slot events pci=1: ErrorIndication slot=163.1, ErrorIndication slot=163.1
+2026-10-19T11:12:24.075281 [FAPI    ] [W] [   163.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 163.2
+2026-10-19T11:12:24.075283 [FAPI    ] [W] [   163.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 163.2
+2026-10-19T11:12:24.075326 [SCHED   ] [I] [   163.3] Processed slot events pci=1: ErrorIndication slot=163.2, ErrorIndication slot=163.2
+2026-10-19T11:12:24.083320 [PHY     ] [W] [   162.2] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 162.2.
+2026-10-19T11:12:24.083736 [SCHED   ] [W] [   164.0] cell=0, slot=162.2: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=164.0)
+2026-10-19T11:12:24.083753 [FAPI    ] [W] [   164.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 164.0
+2026-10-19T11:12:24.083768 [FAPI    ] [W] [   164.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 164.0
+2026-10-19T11:12:24.083777 [SCHED   ] [I] [   164.1] Processed slot events pci=1: ErrorIndication slot=164.0, ErrorIndication slot=164.0
+2026-10-19T11:12:24.093987 [PHY     ] [W] [   163.0] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 163.0.
+2026-10-19T11:12:24.094011 [SCHED   ] [W] [   164.8] cell=0, slot=163.0: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=164.8)
+2026-10-19T11:12:24.096561 [PHY     ] [W] [   163.3] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 163.3.
+2026-10-19T11:12:24.096716 [SCHED   ] [W] [   165.1] cell=0, slot=163.3: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=165.1)
+2026-10-19T11:12:24.102342 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 165.2
+2026-10-19T11:12:24.102357 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 165.2
+2026-10-19T11:12:24.102374 [SCHED   ] [I] [   165.3] Processed slot events pci=1: ErrorIndication slot=165.2, ErrorIndication slot=165.2
+2026-10-19T11:12:24.102384 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 165.3
+2026-10-19T11:12:24.102384 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 165.3
+2026-10-19T11:12:24.102515 [SCHED   ] [I] [   165.4] Processed slot events pci=1: ErrorIndication slot=165.3, ErrorIndication slot=165.3
+2026-10-19T11:12:24.102526 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 165.4
+2026-10-19T11:12:24.102528 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 165.4
+2026-10-19T11:12:24.102800 [SCHED   ] [I] [   165.5] Processed slot events pci=1: ErrorIndication slot=165.4, ErrorIndication slot=165.4
+2026-10-19T11:12:24.102803 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 165.5
+2026-10-19T11:12:24.103069 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 165.5
+2026-10-19T11:12:24.103148 [SCHED   ] [I] [   165.6] Processed slot events pci=1: ErrorIndication slot=165.5, ErrorIndication slot=165.5
+2026-10-19T11:12:24.103229 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 165.6
+2026-10-19T11:12:24.103236 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 165.6
+2026-10-19T11:12:24.103277 [SCHED   ] [I] [   165.7] Processed slot events pci=1: ErrorIndication slot=165.6, ErrorIndication slot=165.6
+2026-10-19T11:12:24.103279 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 165.7
+2026-10-19T11:12:24.103317 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 165.7
+2026-10-19T11:12:24.103488 [SCHED   ] [I] [   165.8] Processed slot events pci=1: ErrorIndication slot=165.7, ErrorIndication slot=165.7
+2026-10-19T11:12:24.103490 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 165.8
+2026-10-19T11:12:24.103521 [FAPI    ] [W] [   166.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 165.8
+2026-10-19T11:12:24.103669 [SCHED   ] [I] [   165.9] Processed slot events pci=1: ErrorIndication slot=165.8, ErrorIndication slot=165.8
+2026-10-19T11:12:24.103682 [FAPI    ] [W] [   166.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 165.9
+2026-10-19T11:12:24.103844 [FAPI    ] [W] [   166.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 165.9
+2026-10-19T11:12:24.105099 [SCHED   ] [I] [   166.0] Processed slot events pci=1: ErrorIndication slot=165.9, ErrorIndication slot=165.9
+2026-10-19T11:12:24.105102 [FAPI    ] [W] [   166.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 166.0
+2026-10-19T11:12:24.106704 [FAPI    ] [W] [   166.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 166.0
+2026-10-19T11:12:24.106738 [SCHED   ] [I] [   166.1] Processed slot events pci=1: ErrorIndication slot=166.0, ErrorIndication slot=166.0
+2026-10-19T11:12:24.106740 [FAPI    ] [W] [   166.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 166.1
+2026-10-19T11:12:24.106745 [FAPI    ] [W] [   166.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 166.1
+2026-10-19T11:12:24.106756 [SCHED   ] [I] [   166.2] Processed slot events pci=1: ErrorIndication slot=166.1, ErrorIndication slot=166.1
+2026-10-19T11:12:24.106758 [FAPI    ] [W] [   166.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 166.2
+2026-10-19T11:12:24.106763 [FAPI    ] [W] [   166.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 166.2
+2026-10-19T11:12:24.106772 [SCHED   ] [I] [   166.3] Processed slot events pci=1: ErrorIndication slot=166.2, ErrorIndication slot=166.2
+2026-10-19T11:12:24.110314 [FAPI    ] [W] [   167.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 166.6
+2026-10-19T11:12:24.110527 [FAPI    ] [W] [   167.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 166.6
+2026-10-19T11:12:24.110649 [SCHED   ] [I] [   166.7] Processed slot events pci=1: ErrorIndication slot=166.6, ErrorIndication slot=166.6
+2026-10-19T11:12:24.110653 [FAPI    ] [W] [   167.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 166.7
+2026-10-19T11:12:24.110678 [FAPI    ] [W] [   167.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 166.7
+2026-10-19T11:12:24.110794 [SCHED   ] [I] [   166.8] Processed slot events pci=1: ErrorIndication slot=166.7, ErrorIndication slot=166.7
+2026-10-19T11:12:24.111072 [FAPI    ] [W] [   167.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 166.8
+2026-10-19T11:12:24.111076 [FAPI    ] [W] [   167.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 166.8
+2026-10-19T11:12:24.111136 [SCHED   ] [I] [   166.9] Processed slot events pci=1: ErrorIndication slot=166.8, ErrorIndication slot=166.8
+2026-10-19T11:12:24.133104 [FAPI    ] [W] [   169.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 169.0
+2026-10-19T11:12:24.133260 [FAPI    ] [W] [   169.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 169.0
+2026-10-19T11:12:24.133338 [SCHED   ] [I] [   169.1] Processed slot events pci=1: ErrorIndication slot=169.0, ErrorIndication slot=169.0
+2026-10-19T11:12:24.133343 [FAPI    ] [W] [   169.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 169.1
+2026-10-19T11:12:24.133351 [FAPI    ] [W] [   169.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 169.1
+2026-10-19T11:12:24.133371 [SCHED   ] [I] [   169.2] Processed slot events pci=1: ErrorIndication slot=169.1, ErrorIndication slot=169.1
+2026-10-19T11:12:24.150301 [PHY     ] [W] [   169.2] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 169.2.
+2026-10-19T11:12:24.150379 [SCHED   ] [W] [   171.0] cell=0, slot=169.2: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=171.0)
+2026-10-19T11:12:24.202217 [PHY     ] [W] [   174.0] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 174.0.
+2026-10-19T11:12:24.202283 [SCHED   ] [W] [   175.6] cell=0, slot=174.0: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=175.6)
+2026-10-19T11:12:24.202350 [FAPI    ] [W] [   176.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 175.6
+2026-10-19T11:12:24.202377 [FAPI    ] [W] [   176.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 175.6
+2026-10-19T11:12:24.202433 [SCHED   ] [I] [   175.7] Processed slot events pci=1: ErrorIndication slot=175.6, ErrorIndication slot=175.6
+2026-10-19T11:12:24.202455 [FAPI    ] [W] [   176.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 175.7
+2026-10-19T11:12:24.202456 [FAPI    ] [W] [   176.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 175.7
+2026-10-19T11:12:24.202490 [SCHED   ] [I] [   175.8] Processed slot events pci=1: ErrorIndication slot=175.7, ErrorIndication slot=175.7
+2026-10-19T11:12:24.202491 [FAPI    ] [W] [   176.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 175.8
+2026-10-19T11:12:24.202507 [FAPI    ] [W] [   176.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 175.8
+2026-10-19T11:12:24.202522 [SCHED   ] [I] [   175.9] Processed slot events pci=1: ErrorIndication slot=175.8, ErrorIndication slot=175.8
+2026-10-19T11:12:24.202542 [FAPI    ] [W] [   176.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 175.9
+2026-10-19T11:12:24.202545 [FAPI    ] [W] [   176.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 175.9
+2026-10-19T11:12:24.202572 [SCHED   ] [I] [   176.0] Processed slot events pci=1: ErrorIndication slot=175.9, ErrorIndication slot=175.9
+2026-10-19T11:12:24.217458 [PHY     ] [W] [   176.0] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 176.0.
+2026-10-19T11:12:24.217634 [SCHED   ] [W] [   177.8] cell=0, slot=176.0: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=177.8)
+2026-10-19T11:12:24.218157 [PHY     ] [W] [   176.1] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 176.1.
+2026-10-19T11:12:24.218171 [SCHED   ] [W] [   177.9] cell=0, slot=176.1: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=177.9)
+2026-10-19T11:12:24.219368 [PHY     ] [W] [   176.2] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 176.2.
+2026-10-19T11:12:24.219410 [SCHED   ] [W] [   178.0] cell=0, slot=176.2: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=178.0)
+2026-10-19T11:12:24.321041 [FAPI    ] [W] [   188.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 187.7
+2026-10-19T11:12:24.321110 [FAPI    ] [W] [   188.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 187.7
+2026-10-19T11:12:24.321159 [SCHED   ] [I] [   187.8] Processed slot events pci=1: ErrorIndication slot=187.7, ErrorIndication slot=187.7
+2026-10-19T11:12:24.321186 [FAPI    ] [W] [   188.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 187.8
+2026-10-19T11:12:24.321263 [FAPI    ] [W] [   188.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 187.8
+2026-10-19T11:12:24.321299 [SCHED   ] [I] [   187.9] Processed slot events pci=1: ErrorIndication slot=187.8, ErrorIndication slot=187.8
+2026-10-19T11:12:24.321300 [FAPI    ] [W] [   188.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 187.9
+2026-10-19T11:12:24.321333 [FAPI    ] [W] [   188.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 187.9
+2026-10-19T11:12:24.321383 [SCHED   ] [I] [   188.0] Processed slot events pci=1: ErrorIndication slot=187.9, ErrorIndication slot=187.9
+2026-10-19T11:12:24.331309 [FAPI    ] [W] [   189.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 188.8
+2026-10-19T11:12:24.331320 [FAPI    ] [W] [   189.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 188.8
+2026-10-19T11:12:24.331328 [SCHED   ] [I] [   188.9] Processed slot events pci=1: ErrorIndication slot=188.8, ErrorIndication slot=188.8
+2026-10-19T11:12:24.331361 [FAPI    ] [W] [   189.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 188.9
+2026-10-19T11:12:24.331363 [FAPI    ] [W] [   189.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 188.9
+2026-10-19T11:12:24.331386 [SCHED   ] [I] [   189.0] Processed slot events pci=1: ErrorIndication slot=188.9, ErrorIndication slot=188.9
+2026-10-19T11:12:24.337442 [PHY     ] [W] [   188.0] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 188.0.
+2026-10-19T11:12:24.337459 [SCHED   ] [W] [   189.7] cell=0, slot=188.0: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=189.7)
+2026-10-19T11:12:24.351501 [PHY     ] [W] [   189.0] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 189.0.
+2026-10-19T11:12:24.351531 [SCHED   ] [W] [   190.6] cell=0, slot=189.0: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=190.6)
+2026-10-19T11:12:24.351541 [FAPI    ] [W] [   191.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 190.6
+2026-10-19T11:12:24.351542 [FAPI    ] [W] [   191.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 190.6
+2026-10-19T11:12:24.351550 [SCHED   ] [I] [   190.7] Processed slot events pci=1: ErrorIndication slot=190.6, ErrorIndication slot=190.6
+2026-10-19T11:12:24.351550 [FAPI    ] [W] [   191.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 190.7
+2026-10-19T11:12:24.351555 [FAPI    ] [W] [   191.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 190.7
+2026-10-19T11:12:24.351567 [SCHED   ] [I] [   190.8] Processed slot events pci=1: ErrorIndication slot=190.7, ErrorIndication slot=190.7
+2026-10-19T11:12:24.351801 [FAPI    ] [W] [   191.1] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 190.8
+2026-10-19T11:12:24.351805 [FAPI    ] [W] [   191.1] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 190.8
+2026-10-19T11:12:24.351878 [SCHED   ] [I] [   190.9] Processed slot events pci=1: ErrorIndication slot=190.8, ErrorIndication slot=190.8
+2026-10-19T11:12:24.358236 [FAPI    ] [W] [   191.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 191.3
+2026-10-19T11:12:24.358238 [FAPI    ] [W] [   191.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 191.3
+2026-10-19T11:12:24.358363 [SCHED   ] [I] [   191.4] Processed slot events pci=1: ErrorIndication slot=191.3, ErrorIndication slot=191.3
+2026-10-19T11:12:24.358365 [FAPI    ] [W] [   191.9] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 191.4
+2026-10-19T11:12:24.358368 [FAPI    ] [W] [   191.9] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 191.4
+2026-10-19T11:12:24.358375 [SCHED   ] [I] [   191.5] Processed slot events pci=1: ErrorIndication slot=191.4, ErrorIndication slot=191.4
+2026-10-19T11:12:24.358469 [FAPI    ] [W] [   191.9] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 191.5
+2026-10-19T11:12:24.358470 [FAPI    ] [W] [   191.9] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 191.5
+2026-10-19T11:12:24.358600 [SCHED   ] [I] [   191.6] Processed slot events pci=1: ErrorIndication slot=191.5, ErrorIndication slot=191.5
+2026-10-19T11:12:24.358605 [FAPI    ] [W] [   191.9] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 191.6
+2026-10-19T11:12:24.358605 [FAPI    ] [W] [   191.9] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 191.6
+2026-10-19T11:12:24.358613 [SCHED   ] [I] [   191.7] Processed slot events pci=1: ErrorIndication slot=191.6, ErrorIndication slot=191.6
+2026-10-19T11:12:24.373711 [PHY     ] [W] [   191.0] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 191.0.
+2026-10-19T11:12:24.373818 [SCHED   ] [I] [   192.5] Processed slot events pci=1: ErrorIndication slot=191.0
+2026-10-19T11:12:24.373822 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 192.5
+2026-10-19T11:12:24.373828 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 192.5
+2026-10-19T11:12:24.373845 [SCHED   ] [I] [   192.6] Processed slot events pci=1: ErrorIndication slot=192.5, ErrorIndication slot=192.5
+2026-10-19T11:12:24.373857 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 192.6
+2026-10-19T11:12:24.373865 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 192.6
+2026-10-19T11:12:24.373878 [SCHED   ] [I] [   192.7] Processed slot events pci=1: ErrorIndication slot=192.6, ErrorIndication slot=192.6
+2026-10-19T11:12:24.373882 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 192.7
+2026-10-19T11:12:24.373882 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 192.7
+2026-10-19T11:12:24.373890 [SCHED   ] [I] [   192.8] Processed slot events pci=1: ErrorIndication slot=192.7, ErrorIndication slot=192.7
+2026-10-19T11:12:24.373891 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 192.8
+2026-10-19T11:12:24.373895 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 192.8
+2026-10-19T11:12:24.373905 [SCHED   ] [I] [   192.9] Processed slot events pci=1: ErrorIndication slot=192.8, ErrorIndication slot=192.8
+2026-10-19T11:12:24.373909 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 192.9
+2026-10-19T11:12:24.373913 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 192.9
+2026-10-19T11:12:24.373922 [SCHED   ] [I] [   193.0] Processed slot events pci=1: ErrorIndication slot=192.9, ErrorIndication slot=192.9
+2026-10-19T11:12:24.373927 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 193.0
+2026-10-19T11:12:24.373928 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 193.0
+2026-10-19T11:12:24.373945 [SCHED   ] [I] [   193.1] Processed slot events pci=1: ErrorIndication slot=193.0, ErrorIndication slot=193.0
+2026-10-19T11:12:24.373946 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 193.1
+2026-10-19T11:12:24.373947 [FAPI    ] [W] [   193.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 193.1
+2026-10-19T11:12:24.373952 [SCHED   ] [I] [   193.2] Processed slot events pci=1: ErrorIndication slot=193.1, ErrorIndication slot=193.1
+2026-10-19T11:12:24.391432 [SCHED   ] [W] [   195.0] cell=0, slot=193.2: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=195.0)
+2026-10-19T11:12:24.391879 [PHY     ] [W] [   193.2] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 193.2.
+2026-10-19T11:12:24.392054 [PHY     ] [W] [   193.3] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 193.3.
+2026-10-19T11:12:24.392209 [SCHED   ] [W] [   195.1] cell=0, slot=193.3: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=195.1)
+2026-10-19T11:12:24.407308 [FAPI    ] [W] [   196.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 196.5
+2026-10-19T11:12:24.407334 [FAPI    ] [W] [   196.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 196.5
+2026-10-19T11:12:24.407368 [SCHED   ] [I] [   196.6] Processed slot events pci=1: ErrorIndication slot=196.5, ErrorIndication slot=196.5
+2026-10-19T11:12:24.416495 [FAPI    ] [W] [   197.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 197.1
+2026-10-19T11:12:24.416499 [FAPI    ] [W] [   197.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 197.1
+2026-10-19T11:12:24.416529 [SCHED   ] [I] [   197.2] Processed slot events pci=1: ErrorIndication slot=197.1, ErrorIndication slot=197.1
+2026-10-19T11:12:24.416531 [FAPI    ] [W] [   197.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 197.2
+2026-10-19T11:12:24.416537 [FAPI    ] [W] [   197.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 197.2
+2026-10-19T11:12:24.416556 [SCHED   ] [I] [   197.3] Processed slot events pci=1: ErrorIndication slot=197.2, ErrorIndication slot=197.2
+2026-10-19T11:12:24.422627 [FAPI    ] [W] [   198.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 197.9
+2026-10-19T11:12:24.422634 [FAPI    ] [W] [   198.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 197.9
+2026-10-19T11:12:24.422651 [SCHED   ] [I] [   198.0] Processed slot events pci=1: ErrorIndication slot=197.9, ErrorIndication slot=197.9
+2026-10-19T11:12:24.430205 [PHY     ] [W] [   197.3] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 197.3.
+2026-10-19T11:12:24.430232 [SCHED   ] [W] [   199.1] cell=0, slot=197.3: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=199.1)
+2026-10-19T11:12:24.439983 [SCHED   ] [W] [   199.8] cell=0, slot=198.0: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=199.8)
+2026-10-19T11:12:24.440166 [PHY     ] [W] [   198.0] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 198.0.
+2026-10-19T11:12:24.442081 [FAPI    ] [W] [   200.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 199.9
+2026-10-19T11:12:24.442094 [FAPI    ] [W] [   200.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 199.9
+2026-10-19T11:12:24.442446 [SCHED   ] [I] [   200.0] Processed slot events pci=1: ErrorIndication slot=199.9, ErrorIndication slot=199.9
+2026-10-19T11:12:24.442471 [FAPI    ] [W] [   200.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 200.0
+2026-10-19T11:12:24.442478 [FAPI    ] [W] [   200.3] Sector#0: Real-time failure in FAPI: Received TX_Data.request from slot 200.0
+2026-10-19T11:12:24.442491 [FAPI    ] [W] [   200.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 200.0
+2026-10-19T11:12:24.442548 [SCHED   ] [I] [   200.1] Processed slot events pci=1: ErrorIndication slot=200.0, ErrorIndication slot=200.0, ErrorIndication slot=200.0
+2026-10-19T11:12:24.448670 [FAPI    ] [W] [   200.9] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 200.6
+2026-10-19T11:12:24.448682 [FAPI    ] [W] [   200.9] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 200.6
+2026-10-19T11:12:24.448743 [SCHED   ] [I] [   200.7] Processed slot events pci=1: ErrorIndication slot=200.6, ErrorIndication slot=200.6
+2026-10-19T11:12:24.462572 [FAPI    ] [W] [   202.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 201.6
+2026-10-19T11:12:24.462575 [FAPI    ] [W] [   202.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 201.6
+2026-10-19T11:12:24.462610 [SCHED   ] [I] [   201.7] Processed slot events pci=1: ErrorIndication slot=201.6, ErrorIndication slot=201.6
+2026-10-19T11:12:24.462612 [FAPI    ] [W] [   202.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 201.7
+2026-10-19T11:12:24.462617 [FAPI    ] [W] [   202.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 201.7
+2026-10-19T11:12:24.462626 [SCHED   ] [I] [   201.8] Processed slot events pci=1: ErrorIndication slot=201.7, ErrorIndication slot=201.7
+2026-10-19T11:12:24.462634 [FAPI    ] [W] [   202.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 201.8
+2026-10-19T11:12:24.462634 [FAPI    ] [W] [   202.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 201.8
+2026-10-19T11:12:24.462655 [SCHED   ] [I] [   201.9] Processed slot events pci=1: ErrorIndication slot=201.8, ErrorIndication slot=201.8
+2026-10-19T11:12:24.462663 [FAPI    ] [W] [   202.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 201.9
+2026-10-19T11:12:24.462664 [FAPI    ] [W] [   202.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 201.9
+2026-10-19T11:12:24.462683 [SCHED   ] [I] [   202.0] Processed slot events pci=1: ErrorIndication slot=201.9, ErrorIndication slot=201.9
+2026-10-19T11:12:24.462685 [FAPI    ] [W] [   202.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 202.0
+2026-10-19T11:12:24.462691 [FAPI    ] [W] [   202.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 202.0
+2026-10-19T11:12:24.462706 [SCHED   ] [I] [   202.1] Processed slot events pci=1: ErrorIndication slot=202.0, ErrorIndication slot=202.0
+2026-10-19T11:12:24.472623 [FAPI    ] [W] [   203.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 202.9
+2026-10-19T11:12:24.472636 [FAPI    ] [W] [   203.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 202.9
+2026-10-19T11:12:24.472694 [SCHED   ] [I] [   203.0] Processed slot events pci=1: ErrorIndication slot=202.9, ErrorIndication slot=202.9
+2026-10-19T11:12:24.472703 [FAPI    ] [W] [   203.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 203.0
+2026-10-19T11:12:24.472704 [FAPI    ] [W] [   203.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 203.0
+2026-10-19T11:12:24.472747 [SCHED   ] [I] [   203.1] Processed slot events pci=1: ErrorIndication slot=203.0, ErrorIndication slot=203.0
+2026-10-19T11:12:24.536474 [PHY     ] [W] [   209.4] Real-time failure in lower PHY: PRACH request late for sector 0, slot 209.4 and start symbol 0.
+2026-10-19T11:12:24.570130 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 211.5
+2026-10-19T11:12:24.570133 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 211.5
+2026-10-19T11:12:24.570153 [SCHED   ] [I] [   211.6] Processed slot events pci=1: ErrorIndication slot=211.5, ErrorIndication slot=211.5
+2026-10-19T11:12:24.570154 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 211.6
+2026-10-19T11:12:24.570154 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 211.6
+2026-10-19T11:12:24.570251 [SCHED   ] [I] [   211.7] Processed slot events pci=1: ErrorIndication slot=211.6, ErrorIndication slot=211.6
+2026-10-19T11:12:24.570252 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 211.7
+2026-10-19T11:12:24.570253 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 211.7
+2026-10-19T11:12:24.570258 [SCHED   ] [I] [   211.8] Processed slot events pci=1: ErrorIndication slot=211.7, ErrorIndication slot=211.7
+2026-10-19T11:12:24.570263 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 211.8
+2026-10-19T11:12:24.570371 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 211.8
+2026-10-19T11:12:24.570394 [SCHED   ] [I] [   211.9] Processed slot events pci=1: ErrorIndication slot=211.8, ErrorIndication slot=211.8
+2026-10-19T11:12:24.570409 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 211.9
+2026-10-19T11:12:24.570413 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 211.9
+2026-10-19T11:12:24.570422 [SCHED   ] [I] [   212.0] Processed slot events pci=1: ErrorIndication slot=211.9, ErrorIndication slot=211.9
+2026-10-19T11:12:24.570424 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 212.0
+2026-10-19T11:12:24.570428 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 212.0
+2026-10-19T11:12:24.570519 [SCHED   ] [I] [   212.1] Processed slot events pci=1: ErrorIndication slot=212.0, ErrorIndication slot=212.0
+2026-10-19T11:12:24.570524 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 212.1
+2026-10-19T11:12:24.570524 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 212.1
+2026-10-19T11:12:24.570551 [SCHED   ] [I] [   212.2] Processed slot events pci=1: ErrorIndication slot=212.1, ErrorIndication slot=212.1
+2026-10-19T11:12:24.570552 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 212.2
+2026-10-19T11:12:24.570555 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 212.2
+2026-10-19T11:12:24.570567 [SCHED   ] [I] [   212.3] Processed slot events pci=1: ErrorIndication slot=212.2, ErrorIndication slot=212.2
+2026-10-19T11:12:24.570568 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 212.3
+2026-10-19T11:12:24.570638 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 212.3
+2026-10-19T11:12:24.570643 [SCHED   ] [I] [   212.4] Processed slot events pci=1: ErrorIndication slot=212.3, ErrorIndication slot=212.3
+2026-10-19T11:12:24.570647 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 212.4
+2026-10-19T11:12:24.570648 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 212.4
+2026-10-19T11:12:24.570758 [SCHED   ] [I] [   212.5] Processed slot events pci=1: ErrorIndication slot=212.4, ErrorIndication slot=212.4
+2026-10-19T11:12:24.570759 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 212.5
+2026-10-19T11:12:24.570762 [FAPI    ] [W] [   212.8] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 212.5
+2026-10-19T11:12:24.570771 [SCHED   ] [I] [   212.6] Processed slot events pci=1: ErrorIndication slot=212.5, ErrorIndication slot=212.5
+2026-10-19T11:12:24.588631 [FAPI    ] [W] [   214.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 213.6
+2026-10-19T11:12:24.588644 [FAPI    ] [W] [   214.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 213.6
+2026-10-19T11:12:24.588672 [SCHED   ] [I] [   213.7] Processed slot events pci=1: ErrorIndication slot=213.6, ErrorIndication slot=213.6
+2026-10-19T11:12:24.588679 [FAPI    ] [W] [   214.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 213.7
+2026-10-19T11:12:24.588680 [FAPI    ] [W] [   214.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 213.7
+2026-10-19T11:12:24.588698 [SCHED   ] [I] [   213.8] Processed slot events pci=1: ErrorIndication slot=213.7, ErrorIndication slot=213.7
+2026-10-19T11:12:24.588699 [FAPI    ] [W] [   214.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 213.8
+2026-10-19T11:12:24.588714 [FAPI    ] [W] [   214.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 213.8
+2026-10-19T11:12:24.588738 [SCHED   ] [I] [   213.9] Processed slot events pci=1: ErrorIndication slot=213.8, ErrorIndication slot=213.8
+2026-10-19T11:12:24.588740 [FAPI    ] [W] [   214.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 213.9
+2026-10-19T11:12:24.588747 [FAPI    ] [W] [   214.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 213.9
+2026-10-19T11:12:24.588756 [SCHED   ] [I] [   214.0] Processed slot events pci=1: ErrorIndication slot=213.9, ErrorIndication slot=213.9
+2026-10-19T11:12:24.588804 [FAPI    ] [W] [   214.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 214.0
+2026-10-19T11:12:24.588811 [FAPI    ] [W] [   214.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 214.0
+2026-10-19T11:12:24.589003 [SCHED   ] [I] [   214.1] Processed slot events pci=1: ErrorIndication slot=214.0, ErrorIndication slot=214.0
+2026-10-19T11:12:24.589005 [FAPI    ] [W] [   214.4] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 214.1
+2026-10-19T11:12:24.589009 [FAPI    ] [W] [   214.4] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 214.1
+2026-10-19T11:12:24.589018 [SCHED   ] [I] [   214.2] Processed slot events pci=1: ErrorIndication slot=214.1, ErrorIndication slot=214.1
+2026-10-19T11:12:24.589867 [FAPI    ] [W] [   214.9] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 214.6
+2026-10-19T11:12:24.589872 [FAPI    ] [W] [   215.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 214.6
+2026-10-19T11:12:24.589883 [SCHED   ] [I] [   214.7] Processed slot events pci=1: ErrorIndication slot=214.6, ErrorIndication slot=214.6
+2026-10-19T11:12:24.589886 [FAPI    ] [W] [   215.0] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 214.7
+2026-10-19T11:12:24.589887 [FAPI    ] [W] [   215.0] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 214.7
+2026-10-19T11:12:24.589899 [SCHED   ] [I] [   214.8] Processed slot events pci=1: ErrorIndication slot=214.7, ErrorIndication slot=214.7
+2026-10-19T11:12:24.600293 [PHY     ] [W] [   214.2] Real-time failure in lower PHY: Downlink data late for sector 0 and slot 214.2.
+2026-10-19T11:12:24.600388 [SCHED   ] [W] [   216.0] cell=0, slot=214.2: Discarding error indication. Cause: Scheduler results associated with the slot of the error indication have already been erased (current slot=216.0)
+2026-10-19T11:12:24.706121 [FAPI    ] [W] [   226.6] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 226.3
+2026-10-19T11:12:24.706125 [FAPI    ] [W] [   226.6] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 226.3
+2026-10-19T11:12:24.706157 [SCHED   ] [I] [   226.4] Processed slot events pci=1: ErrorIndication slot=226.3, ErrorIndication slot=226.3
+Stopping...
+2026-10-19T11:12:24.794563 [GNB     ] [I] Stopping...
+2026-10-19T11:12:24.806242 [DU      ] [I] Stopping DU...
+2026-10-19T11:12:24.806248 [DU      ] [I] Stopping DU-High...
+2026-10-19T11:12:24.806552 [SCHED   ] [I] [   235.9] cell=0: Cell scheduling was deactivated.
+2026-10-19T11:12:24.807714 [MAC     ] [I] [   235.9] cell=0: Cell was stopped.
+2026-10-19T11:12:24.812296 [DU-F1   ] [I] Tx PDU du=0 tid=1: F1RemovalRequest
+2026-10-19T11:12:24.812798 [CU-CP-F1] [I] Rx PDU du=0 tid=1: F1RemovalRequest
+2026-10-19T11:12:24.813736 [CU-CP-F1] [I] Tx PDU du=0 tid=1: F1RemovalResponse
+2026-10-19T11:12:24.813854 [DU-F1   ] [I] Rx PDU du=0 tid=1: F1RemovalResponse
+2026-10-19T11:12:24.814844 [CU-CP   ] [I] Logical cell nci=0x66c000 de-realized. Operator intent kept (admin_state=unlocked barred=false)
+2026-10-19T11:12:24.814992 [DU-F1   ] [I] F1 Removal: F1 TNL association shut down
+2026-10-19T11:12:24.815190 [CU-CP   ] [I] Removed DU 0
+2026-10-19T11:12:24.815314 [DU      ] [I] DU-High stopped successfully
+2026-10-19T11:12:24.815315 [DU      ] [I] DU stopped successfully
+2026-10-19T11:12:24.817445 [CU-UP-E1] [I] e1=0: Tx PDU tid=1 E1ReleaseRequest
+2026-10-19T11:12:24.817567 [CU-CP-E1] [I] Rx PDU tid=1: E1ReleaseRequest
+2026-10-19T11:12:24.817685 [CU-CP-E1] [I] "E1 Release Procedure" started...
+2026-10-19T11:12:24.817936 [CU-CP-E1] [I] Tx PDU tid=1: E1ReleaseResponse
+2026-10-19T11:12:24.817941 [CU-CP-E1] [I] "E1 Release Procedure" finished successfully
+2026-10-19T11:12:24.818054 [CU-UP-E1] [I] e1=0: Rx PDU tid=1 E1ReleaseResponse
+2026-10-19T11:12:24.818287 [CU-CP   ] [I] Removed CU-UP 0
+2026-10-19T11:12:24.818295 [CU-UP-E1] [I] e1=0: E1AP CU-UP Release Procedure: E1 TNL association shut down
+2026-10-19T11:12:24.822443 [CU-UP   ] [I] CU-UP stopped successfully
+2026-10-19T11:12:24.822461 [CU-CP   ] [I] Stopping CU-CP...
+2026-10-19T11:12:24.823331 [CU-CP   ] [I] CU-CP stopped successfully
+LAB_RADIO_STOP hardware=0 tx_samples=51839700 rx_samples=51904512
+2026-10-19T11:12:25.548704 [GNB     ] [I] Closing PCAP files...
+2026-10-19T11:12:25.548757 [GNB     ] [I] PCAP files successfully closed.

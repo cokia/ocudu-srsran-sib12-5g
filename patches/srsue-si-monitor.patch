@@ -1,0 +1,24 @@
+diff --git a/srsue/src/stack/rrc_nr/rrc_nr_procedures.cc b/srsue/src/stack/rrc_nr/rrc_nr_procedures.cc
+index 619eac6..c836780 100644
+--- a/srsue/src/stack/rrc_nr/rrc_nr_procedures.cc
++++ b/srsue/src/stack/rrc_nr/rrc_nr_procedures.cc
+@@ -21,6 +21,7 @@
+ 
+ #include "srsue/hdr/stack/rrc_nr/rrc_nr_procedures.h"
+ #include "srsran/common/standard_streams.h"
++#include <cstdlib>
+ 
+ #define Error(fmt, ...) rrc_handle.logger.error("Proc \"%s\" - " fmt, name(), ##__VA_ARGS__)
+ #define Warning(fmt, ...) rrc_handle.logger.warning("Proc \"%s\" - " fmt, name(), ##__VA_ARGS__)
+@@ -534,6 +535,11 @@ proc_outcome_t rrc_nr::cell_selection_proc::react(const bool sib1_found)
+   }
+ 
+   Info("SIB1 acquired successfully");
++  if (std::getenv("PWS_LAB_SI_MONITOR") != nullptr) {
++    // 전용 ZMQ SI monitor는 RRC 접속 대신 SI-RNTI 수신을 유지한다.
++    rrc_handle.mac->bcch_search(true);
++    return proc_outcome_t::yield;
++  }
+   rrc_handle.mac->bcch_search(false);
+ 
+   return proc_outcome_t::success;

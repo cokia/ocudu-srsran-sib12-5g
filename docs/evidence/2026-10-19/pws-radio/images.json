@@ -1,0 +1,12 @@
+{
+  "pws-lab-zmq:0.1.0": {
+    "id": "sha256:0bfc1fba9b4d3119ef903bbf52cd99903624a786a2ace932a689b7fb6a45cb74",
+    "architecture": "arm64",
+    "created": "2026-10-19T20:10:13.387593989+09:00"
+  },
+  "pws-lab-radio-plugin:0.1.0": {
+    "id": "sha256:3fbf80b1f891d4a0881705eb3292c1d29432a01c44042d38c8fd35cda96cccf6",
+    "architecture": "arm64",
+    "created": "2026-10-19T20:10:16.7746569+09:00"
+  }
+}
