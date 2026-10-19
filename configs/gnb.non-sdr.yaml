@@ -1,0 +1,30 @@
+cu_cp:
+  amf:
+    no_core: true
+    addrs: 127.0.0.1
+    bind_addrs: 127.0.0.1
+    supported_tracking_areas:
+      - tac: 7
+        plmn_list:
+          - plmn: '00101'
+            tai_slice_support_list:
+              - sst: 1
+ru_dummy:
+  time_scaling: 10
+cell_cfg:
+  dl_arfcn: 632628
+  band: 78
+  channel_bandwidth_MHz: 20
+  common_scs: 30
+  plmn: '00101'
+  tac: 7
+  pci: 1
+log:
+  filename: stdout
+  all_level: info
+pcap:
+  mac_enable: false
+  ngap_enable: false
+buffer_pool:
+  nof_segments: 16384
+  segment_size: 2048

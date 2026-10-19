@@ -1,0 +1,15 @@
+FROM pws-lab-runtime:0.1.0
+WORKDIR /lab
+COPY controller /lab/controller
+COPY configs /lab/configs
+COPY scripts/healthcheck.py /lab/scripts/healthcheck.py
+COPY dependencies.lock.json LICENSE THIRD_PARTY_NOTICES.md /lab/
+COPY licenses /usr/local/share/pws-lab/licenses
+COPY --from=lab_build /bin/pws-codec /usr/local/bin/pws-codec
+COPY --from=lab_build /manifest.json /usr/local/share/pws-lab/build-manifest.json
+ENV PWS_CODEC=/usr/local/bin/pws-codec
+RUN mkdir -p /lab/output && chown -R 10001:10001 /lab/output
+USER 10001:10001
+STOPSIGNAL SIGTERM
+ENTRYPOINT ["python", "-m", "controller"]
+CMD ["validate", "--output", "/lab/output"]

@@ -1,0 +1,14 @@
+.git
+upstream
+build
+.venv
+artifacts
+output
+**/__pycache__
+.pytest_cache
+.ruff_cache
+.env
+.env.*
+**/*.pem
+**/*.key
+configs/*.local.yaml

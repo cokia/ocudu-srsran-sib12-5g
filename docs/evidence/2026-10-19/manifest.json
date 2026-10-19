@@ -1,0 +1,29 @@
+{
+  "source_artifacts": "artifacts/publication-20261019",
+  "captured_at": "2026-10-19T10:27:23+00:00",
+  "zmq_image_id": "sha256:12e4f2348c1d6fee477c529ad3e2709d901bc5c4cf09fd508137c4ea35105305",
+  "runtime": {
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "CapDrop": [
+      "ALL"
+    ],
+    "Privileged": false,
+    "Devices": null,
+    "Memory": 3221225472,
+    "NanoCpus": 4000000000
+  },
+  "user": "10001:10001",
+  "container_exit_code": 0,
+  "files_sha256": {
+    "decode-non-sdr.json": "94949e59934f6d4880a7d816bfc4c0648e367a035457d6542083cdaf377f0355",
+    "decode-sdr-bladerf-x40.json": "3a1907b1f95aed64def64d922335d6c244e26554d2fda2f462ba48f04ec397d0",
+    "gnb.log": "163bbed85ecad373ca67c51c87d5cd7916a00214fd903adf3e6465cbd553e32b",
+    "python.log": "536e6d52c1664bc9fe0093cbec9361fb18a563ccbb928c9cac4e1cc1d61be37c",
+    "python.xml": "4986d1cb0cdcb393dd550527f3f39b7f2d450818910e436641a46f2a1248ca9d",
+    "srsue.log": "3c6825f9b35e16e006e2bf72df344fdc2b5caa08fdd5e775a1b45921b35b42ca",
+    "validate-non-sdr.json": "cda758f5dfbf53705dbbe7a9072179613ef2f0e51dc7df91ce45ce9a6092306a",
+    "validate-sdr-bladerf-x40.json": "03af2d21b19feb9572739527c6a4b9d53d5332b6880749006faa384d4991672f",
+    "zmq-rx.json": "4e5976f280bf7dd97fc06dc98ee306d2ca38d8b66943b65140d34ad63704e7be"
+  }
+}

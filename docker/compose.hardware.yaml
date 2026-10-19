@@ -1,0 +1,8 @@
+# Linux의 단일 USB 장치에만 접근하는 명시적 override.
+services:
+  diagnostics:
+    devices:
+      - '${BLADERF_USB_DEVICE:?USB 장치 경로를 지정하십시오}:${BLADERF_USB_DEVICE}:rw'
+    group_add:
+      - '${BLADERF_USB_GID:?호스트 bladeRF udev group GID를 지정하십시오}'
+    command: [verify, --hardware, --output, /lab/output/sdr-hardware]

@@ -1,0 +1,9 @@
+FROM pws-lab-toolchain:0.1.0 AS python-deps
+COPY requirements.txt /tmp/requirements.txt
+RUN python3 -m venv /opt/venv && /opt/venv/bin/pip install --no-cache-dir -r /tmp/requirements.txt
+FROM ubuntu:24.04@sha256:68ee22004a9109b44973313b02ff7b1de250f1de0f5ecb628d73f579aaff33ac
+COPY scripts/install-runtime.sh /tmp/install-runtime.sh
+RUN bash /tmp/install-runtime.sh && rm /tmp/install-runtime.sh
+COPY --from=python-deps /opt/venv /opt/venv
+ENV PATH=/opt/venv/bin:$PATH PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
+WORKDIR /lab

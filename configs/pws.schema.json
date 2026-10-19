@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ocudu-pws-lab:config:1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "application": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "ocudu-pws-lab"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "non-sdr",
+            "sdr-bladerf-x40"
+          ]
+        },
+        "log_level": {
+          "type": "string",
+          "enum": [
+            "debug",
+            "info",
+            "warning",
+            "error"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "mode",
+        "log_level"
+      ]
+    },
+    "pws": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "const": true
+        },
+        "message": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^LAB-[A-Za-z0-9-]{1,32}$"
+            },
+            "profile": {
+              "type": "string",
+              "const": "TEST"
+            },
+            "language": {
+              "type": "string",
+              "enum": [
+                "ko",
+                "en"
+              ]
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 615
+            },
+            "metadata": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "category": {
+                  "type": "string",
+                  "const": "LAB_EXERCISE"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 256
+                }
+              },
+              "required": [
+                "category",
+                "description"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "profile",
+            "language",
+            "text",
+            "metadata"
+          ]
+        },
+        "validation": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "strict": {
+              "type": "boolean",
+              "const": true
+            },
+            "check_encoding": {
+              "type": "boolean",
+              "const": true
+            },
+            "check_length": {
+              "type": "boolean",
+              "const": true
+            },
+            "round_trip_decode": {
+              "type": "boolean",
+              "const": true
+            }
+          },
+          "required": [
+            "strict",
+            "check_encoding",
+            "check_length",
+            "round_trip_decode"
+          ]
+        },
+        "output": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "format": {
+              "type": "string",
+              "const": "json"
+            },
+            "directory": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1024
+            },
+            "audit_log": {
+              "type": "boolean",
+              "const": true
+            }
+          },
+          "required": [
+            "format",
+            "directory",
+            "audit_log"
+          ]
+        }
+      },
+      "required": [
+        "enabled",
+        "message",
+        "validation",
+        "output"
+      ]
+    },
+    "radio": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "backend": {
+          "type": "string",
+          "const": "dummy"
+        },
+        "rf_transmission_enabled": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "required": [
+        "backend",
+        "rf_transmission_enabled"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "application",
+    "pws",
+    "radio"
+  ]
+}

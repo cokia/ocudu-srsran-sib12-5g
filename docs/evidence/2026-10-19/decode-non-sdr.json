@@ -1,0 +1,36 @@
+{
+  "application_version": "0.1.0",
+  "artifact_location": "/lab/output",
+  "details": {
+    "asn1_type": "NR-SIB8",
+    "payload_hex": "01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000d000d000d000d000d000d000d000d000d000d000d000d000d38",
+    "status": "PASS",
+    "structures": [
+      {
+        "dataCodingScheme": "48",
+        "messageIdentifier": "0001000100011100",
+        "serialNumber": "0000000000000000",
+        "warningMessageSegment": "01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000d000d000d000d000d000d000d000d000d000d000d000d000d38",
+        "warningMessageSegmentNumber": 0,
+        "warningMessageSegmentType": "lastSegment"
+      }
+    ],
+    "text": "[시험 데이터] PWS 프로토콜 검증 메시지입니다."
+  },
+  "error": null,
+  "firmware_version": null,
+  "fpga_version": null,
+  "host": {
+    "architecture": "aarch64",
+    "os": "Linux",
+    "python": "3.12.3",
+    "release": "6.8.0-117-generic"
+  },
+  "mode": "non-sdr",
+  "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+  "report_schema_version": 1,
+  "result": "PASS",
+  "sdr_model": null,
+  "test_name": "decode",
+  "timestamp": "2026-10-19T10:28:06+00:00"
+}

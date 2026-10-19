@@ -1,0 +1,27 @@
+schema_version: 1
+application:
+  name: ocudu-pws-lab
+  mode: non-sdr
+  log_level: info
+pws:
+  enabled: true
+  message:
+    id: LAB-0001
+    profile: TEST
+    language: en
+    text: '[TEST DATA] Offline PWS protocol validation.'
+    metadata:
+      category: LAB_EXERCISE
+      description: '오프라인 프로토콜 검증'
+  validation:
+    strict: true
+    check_encoding: true
+    check_length: true
+    round_trip_decode: true
+  output:
+    format: json
+    directory: output
+    audit_log: true
+radio:
+  backend: dummy
+  rf_transmission_enabled: false

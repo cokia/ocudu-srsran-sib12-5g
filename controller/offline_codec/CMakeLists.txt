@@ -1,0 +1,5 @@
+find_package(nlohmann_json 3.11 REQUIRED)
+add_executable(pws-codec main.cpp ${CMAKE_SOURCE_DIR}/lib/cu_cp/routines/pws_sib_encoder.cpp)
+target_include_directories(pws-codec PRIVATE ${CMAKE_SOURCE_DIR})
+target_link_libraries(pws-codec PRIVATE rrc_nr_asn1 nlohmann_json::nlohmann_json)
+target_compile_options(pws-codec PRIVATE -Wextra)

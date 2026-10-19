@@ -1,0 +1,19 @@
+FROM pws-lab-runtime:0.1.0 AS zmq-runtime
+RUN apt-get update -o APT::Update::Error-Mode=any && \
+    apt-get install -y --no-install-recommends libzmq5 libboost-program-options1.83.0 libfftw3-single3 && \
+    rm -rf /var/lib/apt/lists/*
+FROM zmq-runtime
+WORKDIR /lab
+COPY controller /lab/controller
+COPY configs /lab/configs
+COPY dependencies.lock.json LICENSE THIRD_PARTY_NOTICES.md /lab/
+COPY licenses /usr/local/share/pws-lab/licenses
+COPY --from=lab_build /bin/gnb-zmq /usr/local/bin/gnb-zmq
+COPY --from=lab_build /bin/srsue /usr/local/bin/srsue
+COPY --from=lab_build /manifest.json /usr/local/share/pws-lab/build-manifest.json
+ENV GNB_ZMQ_BINARY=/usr/local/bin/gnb-zmq SRSUE_BINARY=/usr/local/bin/srsue
+RUN mkdir -p /lab/output && chown 10001:10001 /lab/output
+USER 10001:10001
+STOPSIGNAL SIGTERM
+ENTRYPOINT ["python", "-m", "controller.zmq_rx"]
+CMD ["--output", "/lab/output/zmq"]

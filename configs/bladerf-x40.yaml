@@ -1,0 +1,17 @@
+schema_version: 1
+device:
+  model: bladerf-x40
+  serial: ''
+  access: mock
+  rf_transmission_enabled: false
+diagnostics:
+  sample_rate: 1000000
+  buffer_samples: 4096
+  buffers: 8
+  transfers: 4
+  transfer_timeout_ms: 1000
+  loopback_samples: 65536
+  loopback_mode: firmware
+  max_duration_seconds: 20
+output:
+  directory: output/sdr

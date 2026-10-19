@@ -1,0 +1,43 @@
+name: 독립 모드 빌드 및 Docker
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  mode-build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [non-sdr, sdr-bladerf-x40]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: 고정 소스에서 이미지 생성
+        run: bash scripts/build-docker.sh '${{ matrix.mode }}'
+      - name: 네트워크와 SDR 없는 runtime 검사
+        env:
+          MODE: ${{ matrix.mode }}
+        run: |
+          mkdir -p artifacts/docker
+          if [ "$MODE" = non-sdr ]; then
+            timeout 60s docker run --rm --network none --cap-drop ALL --memory 2g \
+              pws-lab-non-sdr:0.1.0 > artifacts/docker/gnb.json
+            docker run --rm --network none --entrypoint python pws-lab-non-sdr:0.1.0 \
+              -m controller validate > artifacts/docker/pws.json
+          else
+            docker run --rm --network none pws-lab-sdr-bladerf-x40:0.1.0 loopback --mock \
+              > artifacts/docker/loopback.json
+            docker run --rm --network none --entrypoint python pws-lab-sdr-bladerf-x40:0.1.0 \
+              -m controller validate --mode sdr-bladerf-x40 > artifacts/docker/pws.json
+          fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: build-${{ matrix.mode }}
+          path: |
+            artifacts/
+            build/runtime/*/manifest.json
+          retention-days: 14

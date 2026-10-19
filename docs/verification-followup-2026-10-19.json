@@ -1,0 +1,465 @@
+{
+  "verification_schema_version": 1,
+  "recorded_at": "2026-10-18T21:01:12+00:00",
+  "dependencies": {
+    "ocudu": {
+      "url": "https://gitlab.com/ocudu/ocudu.git",
+      "tag": "release_26_10",
+      "commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "patches": [
+        {
+          "file": "patches/ocudu-main-pool.patch",
+          "source": "apps/services/worker_manager/worker_manager.cpp",
+          "original_sha256": "9b05f4a5f030a1d91b7ba251ea7f72f192b8ba9cca265778bf1ea264ffaafe2d",
+          "patched_sha256": "ac1fdde6158cf13c85fb97253afd9e627c9dfa4c0fbd855a1af755dfde226d9d",
+          "sha256": "88a339f1e7479f458eac624f3f0bbfeb7da19496744baafdccb516c4e158060c"
+        }
+      ]
+    },
+    "bladerf": {
+      "url": "https://github.com/Nuand/bladeRF.git",
+      "tag": "libbladeRF_v2.6.0",
+      "commit": "09c82087786702d2812f3f0fc909beccf3277233",
+      "version": "2.6.0"
+    },
+    "ubuntu": {
+      "image": "ubuntu:24.04@sha256:68ee22004a9109b44973313b02ff7b1de250f1de0f5ecb628d73f579aaff33ac",
+      "apt_snapshot": "20261001T000000Z"
+    },
+    "application": "0.1.0",
+    "srsran4g": {
+      "url": "https://github.com/srsran/srsRAN_4G.git",
+      "tag": "release_25_10",
+      "commit": "6bcbd9e5bf8686aa7085202cd847c5ddd64a9c16",
+      "patches": [
+        {
+          "file": "patches/srsue-fftw-estimate.patch",
+          "source": "lib/src/phy/dft/dft_fftw.c",
+          "original_sha256": "7181b255c400dbfac8eadc2990c616df099951b5db1ab0ef13768d10b85c79b5",
+          "patched_sha256": "e3295cef2e367e748f0a937b7ef6286764b35f542b9597c0fea65e00128705a2",
+          "sha256": "0af9852d8e9f0a5a872bf83e57d1657ac657831a38b794d4bd705a84b772d0c9"
+        }
+      ]
+    }
+  },
+  "checkpoints": {
+    "C9": "PASS",
+    "C10": "PASS",
+    "C7": "BLOCKED"
+  },
+  "results": [
+    {
+      "application_version": "0.1.0",
+      "artifact_location": "artifacts/followup-python.xml",
+      "details": {
+        "tests": 117,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "error": null,
+      "firmware_version": null,
+      "fpga_version": null,
+      "host": {
+        "architecture": "aarch64",
+        "os": "Linux",
+        "python": "3.12.3",
+        "release": "6.8.0-117-generic"
+      },
+      "mode": "non-sdr",
+      "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "report_schema_version": 1,
+      "result": "PASS",
+      "sdr_model": null,
+      "test_name": "python-regression",
+      "timestamp": "2026-10-18T21:01:56.655907+00:00"
+    },
+    {
+      "application_version": "0.1.0",
+      "artifact_location": "artifacts/libbladerf/adapter-contract.log",
+      "details": {
+        "actual_library": true,
+        "device_api_double": true,
+        "hardware_verified": false,
+        "cases": {
+          "tests": 22,
+          "failures": 0,
+          "errors": 0,
+          "disabled": 0
+        }
+      },
+      "error": null,
+      "firmware_version": null,
+      "fpga_version": null,
+      "host": {
+        "architecture": "aarch64",
+        "os": "Linux",
+        "python": "3.12.3",
+        "release": "6.8.0-117-generic"
+      },
+      "mode": "sdr-bladerf-x40",
+      "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "report_schema_version": 1,
+      "result": "PASS",
+      "sdr_model": null,
+      "test_name": "adapter-contract",
+      "timestamp": "2026-10-18T20:29:21+00:00"
+    },
+    {
+      "application_version": "0.1.0",
+      "artifact_location": "artifacts/libbladerf/upstream-c.log",
+      "details": {
+        "actual_library": true,
+        "device_api_double": false,
+        "hardware_verified": false
+      },
+      "error": null,
+      "firmware_version": null,
+      "fpga_version": null,
+      "host": {
+        "architecture": "aarch64",
+        "os": "Linux",
+        "python": "3.12.3",
+        "release": "6.8.0-117-generic"
+      },
+      "mode": "sdr-bladerf-x40",
+      "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "report_schema_version": 1,
+      "result": "PASS",
+      "sdr_model": null,
+      "test_name": "upstream-c",
+      "timestamp": "2026-10-18T20:29:21+00:00"
+    },
+    {
+      "application_version": "0.1.0",
+      "artifact_location": "artifacts/libbladerf/upstream-cpp.log",
+      "details": {
+        "actual_library": true,
+        "device_api_double": false,
+        "hardware_verified": false
+      },
+      "error": null,
+      "firmware_version": null,
+      "fpga_version": null,
+      "host": {
+        "architecture": "aarch64",
+        "os": "Linux",
+        "python": "3.12.3",
+        "release": "6.8.0-117-generic"
+      },
+      "mode": "sdr-bladerf-x40",
+      "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "report_schema_version": 1,
+      "result": "PASS",
+      "sdr_model": null,
+      "test_name": "upstream-cpp",
+      "timestamp": "2026-10-18T20:29:21+00:00"
+    },
+    {
+      "application_version": "0.1.0",
+      "artifact_location": "artifacts/libbladerf/upstream-version.log",
+      "details": {
+        "actual_library": true,
+        "device_api_double": false,
+        "hardware_verified": false
+      },
+      "error": null,
+      "firmware_version": null,
+      "fpga_version": null,
+      "host": {
+        "architecture": "aarch64",
+        "os": "Linux",
+        "python": "3.12.3",
+        "release": "6.8.0-117-generic"
+      },
+      "mode": "sdr-bladerf-x40",
+      "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "report_schema_version": 1,
+      "result": "PASS",
+      "sdr_model": null,
+      "test_name": "upstream-version",
+      "timestamp": "2026-10-18T20:29:21+00:00"
+    },
+    {
+      "application_version": "0.1.0",
+      "artifact_location": "artifacts/libbladerf/upstream-parse.log",
+      "details": {
+        "actual_library": true,
+        "device_api_double": false,
+        "hardware_verified": false
+      },
+      "error": null,
+      "firmware_version": null,
+      "fpga_version": null,
+      "host": {
+        "architecture": "aarch64",
+        "os": "Linux",
+        "python": "3.12.3",
+        "release": "6.8.0-117-generic"
+      },
+      "mode": "sdr-bladerf-x40",
+      "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "report_schema_version": 1,
+      "result": "PASS",
+      "sdr_model": null,
+      "test_name": "upstream-parse",
+      "timestamp": "2026-10-18T20:29:21+00:00"
+    },
+    {
+      "application_version": "0.1.0",
+      "artifact_location": "artifacts/libbladerf/upstream-interleaver.log",
+      "details": {
+        "actual_library": true,
+        "device_api_double": false,
+        "hardware_verified": false
+      },
+      "error": null,
+      "firmware_version": null,
+      "fpga_version": null,
+      "host": {
+        "architecture": "aarch64",
+        "os": "Linux",
+        "python": "3.12.3",
+        "release": "6.8.0-117-generic"
+      },
+      "mode": "sdr-bladerf-x40",
+      "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "report_schema_version": 1,
+      "result": "PASS",
+      "sdr_model": null,
+      "test_name": "upstream-interleaver",
+      "timestamp": "2026-10-18T20:29:21+00:00"
+    },
+    {
+      "application_version": "0.1.0",
+      "artifact_location": "artifacts/libbladerf/no-device",
+      "details": {
+        "buffer_errors": null,
+        "command": "info",
+        "driver": {
+          "available": true,
+          "description": "2.6.0-git-09c8208-dirty",
+          "version": "2.6.0"
+        },
+        "error": {
+          "code": "E_DISCOVERY",
+          "detail": "No devices available",
+          "driver_code": -7
+        },
+        "hardware_verified": false,
+        "mock": false,
+        "samples_processed": null,
+        "status": "BLOCKED",
+        "streaming_errors": null
+      },
+      "error": {
+        "code": "E_DISCOVERY",
+        "detail": "No devices available",
+        "driver_code": -7
+      },
+      "firmware_version": null,
+      "fpga_version": null,
+      "host": {
+        "architecture": "aarch64",
+        "os": "Linux",
+        "python": "3.12.3",
+        "release": "6.8.0-117-generic"
+      },
+      "mode": "sdr-bladerf-x40",
+      "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "report_schema_version": 1,
+      "result": "BLOCKED",
+      "sdr_model": null,
+      "test_name": "info",
+      "timestamp": "2026-10-18T20:29:17+00:00"
+    },
+    {
+      "application_version": "0.1.0",
+      "artifact_location": "artifacts/zmq/rx-complete",
+      "details": {
+        "backend": "zmq",
+        "exit_codes": [
+          0,
+          0
+        ],
+        "gnb_started": true,
+        "gnb_ue_removed": true,
+        "ip_connectivity": "NOT VERIFIED",
+        "mib_decoded": true,
+        "nas_registration": "NOT VERIFIED",
+        "pws_reception": "UNSUPPORTED",
+        "pws_routed": false,
+        "rf_transmission": false,
+        "rrc_connected": true,
+        "rrc_released": true,
+        "sib1_acquired": true,
+        "sib1_received": true,
+        "srsran4g_commit": "6bcbd9e5bf8686aa7085202cd847c5ddd64a9c16",
+        "timeout_seconds": 60
+      },
+      "error": null,
+      "firmware_version": null,
+      "fpga_version": null,
+      "host": {
+        "architecture": "aarch64",
+        "os": "Linux",
+        "python": "3.12.3",
+        "release": "6.8.0-117-generic"
+      },
+      "mode": "non-sdr",
+      "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "report_schema_version": 1,
+      "result": "PASS",
+      "sdr_model": null,
+      "test_name": "zmq-srsue-reception",
+      "timestamp": "2026-10-18T20:54:13+00:00"
+    },
+    {
+      "application_version": "0.1.0",
+      "artifact_location": "/lab/output/zmq",
+      "details": {
+        "backend": "zmq",
+        "exit_codes": [
+          0,
+          0
+        ],
+        "gnb_started": true,
+        "gnb_ue_removed": true,
+        "ip_connectivity": "NOT VERIFIED",
+        "mib_decoded": true,
+        "nas_registration": "NOT VERIFIED",
+        "pws_reception": "UNSUPPORTED",
+        "pws_routed": false,
+        "rf_transmission": false,
+        "rrc_connected": true,
+        "rrc_released": true,
+        "sib1_acquired": true,
+        "sib1_received": true,
+        "srsran4g_commit": "6bcbd9e5bf8686aa7085202cd847c5ddd64a9c16",
+        "timeout_seconds": 60
+      },
+      "error": null,
+      "firmware_version": null,
+      "fpga_version": null,
+      "host": {
+        "architecture": "aarch64",
+        "os": "Linux",
+        "python": "3.12.3",
+        "release": "6.8.0-117-generic"
+      },
+      "mode": "non-sdr",
+      "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "report_schema_version": 1,
+      "result": "PASS",
+      "sdr_model": null,
+      "test_name": "zmq-srsue-reception",
+      "timestamp": "2026-10-18T21:00:33+00:00"
+    },
+    {
+      "application_version": "0.1.0",
+      "artifact_location": "artifacts/checkpoints/docker-zmq.log",
+      "details": {
+        "elapsed_seconds": 11.701,
+        "exit_code": 0,
+        "timeout_seconds": 2700
+      },
+      "error": null,
+      "firmware_version": null,
+      "fpga_version": null,
+      "host": {
+        "architecture": "arm64",
+        "os": "Darwin",
+        "python": "3.9.6",
+        "release": "24.6.0"
+      },
+      "mode": "non-sdr",
+      "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "report_schema_version": 1,
+      "result": "PASS",
+      "sdr_model": null,
+      "test_name": "docker-zmq",
+      "timestamp": "2026-10-18T21:00:01+00:00"
+    },
+    {
+      "application_version": "0.1.0",
+      "artifact_location": "/lab/output/non-sdr/gnb.log",
+      "details": {
+        "backend": "dummy",
+        "duration_seconds": 5,
+        "graceful_shutdown": true,
+        "interrupted": false,
+        "rf_transmission": false,
+        "startup": true,
+        "ue_attach": "NOT VERIFIED"
+      },
+      "error": null,
+      "firmware_version": null,
+      "fpga_version": null,
+      "host": {
+        "architecture": "aarch64",
+        "os": "Linux",
+        "python": "3.12.3",
+        "release": "6.8.0-117-generic"
+      },
+      "mode": "non-sdr",
+      "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "report_schema_version": 1,
+      "result": "PASS",
+      "sdr_model": null,
+      "test_name": "gnb-smoke",
+      "timestamp": "2026-10-18T20:57:17+00:00"
+    },
+    {
+      "report_schema_version": 1,
+      "mode": "non-sdr",
+      "application_version": "0.1.0",
+      "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+      "host": {
+        "os": "Linux",
+        "release": "6.8.0-117-generic",
+        "architecture": "aarch64",
+        "python": "3.12.3"
+      },
+      "sdr_model": null,
+      "firmware_version": null,
+      "fpga_version": null,
+      "test_name": "gnb-smoke",
+      "result": "FAIL",
+      "error": {
+        "code": "E_GNB_EXIT",
+        "detail": "rc=-6"
+      },
+      "timestamp": "2026-10-18T20:56:47+00:00",
+      "artifact_location": "/lab/output/non-sdr/gnb.log",
+      "details": {}
+    }
+  ],
+  "zmq_runtime": {
+    "image_id": "sha256:12e4f2348c1d6fee477c529ad3e2709d901bc5c4cf09fd508137c4ea35105305",
+    "user": "10001:10001",
+    "network": "none",
+    "read_only": true,
+    "cap_drop": [
+      "ALL"
+    ],
+    "container_exit_code": 0,
+    "binary_sha256": {
+      "gnb-zmq": "c7173f4e829005b866e7c6746ddf50bcc1e171d264765440154b06d31819507e",
+      "srsue": "22b8421d9f08f69dc0e93b4a9792e22904bc714c35724b96b1d059d88201560e"
+    }
+  },
+  "limitations": {
+    "physical_bladerf": "NOT VERIFIED",
+    "nas_registration": "NOT VERIFIED",
+    "ip_connectivity": "NOT VERIFIED",
+    "pws_reception": "UNSUPPORTED",
+    "github_actions": "NOT VERIFIED",
+    "dummy_ru_stability": "간헐적 abort 1건과 slot 지연 관찰; 원인 미확정"
+  },
+  "source_checks": {
+    "files": 133,
+    "missing_local_links_or_targets": [],
+    "credential_pattern_files": [],
+    "gitlab_ci_files": []
+  }
+}

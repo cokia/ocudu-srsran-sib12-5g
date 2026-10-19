@@ -1,0 +1,44 @@
+name: ZMQ srsUE 수신
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'controller/zmq_rx.py'
+      - 'configs/*zmq*'
+      - 'scripts/*zmq*'
+      - 'docker/*zmq*'
+      - 'tests/non-sdr/test_zmq_reception.py'
+      - 'dependencies.lock.json'
+      - 'patches/ocudu-*.patch'
+      - 'patches/srsue-*.patch'
+      - 'scripts/fetch-upstream.py'
+      - 'scripts/stage-runtime.py'
+      - 'docker/Dockerfile.build'
+      - 'docker/Dockerfile.runtime'
+      - '.github/workflows/zmq.yml'
+permissions:
+  contents: read
+jobs:
+  reception:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - run: bash scripts/build-zmq-docker.sh
+      - name: SDR/core 없는 MIB 및 SIB1 수신
+        run: |
+          docker create --name zmq-rx --network none --cap-drop ALL --memory 3g \
+            pws-lab-zmq:0.1.0 --timeout 120
+          timeout 150s docker start -a zmq-rx
+          test "$(docker inspect -f '{{.State.ExitCode}}' zmq-rx)" = 0
+      - name: 실행 증거 보존
+        if: always()
+        run: |
+          mkdir -p artifacts/zmq-runtime
+          docker cp zmq-rx:/lab/output/zmq artifacts/zmq-runtime/ || true
+          docker rm -f zmq-rx || true
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: zmq-reception
+          path: artifacts/

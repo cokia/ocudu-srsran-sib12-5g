@@ -1,0 +1,11 @@
+--- a/lib/src/phy/dft/dft_fftw.c
++++ b/lib/src/phy/dft/dft_fftw.c
+@@ -46,7 +46,7 @@
+ }
+ 
+ #ifdef FFTW_WISDOM_FILE
+-#define FFTW_TYPE FFTW_MEASURE
++#define FFTW_TYPE FFTW_ESTIMATE
+ #else
+ #define FFTW_TYPE 0
+ #endif

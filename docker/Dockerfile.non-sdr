@@ -1,0 +1,18 @@
+FROM pws-lab-runtime:0.1.0
+WORKDIR /lab
+COPY controller /lab/controller
+COPY configs /lab/configs
+COPY scripts/healthcheck.py /lab/scripts/healthcheck.py
+COPY dependencies.lock.json LICENSE THIRD_PARTY_NOTICES.md /lab/
+COPY licenses /usr/local/share/pws-lab/licenses
+COPY --from=lab_build /bin/pws-codec /usr/local/bin/pws-codec
+COPY --from=lab_build /manifest.json /usr/local/share/pws-lab/build-manifest.json
+ENV PWS_CODEC=/usr/local/bin/pws-codec
+COPY --from=lab_build /bin/gnb /usr/local/bin/gnb
+ENV GNB_BINARY=/usr/local/bin/gnb
+RUN mkdir -p /lab/output && chown -R 10001:10001 /lab/output
+USER 10001:10001
+STOPSIGNAL SIGTERM
+HEALTHCHECK --interval=2s --timeout=2s --start-period=20s --retries=3 CMD ["python", "/lab/scripts/healthcheck.py"]
+ENTRYPOINT ["python", "-m", "controller.gnb"]
+CMD ["--duration", "5", "--output", "/lab/output/non-sdr"]

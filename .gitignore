@@ -1,0 +1,16 @@
+/upstream/
+/build/
+/.venv/
+/artifacts/
+/output/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+/configs/*.local.yaml

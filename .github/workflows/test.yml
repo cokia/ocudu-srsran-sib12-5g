@@ -1,0 +1,58 @@
+name: 소프트웨어 검사
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  libbladerf-api:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - run: docker build -f docker/Dockerfile.build -t pws-lab-toolchain:0.1.0 .
+      - name: 실제 libbladeRF 빌드
+        run: docker run --rm -v "$PWD:/lab" pws-lab-toolchain:0.1.0 bash scripts/build-sdr.sh
+      - name: USB 없는 library 및 adapter contract 검사
+        run: |
+          docker run --rm --network none -e LAB_PYTHON=python3 -v "$PWD:/lab" \
+            pws-lab-toolchain:0.1.0 bash scripts/test-libbladerf.sh
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: libbladerf-api-results
+          path: artifacts/libbladerf/
+  lint:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - run: bash scripts/bootstrap-python.sh
+      - run: .venv/bin/ruff check controller tests scripts
+      - run: .venv/bin/ruff format --check controller tests scripts
+      - run: for file in scripts/*.sh; do bash -n "$file"; done
+      - run: .venv/bin/python -m pytest tests/unit tests/non-sdr
+  protocol-and-mocks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - run: docker build -f docker/Dockerfile.build -t pws-lab-toolchain:0.1.0 .
+      - name: ASN.1 및 mock executable 빌드
+        run: |
+          docker run --rm --memory 4g --cpus 2 -v "$PWD:/lab" pws-lab-toolchain:0.1.0 bash -c '
+            scripts/build-non-sdr.sh --codec-only && scripts/build-sdr.sh --mock-only &&
+            python3 -m venv build/venv && build/venv/bin/pip install -r requirements-dev.txt'
+      - name: 두 모드의 공유 테스트와 mock 테스트
+        run: |
+          docker run --rm --network none -v "$PWD:/lab" \
+            -e LAB_PYTHON=build/venv/bin/python \
+            -e BLADERF_DIAG=build/bin/bladerf-x40-diag-mock \
+            pws-lab-toolchain:0.1.0 bash -c 'scripts/test-non-sdr.sh && scripts/test-sdr.sh'
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: software-results
+          path: artifacts/
+          retention-days: 14

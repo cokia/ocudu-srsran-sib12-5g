@@ -1,0 +1,215 @@
+{
+  "검증일": "2026-10-19 KST",
+  "collected_at": "2026-10-18T20:03:44+00:00",
+  "application_version": "0.1.0",
+  "pins": {
+    "ocudu": {
+      "url": "https://gitlab.com/ocudu/ocudu.git",
+      "tag": "release_26_10",
+      "commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70"
+    },
+    "bladerf": {
+      "url": "https://github.com/Nuand/bladeRF.git",
+      "tag": "libbladeRF_v2.6.0",
+      "commit": "09c82087786702d2812f3f0fc909beccf3277233",
+      "version": "2.6.0"
+    },
+    "ubuntu": {
+      "image": "ubuntu:24.04@sha256:68ee22004a9109b44973313b02ff7b1de250f1de0f5ecb628d73f579aaff33ac",
+      "apt_snapshot": "20261001T000000Z"
+    },
+    "application": "0.1.0"
+  },
+  "tests": {
+    "non-sdr": {
+      "tests": 74,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result": "PASS",
+      "timestamp": "2026-10-18T19:58:16.122305+00:00",
+      "artifact": "artifacts/non-sdr/junit.xml"
+    },
+    "sdr-bladerf-x40": {
+      "tests": 98,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result": "PASS",
+      "timestamp": "2026-10-18T19:58:18.949295+00:00",
+      "artifact": "artifacts/sdr/junit.xml"
+    },
+    "mock-only": {
+      "tests": 78,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result": "PASS",
+      "timestamp": "2026-10-18T19:57:53.296120+00:00",
+      "artifact": "artifacts/mock-independent.xml"
+    }
+  },
+  "docker_builds": {
+    "non-sdr": {
+      "result": "PASS",
+      "timestamp": "2026-10-18T20:02:29+00:00",
+      "elapsed_seconds": 9.115,
+      "exit_code": 0,
+      "timeout_seconds": 2700
+    },
+    "sdr-bladerf-x40": {
+      "result": "PASS",
+      "timestamp": "2026-10-18T20:02:58+00:00",
+      "elapsed_seconds": 28.296,
+      "exit_code": 0,
+      "timeout_seconds": 2700
+    },
+    "controller": {
+      "result": "PASS",
+      "timestamp": "2026-10-18T20:03:00+00:00",
+      "elapsed_seconds": 2.898,
+      "exit_code": 0,
+      "timeout_seconds": 2700
+    }
+  },
+  "compose": [
+    {
+      "service": "diagnostics",
+      "state": "exited",
+      "exit_code": 0,
+      "network": "none"
+    },
+    {
+      "service": "gnb",
+      "state": "exited",
+      "exit_code": 0,
+      "network": "none"
+    },
+    {
+      "service": "offline",
+      "state": "exited",
+      "exit_code": 0,
+      "network": "none"
+    },
+    {
+      "service": "sdr-offline",
+      "state": "exited",
+      "exit_code": 0,
+      "network": "none"
+    }
+  ],
+  "unique_test_cases_in_mode_suites": 100,
+  "gnb": {
+    "application_version": "0.1.0",
+    "artifact_location": "/lab/output/non-sdr/gnb.log",
+    "details": {
+      "backend": "dummy",
+      "duration_seconds": 30,
+      "graceful_shutdown": true,
+      "interrupted": false,
+      "rf_transmission": false,
+      "startup": true,
+      "ue_attach": "NOT VERIFIED"
+    },
+    "error": null,
+    "firmware_version": null,
+    "fpga_version": null,
+    "host": {
+      "architecture": "aarch64",
+      "os": "Linux",
+      "python": "3.12.3",
+      "release": "6.8.0-117-generic"
+    },
+    "mode": "non-sdr",
+    "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+    "report_schema_version": 1,
+    "result": "PASS",
+    "sdr_model": null,
+    "test_name": "gnb-smoke",
+    "timestamp": "2026-10-18T19:58:49+00:00"
+  },
+  "hardware": {
+    "report_schema_version": 1,
+    "mode": "sdr-bladerf-x40",
+    "application_version": "0.1.0",
+    "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+    "host": {
+      "os": "Linux",
+      "release": "6.8.0-117-generic",
+      "architecture": "aarch64",
+      "python": "3.12.3"
+    },
+    "sdr_model": null,
+    "firmware_version": null,
+    "fpga_version": null,
+    "test_name": "info",
+    "result": "BLOCKED",
+    "error": {
+      "code": "E_DISCOVERY",
+      "detail": "No devices available",
+      "driver_code": -7
+    },
+    "timestamp": "2026-10-18T19:58:42+00:00",
+    "artifact_location": "output/sdr",
+    "details": {
+      "buffer_errors": null,
+      "command": "info",
+      "driver": {
+        "available": true,
+        "description": "2.6.0-git-09c8208-dirty",
+        "version": "2.6.0"
+      },
+      "error": {
+        "code": "E_DISCOVERY",
+        "detail": "No devices available",
+        "driver_code": -7
+      },
+      "hardware_verified": false,
+      "mock": false,
+      "samples_processed": null,
+      "status": "BLOCKED",
+      "streaming_errors": null
+    }
+  },
+  "gnb_health": "healthy",
+  "not_verified": [
+    "실제 bladeRF x40 FW/FPGA/USB/stream/loopback",
+    "OCUDU bladeRF RU timing 통합",
+    "UE attach 및 end-to-end warning procedure",
+    "Linux x86_64 GitHub Actions 실행",
+    "공개 binary release 대응 dependency source archive 생성"
+  ],
+  "final_runtime_checks": {
+    "gnb": {
+      "result": "PASS",
+      "timestamp": "2026-10-18T20:03:39+00:00",
+      "artifact": "artifacts/docker/gnb-final.json"
+    },
+    "loopback": {
+      "result": "PASS",
+      "timestamp": "2026-10-18T20:03:33+00:00",
+      "artifact": "artifacts/docker/loopback-final.json"
+    },
+    "controller": {
+      "result": "PASS",
+      "timestamp": "2026-10-18T20:03:19+00:00",
+      "artifact": "artifacts/docker/controller-final.json"
+    },
+    "sdr-pws": {
+      "result": "PASS",
+      "timestamp": "2026-10-18T20:03:33+00:00",
+      "artifact": "artifacts/docker/sdr-pws-final.json"
+    }
+  },
+  "publication_check": {
+    "files_checked": 107,
+    "private_key_or_token_pattern_matches": [],
+    "broken_local_document_links": [],
+    "gitlab_ci_files": [],
+    "scope": "프로젝트 Git 대상 파일의 정적 검사; 모든 secret 형식을 보증하지 않음"
+  },
+  "json_header_versions": {
+    "ocudu_codec": "3.12.0",
+    "standalone_diagnostic": "3.11.3"
+  }
+}

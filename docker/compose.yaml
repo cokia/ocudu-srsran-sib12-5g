@@ -1,0 +1,59 @@
+name: ocudu-pws-lab
+services:
+  gnb:
+    profiles: [non-sdr]
+    image: pws-lab-non-sdr:0.1.0
+    network_mode: none
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    read_only: true
+    tmpfs: [/tmp]
+    mem_limit: 2g
+    cpus: 2
+    pids_limit: 256
+    stop_grace_period: 15s
+    command: [--duration, '30', --output, /lab/output/non-sdr]
+    volumes:
+      - ../configs:/lab/configs:ro
+      - non-sdr-output:/lab/output
+  offline:
+    profiles: [non-sdr]
+    image: pws-lab-controller:0.1.0
+    network_mode: none
+    cap_drop: [ALL]
+    read_only: true
+    security_opt: [no-new-privileges:true]
+    mem_limit: 512m
+    pids_limit: 64
+    volumes:
+      - ../configs:/lab/configs:ro
+      - non-sdr-output:/lab/output
+  diagnostics:
+    profiles: [sdr-bladerf-x40]
+    image: pws-lab-sdr-bladerf-x40:0.1.0
+    network_mode: none
+    cap_drop: [ALL]
+    read_only: true
+    security_opt: [no-new-privileges:true]
+    mem_limit: 512m
+    pids_limit: 64
+    volumes:
+      - ../configs:/lab/configs:ro
+      - sdr-output:/lab/output
+  sdr-offline:
+    profiles: [sdr-bladerf-x40]
+    image: pws-lab-sdr-bladerf-x40:0.1.0
+    entrypoint: [python, -m, controller]
+    command: [validate, --mode, sdr-bladerf-x40, --output, /lab/output/pws]
+    network_mode: none
+    cap_drop: [ALL]
+    read_only: true
+    security_opt: [no-new-privileges:true]
+    mem_limit: 512m
+    pids_limit: 64
+    volumes:
+      - ../configs:/lab/configs:ro
+      - sdr-output:/lab/output
+volumes:
+  non-sdr-output:
+  sdr-output:

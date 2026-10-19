@@ -1,0 +1,41 @@
+{
+  "ocudu": {
+    "url": "https://gitlab.com/ocudu/ocudu.git",
+    "tag": "release_26_10",
+    "commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+    "patches": [
+      {
+        "file": "patches/ocudu-main-pool.patch",
+        "source": "apps/services/worker_manager/worker_manager.cpp",
+        "original_sha256": "9b05f4a5f030a1d91b7ba251ea7f72f192b8ba9cca265778bf1ea264ffaafe2d",
+        "patched_sha256": "ac1fdde6158cf13c85fb97253afd9e627c9dfa4c0fbd855a1af755dfde226d9d",
+        "sha256": "88a339f1e7479f458eac624f3f0bbfeb7da19496744baafdccb516c4e158060c"
+      }
+    ]
+  },
+  "bladerf": {
+    "url": "https://github.com/Nuand/bladeRF.git",
+    "tag": "libbladeRF_v2.6.0",
+    "commit": "09c82087786702d2812f3f0fc909beccf3277233",
+    "version": "2.6.0"
+  },
+  "ubuntu": {
+    "image": "ubuntu:24.04@sha256:68ee22004a9109b44973313b02ff7b1de250f1de0f5ecb628d73f579aaff33ac",
+    "apt_snapshot": "20261001T000000Z"
+  },
+  "application": "0.1.0",
+  "srsran4g": {
+    "url": "https://github.com/srsran/srsRAN_4G.git",
+    "tag": "release_25_10",
+    "commit": "6bcbd9e5bf8686aa7085202cd847c5ddd64a9c16",
+    "patches": [
+      {
+        "file": "patches/srsue-fftw-estimate.patch",
+        "source": "lib/src/phy/dft/dft_fftw.c",
+        "original_sha256": "7181b255c400dbfac8eadc2990c616df099951b5db1ab0ef13768d10b85c79b5",
+        "patched_sha256": "e3295cef2e367e748f0a937b7ef6286764b35f542b9597c0fea65e00128705a2",
+        "sha256": "0af9852d8e9f0a5a872bf83e57d1657ac657831a38b794d4bd705a84b772d0c9"
+      }
+    ]
+  }
+}

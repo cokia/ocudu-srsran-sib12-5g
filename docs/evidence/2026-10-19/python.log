@@ -1,0 +1,22 @@
+All checks passed!
+28 files already formatted
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.3.5, pluggy-1.5.0
+rootdir: /lab
+configfile: pyproject.toml
+testpaths: tests
+collected 118 items
+
+tests/integration/test_cli.py ...                                        [  2%]
+tests/integration/test_protocol.py ...................                   [ 18%]
+tests/non-sdr/test_isolation.py ..                                       [ 20%]
+tests/non-sdr/test_zmq_reception.py .............                        [ 31%]
+tests/sdr/test_diagnostics.py .....................                      [ 49%]
+tests/sdr/test_hardware_config.py .....                                  [ 53%]
+tests/unit/test_cb_data.py ...................                           [ 69%]
+tests/unit/test_config.py ...............................                [ 95%]
+tests/unit/test_logging.py .                                             [ 96%]
+tests/unit/test_upstream_patches.py ....                                 [100%]
+
+------ generated xml file: /lab/artifacts/publication-20261019/python.xml ------
+============================= 118 passed in 1.51s ==============================

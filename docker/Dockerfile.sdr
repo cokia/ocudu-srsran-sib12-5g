@@ -1,0 +1,21 @@
+FROM pws-lab-runtime:0.1.0
+WORKDIR /lab
+RUN apt-get update -o APT::Update::Error-Mode=any && \
+    apt-get install -y --no-install-recommends libusb-1.0-0=2:1.0.27-1 && \
+    rm -rf /var/lib/apt/lists/*
+COPY controller /lab/controller
+COPY configs /lab/configs
+COPY scripts/healthcheck.py /lab/scripts/healthcheck.py
+COPY dependencies.lock.json LICENSE THIRD_PARTY_NOTICES.md /lab/
+COPY licenses /usr/local/share/pws-lab/licenses
+COPY --from=lab_build /bin/pws-codec /usr/local/bin/pws-codec
+COPY --from=lab_build /manifest.json /usr/local/share/pws-lab/build-manifest.json
+ENV PWS_CODEC=/usr/local/bin/pws-codec
+COPY --from=lab_build /bin/bladerf-x40-diag /usr/local/bin/bladerf-x40-diag
+COPY --from=lab_build /lib/ /opt/bladerf/lib/
+ENV BLADERF_DIAG=/usr/local/bin/bladerf-x40-diag LD_LIBRARY_PATH=/opt/bladerf/lib
+RUN mkdir -p /lab/output && chown -R 10001:10001 /lab/output
+USER 10001:10001
+STOPSIGNAL SIGTERM
+ENTRYPOINT ["python", "-m", "controller.hardware"]
+CMD ["info", "--mock", "--output", "/lab/output/sdr"]

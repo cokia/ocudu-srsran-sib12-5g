@@ -1,0 +1,757 @@
+
+--== OCUDU gNB (commit e0db566) ==--
+
+2026-10-19T10:27:13.543667 [GNB     ] [I] Built in Release mode using commit e0db566 on branch HEAD
+2026-10-19T10:27:13.545486 [CONFIG  ] [I] gNB input configuration (only non-default values): 
+log:
+  filename: stdout
+  all_level: info
+buffer_pool:
+  nof_segments: 16384
+  segment_size: 2048
+expert_execution:
+  threads:
+    main_pool:
+      nof_threads: 2
+cu_cp:
+  amf:
+    no_core: true
+    addrs: 127.0.0.1
+    bind_addrs: 127.0.0.1
+    supported_tracking_areas: "tac: 7\nplmn_list:\n  - plmn: 00101\n    tai_slice_support_list:\n      - sst: 1"
+pcap:
+  ngap_enable: false
+  mac_enable: false
+cell_cfg:
+  pci: 1
+  dl_arfcn: 368500
+  band: 3
+  common_scs: 15
+  channel_bandwidth_MHz: 20
+  plmn: 00101
+  tac: 7
+  pdcch:
+    common:
+      coreset0_index: 12
+      ss0_index: 0
+    dedicated:
+      dci_format_0_1_and_1_1: false
+      ss2_type: common
+  pdsch:
+    mcs_table: qam64
+  pusch:
+    mcs_table: qam64
+  prach:
+    prach_config_index: 1
+ru_sdr:
+  srate: 23.04
+  device_driver: zmq
+  device_args: tx_port=tcp://127.0.0.1:2000,rx_port=tcp://127.0.0.1:2001,base_srate=23.04e6
+  tx_gain: 0
+  rx_gain: 0
+2026-10-19T10:27:13.742587 [GNB     ] [W] Could not check scaling governor. filename=/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor error=No such file or directory
+2026-10-19T10:27:13.743400 [GNB     ] [W] Could not check DRM KMS polling. filename=/sys/module/drm_kms_helper/parameters/poll error=Permission denied
+Warning: Scheduling priority of thread "main_pool#0" not changed. Cause: Not enough privileges.
+Warning: Scheduling priority of thread "main_pool#1" not changed. Cause: Not enough privileges.
+2026-10-19T10:27:13.760951 [CONFIG  ] [I] Worker pool "main_pool" instantiated with #workers=2, task_queue_size=2048, backoff_period=50us and priority=96.
+Warning: Scheduling priority of thread "io_broker_epoll" not changed. Cause: Not enough privileges.
+Lower PHY in executor sequential baseband mode.
+2026-10-19T10:27:16.005750 [GTPU    ] [I] GTP-U demux. lif=NG-U name=NG-U-DEMUX queue_size=2046 batch_size=256 warn_on_drop=false test_mode=false
+2026-10-19T10:27:16.006474 [GTPU    ] [I] Tunnel added. teid=0x000000
+2026-10-19T10:27:16.397630 [CONFIG  ] [I] The upper-bound on the number of UEs supported by cell {pci=1, du_cell_index=0} is 160 (the actual number might be lower than that). This is determined by the lowest of the following limits: SR (160), CSI (160), SRS (n/a) and UE contexts per cell (1984). Up to 224 UE contexts can be created in the cell, the extra ones being used to RRC Reject UEs.
+2026-10-19T10:27:16.398906 [DU      ] [I] DU created successfully
+2026-10-19T10:27:16.398929 [DU      ] [I] O-DU created successfully
+Available radio types: zmq and realtime_loopback.
+2026-10-19T10:27:16.436177 [zmq:tx:0:0] [I] Binding to address tcp://127.0.0.1:2000.
+2026-10-19T10:27:16.483308 [zmq:rx:0:0] [I] Connecting to address tcp://127.0.0.1:2001.
+Cell pci=1, bw=20 MHz, 1T1R, dl_arfcn=368500 (n3), dl_freq=1842.5 MHz, dl_ssb_arfcn=368410, ul_freq=1747.5 MHz
+
+2026-10-19T10:27:16.490313 [GNB     ] [I] SSB derived parameters for cell: 1, band: 3, dl_arfcn:368500, nof_crbs: 106 scs:15kHz, ssb_scs:15kHz:
+	 - SSB offset pointA:40 
+	 - k_SSB:6 
+	 - SSB arfcn:368410 
+	 - Coreset index:12 
+	 - Searchspace index:0
+2026-10-19T10:27:16.490720 [IO-EPOLL] [E] fd=0: Failed to register file descriptor. Cause: epoll_ctl failed with "Operation not permitted"
+2026-10-19T10:27:16.490740 [APP     ] [E] Couldn't register stdin handler
+2026-10-19T10:27:16.490748 [GNB     ] [I] Starting CU-CP...
+2026-10-19T10:27:16.492783 [NGAP    ] [I] "NG Setup Procedure" started...
+2026-10-19T10:27:16.492973 [NGAP    ] [I] Tx PDU: NGSetupRequest
+2026-10-19T10:27:16.493391 [NGAP    ] [I] Rx PDU: NGSetupResponse
+2026-10-19T10:27:16.495068 [NGAP    ] [I] "NG Setup Procedure" finished successfully
+2026-10-19T10:27:16.495097 [CU-CP   ] [I] Connected to AMF. Supported PLMNs: 00101 
+2026-10-19T10:27:16.495146 [GNB     ] [I] CU-CP started successfully
+2026-10-19T10:27:16.495200 [CU-UP   ] [I] CU-UP starting...
+2026-10-19T10:27:16.496392 [CU-UP-E1] [I] e1=0: Tx PDU tid=0 GNB-CU-UP-E1SetupRequest
+2026-10-19T10:27:16.496589 [CU-CP   ] [I] Added TNL connection to CU-UP 0
+2026-10-19T10:27:16.496705 [CU-CP-E1] [I] Rx PDU tid=0: GNB-CU-UP-E1SetupRequest
+2026-10-19T10:27:16.496738 [CU-CP-E1] [I] Tx PDU tid=0: GNB-CU-UP-E1SetupResponse
+2026-10-19T10:27:16.496762 [CU-UP-E1] [I] e1=0: Rx PDU tid=0 GNB-CU-UP-E1SetupResponse
+2026-10-19T10:27:16.497172 [CU-UP-E1] [I] e1=0: "E1AP CU-UP Setup Procedure" finalized
+2026-10-19T10:27:16.497216 [CU-UP   ] [I] CU-UP started successfully
+2026-10-19T10:27:16.497221 [DU      ] [I] Starting DU...
+2026-10-19T10:27:16.497222 [DU      ] [I] Starting DU-High...
+2026-10-19T10:27:16.562113 [CU-CP   ] [I] Added TNL connection to DU 0
+2026-10-19T10:27:16.563555 [DU-MNG  ] [I] SIB1 cell=0: {
+  "cellSelectionInfo": {
+    "q-RxLevMin": -70,
+    "q-QualMin": -20
+  },
+  "cellAccessRelatedInfo": {
+    "plmn-IdentityInfoList": [
+      {
+        "plmn-IdentityList": [
+          {
+            "mcc": [
+              0,
+              0,
+              1
+            ],
+            "mnc": [
+              0,
+              1
+            ]
+          }
+        ],
+        "trackingAreaCode": "000000000000000000000111",
+        "cellIdentity": "000000000000011001101100000000000000",
+        "cellReservedForOperatorUse": "notReserved"
+      }
+    ]
+  },
+  "connEstFailureControl": {
+    "connEstFailCount": "n1",
+    "connEstFailOffsetValidity": "s30",
+    "connEstFailOffset": 1
+  },
+  "servingCellConfigCommon": {
+    "downlinkConfigCommon": {
+      "frequencyInfoDL": {
+        "frequencyBandList": [
+          {
+            "freqBandIndicatorNR": 3
+          }
+        ],
+        "offsetToPointA": 40,
+        "scs-SpecificCarrierList": [
+          {
+            "offsetToCarrier": 0,
+            "subcarrierSpacing": "kHz15",
+            "carrierBandwidth": 106,
+            "txDirectCurrentLocation": 636
+          }
+        ]
+      },
+      "initialDownlinkBWP": {
+        "genericParameters": {
+          "locationAndBandwidth": 28875,
+          "subcarrierSpacing": "kHz15"
+        },
+        "pdcch-ConfigCommon": {
+          {
+            "commonSearchSpaceList": [
+              {
+                "searchSpaceId": 1,
+                "controlResourceSetId": 0,
+                "monitoringSlotPeriodicityAndOffset": {
+                },
+                "monitoringSymbolsWithinSlot": "10000000000000",
+                "nrofCandidates": {
+                  "aggregationLevel1": "n0",
+                  "aggregationLevel2": "n0",
+                  "aggregationLevel4": "n2",
+                  "aggregationLevel8": "n0",
+                  "aggregationLevel16": "n0"
+                },
+                "searchSpaceType": {
+                  "common": {
+                    "dci-Format0-0-AndFormat1-0": {
+                    }
+                  }
+                }
+              }
+            ],
+            "searchSpaceSIB1": 0,
+            "pagingSearchSpace": 1,
+            "ra-SearchSpace": 1
+          }
+        },
+        "pdsch-ConfigCommon": {
+          {
+            "pdsch-TimeDomainAllocationList": [
+              {
+                "mappingType": "typeA",
+                "startSymbolAndLength": 40
+              }
+            ]
+          }
+        }
+      },
+      "bcch-Config": {
+        "modificationPeriodCoeff": "n4"
+      },
+      "pcch-Config": {
+        "defaultPagingCycle": "rf128",
+        "nAndPagingFrameOffset": {
+        },
+        "ns": "one"
+      }
+    },
+    "uplinkConfigCommon": {
+      "frequencyInfoUL": {
+        "frequencyBandList": [
+          {
+            "freqBandIndicatorNR": 3
+          }
+        ],
+        "absoluteFrequencyPointA": 347592,
+        "scs-SpecificCarrierList": [
+          {
+            "offsetToCarrier": 0,
+            "subcarrierSpacing": "kHz15",
+            "carrierBandwidth": 106
+          }
+        ]
+      },
+      "initialUplinkBWP": {
+        "genericParameters": {
+          "locationAndBandwidth": 28875,
+          "subcarrierSpacing": "kHz15"
+        },
+        "rach-ConfigCommon": {
+          {
+            "rach-ConfigGeneric": {
+              "prach-ConfigurationIndex": 1,
+              "msg1-FDM": "one",
+              "msg1-FrequencyStart": 8,
+              "zeroCorrelationZoneConfig": 0,
+              "preambleReceivedTargetPower": -100,
+              "preambleTransMax": "n7",
+              "powerRampingStep": "dB4",
+              "ra-ResponseWindow": "sl10"
+            },
+            "ssb-perRACH-OccasionAndCB-PreamblesPerSSB": {
+              "one": "n64"
+            },
+            "ra-ContentionResolutionTimer": "sf64",
+            "prach-RootSequenceIndex": {
+              "l839": 1
+            },
+            "restrictedSetConfig": "unrestrictedSet"
+          }
+        },
+        "pusch-ConfigCommon": {
+          {
+            "pusch-TimeDomainAllocationList": [
+              {
+                "k2": 4,
+                "mappingType": "typeA",
+                "startSymbolAndLength": 27
+              }
+            ],
+            "msg3-DeltaPreamble": 6,
+            "p0-NominalWithGrant": -76
+          }
+        },
+        "pucch-ConfigCommon": {
+          {
+            "pucch-ResourceCommon": 11,
+            "pucch-GroupHopping": "neither",
+            "p0-nominal": -90
+          }
+        }
+      },
+      "timeAlignmentTimerCommon": "infinity"
+    },
+    "n-TimingAdvanceOffset": "n25600",
+    "ssb-PositionsInBurst": {
+      "inOneGroup": "10000000"
+    },
+    "ssb-PeriodicityServingCell": "ms10",
+    "ss-PBCH-BlockPower": -16
+  },
+  "ims-EmergencySupport": "true",
+  "eCallOverIMS-Support": "true",
+  "ue-TimersAndConstants": {
+    "t300": "ms1000",
+    "t301": "ms1000",
+    "t310": "ms1000",
+    "n310": "n1",
+    "t311": "ms3000",
+    "n311": "n1",
+    "t319": "ms1000"
+  }
+}
+2026-10-19T10:27:16.566555 [DU-F1   ] [I] F1 Setup: Sending F1 Setup Request to CU-CP...
+2026-10-19T10:27:16.566567 [DU-F1   ] [I] Tx PDU du=0 tid=0: F1SetupRequest
+2026-10-19T10:27:16.566926 [CU-CP-F1] [I] Rx PDU du=0 tid=0: F1SetupRequest
+2026-10-19T10:27:16.567913 [CU-CP   ] [I] Logical cell nci=0x66c000 realized by du=0 (admin_state=unlocked barred=false)
+2026-10-19T10:27:16.567917 [CU-CP   ] [I] Logical cell nci=0x66c000 operational_state: disabled -> enabled
+2026-10-19T10:27:16.567956 [CU-CP-F1] [I] Tx PDU du=0 tid=0: F1SetupResponse
+2026-10-19T10:27:16.567964 [DU-F1   ] [I] Rx PDU du=0 tid=0: F1SetupResponse
+2026-10-19T10:27:16.567988 [DU-F1   ] [I] F1 Setup: Procedure completed successfully.
+2026-10-19T10:27:16.568004 [SCHED   ] [I] [     0.0] cell=0: Cell scheduling was activated.
+2026-10-19T10:27:16.568061 [MAC     ] [I] [     0.0] cell=0: Cell was activated
+2026-10-19T10:27:16.568114 [DU      ] [I] DU-High started successfully
+2026-10-19T10:27:16.568116 [DU      ] [I] DU started successfully
+==== gNB started ===
+Type <h> to view help
+2026-10-19T10:27:16.568355 [GNB     ] [I] ==== gNB started ===
+2026-10-19T10:27:16.570327 [SCHED   ] [I] [    10.3] Processed slot events pci=1: Cell creation idx=0
+2026-10-19T10:27:16.703308 [PHY     ] [I] [    17.4] PRACH: rsi=1 rssi=+8.9dB detected_preambles=[{idx=0 ta=0.00us detection_metric=610.6 power_dB=8.87}] t=990.9us
+2026-10-19T10:27:16.703534 [SCHED   ] [I] [    17.7] Processed slot events pci=1: prach(ra-rnti=0x39 preamble=0 ssb=0 tc-rnti=0x4601)
+2026-10-19T10:27:16.703561 [SCHED   ] [I] [    17.7] Slot decisions pci=1 t=93us (1 PDSCH, 0 PUSCHs, 0 PUCCHs): RAR: ra-rnti=0x39 rb=[0..3) tbs=10
+2026-10-19T10:27:16.703893 [PHY     ] [I] [    17.7] PDCCH: rnti=0x39 ss_id=1 format=1_0 cce=0 al=4 t=32.8us
+2026-10-19T10:27:16.703936 [PHY     ] [I] [    17.7] PDSCH: rnti=0x39 prb=[0, 3) symb=[1, 14) mod=QPSK rv=0 bg=BG2 tbs=10 t=35.8us
+2026-10-19T10:27:16.711741 [SCHED   ] [I] [    18.3] Slot decisions pci=1 t=12us (0 PDSCHs, 1 PUSCH, 0 PUCCHs): UL: ue=invalid rnti=0x4601 h_id=0 ss_id=1 rb=[8..11) newtx=true rv=0 tbs=11 msg3_delay=6
+2026-10-19T10:27:16.718428 [PHY     ] [I] [    18.3] PUSCH: rnti=0x4601 harq_id=0 prb=[8, 11) symb=[0, 14) mod=QPSK rv=0 tbs=11 crc=OK iter=1.0 sinr=97.0dB t=125.3us uci_t=0.0us ret_t=0.0us
+2026-10-19T10:27:16.718487 [MAC     ] [I] [    18.6] UL rnti=0x4601 subPDUs: [CCCH48: len=6, SBSR: lcg=0 bs=1, PAD: len=1]
+2026-10-19T10:27:16.718513 [DU-MNG  ] [I] ue=0 rnti=0x4601 proc="UE Create": Procedure started....
+2026-10-19T10:27:16.720624 [DU-F1   ] [I] ue=0 c-rnti=0x4601 du_ue=0: F1 UE context created successfully.
+2026-10-19T10:27:16.720822 [RLC     ] [I] du=0 ue=0 SRB0 DL: RLC TM created. queue_size=8
+2026-10-19T10:27:16.720840 [RLC     ] [I] du=0 ue=0 SRB0 UL: RLC TM created. 
+2026-10-19T10:27:16.720877 [RLC     ] [I] du=0 ue=0 SRB1 DL: RLC AM configured. tx_sn_size=12 pdcp_sn_len=12 t_poll_retx=45 max_retx=8 poll_pdu=-1 poll_byte=-1 queue_size=32 queue_size_bytes=64000 max_window=0
+2026-10-19T10:27:16.720902 [RLC     ] [I] du=0 ue=0 SRB1 UL: RLC AM configured. rx_sn_size=12 t_reassembly=35 t_status_prohibit=0 max_sn_per_status={na}
+2026-10-19T10:27:16.721836 [SCHED   ] [I] [    18.7] Slot decisions pci=1 t=275us (1 PDSCH, 0 PUSCHs, 0 PUCCHs): DL: ue=0 c-rnti=0x4601 h_id=0 ss_id=1 rb=[0..2) k1=4 cw[0]: newtx=true rv=0 tbs=7 ri=1 dl_bo=0
+2026-10-19T10:27:16.721867 [MAC     ] [I] [    18.7] DL PDU: ue=0 rnti=0x4601 size=7: CON_RES: id=13a27ff5e766
+2026-10-19T10:27:16.721880 [MAC     ] [I] [    18.7] ue=0 crnti=0x4601 proc="MAC UE Creation": finished successfully
+2026-10-19T10:27:16.721886 [DU-MNG  ] [I] ue=0 rnti=0x4601 proc="UE Create": Procedure finished successfully.
+2026-10-19T10:27:16.722029 [RLC     ] [I] du=0 ue=0 SRB0 UL: RX SDU. sdu_len=6
+2026-10-19T10:27:16.722055 [DU-F1   ] [I] Tx PDU du=0 tid=1 ue=0 du_ue=0: InitialULRRCMessageTransfer
+2026-10-19T10:27:16.722063 [CU-CP-F1] [I] Rx PDU du=0 tid=1 du_ue=0: InitialULRRCMessageTransfer
+2026-10-19T10:27:16.722125 [CU-UEMNG] [I] ue=0 du_index=0: Created new CU-CP UE
+2026-10-19T10:27:16.722537 [CU-CP   ] [I] ue=0 c-rnti=0x4601: UE created
+2026-10-19T10:27:16.722539 [CU-CP-F1] [I] ue=0 du_ue=0 cu_ue=0: Added UE context
+2026-10-19T10:27:16.722704 [PHY     ] [I] [    18.7] PDCCH: rnti=0x4601 ss_id=1 format=1_0 cce=0 al=4 t=22.3us
+2026-10-19T10:27:16.722708 [RRC     ] [I] ue=0 c-rnti=0x4601: CCCH UL rrcSetupRequest
+2026-10-19T10:27:16.722722 [RRC     ] [I] ue=0 c-rnti=0x4601: "RRC Setup Procedure" started...
+2026-10-19T10:27:16.722738 [PHY     ] [I] [    18.7] PDSCH: rnti=0x4601 h_id=0 k1=4 prb=[0, 2) symb=[1, 14) mod=QPSK rv=0 bg=BG2 tbs=7 t=31.3us
+2026-10-19T10:27:16.722948 [PDCP    ] [I] ue=0 SRB1 DL: PDCP configured. rb_type=SRB rlc_mode=AM sn_size=12 discard_timer=infinity count_notify=3221225472 count_max=4294967294 warn_on_drop=false test_mode=false
+2026-10-19T10:27:16.723318 [PDCP    ] [I] ue=0 SRB1 UL: PDCP configured. rb_type=SRB rlc_mode=AM sn_size=12 t_reordering=infinity count_notify=3221225472 count_max=4294967294 warn_on_drop=false
+2026-10-19T10:27:16.724445 [RRC     ] [I] ue=0 c-rnti=0x4601: CCCH DL rrcSetup
+2026-10-19T10:27:16.724467 [CU-CP-F1] [I] Tx PDU du=0 ue=0 cu_ue=0 du_ue=0: DLRRCMessageTransfer
+2026-10-19T10:27:16.724476 [DU-F1   ] [I] Rx PDU du=0 ue=0 cu_ue=0 du_ue=0: DLRRCMessageTransfer
+2026-10-19T10:27:16.724481 [RLC     ] [I] du=0 ue=0 SRB0 DL: TX SDU. sdu_len=298 queued_sdus=1 queued_bytes=298
+2026-10-19T10:27:16.730972 [PHY     ] [I] [    19.1] PUCCH: rnti=0x4601 format=1 prb1=0 prb2=105 symb=[0, 14) cs=0 occ=0 ack=1 metric=538672448.0 sinr=75.3dB t=85.8us
+2026-10-19T10:27:16.732292 [SCHED   ] [I] [    19.5] Slot decisions pci=1 t=71us (1 PDSCH, 0 PUSCHs, 0 PUCCHs): DL: ue=0 c-rnti=0x4601 h_id=0 ss_id=1 rb=[0..82) k1=4 cw[0]: newtx=true rv=0 tbs=301 ri=1 dl_bo=0
+2026-10-19T10:27:16.732378 [RLC     ] [I] du=0 ue=0 SRB0 DL: TX PDU. pdu_len=298 grant_len=298
+2026-10-19T10:27:16.732419 [MAC     ] [I] [    19.5] DL PDU: ue=0 rnti=0x4601 size=301: SDU: lcid=0 nof_sdus=1 total_size=301
+2026-10-19T10:27:16.734056 [PHY     ] [I] [    19.5] PDCCH: rnti=0x4601 ss_id=1 format=1_0 cce=0 al=4 t=26.5us
+2026-10-19T10:27:16.734259 [PHY     ] [I] [    19.5] PDSCH: rnti=0x4601 h_id=0 k1=4 prb=[0, 82) symb=[1, 14) mod=QPSK rv=0 bg=BG2 tbs=301 t=184.1us
+2026-10-19T10:27:16.743499 [PHY     ] [I] [    19.9] PUCCH: rnti=0x4601 format=1 prb1=0 prb2=105 symb=[0, 14) cs=0 occ=0 ack=1 metric=576199744.0 sinr=75.6dB t=17.5us
+2026-10-19T10:27:16.745291 [PHY     ] [I] [    20.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.9us
+2026-10-19T10:27:16.760134 [PHY     ] [I] [    20.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=100.0dB t=56.7us
+2026-10-19T10:27:16.781033 [PHY     ] [I] [    22.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=yes metric=1013787520.0 sinr=75.8dB t=16.1us
+2026-10-19T10:27:16.782933 [PHY     ] [I] [    22.4] PDCCH: rnti=0x4601 ss_id=1 format=0_0 cce=0 al=4 t=32.1us
+2026-10-19T10:27:16.786847 [SCHED   ] [I] [    22.8] Slot decisions pci=1 t=7us (0 PDSCHs, 1 PUSCH, 0 PUCCHs): UL: ue=0 rnti=0x4601 h_id=0 ss_id=1 rb=[8..32) newtx=true rv=0 tbs=528 k2=4
+2026-10-19T10:27:16.788385 [PHY     ] [I] [    22.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=100.0dB t=37.6us
+2026-10-19T10:27:16.791748 [PHY     ] [I] [    22.8] PUSCH: rnti=0x4601 harq_id=0 prb=[8, 32) symb=[0, 14) mod=QPSK rv=0 tbs=528 crc=OK iter=1.0 sinr=55.7dB t=86.8us uci_t=0.0us ret_t=0.0us
+2026-10-19T10:27:16.791797 [MAC     ] [I] [    23.1] UL rnti=0x4601 ue=0 subPDUs: [lcid=1: len=35, SBSR: lcg=0 bs=5, PAD: len=488]
+2026-10-19T10:27:16.791808 [RLC     ] [I] du=0 ue=0 SRB1 UL: RX PDU. pdu_len=35 dc=data p=1 si=full sn=0
+2026-10-19T10:27:16.791822 [RLC     ] [I] du=0 ue=0 SRB1 UL: RX SDU. sn=0 sdu_len=33
+2026-10-19T10:27:16.791853 [DU-F1   ] [I] Tx PDU du=0 ue=0 cu_ue=0 du_ue=0: ULRRCMessageTransfer
+2026-10-19T10:27:16.791869 [CU-CP-F1] [I] Rx PDU du=0 ue=0 cu_ue=0 du_ue=0: ULRRCMessageTransfer
+2026-10-19T10:27:16.791879 [PDCP    ] [I] ue=0 SRB1 UL: RX PDU. type=data pdu_len=33 sn=0 count=0
+2026-10-19T10:27:16.791891 [PDCP    ] [I] ue=0 SRB1 UL: RX SDU. count=0
+2026-10-19T10:27:16.791963 [RRC     ] [I] ue=0 c-rnti=0x4601: DCCH UL rrcSetupComplete
+2026-10-19T10:27:16.792782 [NGAP    ] [I] Tx PDU ue=0 ran_ue=0: InitialUEMessage
+2026-10-19T10:27:16.792791 [RRC     ] [I] ue=0 c-rnti=0x4601: "RRC Setup Procedure" finished successfully
+2026-10-19T10:27:16.792869 [SCHED   ] [I] [    23.2] Slot decisions pci=1 t=59us (1 PDSCH, 0 PUSCHs, 0 PUCCHs): DL: ue=0 c-rnti=0x4601 h_id=0 ss_id=2 rb=[0..2) k1=4 cw[0]: newtx=true rv=0 tbs=153 ri=1 dl_bo=0
+2026-10-19T10:27:16.792928 [RLC     ] [I] du=0 ue=0 SRB1 DL: TX status PDU. pdu_len=3 grant_len=4
+2026-10-19T10:27:16.792934 [MAC     ] [I] [    23.2] DL PDU: ue=0 rnti=0x4601 size=153: SDU: lcid=1 nof_sdus=1 total_size=5
+2026-10-19T10:27:16.794427 [PHY     ] [I] [    23.2] PDCCH: rnti=0x4601 ss_id=2 format=1_0 cce=0 al=2 t=28.4us
+2026-10-19T10:27:16.794479 [PHY     ] [I] [    23.2] PDCCH: rnti=0x4601 ss_id=2 format=0_0 cce=4 al=2 t=11.4us
+2026-10-19T10:27:16.794526 [PHY     ] [I] [    23.2] PDSCH: rnti=0x4601 h_id=0 k1=4 prb=[0, 2) symb=[1, 14) mod=64QAM rv=0 bg=BG1 tbs=153 t=42.9us
+2026-10-19T10:27:16.797998 [SCHED   ] [I] [    23.6] Slot decisions pci=1 t=6us (0 PDSCHs, 1 PUSCH, 0 PUCCHs): UL: ue=0 rnti=0x4601 h_id=0 ss_id=2 rb=[1..7) newtx=true rv=0 tbs=544 k2=4
+2026-10-19T10:27:16.802430 [PHY     ] [I] [    23.6] PUSCH: rnti=0x4601 harq_id=0 prb=[1, 7) symb=[0, 14) mod=64QAM rv=0 tbs=544 crc=OK iter=2.0 ack=1 sinr=97.0dB t=86.6us uci_t=52.3us ret_t=0.0us
+2026-10-19T10:27:16.802517 [MAC     ] [I] [    23.9] UL rnti=0x4601 ue=0 subPDUs: [SBSR: lcg=0 bs=0, PAD: len=541]
+2026-10-19T10:27:16.807553 [PHY     ] [I] [    24.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=17.7us
+2026-10-19T10:27:16.816302 [PHY     ] [I] [    24.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=100.0dB t=30.0us
+2026-10-19T10:27:16.833595 [PHY     ] [I] [    26.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=16.3us
+2026-10-19T10:27:16.841287 [PHY     ] [I] [    26.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=100.0dB t=19.4us
+2026-10-19T10:27:16.859114 [PHY     ] [I] [    28.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=24.6us
+2026-10-19T10:27:16.868533 [SCHED   ] [I] [    28.9] Slot decisions pci=1 t=55us (1 PDSCH, 0 PUSCHs, 0 PUCCHs): DL: ue=0 c-rnti=0x4601 h_id=0 ss_id=2 rb=[0..2) k1=4 cw[0]: newtx=true rv=0 tbs=169 ri=1 dl_bo=0
+2026-10-19T10:27:16.868558 [MAC     ] [I] [    28.9] DL PDU: ue=0 rnti=0x4601 size=169: TA_CMD: tag_id=0, ta_cmd=30
+2026-10-19T10:27:16.868716 [PHY     ] [I] [    28.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=100.0dB t=25.6us
+2026-10-19T10:27:16.870035 [PHY     ] [I] [    28.9] PDCCH: rnti=0x4601 ss_id=2 format=1_0 cce=0 al=2 t=25.0us
+2026-10-19T10:27:16.870371 [PHY     ] [I] [    28.9] PDSCH: rnti=0x4601 h_id=0 k1=4 prb=[0, 2) symb=[1, 14) mod=64QAM rv=0 bg=BG1 tbs=169 t=304.2us
+2026-10-19T10:27:16.881853 [PHY     ] [I] [    29.3] PUCCH: rnti=0x4601 format=1 prb1=0 prb2=na symb=[0, 14) cs=0 occ=0 ack=1 metric=1013390848.0 sinr=75.8dB t=25.2us
+2026-10-19T10:27:16.892589 [PHY     ] [I] [    30.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.7us
+2026-10-19T10:27:16.900627 [PHY     ] [I] [    30.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.8us
+2026-10-19T10:27:16.919077 [PHY     ] [I] [    32.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=16.4us
+2026-10-19T10:27:16.926981 [PHY     ] [I] [    32.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=23.8us
+2026-10-19T10:27:16.945771 [PHY     ] [I] [    34.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.2us
+2026-10-19T10:27:16.953385 [PHY     ] [I] [    34.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=24.1us
+2026-10-19T10:27:16.971291 [PHY     ] [I] [    36.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=19.8us
+2026-10-19T10:27:16.978837 [PHY     ] [I] [    36.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=24.4us
+2026-10-19T10:27:16.996629 [PHY     ] [I] [    38.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.3us
+2026-10-19T10:27:17.005018 [PHY     ] [I] [    38.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=23.8us
+2026-10-19T10:27:17.027130 [PHY     ] [I] [    40.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=17.5us
+2026-10-19T10:27:17.034872 [PHY     ] [I] [    40.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.8us
+2026-10-19T10:27:17.052509 [PHY     ] [I] [    42.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.7us
+2026-10-19T10:27:17.060799 [PHY     ] [I] [    42.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=24.0us
+2026-10-19T10:27:17.080673 [PHY     ] [I] [    44.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.5us
+2026-10-19T10:27:17.088609 [PHY     ] [I] [    44.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=40.8us
+2026-10-19T10:27:17.107576 [PHY     ] [I] [    46.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.6us
+2026-10-19T10:27:17.116579 [PHY     ] [I] [    46.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=53.0us
+2026-10-19T10:27:17.134663 [PHY     ] [I] [    48.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.2us
+2026-10-19T10:27:17.142598 [PHY     ] [I] [    48.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.5us
+2026-10-19T10:27:17.160509 [PHY     ] [I] [    50.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.1us
+2026-10-19T10:27:17.168191 [PHY     ] [I] [    50.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=24.2us
+2026-10-19T10:27:17.186287 [PHY     ] [I] [    52.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=16.3us
+2026-10-19T10:27:17.195652 [PHY     ] [I] [    52.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=32.9us
+2026-10-19T10:27:17.213598 [PHY     ] [I] [    54.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=21.9us
+2026-10-19T10:27:17.221665 [PHY     ] [I] [    54.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=32.1us
+2026-10-19T10:27:17.242462 [PHY     ] [I] [    56.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=17.8us
+2026-10-19T10:27:17.250569 [PHY     ] [I] [    56.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.9us
+2026-10-19T10:27:17.269077 [PHY     ] [I] [    58.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=17.0us
+2026-10-19T10:27:17.276900 [PHY     ] [I] [    58.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=23.5us
+2026-10-19T10:27:17.294271 [PHY     ] [I] [    60.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.8us
+2026-10-19T10:27:17.301889 [PHY     ] [I] [    60.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=17.5us
+2026-10-19T10:27:17.320639 [PHY     ] [I] [    62.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.3us
+2026-10-19T10:27:17.328773 [PHY     ] [I] [    62.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=30.5us
+2026-10-19T10:27:17.346732 [PHY     ] [I] [    64.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=17.7us
+2026-10-19T10:27:17.354257 [PHY     ] [I] [    64.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=17.8us
+2026-10-19T10:27:17.371972 [PHY     ] [I] [    66.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.5us
+2026-10-19T10:27:17.379570 [PHY     ] [I] [    66.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=18.8us
+2026-10-19T10:27:17.398379 [PHY     ] [I] [    68.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.1us
+2026-10-19T10:27:17.407026 [PHY     ] [I] [    68.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=29.5us
+2026-10-19T10:27:17.432965 [PHY     ] [I] [    70.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=40.3us
+2026-10-19T10:27:17.442734 [PHY     ] [I] [    70.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=37.3us
+2026-10-19T10:27:17.463123 [PHY     ] [I] [    72.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=43.2us
+2026-10-19T10:27:17.471640 [PHY     ] [I] [    72.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=24.1us
+2026-10-19T10:27:17.490776 [PHY     ] [I] [    74.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=30.1us
+2026-10-19T10:27:17.499746 [PHY     ] [I] [    74.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=63.7us
+2026-10-19T10:27:17.521362 [PHY     ] [I] [    76.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=24.5us
+2026-10-19T10:27:17.532163 [PHY     ] [I] [    76.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=68.9us
+2026-10-19T10:27:17.551508 [PHY     ] [I] [    78.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.8us
+2026-10-19T10:27:17.563228 [PHY     ] [I] [    78.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=41.4us
+2026-10-19T10:27:17.585542 [PHY     ] [I] [    80.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=73.2us
+2026-10-19T10:27:17.599789 [PHY     ] [I] [    80.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=104.8us
+2026-10-19T10:27:17.627189 [PHY     ] [I] [    82.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=28.0us
+2026-10-19T10:27:17.634546 [PHY     ] [I] [    82.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.1us
+2026-10-19T10:27:17.653451 [PHY     ] [I] [    84.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=18.2us
+2026-10-19T10:27:17.662829 [PHY     ] [I] [    84.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=23.8us
+2026-10-19T10:27:17.686779 [PHY     ] [I] [    86.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=17.0us
+2026-10-19T10:27:17.696224 [PHY     ] [I] [    86.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=32.6us
+2026-10-19T10:27:17.714630 [PHY     ] [I] [    88.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.0us
+2026-10-19T10:27:17.723123 [PHY     ] [I] [    88.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=23.5us
+2026-10-19T10:27:17.741239 [PHY     ] [I] [    90.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.7us
+2026-10-19T10:27:17.748667 [PHY     ] [I] [    90.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.9us
+2026-10-19T10:27:17.766636 [PHY     ] [I] [    92.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.4us
+2026-10-19T10:27:17.774468 [PHY     ] [I] [    92.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=24.4us
+2026-10-19T10:27:17.792080 [PHY     ] [I] [    94.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=16.8us
+2026-10-19T10:27:17.799763 [PHY     ] [I] [    94.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.2us
+2026-10-19T10:27:17.818750 [PHY     ] [I] [    96.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.4us
+2026-10-19T10:27:17.826353 [PHY     ] [I] [    96.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=29.3us
+2026-10-19T10:27:17.843693 [PHY     ] [I] [    98.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.0us
+2026-10-19T10:27:17.851375 [PHY     ] [I] [    98.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=26.8us
+2026-10-19T10:27:17.869171 [PHY     ] [I] [   100.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.3us
+2026-10-19T10:27:17.876743 [PHY     ] [I] [   100.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=17.5us
+2026-10-19T10:27:17.894357 [PHY     ] [I] [   102.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.3us
+2026-10-19T10:27:17.901879 [PHY     ] [I] [   102.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=13.6us
+2026-10-19T10:27:17.919389 [PHY     ] [I] [   104.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=11.1us
+2026-10-19T10:27:17.927254 [PHY     ] [I] [   104.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=23.6us
+2026-10-19T10:27:17.945091 [PHY     ] [I] [   106.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.7us
+2026-10-19T10:27:17.953538 [PHY     ] [I] [   106.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.6us
+2026-10-19T10:27:17.971610 [PHY     ] [I] [   108.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.0us
+2026-10-19T10:27:17.979810 [PHY     ] [I] [   108.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=18.6us
+2026-10-19T10:27:17.997689 [PHY     ] [I] [   110.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=17.0us
+2026-10-19T10:27:18.005762 [PHY     ] [I] [   110.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=32.8us
+2026-10-19T10:27:18.023303 [PHY     ] [I] [   112.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.0us
+2026-10-19T10:27:18.030982 [PHY     ] [I] [   112.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=30.8us
+2026-10-19T10:27:18.054637 [PHY     ] [I] [   114.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=22.8us
+2026-10-19T10:27:18.064016 [PHY     ] [I] [   114.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=43.8us
+2026-10-19T10:27:18.085572 [PHY     ] [I] [   116.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.4us
+2026-10-19T10:27:18.096473 [PHY     ] [I] [   116.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=87.8us
+2026-10-19T10:27:18.119463 [PHY     ] [I] [   118.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=24.1us
+2026-10-19T10:27:18.126984 [PHY     ] [I] [   118.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=28.3us
+2026-10-19T10:27:18.145412 [PHY     ] [I] [   120.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=19.7us
+2026-10-19T10:27:18.152916 [PHY     ] [I] [   120.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=24.0us
+2026-10-19T10:27:18.170758 [PHY     ] [I] [   122.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.3us
+2026-10-19T10:27:18.178588 [PHY     ] [I] [   122.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.1us
+2026-10-19T10:27:18.195952 [PHY     ] [I] [   124.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=27.5us
+2026-10-19T10:27:18.203476 [PHY     ] [I] [   124.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.6us
+2026-10-19T10:27:18.222998 [PHY     ] [I] [   126.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.9us
+2026-10-19T10:27:18.230660 [PHY     ] [I] [   126.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=23.0us
+2026-10-19T10:27:18.248268 [PHY     ] [I] [   128.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.7us
+2026-10-19T10:27:18.255760 [PHY     ] [I] [   128.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=19.7us
+2026-10-19T10:27:18.274574 [PHY     ] [I] [   130.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=21.1us
+2026-10-19T10:27:18.282168 [PHY     ] [I] [   130.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=30.5us
+2026-10-19T10:27:18.300281 [PHY     ] [I] [   132.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.4us
+2026-10-19T10:27:18.307883 [PHY     ] [I] [   132.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.6us
+2026-10-19T10:27:18.325444 [PHY     ] [I] [   134.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.7us
+2026-10-19T10:27:18.333025 [PHY     ] [I] [   134.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=15.1us
+2026-10-19T10:27:18.351015 [PHY     ] [I] [   136.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=32.2us
+2026-10-19T10:27:18.358631 [PHY     ] [I] [   136.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=19.3us
+2026-10-19T10:27:18.376397 [PHY     ] [I] [   138.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=21.3us
+2026-10-19T10:27:18.384585 [PHY     ] [I] [   138.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.5us
+2026-10-19T10:27:18.403755 [PHY     ] [I] [   140.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.9us
+2026-10-19T10:27:18.410978 [PHY     ] [I] [   140.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=18.4us
+2026-10-19T10:27:18.431566 [PHY     ] [I] [   142.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=28.2us
+2026-10-19T10:27:18.439982 [PHY     ] [I] [   142.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=42.3us
+2026-10-19T10:27:18.459115 [PHY     ] [I] [   144.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=28.6us
+2026-10-19T10:27:18.467444 [PHY     ] [I] [   144.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=19.6us
+2026-10-19T10:27:18.485331 [PHY     ] [I] [   146.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.7us
+2026-10-19T10:27:18.493500 [PHY     ] [I] [   146.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=43.2us
+2026-10-19T10:27:18.516338 [PHY     ] [I] [   148.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=24.6us
+2026-10-19T10:27:18.525136 [PHY     ] [I] [   148.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=28.8us
+2026-10-19T10:27:18.542514 [PHY     ] [I] [   150.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.5us
+2026-10-19T10:27:18.550052 [PHY     ] [I] [   150.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.0us
+2026-10-19T10:27:18.567683 [PHY     ] [I] [   152.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.3us
+2026-10-19T10:27:18.577004 [PHY     ] [I] [   152.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=31.7us
+2026-10-19T10:27:18.595363 [PHY     ] [I] [   154.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=46.2us
+2026-10-19T10:27:18.603470 [PHY     ] [I] [   154.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=17.5us
+2026-10-19T10:27:18.621349 [PHY     ] [I] [   156.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=20.4us
+2026-10-19T10:27:18.628806 [PHY     ] [I] [   156.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.0us
+2026-10-19T10:27:18.646627 [PHY     ] [I] [   158.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.8us
+2026-10-19T10:27:18.654621 [PHY     ] [I] [   158.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=23.3us
+2026-10-19T10:27:18.672450 [PHY     ] [I] [   160.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.6us
+2026-10-19T10:27:18.681548 [PHY     ] [I] [   160.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=28.5us
+2026-10-19T10:27:18.699569 [PHY     ] [I] [   162.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.7us
+2026-10-19T10:27:18.707277 [PHY     ] [I] [   162.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=24.3us
+2026-10-19T10:27:18.726582 [PHY     ] [I] [   164.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.1us
+2026-10-19T10:27:18.734383 [PHY     ] [I] [   164.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=33.8us
+2026-10-19T10:27:18.751979 [PHY     ] [I] [   166.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.0us
+2026-10-19T10:27:18.759590 [PHY     ] [I] [   166.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=18.2us
+2026-10-19T10:27:18.777814 [PHY     ] [I] [   168.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=17.5us
+2026-10-19T10:27:18.785562 [PHY     ] [I] [   168.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=31.2us
+2026-10-19T10:27:18.803533 [PHY     ] [I] [   170.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.3us
+2026-10-19T10:27:18.811248 [PHY     ] [I] [   170.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=19.8us
+2026-10-19T10:27:18.828624 [PHY     ] [I] [   172.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=17.4us
+2026-10-19T10:27:18.836490 [PHY     ] [I] [   172.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=38.0us
+2026-10-19T10:27:18.855468 [PHY     ] [I] [   174.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.7us
+2026-10-19T10:27:18.863262 [PHY     ] [I] [   174.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=17.4us
+2026-10-19T10:27:18.881034 [PHY     ] [I] [   176.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.0us
+2026-10-19T10:27:18.888543 [PHY     ] [I] [   176.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.3us
+2026-10-19T10:27:18.906170 [PHY     ] [I] [   178.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.3us
+2026-10-19T10:27:18.913706 [PHY     ] [I] [   178.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=15.0us
+2026-10-19T10:27:18.931408 [PHY     ] [I] [   180.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=11.8us
+2026-10-19T10:27:18.939015 [PHY     ] [I] [   180.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.1us
+2026-10-19T10:27:18.956880 [PHY     ] [I] [   182.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.9us
+2026-10-19T10:27:18.964608 [PHY     ] [I] [   182.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=21.9us
+2026-10-19T10:27:18.982223 [PHY     ] [I] [   184.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=11.6us
+2026-10-19T10:27:18.989978 [PHY     ] [I] [   184.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=18.6us
+2026-10-19T10:27:19.007802 [PHY     ] [I] [   186.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.0us
+2026-10-19T10:27:19.015377 [PHY     ] [I] [   186.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=18.0us
+2026-10-19T10:27:19.033103 [PHY     ] [I] [   188.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=22.7us
+2026-10-19T10:27:19.040673 [PHY     ] [I] [   188.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=19.9us
+2026-10-19T10:27:19.058256 [PHY     ] [I] [   190.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=11.9us
+2026-10-19T10:27:19.065793 [PHY     ] [I] [   190.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=19.2us
+2026-10-19T10:27:19.083331 [PHY     ] [I] [   192.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=11.2us
+2026-10-19T10:27:19.091210 [PHY     ] [I] [   192.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.4us
+2026-10-19T10:27:19.108710 [PHY     ] [I] [   194.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.4us
+2026-10-19T10:27:19.116450 [PHY     ] [I] [   194.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=17.8us
+2026-10-19T10:27:19.133977 [PHY     ] [I] [   196.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.5us
+2026-10-19T10:27:19.141570 [PHY     ] [I] [   196.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=21.2us
+2026-10-19T10:27:19.159156 [PHY     ] [I] [   198.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.4us
+2026-10-19T10:27:19.166671 [PHY     ] [I] [   198.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=15.0us
+2026-10-19T10:27:19.184241 [PHY     ] [I] [   200.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=11.4us
+2026-10-19T10:27:19.191847 [PHY     ] [I] [   200.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=18.7us
+2026-10-19T10:27:19.209481 [PHY     ] [I] [   202.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.5us
+2026-10-19T10:27:19.217173 [PHY     ] [I] [   202.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=31.9us
+2026-10-19T10:27:19.234784 [PHY     ] [I] [   204.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=11.0us
+2026-10-19T10:27:19.242540 [PHY     ] [I] [   204.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.5us
+2026-10-19T10:27:19.259826 [PHY     ] [I] [   206.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.7us
+2026-10-19T10:27:19.267543 [PHY     ] [I] [   206.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=18.3us
+2026-10-19T10:27:19.285039 [PHY     ] [I] [   208.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.1us
+2026-10-19T10:27:19.292821 [PHY     ] [I] [   208.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=16.7us
+2026-10-19T10:27:19.310740 [PHY     ] [I] [   210.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=16.5us
+2026-10-19T10:27:19.318278 [PHY     ] [I] [   210.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=16.8us
+2026-10-19T10:27:19.337467 [PHY     ] [I] [   212.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.1us
+2026-10-19T10:27:19.345227 [PHY     ] [I] [   212.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=19.1us
+2026-10-19T10:27:19.362941 [PHY     ] [I] [   214.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=20.1us
+2026-10-19T10:27:19.370374 [PHY     ] [I] [   214.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=21.0us
+2026-10-19T10:27:19.387861 [PHY     ] [I] [   216.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=10.8us
+2026-10-19T10:27:19.395568 [PHY     ] [I] [   216.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=19.9us
+2026-10-19T10:27:19.413026 [PHY     ] [I] [   218.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=11.8us
+2026-10-19T10:27:19.420561 [PHY     ] [I] [   218.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=16.3us
+2026-10-19T10:27:19.439603 [PHY     ] [I] [   220.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=26.9us
+2026-10-19T10:27:19.449059 [PHY     ] [I] [   220.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=70.3us
+2026-10-19T10:27:19.471122 [PHY     ] [I] [   222.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=20.0us
+2026-10-19T10:27:19.480200 [PHY     ] [I] [   222.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=27.6us
+2026-10-19T10:27:19.497989 [PHY     ] [I] [   224.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.3us
+2026-10-19T10:27:19.505622 [PHY     ] [I] [   224.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=28.8us
+2026-10-19T10:27:19.523280 [PHY     ] [I] [   226.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.7us
+2026-10-19T10:27:19.530964 [PHY     ] [I] [   226.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.3us
+2026-10-19T10:27:19.548535 [PHY     ] [I] [   228.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.8us
+2026-10-19T10:27:19.556152 [PHY     ] [I] [   228.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=19.9us
+2026-10-19T10:27:19.573857 [PHY     ] [I] [   230.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.2us
+2026-10-19T10:27:19.581750 [PHY     ] [I] [   230.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=26.4us
+2026-10-19T10:27:19.600244 [PHY     ] [I] [   232.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.5us
+2026-10-19T10:27:19.607680 [PHY     ] [I] [   232.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=19.8us
+2026-10-19T10:27:19.625365 [PHY     ] [I] [   234.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.8us
+2026-10-19T10:27:19.632984 [PHY     ] [I] [   234.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=23.9us
+2026-10-19T10:27:19.650422 [PHY     ] [I] [   236.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.4us
+2026-10-19T10:27:19.658460 [PHY     ] [I] [   236.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.8us
+2026-10-19T10:27:19.676831 [PHY     ] [I] [   238.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.8us
+2026-10-19T10:27:19.684613 [PHY     ] [I] [   238.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=23.3us
+2026-10-19T10:27:19.707313 [PHY     ] [I] [   240.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.8us
+2026-10-19T10:27:19.716554 [PHY     ] [I] [   240.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=29.6us
+2026-10-19T10:27:19.736474 [PHY     ] [I] [   242.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=21.7us
+2026-10-19T10:27:19.746190 [PHY     ] [I] [   242.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=50.4us
+2026-10-19T10:27:19.764631 [PHY     ] [I] [   244.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.7us
+2026-10-19T10:27:19.773104 [PHY     ] [I] [   244.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=45.3us
+2026-10-19T10:27:19.791437 [PHY     ] [I] [   246.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.8us
+2026-10-19T10:27:19.799168 [PHY     ] [I] [   246.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=24.5us
+2026-10-19T10:27:19.817438 [PHY     ] [I] [   248.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=16.1us
+2026-10-19T10:27:19.825284 [PHY     ] [I] [   248.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.8us
+2026-10-19T10:27:19.845369 [PHY     ] [I] [   250.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=41.4us
+2026-10-19T10:27:19.853046 [PHY     ] [I] [   250.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=25.1us
+2026-10-19T10:27:19.871565 [PHY     ] [I] [   252.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.4us
+2026-10-19T10:27:19.879285 [PHY     ] [I] [   252.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=24.3us
+2026-10-19T10:27:19.897166 [PHY     ] [I] [   254.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=22.5us
+2026-10-19T10:27:19.905292 [PHY     ] [I] [   254.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.3us
+2026-10-19T10:27:19.922838 [PHY     ] [I] [   256.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.3us
+2026-10-19T10:27:19.930707 [PHY     ] [I] [   256.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.2us
+2026-10-19T10:27:19.948370 [PHY     ] [I] [   258.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.6us
+2026-10-19T10:27:19.955947 [PHY     ] [I] [   258.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.8us
+2026-10-19T10:27:19.973744 [PHY     ] [I] [   260.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=11.7us
+2026-10-19T10:27:19.981184 [PHY     ] [I] [   260.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=18.5us
+2026-10-19T10:27:19.998910 [PHY     ] [I] [   262.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.3us
+2026-10-19T10:27:20.006420 [PHY     ] [I] [   262.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=21.3us
+2026-10-19T10:27:20.023904 [PHY     ] [I] [   264.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=11.9us
+2026-10-19T10:27:20.033789 [PHY     ] [I] [   264.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=19.2us
+2026-10-19T10:27:20.051498 [PHY     ] [I] [   266.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.4us
+2026-10-19T10:27:20.059036 [PHY     ] [I] [   266.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.3us
+2026-10-19T10:27:20.076501 [PHY     ] [I] [   268.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.4us
+2026-10-19T10:27:20.084186 [PHY     ] [I] [   268.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=18.0us
+2026-10-19T10:27:20.101637 [PHY     ] [I] [   270.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.2us
+2026-10-19T10:27:20.109318 [PHY     ] [I] [   270.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=21.3us
+2026-10-19T10:27:20.126607 [PHY     ] [I] [   272.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.4us
+2026-10-19T10:27:20.134320 [PHY     ] [I] [   272.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.2us
+2026-10-19T10:27:20.152035 [PHY     ] [I] [   274.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=23.0us
+2026-10-19T10:27:20.159536 [PHY     ] [I] [   274.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=18.0us
+2026-10-19T10:27:20.177109 [PHY     ] [I] [   276.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=25.0us
+2026-10-19T10:27:20.184854 [PHY     ] [I] [   276.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=18.1us
+2026-10-19T10:27:20.202239 [PHY     ] [I] [   278.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.0us
+2026-10-19T10:27:20.209889 [PHY     ] [I] [   278.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.1us
+2026-10-19T10:27:20.227730 [PHY     ] [I] [   280.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.8us
+2026-10-19T10:27:20.235188 [PHY     ] [I] [   280.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.0us
+2026-10-19T10:27:20.252830 [PHY     ] [I] [   282.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=23.3us
+2026-10-19T10:27:20.260379 [PHY     ] [I] [   282.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=26.8us
+2026-10-19T10:27:20.277904 [PHY     ] [I] [   284.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=25.6us
+2026-10-19T10:27:20.285471 [PHY     ] [I] [   284.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=18.3us
+2026-10-19T10:27:20.303223 [PHY     ] [I] [   286.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.8us
+2026-10-19T10:27:20.310795 [PHY     ] [I] [   286.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=21.7us
+2026-10-19T10:27:20.328464 [PHY     ] [I] [   288.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.3us
+2026-10-19T10:27:20.336096 [PHY     ] [I] [   288.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=26.3us
+2026-10-19T10:27:20.355932 [PHY     ] [I] [   290.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=16.2us
+2026-10-19T10:27:20.363629 [PHY     ] [I] [   290.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=21.5us
+2026-10-19T10:27:20.381382 [PHY     ] [I] [   292.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.1us
+2026-10-19T10:27:20.388945 [PHY     ] [I] [   292.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=16.5us
+2026-10-19T10:27:20.406543 [PHY     ] [I] [   294.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.9us
+2026-10-19T10:27:20.414366 [PHY     ] [I] [   294.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=28.1us
+2026-10-19T10:27:20.432185 [PHY     ] [I] [   296.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=25.8us
+2026-10-19T10:27:20.439756 [PHY     ] [I] [   296.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=29.1us
+2026-10-19T10:27:20.457731 [PHY     ] [I] [   298.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=20.8us
+2026-10-19T10:27:20.466116 [PHY     ] [I] [   298.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=49.0us
+2026-10-19T10:27:20.486972 [PHY     ] [I] [   300.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=19.5us
+2026-10-19T10:27:20.495776 [PHY     ] [I] [   300.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=23.6us
+2026-10-19T10:27:20.518079 [PHY     ] [I] [   302.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=15.8us
+2026-10-19T10:27:20.526190 [PHY     ] [I] [   302.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=25.3us
+2026-10-19T10:27:20.545773 [PHY     ] [I] [   304.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.7us
+2026-10-19T10:27:20.554081 [PHY     ] [I] [   304.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.3us
+2026-10-19T10:27:20.571890 [PHY     ] [I] [   306.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=27.9us
+2026-10-19T10:27:20.579624 [PHY     ] [I] [   306.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=19.1us
+2026-10-19T10:27:20.597361 [PHY     ] [I] [   308.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.4us
+2026-10-19T10:27:20.604995 [PHY     ] [I] [   308.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=23.5us
+2026-10-19T10:27:20.622523 [PHY     ] [I] [   310.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=11.8us
+2026-10-19T10:27:20.630297 [PHY     ] [I] [   310.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=22.4us
+2026-10-19T10:27:20.647992 [PHY     ] [I] [   312.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.0us
+2026-10-19T10:27:20.655632 [PHY     ] [I] [   312.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=21.8us
+2026-10-19T10:27:20.673474 [PHY     ] [I] [   314.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.4us
+2026-10-19T10:27:20.681396 [PHY     ] [I] [   314.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=29.0us
+2026-10-19T10:27:20.699209 [PHY     ] [I] [   316.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.3us
+2026-10-19T10:27:20.706978 [PHY     ] [I] [   316.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.5us
+2026-10-19T10:27:20.725311 [PHY     ] [I] [   318.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=18.2us
+2026-10-19T10:27:20.733483 [PHY     ] [I] [   318.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=23.0us
+2026-10-19T10:27:20.751762 [PHY     ] [I] [   320.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.8us
+2026-10-19T10:27:20.759227 [PHY     ] [I] [   320.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.3us
+2026-10-19T10:27:20.776973 [PHY     ] [I] [   322.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.0us
+2026-10-19T10:27:20.784457 [PHY     ] [I] [   322.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=15.5us
+2026-10-19T10:27:20.786897 [NGAP    ] [I] ue=0 ran_ue=0: UE did not request a PDU session after 3000ms. Releasing UE from DU
+2026-10-19T10:27:20.787906 [PDCP    ] [I] ue=0 SRB1 DL: TX PDU. type=data pdu_len=8 sn=0 count=0 is_retx=false
+2026-10-19T10:27:20.787934 [RRC     ] [I] ue=0 c-rnti=0x4601: DCCH DL rrcRelease
+2026-10-19T10:27:20.788397 [CU-CP-F1] [I] Tx PDU du=0 ue=0 cu_ue=0 du_ue=0: UEContextReleaseCommand
+2026-10-19T10:27:20.788453 [DU-F1   ] [I] Rx PDU du=0 ue=0 cu_ue=0 du_ue=0: UEContextReleaseCommand
+2026-10-19T10:27:20.788509 [DU-MNG  ] [I] ue=0: DRB traffic stopped
+2026-10-19T10:27:20.788559 [RLC     ] [I] du=0 ue=0 SRB1 DL: TX SDU. sdu_len=8 pdcp_sn=0 is_retx=false queued_sdus=1 queued_bytes=8
+2026-10-19T10:27:20.789657 [SCHED   ] [I] [   323.3] Slot decisions pci=1 t=82us (1 PDSCH, 0 PUSCHs, 0 PUCCHs): DL: ue=0 c-rnti=0x4601 h_id=0 ss_id=2 rb=[0..2) k1=4 cw[0]: newtx=true rv=0 tbs=153 ri=1 dl_bo=0
+2026-10-19T10:27:20.789707 [RLC     ] [I] du=0 ue=0 SRB1 DL: TX PDU. dc=data p=1 si=full sn=0 pdu_len=10 grant_len=10
+2026-10-19T10:27:20.789722 [MAC     ] [I] [   323.3] DL PDU: ue=0 rnti=0x4601 size=153: SDU: lcid=1 nof_sdus=1 total_size=12
+2026-10-19T10:27:20.790776 [PHY     ] [I] [   323.3] PDCCH: rnti=0x4601 ss_id=2 format=1_0 cce=0 al=2 t=10.4us
+2026-10-19T10:27:20.790829 [PHY     ] [I] [   323.3] PDSCH: rnti=0x4601 h_id=0 k1=4 prb=[0, 2) symb=[1, 14) mod=64QAM rv=0 bg=BG1 tbs=153 t=30.2us
+2026-10-19T10:27:20.798877 [PHY     ] [I] [   323.7] PUCCH: rnti=0x4601 format=1 prb1=0 prb2=na symb=[0, 14) cs=0 occ=0 ack=1 metric=912.3 sinr=15.3dB t=23.3us
+2026-10-19T10:27:20.803105 [PHY     ] [I] [   324.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=9.4us
+2026-10-19T10:27:20.810668 [PHY     ] [I] [   324.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=17.9us
+2026-10-19T10:27:20.828248 [PHY     ] [I] [   326.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.0us
+2026-10-19T10:27:20.835835 [PHY     ] [I] [   326.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=16.5us
+2026-10-19T10:27:20.847105 [RLC     ] [I] du=0 ue=0 SRB1 DL: Poll retransmit timer expired after 45ms.
+2026-10-19T10:27:20.848365 [SCHED   ] [I] [   327.9] Slot decisions pci=1 t=20us (1 PDSCH, 0 PUSCHs, 0 PUCCHs): DL: ue=0 c-rnti=0x4601 h_id=0 ss_id=2 rb=[0..2) k1=4 cw[0]: newtx=true rv=0 tbs=169 ri=1 dl_bo=0
+2026-10-19T10:27:20.848404 [RLC     ] [I] du=0 ue=0 SRB1 DL: RETX PDU. dc=data p=1 si=full sn=0 pdu_len=10 grant_len=10 retx_count=0
+2026-10-19T10:27:20.848412 [MAC     ] [I] [   327.9] DL PDU: ue=0 rnti=0x4601 size=169: SDU: lcid=1 nof_sdus=1 total_size=12
+2026-10-19T10:27:20.849705 [PHY     ] [I] [   327.9] PDCCH: rnti=0x4601 ss_id=2 format=1_0 cce=0 al=2 t=13.7us
+2026-10-19T10:27:20.849745 [PHY     ] [I] [   327.9] PDSCH: rnti=0x4601 h_id=0 k1=4 prb=[0, 2) symb=[1, 14) mod=64QAM rv=0 bg=BG1 tbs=169 t=37.2us
+2026-10-19T10:27:20.853690 [PHY     ] [I] [   328.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=13.1us
+2026-10-19T10:27:20.857667 [PHY     ] [I] [   328.3] PUCCH: rnti=0x4601 format=1 prb1=0 prb2=na symb=[0, 14) cs=0 occ=0 ack=1 metric=912.2 sinr=15.3dB t=9.5us
+2026-10-19T10:27:20.861518 [PHY     ] [I] [   328.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=35.4us
+2026-10-19T10:27:20.879160 [PHY     ] [I] [   330.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=24.9us
+2026-10-19T10:27:20.887204 [PHY     ] [I] [   330.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=20.1us
+2026-10-19T10:27:20.904869 [PHY     ] [I] [   332.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.4us
+2026-10-19T10:27:20.905849 [RLC     ] [I] du=0 ue=0 SRB1 DL: Poll retransmit timer expired after 45ms.
+2026-10-19T10:27:20.907253 [SCHED   ] [I] [   332.5] Slot decisions pci=1 t=21us (1 PDSCH, 0 PUSCHs, 0 PUCCHs): DL: ue=0 c-rnti=0x4601 h_id=0 ss_id=2 rb=[0..2) k1=4 cw[0]: newtx=true rv=0 tbs=169 ri=1 dl_bo=0
+2026-10-19T10:27:20.907268 [RLC     ] [I] du=0 ue=0 SRB1 DL: RETX PDU. dc=data p=1 si=full sn=0 pdu_len=10 grant_len=10 retx_count=1
+2026-10-19T10:27:20.907280 [MAC     ] [I] [   332.5] DL PDU: ue=0 rnti=0x4601 size=169: SDU: lcid=1 nof_sdus=1 total_size=12
+2026-10-19T10:27:20.908431 [PHY     ] [I] [   332.5] PDCCH: rnti=0x4601 ss_id=2 format=1_0 cce=0 al=2 t=11.7us
+2026-10-19T10:27:20.908457 [PHY     ] [I] [   332.5] PDSCH: rnti=0x4601 h_id=0 k1=4 prb=[0, 2) symb=[1, 14) mod=64QAM rv=0 bg=BG1 tbs=169 t=19.2us
+2026-10-19T10:27:20.912447 [PHY     ] [I] [   332.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=16.2us
+2026-10-19T10:27:20.916460 [PHY     ] [I] [   332.9] PUCCH: rnti=0x4601 format=1 prb1=0 prb2=na symb=[0, 14) cs=0 occ=0 ack=1 metric=912.6 sinr=15.3dB t=8.8us
+2026-10-19T10:27:20.930314 [PHY     ] [I] [   334.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=14.8us
+2026-10-19T10:27:20.937922 [PHY     ] [I] [   334.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=28.9us
+2026-10-19T10:27:20.941416 [DU-F1   ] [I] ue=0 du_ue=0 cu_ue=0 proc="UE Context Release": RRC container not ACKed within a time window of 120msec. Proceeding with the UE context release...
+2026-10-19T10:27:20.941440 [DU-MNG  ] [I] ue=0 proc="UE Delete": Procedure started....
+2026-10-19T10:27:20.941480 [DU-MNG  ] [I] ue=0: SRB and DRB traffic stopped
+2026-10-19T10:27:20.941484 [DU-F1   ] [I] ue=0 c-rnti=0x4601 du_ue=0 cu_ue=0: F1 UE context removed.
+2026-10-19T10:27:20.955422 [PHY     ] [I] [   336.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.9us
+2026-10-19T10:27:20.962932 [PHY     ] [I] [   336.6] PUCCH: rnti=0x4601 format=2 prb=[7, 8) prb2=na symb=[4, 6) csi1=1111 sinr=42.6dB t=17.9us
+2026-10-19T10:27:20.980517 [PHY     ] [I] [   338.0] PUCCH: rnti=0x4601 format=1 prb1=4 prb2=na symb=[0, 14) cs=0 occ=0 sr=no metric=nan sinr=-infdB t=12.6us
+2026-10-19T10:27:20.982808 [MAC     ] [I] [   338.5] ue=0 crnti=0x4601 proc="MAC UE Removal": finished successfully
+2026-10-19T10:27:20.982904 [DU-MNG  ] [I] ue=0 proc="UE Delete": Procedure finished successfully.
+2026-10-19T10:27:20.982934 [DU-F1   ] [I] Tx PDU du=0 cu_ue=0 du_ue=0: UEContextReleaseComplete
+2026-10-19T10:27:20.982948 [CU-CP-F1] [I] Rx PDU du=0 ue=0 cu_ue=0 du_ue=0: UEContextReleaseComplete
+2026-10-19T10:27:20.985340 [CU-CP   ] [I] ue=0: "UE Removal Routine" finished successfully
+2026-10-19T10:27:22.206456 [zmq:rx:0:0] [I] Waiting for data.
+2026-10-19T10:27:22.206787 [zmq:rx:0:0] [I] Waiting for reading samples. Completed 12 of 23040 samples.
+2026-10-19T10:27:22.206928 [zmq:tx:0:0] [I] Waiting for data.
+2026-10-19T10:27:23.206469 [zmq:rx:0:0] [I] Waiting for data.
+2026-10-19T10:27:23.206826 [zmq:rx:0:0] [I] Waiting for reading samples. Completed 12 of 23040 samples.
+2026-10-19T10:27:23.206915 [zmq:tx:0:0] [I] Waiting for data.
+Stopping...
+2026-10-19T10:27:23.321119 [GNB     ] [I] Stopping...
+2026-10-19T10:27:23.324525 [DU      ] [I] Stopping DU...
+2026-10-19T10:27:23.324530 [DU      ] [I] Stopping DU-High...
+2026-10-19T10:27:23.324747 [SCHED   ] [I] [   356.8] cell=0: Cell scheduling was deactivated.
+2026-10-19T10:27:23.325505 [MAC     ] [I] [   356.8] cell=0: Cell was stopped.
+2026-10-19T10:27:23.325779 [DU-F1   ] [I] Tx PDU du=0 tid=2: F1RemovalRequest
+2026-10-19T10:27:23.325838 [CU-CP-F1] [I] Rx PDU du=0 tid=2: F1RemovalRequest
+2026-10-19T10:27:23.325859 [CU-CP-F1] [I] Tx PDU du=0 tid=2: F1RemovalResponse
+2026-10-19T10:27:23.325863 [DU-F1   ] [I] Rx PDU du=0 tid=2: F1RemovalResponse
+2026-10-19T10:27:23.325907 [CU-CP   ] [I] Logical cell nci=0x66c000 de-realized. Operator intent kept (admin_state=unlocked barred=false)
+2026-10-19T10:27:23.325930 [CU-CP   ] [I] Removed DU 0
+2026-10-19T10:27:23.325939 [DU-F1   ] [I] F1 Removal: F1 TNL association shut down
+2026-10-19T10:27:23.325961 [DU      ] [I] DU-High stopped successfully
+2026-10-19T10:27:23.325961 [DU      ] [I] DU stopped successfully
+2026-10-19T10:27:23.326776 [CU-UP-E1] [I] e1=0: Tx PDU tid=1 E1ReleaseRequest
+2026-10-19T10:27:23.327324 [CU-CP-E1] [I] Rx PDU tid=1: E1ReleaseRequest
+2026-10-19T10:27:23.327524 [CU-CP-E1] [I] "E1 Release Procedure" started...
+2026-10-19T10:27:23.327967 [CU-CP-E1] [I] Tx PDU tid=1: E1ReleaseResponse
+2026-10-19T10:27:23.328094 [CU-UP-E1] [I] e1=0: Rx PDU tid=1 E1ReleaseResponse
+2026-10-19T10:27:23.328103 [CU-CP-E1] [I] "E1 Release Procedure" finished successfully
+2026-10-19T10:27:23.328531 [CU-CP   ] [I] Removed CU-UP 0
+2026-10-19T10:27:23.328534 [CU-UP-E1] [I] e1=0: E1AP CU-UP Release Procedure: E1 TNL association shut down
+2026-10-19T10:27:23.331455 [CU-UP   ] [I] CU-UP stopped successfully
+2026-10-19T10:27:23.331474 [CU-CP   ] [I] Stopping CU-CP...
+2026-10-19T10:27:23.331971 [CU-CP   ] [I] CU-CP stopped successfully
+2026-10-19T10:27:23.492222 [GNB     ] [I] Closing PCAP files...
+2026-10-19T10:27:23.492239 [GNB     ] [I] PCAP files successfully closed.

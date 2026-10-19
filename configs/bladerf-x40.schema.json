@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "device": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "model": {
+          "type": "string",
+          "const": "bladerf-x40"
+        },
+        "serial": {
+          "type": "string",
+          "pattern": "^([a-fA-F0-9]{32})?$"
+        },
+        "access": {
+          "type": "string",
+          "enum": [
+            "mock",
+            "hardware"
+          ]
+        },
+        "rf_transmission_enabled": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "required": [
+        "model",
+        "serial",
+        "access",
+        "rf_transmission_enabled"
+      ]
+    },
+    "diagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sample_rate": {
+          "type": "integer",
+          "const": 1000000
+        },
+        "buffer_samples": {
+          "type": "integer",
+          "const": 4096
+        },
+        "buffers": {
+          "type": "integer",
+          "const": 8
+        },
+        "transfers": {
+          "type": "integer",
+          "const": 4
+        },
+        "transfer_timeout_ms": {
+          "type": "integer",
+          "const": 1000
+        },
+        "loopback_samples": {
+          "type": "integer",
+          "const": 65536
+        },
+        "loopback_mode": {
+          "type": "string",
+          "const": "firmware"
+        },
+        "max_duration_seconds": {
+          "type": "integer",
+          "const": 20
+        }
+      },
+      "required": [
+        "sample_rate",
+        "buffer_samples",
+        "buffers",
+        "transfers",
+        "transfer_timeout_ms",
+        "loopback_samples",
+        "loopback_mode",
+        "max_duration_seconds"
+      ]
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "directory": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        }
+      },
+      "required": [
+        "directory"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "device",
+    "diagnostics",
+    "output"
+  ]
+}

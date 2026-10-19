@@ -1,0 +1,3 @@
+# 첫 세대 bladeRF에만 적용한다. x40/x115 구분은 diagnostic에서 FPGA size로 한다.
+SUBSYSTEM=="usb", ATTR{idVendor}=="2cf0", ATTR{idProduct}=="5246", MODE="0660", GROUP="bladerf"
+SUBSYSTEM=="usb", ATTR{idVendor}=="1d50", ATTR{idProduct}=="6066", MODE="0660", GROUP="bladerf"
