@@ -2,6 +2,8 @@
 
 조사일: 2026-10-19. radio plugin과 PWS scheduler 연결을 추가 구현했다. 실제 국내 휴대폰 기본 재난문자 화면과 x40 timing은 아직 검증되지 않았다. ZMQ에서 ID 4372의 실제 한글 SIB8 수신은 PASS다. [추가 구현 결과](RADIO_PWS_REPORT.md)를 기준으로 소프트웨어 구현과 실물 검증을 구분한다.
 
+2026-10-20 추가: PWS 연동의 기본 PLMN은 `45005`(SKT), 선택값은 `45008`(KT), `45006`(LG U+)다. SIB1의 MCC/MNC와 SIB8 한글 수신을 함께 검사한다. [설정 방법](PWS_INTEGRATION.md)과 [실행 결과](KOREAN_PLMN.md)를 참조한다. PLMN 변경만으로 실제 가입자 인증이나 국내 단말 알림 표시가 검증되는 것은 아니다.
+
 ## 국내 분류와 현재 test identifier
 
 [ETRI 연구진의 국내외 재난문자 서비스 활용 동향, 2024-09-04, 표 1](https://ksp.etri.re.kr/ksp/article/file/69860.pdf#page=6)은 국내 안전안내문자의 한글 identifier를 4372 (`0x1114`), 외국어 identifier를 4385 (`0x1121`)로 설명한다. 현재 codec의 4380 (`0x111C`)은 CMAS Required Monthly Test이며 국내 안전안내 분류와 다르다.

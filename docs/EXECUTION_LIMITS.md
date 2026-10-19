@@ -59,5 +59,5 @@
 - radio mock gNB: 시작 20초 + 유지 1..10초 + 종료 10초. stream watchdog 45초.
 - plugin hardware watchdog: 1..60초, 기본 20초. USB API timeout 250 ms.
 - PWS 수신: 5..120초, 기본 60초. UE/gNB 종료 각 10초, 로그별 32 MiB.
-- 4개 회귀 수신 suite: 360초 checkpoint. 통합 Docker build: 2700초 checkpoint.
+- 6개 회귀 수신 suite(RRC/영어/국내 세 PLMN 한글/615자): 360초 checkpoint. 통합 Docker build: 2700초 checkpoint.
 - 자동 reconnect, 무한 재시도, 자동 실물 RF 실행 없음. 실제 하드웨어 미연결은 PASS로 대체하지 않는다.

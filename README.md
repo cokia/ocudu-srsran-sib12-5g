@@ -35,6 +35,8 @@ docker compose -f docker/compose.pws.yaml --profile radio-mock run --rm radio-mo
 
 [PWS 연동 가이드](docs/PWS_INTEGRATION.md), [radio plugin](docs/RADIO_PLUGIN.md), [실제 수신 로그·검증 보고서](docs/RADIO_PWS_REPORT.md)를 참조한다. 기본 `monthly-test`는 ID 4380, `korean-safety`는 4372다. 국내 폰의 화면 분류는 지역/통신사/단말 설정에 따라 달라진다.
 
+PWS 연동 기본 PLMN은 **`45005`(MCC 450, SKT MNC 05)**다. CLI `--plmn 45008`은 KT, `--plmn 45006`은 LG U+를 선택한다. Compose에서는 `PWS_LAB_PLMN=45008`처럼 지정한다. 실제 ZMQ 수신 SIB1의 MCC/MNC와 한글 SIB8을 함께 검사한다. [국내 PLMN 검증과 로그](docs/KOREAN_PLMN.md)를 참조한다.
+
 ## 빠른 시작: Non-SDR
 
 Docker Engine/Compose와 Git이 필요하다. Linux Ubuntu 24.04가 실행 기준이며 macOS에서는 Linux VM의 Docker를 사용한다.

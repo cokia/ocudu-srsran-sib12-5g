@@ -1,0 +1,843 @@
+Reading configuration file /lab/output/pws/srsue.pws.conf...
+Failed to `mlockall`: 12
+Built in Release mode using commit 6bcbd9e on branch HEAD.
+
+2026-10-19T16:36:19.531800 [UE     ] [I] Using binary /usr/local/bin/srsue with arguments: /lab/output/pws/srsue.pws.conf 
+2026-10-19T16:36:19.531871 [UE     ] [I] Built in Release mode using commit 6bcbd9e on branch HEAD.
+Opening 1 channels in RF device=zmq with args=tx_port=tcp://127.0.0.1:2001,rx_port=tcp://127.0.0.1:2000,id=ue,base_srate=23.04e6
+Supported RF device list: zmq file
+CHx base_srate=23.04e6
+CHx id=ue
+Current sample rate is 1.92 MHz with a base rate of 23.04 MHz (x12 decimation)
+CH0 rx_port=tcp://127.0.0.1:2000
+CH0 tx_port=tcp://127.0.0.1:2001
+
+Warning: TX gain was not set. Using open-loop power control (not working properly)
+
+Current sample rate is 23.04 MHz with a base rate of 23.04 MHz (x1 decimation)
+Current sample rate is 23.04 MHz with a base rate of 23.04 MHz (x1 decimation)
+Setting manual TX/RX offset to 0 samples
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+Waiting PHY to initialize ... done!
+2026-10-19T16:36:19.861199 [RRC    ] [I] using srand seed of 861198
+Attaching UE...
+Closing stdin thread.
+2026-10-19T16:36:20.091858 [RRC    ] [D] State IDLE
+2026-10-19T16:36:20.092000 [RRC-NR ] [I] Proc "Setup Request" - Initiation of Setup request procedure
+2026-10-19T16:36:20.092003 [RRC-NR ] [I] Proc "Cell Selection" - Starting...
+2026-10-19T16:36:20.123959 [RRC-NR ] [I] Proc "Cell Selection" - Cell search found ARFCN=0 PCI=1 epre=-11.2 snr=+78.8 cfo=-0.0 delay=-0.0  sfn=11 ssb_idx=0 hrf=n scs=15 ssb_offset=6 dmrs_typeA_pos=pos2 coreset0=12 ss0=0 barred=n intra_freq_reselection=y spare=0
+2026-10-19T16:36:20.125513 [PHY-SA ] [E] [    0] prach_cfg.freq_offset=1 is not compatible with LTE
+2026-10-19T16:36:20.125541 [RRC-NR ] [I] PHY configuration with MIB parameters completed.
+2026-10-19T16:36:20.155819 [RRC-NR ] [I] Proc "Cell Selection" - Cell selection completed. Starting SIB1 acquisition
+2026-10-19T16:36:20.201380 [RRC-NR ] [D] BCCH-DLSCH - Rx systemInformationBlockType1 (92 B)
+2026-10-19T16:36:20.201383 [RRC-NR ] [D] Content:[
+  {
+    "BCCH-DL-SCH-Message": {
+      "message": {
+        "c1": {
+          "systemInformationBlockType1": {
+            "cellSelectionInfo": {
+              "q-RxLevMin": -70,
+              "q-QualMin": -20
+            },
+            "cellAccessRelatedInfo": {
+              "plmn-IdentityList": [
+                {
+                  "plmn-IdentityList": [
+                    {
+                      "mcc": [
+                        4,
+                        5,
+                        0
+                      ],
+                      "mnc": [
+                        0,
+                        5
+                      ]
+                    }
+                  ],
+                  "trackingAreaCode": "000000000000000000000111",
+                  "cellIdentity": "000000000000011001101100000000000000",
+                  "cellReservedForOperatorUse": "notReserved"
+                }
+              ]
+            },
+            "connEstFailureControl": {
+              "connEstFailCount": "n1",
+              "connEstFailOffsetValidity": "s30",
+              "connEstFailOffset": 1
+            },
+            "si-SchedulingInfo": {
+              "schedulingInfoList": [
+                {
+                  "si-BroadcastStatus": "broadcasting",
+                  "si-Periodicity": "rf8",
+                  "sib-MappingInfo": [
+                    {
+                      "type": "sibType8"
+                    }
+                  ]
+                }
+              ],
+              "si-WindowLength": "s10"
+            },
+            "servingCellConfigCommon": {
+              "downlinkConfigCommon": {
+                "frequencyInfoDL": {
+                  "frequencyBandList": [
+                    {
+                      "freqBandIndicatorNR": 3
+                    }
+                  ],
+                  "offsetToPointA": 40,
+                  "scs-SpecificCarrierList": [
+                    {
+                      "offsetToCarrier": 0,
+                      "subcarrierSpacing": "kHz15",
+                      "carrierBandwidth": 106,
+                      "txDirectCurrentLocation": 636
+                    }
+                  ]
+                },
+                "initialDownlinkBWP": {
+                  "genericParameters": {
+                    "locationAndBandwidth": 28875,
+                    "subcarrierSpacing": "kHz15"
+                  },
+                  "pdcch-ConfigCommon": {
+                    {
+                      "commonSearchSpaceList": [
+                        {
+                          "searchSpaceId": 1,
+                          "controlResourceSetId": 0,
+                          "monitoringSlotPeriodicityAndOffset": {
+                          },
+                          "monitoringSymbolsWithinSlot": "10000000000000",
+                          "nrofCandidates": {
+                            "aggregationLevel1": "n0",
+                            "aggregationLevel2": "n0",
+                            "aggregationLevel4": "n2",
+                            "aggregationLevel8": "n0",
+                            "aggregationLevel16": "n0"
+                          },
+                          "searchSpaceType": {
+                            "common": {
+                              "dci-Format0-0-AndFormat1-0": {
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "searchSpaceSIB1": 0,
+                      "searchSpaceOtherSystemInformation": 1,
+                      "pagingSearchSpace": 1,
+                      "ra-SearchSpace": 1
+                    }
+                  },
+                  "pdsch-ConfigCommon": {
+                    {
+                      "pdsch-TimeDomainAllocationList": [
+                        {
+                          "mappingType": "typeA",
+                          "startSymbolAndLength": 40
+                        }
+                      ]
+                    }
+                  }
+                },
+                "bcch-Config": {
+                  "modificationPeriodCoeff": "n4"
+                },
+                "pcch-Config": {
+                  "defaultPagingCycle": "rf128",
+                  "nAndPagingFrameOffset": {
+                  },
+                  "ns": "one"
+                }
+              },
+              "uplinkConfigCommon": {
+                "frequencyInfoUL": {
+                  "frequencyBandList": [
+                    {
+                      "freqBandIndicatorNR": 3
+                    }
+                  ],
+                  "absoluteFrequencyPointA": 347592,
+                  "scs-SpecificCarrierList": [
+                    {
+                      "offsetToCarrier": 0,
+                      "subcarrierSpacing": "kHz15",
+                      "carrierBandwidth": 106
+                    }
+                  ]
+                },
+                "initialUplinkBWP": {
+                  "genericParameters": {
+                    "locationAndBandwidth": 28875,
+                    "subcarrierSpacing": "kHz15"
+                  },
+                  "rach-ConfigCommon": {
+                    {
+                      "rach-ConfigGeneric": {
+                        "prach-ConfigurationIndex": 1,
+                        "msg1-FDM": "one",
+                        "msg1-FrequencyStart": 8,
+                        "zeroCorrelationZoneConfig": 0,
+                        "preambleReceivedTargetPower": -100,
+                        "preambleTransMax": "n7",
+                        "powerRampingStep": "dB4",
+                        "ra-ResponseWindow": "sl10"
+                      },
+                      "ssb-perRACH-OccasionAndCB-PreamblesPerSSB": {
+                        "one": "n64"
+                      },
+                      "ra-ContentionResolutionTimer": "sf64",
+                      "prach-RootSequenceIndex": {
+                        "l839": 1
+                      },
+                      "restrictedSetConfig": "unrestrictedSet"
+                    }
+                  },
+                  "pusch-ConfigCommon": {
+                    {
+                      "pusch-TimeDomainAllocationList": [
+                        {
+                          "k2": 4,
+                          "mappingType": "typeA",
+                          "startSymbolAndLength": 27
+                        }
+                      ],
+                      "msg3-DeltaPreamble": 6,
+                      "p0-NominalWithGrant": -76
+                    }
+                  },
+                  "pucch-ConfigCommon": {
+                    {
+                      "pucch-ResourceCommon": 11,
+                      "pucch-GroupHopping": "neither",
+                      "p0-nominal": -90
+                    }
+                  }
+                },
+                "timeAlignmentTimerCommon": "infinity"
+              },
+              "n-TimingAdvanceOffset": "n25600",
+              "ssb-PositionsInBurst": {
+                "inOneGroup": "10000000"
+              },
+              "ssb-PeriodicityServingCell": "ms10",
+              "ss-PBCH-BlockPower": -16
+            },
+            "ims-EmergencySupport": "true",
+            "eCallOverIMS-Support": "true",
+            "ue-TimersAndConstants": {
+              "t300": "ms1000",
+              "t301": "ms1000",
+              "t310": "ms1000",
+              "n310": "n1",
+              "t311": "ms3000",
+              "n311": "n1",
+              "t319": "ms1000"
+            }
+          }
+        }
+      }
+    }
+  }
+]
+2026-10-19T16:36:20.201383 [RRC-NR ] [I] Processing SIB1 (1/1)
+2026-10-19T16:36:20.201396 [RRC-NR ] [I] SIB1 received, CellID=4095
+2026-10-19T16:36:20.201402 [RRC-NR ] [I] Set Constants and Timers: N310=1, N311=1, t300=1000, t301=1000, t310=1000, t311=3000
+2026-10-19T16:36:20.201404 [RRC-NR ] [I] LAB_SI searchSpaceOtherSystemInformation=1
+2026-10-19T16:36:20.201413 [RRC-NR ] [I] Proc "Cell Selection" - SIB1 acquired successfully
+2026-10-19T16:36:20.201593 [RRC-NR ] [I] PHY configuration with SIB parameters completed.
+2026-10-19T16:36:20.310416 [RRC-NR ] [D] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T16:36:20.310417 [RRC-NR ] [D] Content:[
+  {
+    "BCCH-DL-SCH-Message": {
+      "message": {
+        "c1": {
+          "systemInformation": {
+            "criticalExtensions": {
+              "systemInformation": {
+                "sib-TypeAndInfo": [
+                  {
+                    "sib8": {
+                      "messageIdentifier": "0001000100010100",
+                      "serialNumber": "0000000000000000",
+                      "warningMessageSegmentType": "lastSegment",
+                      "warningMessageSegmentNumber": 0,
+                      "warningMessageSegment": "01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038",
+                      "dataCodingScheme": "48"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]
+2026-10-19T16:36:20.310420 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+Stopping ..
+2026-10-19T16:36:20.416741 [RRC-NR ] [D] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T16:36:20.416743 [RRC-NR ] [D] Content:[
+  {
+    "BCCH-DL-SCH-Message": {
+      "message": {
+        "c1": {
+          "systemInformation": {
+            "criticalExtensions": {
+              "systemInformation": {
+                "sib-TypeAndInfo": [
+                  {
+                    "sib8": {
+                      "messageIdentifier": "0001000100010100",
+                      "serialNumber": "0000000000000000",
+                      "warningMessageSegmentType": "lastSegment",
+                      "warningMessageSegmentNumber": 0,
+                      "warningMessageSegment": "01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038",
+                      "dataCodingScheme": "48"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]
+2026-10-19T16:36:20.416746 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T16:36:20.418132 [RRC-NR ] [D] BCCH-DLSCH - Rx systemInformationBlockType1 (92 B)
+2026-10-19T16:36:20.418133 [RRC-NR ] [D] Content:[
+  {
+    "BCCH-DL-SCH-Message": {
+      "message": {
+        "c1": {
+          "systemInformationBlockType1": {
+            "cellSelectionInfo": {
+              "q-RxLevMin": -70,
+              "q-QualMin": -20
+            },
+            "cellAccessRelatedInfo": {
+              "plmn-IdentityList": [
+                {
+                  "plmn-IdentityList": [
+                    {
+                      "mcc": [
+                        4,
+                        5,
+                        0
+                      ],
+                      "mnc": [
+                        0,
+                        5
+                      ]
+                    }
+                  ],
+                  "trackingAreaCode": "000000000000000000000111",
+                  "cellIdentity": "000000000000011001101100000000000000",
+                  "cellReservedForOperatorUse": "notReserved"
+                }
+              ]
+            },
+            "connEstFailureControl": {
+              "connEstFailCount": "n1",
+              "connEstFailOffsetValidity": "s30",
+              "connEstFailOffset": 1
+            },
+            "si-SchedulingInfo": {
+              "schedulingInfoList": [
+                {
+                  "si-BroadcastStatus": "broadcasting",
+                  "si-Periodicity": "rf8",
+                  "sib-MappingInfo": [
+                    {
+                      "type": "sibType8"
+                    }
+                  ]
+                }
+              ],
+              "si-WindowLength": "s10"
+            },
+            "servingCellConfigCommon": {
+              "downlinkConfigCommon": {
+                "frequencyInfoDL": {
+                  "frequencyBandList": [
+                    {
+                      "freqBandIndicatorNR": 3
+                    }
+                  ],
+                  "offsetToPointA": 40,
+                  "scs-SpecificCarrierList": [
+                    {
+                      "offsetToCarrier": 0,
+                      "subcarrierSpacing": "kHz15",
+                      "carrierBandwidth": 106,
+                      "txDirectCurrentLocation": 636
+                    }
+                  ]
+                },
+                "initialDownlinkBWP": {
+                  "genericParameters": {
+                    "locationAndBandwidth": 28875,
+                    "subcarrierSpacing": "kHz15"
+                  },
+                  "pdcch-ConfigCommon": {
+                    {
+                      "commonSearchSpaceList": [
+                        {
+                          "searchSpaceId": 1,
+                          "controlResourceSetId": 0,
+                          "monitoringSlotPeriodicityAndOffset": {
+                          },
+                          "monitoringSymbolsWithinSlot": "10000000000000",
+                          "nrofCandidates": {
+                            "aggregationLevel1": "n0",
+                            "aggregationLevel2": "n0",
+                            "aggregationLevel4": "n2",
+                            "aggregationLevel8": "n0",
+                            "aggregationLevel16": "n0"
+                          },
+                          "searchSpaceType": {
+                            "common": {
+                              "dci-Format0-0-AndFormat1-0": {
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "searchSpaceSIB1": 0,
+                      "searchSpaceOtherSystemInformation": 1,
+                      "pagingSearchSpace": 1,
+                      "ra-SearchSpace": 1
+                    }
+                  },
+                  "pdsch-ConfigCommon": {
+                    {
+                      "pdsch-TimeDomainAllocationList": [
+                        {
+                          "mappingType": "typeA",
+                          "startSymbolAndLength": 40
+                        }
+                      ]
+                    }
+                  }
+                },
+                "bcch-Config": {
+                  "modificationPeriodCoeff": "n4"
+                },
+                "pcch-Config": {
+                  "defaultPagingCycle": "rf128",
+                  "nAndPagingFrameOffset": {
+                  },
+                  "ns": "one"
+                }
+              },
+              "uplinkConfigCommon": {
+                "frequencyInfoUL": {
+                  "frequencyBandList": [
+                    {
+                      "freqBandIndicatorNR": 3
+                    }
+                  ],
+                  "absoluteFrequencyPointA": 347592,
+                  "scs-SpecificCarrierList": [
+                    {
+                      "offsetToCarrier": 0,
+                      "subcarrierSpacing": "kHz15",
+                      "carrierBandwidth": 106
+                    }
+                  ]
+                },
+                "initialUplinkBWP": {
+                  "genericParameters": {
+                    "locationAndBandwidth": 28875,
+                    "subcarrierSpacing": "kHz15"
+                  },
+                  "rach-ConfigCommon": {
+                    {
+                      "rach-ConfigGeneric": {
+                        "prach-ConfigurationIndex": 1,
+                        "msg1-FDM": "one",
+                        "msg1-FrequencyStart": 8,
+                        "zeroCorrelationZoneConfig": 0,
+                        "preambleReceivedTargetPower": -100,
+                        "preambleTransMax": "n7",
+                        "powerRampingStep": "dB4",
+                        "ra-ResponseWindow": "sl10"
+                      },
+                      "ssb-perRACH-OccasionAndCB-PreamblesPerSSB": {
+                        "one": "n64"
+                      },
+                      "ra-ContentionResolutionTimer": "sf64",
+                      "prach-RootSequenceIndex": {
+                        "l839": 1
+                      },
+                      "restrictedSetConfig": "unrestrictedSet"
+                    }
+                  },
+                  "pusch-ConfigCommon": {
+                    {
+                      "pusch-TimeDomainAllocationList": [
+                        {
+                          "k2": 4,
+                          "mappingType": "typeA",
+                          "startSymbolAndLength": 27
+                        }
+                      ],
+                      "msg3-DeltaPreamble": 6,
+                      "p0-NominalWithGrant": -76
+                    }
+                  },
+                  "pucch-ConfigCommon": {
+                    {
+                      "pucch-ResourceCommon": 11,
+                      "pucch-GroupHopping": "neither",
+                      "p0-nominal": -90
+                    }
+                  }
+                },
+                "timeAlignmentTimerCommon": "infinity"
+              },
+              "n-TimingAdvanceOffset": "n25600",
+              "ssb-PositionsInBurst": {
+                "inOneGroup": "10000000"
+              },
+              "ssb-PeriodicityServingCell": "ms10",
+              "ss-PBCH-BlockPower": -16
+            },
+            "ims-EmergencySupport": "true",
+            "eCallOverIMS-Support": "true",
+            "ue-TimersAndConstants": {
+              "t300": "ms1000",
+              "t301": "ms1000",
+              "t310": "ms1000",
+              "n310": "n1",
+              "t311": "ms3000",
+              "n311": "n1",
+              "t319": "ms1000"
+            }
+          }
+        }
+      }
+    }
+  }
+]
+2026-10-19T16:36:20.418134 [RRC-NR ] [I] Processing SIB1 (1/1)
+2026-10-19T16:36:20.418134 [RRC-NR ] [I] SIB1 already processed
+2026-10-19T16:36:20.535239 [RRC-NR ] [D] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T16:36:20.535365 [RRC-NR ] [D] Content:[
+  {
+    "BCCH-DL-SCH-Message": {
+      "message": {
+        "c1": {
+          "systemInformation": {
+            "criticalExtensions": {
+              "systemInformation": {
+                "sib-TypeAndInfo": [
+                  {
+                    "sib8": {
+                      "messageIdentifier": "0001000100010100",
+                      "serialNumber": "0000000000000000",
+                      "warningMessageSegmentType": "lastSegment",
+                      "warningMessageSegmentNumber": 0,
+                      "warningMessageSegment": "01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038",
+                      "dataCodingScheme": "48"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]
+2026-10-19T16:36:20.535376 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T16:36:20.652363 [RRC-NR ] [D] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T16:36:20.652364 [RRC-NR ] [D] Content:[
+  {
+    "BCCH-DL-SCH-Message": {
+      "message": {
+        "c1": {
+          "systemInformation": {
+            "criticalExtensions": {
+              "systemInformation": {
+                "sib-TypeAndInfo": [
+                  {
+                    "sib8": {
+                      "messageIdentifier": "0001000100010100",
+                      "serialNumber": "0000000000000000",
+                      "warningMessageSegmentType": "lastSegment",
+                      "warningMessageSegmentNumber": 0,
+                      "warningMessageSegment": "01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038",
+                      "dataCodingScheme": "48"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]
+2026-10-19T16:36:20.652367 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T16:36:20.653733 [RRC-NR ] [D] BCCH-DLSCH - Rx systemInformationBlockType1 (92 B)
+2026-10-19T16:36:20.653734 [RRC-NR ] [D] Content:[
+  {
+    "BCCH-DL-SCH-Message": {
+      "message": {
+        "c1": {
+          "systemInformationBlockType1": {
+            "cellSelectionInfo": {
+              "q-RxLevMin": -70,
+              "q-QualMin": -20
+            },
+            "cellAccessRelatedInfo": {
+              "plmn-IdentityList": [
+                {
+                  "plmn-IdentityList": [
+                    {
+                      "mcc": [
+                        4,
+                        5,
+                        0
+                      ],
+                      "mnc": [
+                        0,
+                        5
+                      ]
+                    }
+                  ],
+                  "trackingAreaCode": "000000000000000000000111",
+                  "cellIdentity": "000000000000011001101100000000000000",
+                  "cellReservedForOperatorUse": "notReserved"
+                }
+              ]
+            },
+            "connEstFailureControl": {
+              "connEstFailCount": "n1",
+              "connEstFailOffsetValidity": "s30",
+              "connEstFailOffset": 1
+            },
+            "si-SchedulingInfo": {
+              "schedulingInfoList": [
+                {
+                  "si-BroadcastStatus": "broadcasting",
+                  "si-Periodicity": "rf8",
+                  "sib-MappingInfo": [
+                    {
+                      "type": "sibType8"
+                    }
+                  ]
+                }
+              ],
+              "si-WindowLength": "s10"
+            },
+            "servingCellConfigCommon": {
+              "downlinkConfigCommon": {
+                "frequencyInfoDL": {
+                  "frequencyBandList": [
+                    {
+                      "freqBandIndicatorNR": 3
+                    }
+                  ],
+                  "offsetToPointA": 40,
+                  "scs-SpecificCarrierList": [
+                    {
+                      "offsetToCarrier": 0,
+                      "subcarrierSpacing": "kHz15",
+                      "carrierBandwidth": 106,
+                      "txDirectCurrentLocation": 636
+                    }
+                  ]
+                },
+                "initialDownlinkBWP": {
+                  "genericParameters": {
+                    "locationAndBandwidth": 28875,
+                    "subcarrierSpacing": "kHz15"
+                  },
+                  "pdcch-ConfigCommon": {
+                    {
+                      "commonSearchSpaceList": [
+                        {
+                          "searchSpaceId": 1,
+                          "controlResourceSetId": 0,
+                          "monitoringSlotPeriodicityAndOffset": {
+                          },
+                          "monitoringSymbolsWithinSlot": "10000000000000",
+                          "nrofCandidates": {
+                            "aggregationLevel1": "n0",
+                            "aggregationLevel2": "n0",
+                            "aggregationLevel4": "n2",
+                            "aggregationLevel8": "n0",
+                            "aggregationLevel16": "n0"
+                          },
+                          "searchSpaceType": {
+                            "common": {
+                              "dci-Format0-0-AndFormat1-0": {
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "searchSpaceSIB1": 0,
+                      "searchSpaceOtherSystemInformation": 1,
+                      "pagingSearchSpace": 1,
+                      "ra-SearchSpace": 1
+                    }
+                  },
+                  "pdsch-ConfigCommon": {
+                    {
+                      "pdsch-TimeDomainAllocationList": [
+                        {
+                          "mappingType": "typeA",
+                          "startSymbolAndLength": 40
+                        }
+                      ]
+                    }
+                  }
+                },
+                "bcch-Config": {
+                  "modificationPeriodCoeff": "n4"
+                },
+                "pcch-Config": {
+                  "defaultPagingCycle": "rf128",
+                  "nAndPagingFrameOffset": {
+                  },
+                  "ns": "one"
+                }
+              },
+              "uplinkConfigCommon": {
+                "frequencyInfoUL": {
+                  "frequencyBandList": [
+                    {
+                      "freqBandIndicatorNR": 3
+                    }
+                  ],
+                  "absoluteFrequencyPointA": 347592,
+                  "scs-SpecificCarrierList": [
+                    {
+                      "offsetToCarrier": 0,
+                      "subcarrierSpacing": "kHz15",
+                      "carrierBandwidth": 106
+                    }
+                  ]
+                },
+                "initialUplinkBWP": {
+                  "genericParameters": {
+                    "locationAndBandwidth": 28875,
+                    "subcarrierSpacing": "kHz15"
+                  },
+                  "rach-ConfigCommon": {
+                    {
+                      "rach-ConfigGeneric": {
+                        "prach-ConfigurationIndex": 1,
+                        "msg1-FDM": "one",
+                        "msg1-FrequencyStart": 8,
+                        "zeroCorrelationZoneConfig": 0,
+                        "preambleReceivedTargetPower": -100,
+                        "preambleTransMax": "n7",
+                        "powerRampingStep": "dB4",
+                        "ra-ResponseWindow": "sl10"
+                      },
+                      "ssb-perRACH-OccasionAndCB-PreamblesPerSSB": {
+                        "one": "n64"
+                      },
+                      "ra-ContentionResolutionTimer": "sf64",
+                      "prach-RootSequenceIndex": {
+                        "l839": 1
+                      },
+                      "restrictedSetConfig": "unrestrictedSet"
+                    }
+                  },
+                  "pusch-ConfigCommon": {
+                    {
+                      "pusch-TimeDomainAllocationList": [
+                        {
+                          "k2": 4,
+                          "mappingType": "typeA",
+                          "startSymbolAndLength": 27
+                        }
+                      ],
+                      "msg3-DeltaPreamble": 6,
+                      "p0-NominalWithGrant": -76
+                    }
+                  },
+                  "pucch-ConfigCommon": {
+                    {
+                      "pucch-ResourceCommon": 11,
+                      "pucch-GroupHopping": "neither",
+                      "p0-nominal": -90
+                    }
+                  }
+                },
+                "timeAlignmentTimerCommon": "infinity"
+              },
+              "n-TimingAdvanceOffset": "n25600",
+              "ssb-PositionsInBurst": {
+                "inOneGroup": "10000000"
+              },
+              "ssb-PeriodicityServingCell": "ms10",
+              "ss-PBCH-BlockPower": -16
+            },
+            "ims-EmergencySupport": "true",
+            "eCallOverIMS-Support": "true",
+            "ue-TimersAndConstants": {
+              "t300": "ms1000",
+              "t301": "ms1000",
+              "t310": "ms1000",
+              "n310": "n1",
+              "t311": "ms3000",
+              "n311": "n1",
+              "t319": "ms1000"
+            }
+          }
+        }
+      }
+    }
+  }
+]
+2026-10-19T16:36:20.653734 [RRC-NR ] [I] Processing SIB1 (1/1)
+2026-10-19T16:36:20.653735 [RRC-NR ] [I] SIB1 already processed
+2026-10-19T16:36:20.757239 [RRC-NR ] [D] BCCH-DLSCH - Rx systemInformation (101 B)
+2026-10-19T16:36:20.757241 [RRC-NR ] [D] Content:[
+  {
+    "BCCH-DL-SCH-Message": {
+      "message": {
+        "c1": {
+          "systemInformation": {
+            "criticalExtensions": {
+              "systemInformation": {
+                "sib-TypeAndInfo": [
+                  {
+                    "sib8": {
+                      "messageIdentifier": "0001000100010100",
+                      "serialNumber": "0000000000000000",
+                      "warningMessageSegmentType": "lastSegment",
+                      "warningMessageSegmentNumber": 0,
+                      "warningMessageSegment": "01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038",
+                      "dataCodingScheme": "48"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]
+2026-10-19T16:36:20.757244 [RRC-NR ] [I] LAB_SIB8 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+---  exiting  ---

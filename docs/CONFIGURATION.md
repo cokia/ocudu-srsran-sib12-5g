@@ -84,7 +84,7 @@
 | `ru_dummy.time_scaling` | number / 10 | Dummy RU slot 시간을 느리게 진행 |
 | `cell_cfg.dl_arfcn`, `band` | integer / 632628, 78 | 논리 radio resource 설정 |
 | `channel_bandwidth_MHz`, `common_scs` | integer / 20, 30 | bandwidth 및 SCS |
-| `plmn`, `tac`, `pci` | string/integer / '00101', 7, 1 | cell identity |
+| `plmn`, `tac`, `pci` | string/integer / '00101', 7, 1 | 기본 Dummy RU cell identity. 별도 PWS 생성 설정은 `--plmn` 기본 '45005' |
 | `log.filename`, `all_level` | string / stdout, info | harness가 수집하는 gNB log |
 | `pcap.mac_enable`, `ngap_enable` | boolean / false | PCAP 비활성화 |
 | `buffer_pool.nof_segments`, `segment_size` | integer / 16384, 2048 | 약 32 MiB의 segment storage. 2 GiB 컨테이너 smoke 실행용 |

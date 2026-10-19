@@ -1,6 +1,6 @@
 # 소스 저장소 파일 목록
 
-관리 대상 파일 222개다. upstream checkout, build, 일반 artifacts는 제외하며 선택한 실제 로그만 `docs/evidence/`에 보존한다. 초기 구현은 [최초 보고서](IMPLEMENTATION_REPORT.md), 수신 검증은 [수신·한글](SRSUE_RX_CAPTURE.md), driver/PWS 연결은 [추가 구현 보고서](RADIO_PWS_REPORT.md), 최신 수정은 [관련 프로젝트 비교와 디버깅](RELATED_PROJECTS_DEBUG.md)을 참조한다.
+관리 대상 파일 247개다. upstream checkout, build, 일반 artifacts는 제외하며 선택한 실제 로그만 `docs/evidence/`에 보존한다. 초기 구현은 [최초 보고서](IMPLEMENTATION_REPORT.md), driver/PWS 연결은 [구현 보고서](RADIO_PWS_REPORT.md), driver 수정은 [디버깅](RELATED_PROJECTS_DEBUG.md), 국내 MCC/MNC 추가는 [PLMN 검증](KOREAN_PLMN.md)을 참조한다.
 
 ```text
 .dockerignore
@@ -61,6 +61,7 @@ docs/FILE_INVENTORY.md
 docs/FOLLOWUP_REPORT.md
 docs/IMPLEMENTATION_REPORT.md
 docs/INSTALLATION.md
+docs/KOREAN_PLMN.md
 docs/LIBBLADERF_TESTING.md
 docs/NON_SDR_GUIDE.md
 docs/PATCHES.md
@@ -136,6 +137,29 @@ docs/evidence/2026-10-19/srsue.log
 docs/evidence/2026-10-19/validate-non-sdr.json
 docs/evidence/2026-10-19/validate-sdr-bladerf-x40.json
 docs/evidence/2026-10-19/zmq-rx.json
+docs/evidence/2026-10-20/korean-plmn/00101-srsue.log
+docs/evidence/2026-10-20/korean-plmn/00101.json
+docs/evidence/2026-10-20/korean-plmn/45005-srsue.log
+docs/evidence/2026-10-20/korean-plmn/45005.json
+docs/evidence/2026-10-20/korean-plmn/45006-srsue.log
+docs/evidence/2026-10-20/korean-plmn/45006.json
+docs/evidence/2026-10-20/korean-plmn/45008-srsue.log
+docs/evidence/2026-10-20/korean-plmn/45008.json
+docs/evidence/2026-10-20/korean-plmn/SHA256SUMS
+docs/evidence/2026-10-20/korean-plmn/baseline.json
+docs/evidence/2026-10-20/korean-plmn/boundary.json
+docs/evidence/2026-10-20/korean-plmn/docker-default-srsue.log
+docs/evidence/2026-10-20/korean-plmn/docker-default.json
+docs/evidence/2026-10-20/korean-plmn/docker-radio-build.log
+docs/evidence/2026-10-20/korean-plmn/docker-radio-gnb.log
+docs/evidence/2026-10-20/korean-plmn/docker-radio.json
+docs/evidence/2026-10-20/korean-plmn/docker-zmq-build.log
+docs/evidence/2026-10-20/korean-plmn/english.json
+docs/evidence/2026-10-20/korean-plmn/first-attempt-fail.json
+docs/evidence/2026-10-20/korean-plmn/images.json
+docs/evidence/2026-10-20/korean-plmn/python-tests.log
+docs/evidence/2026-10-20/korean-plmn/python-tests.xml
+docs/evidence/2026-10-20/korean-plmn/suite-checkpoint.json
 docs/verification-2026-10-19.json
 docs/verification-followup-2026-10-19.json
 hardware/bladerf-x40/88-pws-bladerf-x40.rules
@@ -209,6 +233,7 @@ scripts/test-radio-plugin.sh
 scripts/test-sdr.sh
 tests/conftest.py
 tests/fixtures/pws.english.yaml
+tests/fixtures/srsue-sib1-45005.txt
 tests/integration/test_cli.py
 tests/integration/test_protocol.py
 tests/libbladerf/adapter_test.cpp

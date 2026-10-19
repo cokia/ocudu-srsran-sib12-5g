@@ -1,6 +1,8 @@
 """공유 PWS 입력을 OCUDU CMAS test SI에 연결하고 ZMQ 수신 원문을 비교한다."""
 
 import argparse
+import configparser
+import io
 import json
 import os
 from pathlib import Path
@@ -19,18 +21,26 @@ from .reporting import audit, report, write_report
 from .zmq_rx import validate_profiles
 
 PROFILES = {"monthly-test": 4380, "korean-safety": 4372}
+PLMNS = {"45005": "SKT", "45008": "KT", "45006": "LG U+", "00101": "시험 PLMN"}
+DEFAULT_PLMN = "45005"
 SEGMENT = re.compile(
     r"LAB_SIB8 id=(\d+) serial=(\d+) segment=(\d+) last=([01]) dcs=(none|[0-9a-fA-F]{2}) payload=([0-9a-fA-F]+)"
 )
 
 
-def prepare(config, profile, backend, output, serial=""):
+def prepare(config, profile, backend, output, serial="", plmn=DEFAULT_PLMN):
     validate_profiles()
+    if not isinstance(plmn, str) or plmn not in PLMNS:
+        raise LabError("E_PLMN", "PLMN은 45005, 45008, 45006 또는 00101 문자열이어야 합니다.")
     message = LaboratoryMessage.from_config(config)
     if not message.text.startswith(("[시험", "[TEST]")):
         raise LabError("E_TEST_LABEL", "연동 시험 문구는 [시험 또는 [TEST]로 시작해야 합니다.")
     cb_data.encode(message.text)
     gnb = load_yaml(ROOT / "configs/gnb.zmq.yaml")
+    gnb["cell_cfg"]["plmn"] = plmn
+    for area in gnb["cu_cp"]["amf"]["supported_tracking_areas"]:
+        for item in area["plmn_list"]:
+            item["plmn"] = plmn
     gnb["cell_cfg"]["sib"] = {
         "si_window_length": 10,
         "cmas": {
@@ -58,7 +68,51 @@ def prepare(config, profile, backend, output, serial=""):
     output.mkdir(parents=True, exist_ok=True)
     path = output / "gnb.pws.yaml"
     path.write_text(yaml.safe_dump(gnb, allow_unicode=True, sort_keys=True), encoding="utf-8")
+    if backend == "zmq":
+        ue = configparser.ConfigParser(interpolation=None)
+        ue.read(ROOT / "configs/srsue.zmq.conf", encoding="utf-8")
+        ue["usim"]["imsi"] = plmn + ue["usim"]["imsi"][5:]
+        # 고정 upstream의 ASN.1 JSON logger로 수신 SIB1 PLMN을 검증한다.
+        ue["log"]["rrc_level"] = "debug"
+        contents = io.StringIO()
+        ue.write(contents)
+        (output / "srsue.pws.conf").write_text(contents.getvalue(), encoding="utf-8")
     return path, message
+
+
+def received_plmn(log, expected):
+    observed = set()
+    markers = list(re.finditer(r"\[RRC-NR\s*\]\s+\[D\]\s+Content:", log))
+    for index, marker in enumerate(markers):
+        end = markers[index + 1].start() if index + 1 < len(markers) else len(log)
+        content = log[marker.end() : end]
+        prefix = r'\s*\[\s*\{\s*"BCCH-DL-SCH-Message"\s*:\s*\{\s*"message"\s*:\s*\{\s*"c1"\s*:\s*\{'
+        if not re.match(prefix + r'\s*"systemInformationBlockType1"\s*:\s*\{', content):
+            continue
+        access = re.search(r'"cellAccessRelatedInfo"\s*:\s*', content)
+        if access is None:
+            continue
+        try:
+            # 고정 srsUE의 pdcch-ConfigCommon JSON은 malformed다. 정상 출력되는
+            # 수신 cellAccessRelatedInfo 객체만 읽고 나머지 ASN.1 JSON에 의존하지 않는다.
+            identity_info, _ = json.JSONDecoder().raw_decode(content[access.end() :])
+        except json.JSONDecodeError:
+            # process가 아직 PLMN 객체를 쓰는 중이면 다음 poll에서 다시 읽는다.
+            continue
+        try:
+            entries = identity_info["plmn-IdentityList"]
+            if len(entries) != 1 or len(entries[0]["plmn-IdentityList"]) != 1:
+                raise ValueError("single PLMN profile")
+            identity = entries[0]["plmn-IdentityList"][0]
+            mcc, mnc = identity["mcc"], identity["mnc"]
+            if len(mcc) != 3 or len(mnc) != 2 or any(type(n) is not int or not 0 <= n <= 9 for n in mcc + mnc):
+                raise ValueError("MCC/MNC digits")
+            observed.add("".join(str(n) for n in mcc + mnc))
+        except (KeyError, IndexError, TypeError, ValueError) as exc:
+            raise LabError("E_PLMN_RX", "수신 SIB1의 단일 MCC/MNC 구조가 profile과 다릅니다.", 1) from exc
+    if observed and observed != {expected}:
+        raise LabError("E_PLMN_RX", f"요청 PLMN={expected}, 수신 PLMN={sorted(observed)}", 1)
+    return expected if observed else None
 
 
 def recovered(log, identifier):
@@ -112,7 +166,7 @@ def receive(args, path, message):
     old = {sig: signal.signal(sig, stop_requested) for sig in (signal.SIGTERM, signal.SIGINT)}
     try:
         env = dict(os.environ, PWS_LAB_SI_MONITOR="1")
-        for log, command in zip(paths, ([args.gnb, "-c", str(path)], [args.ue, str(ROOT / "configs/srsue.zmq.conf")])):
+        for log, command in zip(paths, ([args.gnb, "-c", str(path)], [args.ue, str(args.output / "srsue.pws.conf")])):
             stream = log.open("w")
             streams.append(stream)
             processes.append(
@@ -132,8 +186,9 @@ def receive(args, path, message):
             if any(p.stat().st_size > 32 * 1024 * 1024 for p in paths):
                 raise LabError("E_LOG_LIMIT", "log별 최대 32 MiB", 4)
             ue = paths[1].read_text(errors="replace")
+            observed = received_plmn(ue, args.plmn)
             result = recovered(ue, PROFILES[args.profile])
-            if result is not None:
+            if result is not None and observed is not None:
                 if (
                     result["text"] != message.text
                     or result["payload_hex"] != cb_data.encode(message.text, padding="ocudu-zero").hex()
@@ -176,6 +231,10 @@ def receive(args, path, message):
         **result,
         "exit_codes": codes,
         "message_identifier": PROFILES[args.profile],
+        "plmn": args.plmn,
+        "mcc": args.plmn[:3],
+        "mnc": args.plmn[3:],
+        "received_plmn": observed,
         "backend": "zmq",
         "rf_transmission": False,
         "pws_routed": True,
@@ -189,6 +248,9 @@ def main():
     parser.add_argument("command", choices=["prepare", "receive"])
     parser.add_argument("--config", type=Path, default=ROOT / "configs/pws.example.yaml")
     parser.add_argument("--profile", choices=PROFILES, default="monthly-test")
+    parser.add_argument(
+        "--plmn", choices=PLMNS, default=DEFAULT_PLMN, help="MCC+MNC: SKT 45005 / KT 45008 / LG U+ 45006"
+    )
     parser.add_argument("--backend", choices=["zmq", "bladerf-x40"], default="zmq")
     parser.add_argument("--serial", default="")
     parser.add_argument("--output", type=Path, default=Path("output/pws-integration"))
@@ -204,11 +266,16 @@ def main():
             raise LabError(
                 "E_HARDWARE_NOT_VERIFIED", "자동 수신 검증은 ZMQ 전용입니다. 실물 시험 환경은 별도 검증해야 합니다.", 3
             )
-        path, message = prepare(load_config(args.config), args.profile, args.backend, args.output, args.serial)
+        path, message = prepare(
+            load_config(args.config), args.profile, args.backend, args.output, args.serial, args.plmn
+        )
         details = {
             "config": str(path),
             "backend": args.backend,
             "message_identifier": PROFILES[args.profile],
+            "plmn": args.plmn,
+            "mcc": args.plmn[:3],
+            "mnc": args.plmn[3:],
             "rf_transmission": False,
             "hardware_execution": "NOT VERIFIED",
         }

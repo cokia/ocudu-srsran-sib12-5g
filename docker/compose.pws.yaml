@@ -4,7 +4,7 @@ services:
     profiles: [pws-zmq]
     image: pws-lab-zmq:0.1.0
     entrypoint: [python, -m, controller.pws_integration]
-    command: [receive, --profile, korean-safety, --timeout, '60', --output, /lab/output/pws]
+    command: [receive, --profile, korean-safety, --plmn, '${PWS_LAB_PLMN:-45005}', --timeout, '60', --output, /lab/output/pws]
     network_mode: none
     cap_drop: [ALL]
     security_opt: [no-new-privileges:true]

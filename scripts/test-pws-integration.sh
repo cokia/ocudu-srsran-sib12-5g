@@ -20,6 +20,10 @@ PYTHON
 "$python" -m controller.pws_integration receive --profile monthly-test \
   --config "$out/english.yaml" --output "$out/english"
 "$python" -m controller.pws_integration receive --profile korean-safety --output "$out/korean"
+for plmn in 45008 45006; do
+  "$python" -m controller.pws_integration receive --profile korean-safety \
+    --plmn "$plmn" --output "$out/korean-$plmn"
+done
 "$python" - <<'PY'
 from pathlib import Path
 import yaml

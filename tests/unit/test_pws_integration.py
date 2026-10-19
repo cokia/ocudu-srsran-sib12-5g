@@ -1,4 +1,6 @@
+import configparser
 import json
+from pathlib import Path
 
 import pytest
 
@@ -110,3 +112,89 @@ def test_padding_profiles_remain_distinct():
         cb_data.decode(encoded)
     with pytest.raises(LabError, match="E_CB_PROFILE"):
         cb_data.encode("A", padding="unknown")
+
+
+@pytest.mark.parametrize("plmn", ["45005", "45008", "45006", "00101"])
+@pytest.mark.parametrize("backend", ["zmq", "bladerf-x40"])
+def test_plmn_is_consistent_in_cell_tracking_area_and_test_usim(config, tmp_path, plmn, backend):
+    path, _ = pws.prepare(config, "korean-safety", backend, tmp_path, "a" * 32, plmn)
+    gnb = load_yaml(path)
+    assert gnb["cell_cfg"]["plmn"] == plmn
+    assert gnb["cu_cp"]["amf"]["supported_tracking_areas"][0]["plmn_list"][0]["plmn"] == plmn
+    if backend == "zmq":
+        ue = configparser.ConfigParser()
+        ue.read(tmp_path / "srsue.pws.conf")
+        assert ue["usim"]["imsi"] == plmn + "0123456780"
+        assert ue["log"]["rrc_level"] == "debug"
+        assert ue["rf"]["device_name"] == "zmq"
+        before = (tmp_path / "srsue.pws.conf").read_bytes()
+        pws.prepare(config, "korean-safety", backend, tmp_path, "a" * 32, plmn)
+        assert (tmp_path / "srsue.pws.conf").read_bytes() == before
+    else:
+        assert "rf=off" in gnb["ru_sdr"]["device_args"]
+
+
+def test_default_plmn_is_korean(config, tmp_path):
+    path, _ = pws.prepare(config, "korean-safety", "zmq", tmp_path)
+    assert load_yaml(path)["cell_cfg"]["plmn"] == "45005"
+
+
+@pytest.mark.parametrize("plmn", [45005, "4505", "450005", "45099", "45005,00101", "", None])
+def test_invalid_plmn_is_rejected_before_output(config, tmp_path, plmn):
+    with pytest.raises(LabError, match="E_PLMN"):
+        pws.prepare(config, "korean-safety", "zmq", tmp_path, plmn=plmn)
+    assert not (tmp_path / "gnb.pws.yaml").exists()
+
+
+def sib1_log(mcc=(4, 5, 0), mnc=(0, 5)):
+    # pinned srsUE BCCH-DL-SCH-Message::to_json의 수신 구조.
+    return "[RRC-NR ] [D] Content:" + json.dumps(
+        [
+            {
+                "BCCH-DL-SCH-Message": {
+                    "message": {
+                        "c1": {
+                            "systemInformationBlockType1": {
+                                "cellAccessRelatedInfo": {
+                                    "plmn-IdentityList": [{"plmn-IdentityList": [{"mcc": mcc, "mnc": mnc}]}]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    )
+
+
+@pytest.mark.parametrize("mnc", [5, 6, 8])
+def test_received_sib1_preserves_two_digit_mnc(mnc):
+    plmn = f"4500{mnc}"
+    assert pws.received_plmn(sib1_log(mnc=(0, mnc)), plmn) == plmn
+
+
+def test_wrong_or_changing_received_plmn_is_rejected():
+    with pytest.raises(LabError, match="E_PLMN_RX"):
+        pws.received_plmn(sib1_log(), "45008")
+    with pytest.raises(LabError, match="E_PLMN_RX"):
+        pws.received_plmn(sib1_log() + "\n" + sib1_log(mnc=(0, 8)), "45005")
+
+
+@pytest.mark.parametrize("mnc", [[5], [0, 0, 5], [False, 5], [0, 10], "05"])
+def test_invalid_received_mnc_is_not_success(mnc):
+    with pytest.raises(LabError, match="E_PLMN_RX"):
+        pws.received_plmn(sib1_log(mnc=mnc), "45005")
+
+
+@pytest.mark.parametrize("log", ["", "SIB1 acquired successfully PLMN=45005", sib1_log().split('"mnc"')[0]])
+def test_plmn_requires_complete_received_asn1_json(log):
+    assert pws.received_plmn(log, "45005") is None
+
+
+def test_actual_srsue_sib1_log_with_malformed_non_identity_json():
+    log = (Path(__file__).parents[1] / "fixtures/srsue-sib1-45005.txt").read_text()
+    with pytest.raises(json.JSONDecodeError):
+        json.loads(log.split("Content:", 1)[1])
+    assert pws.received_plmn(log, "45005") == "45005"
+    with pytest.raises(LabError, match="E_PLMN_RX"):
+        pws.received_plmn(log, "45008")
