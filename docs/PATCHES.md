@@ -53,3 +53,19 @@ SI monitor는 opt-in이며 기존 연결 모드 회귀도 PASS다. time-allocati
 기존 GitHub `build` run `39238015007`에서 `-march=x86-64`의 `cpu_features.h`가 `to_array<cpu_feature>({})`의 길이를 추론하지 못해 컴파일에 실패했다. `patches/ocudu-empty-cpu-features.patch`는 고정 feature 목록을 빈 경우도 허용하는 `constexpr std::initializer_list`로 바꾼다. CPU 필수 instruction을 추가하거나 runtime feature 검사를 제거하지 않는다. hash와 source `include/ocudu/support/cpu_features.h`는 lock에 고정했다.
 
 ARM64의 feature macro를 비활성화한 별도 compile probe에서 원본의 동일 오류와 수정 후 empty-list compile 성공을 확인했다. 실제 ARM64 gNB도 재빌드했다. GitHub x86-64 전체 빌드 결과는 해당 새 CI run에서 별도 확인해야 한다.
+
+## LTE SIB12 monitor와 종료 수정
+
+기준 srsRAN 4G commit은 위와 같으며 patch와 원본·적용 결과 hash를 `dependencies.lock.json`에 고정한다.
+
+| patch | source | 변경 |
+|---|---|---|
+| `srsenb-sib12-segments.patch` | `srsenb/src/enb_cfg_parser.cc` | vector 재할당 전에 ID/serial 복사, dangling reference 제거 |
+| `srsue-lte-sib12.patch` | `srsue/src/stack/rrc/rrc.cc` | 실제 ASN.1에서 SIB1 PLMN/SIB12 payload 로그, monitor에서 SIB2 재설정 생략 |
+| `srsue-lte-si-rnti.patch` | `srsue/src/stack/mac/mac.cc` | monitor에서 모든 TTI의 SI-RNTI 수신 유지 |
+| `srsue-lte-si-monitor.patch` | `srsue/src/stack/rrc/rrc_procedures.cc` | SIB1 선행 수신 및 SI acquire 완료 두 경로 모두 attach 진입 억제 |
+| `srsue-lte-stop-deadlock.patch` | `srsue/src/phy/sync.cc` | `intra_freq_cfg_mutex`를 SYNC thread join 전에 해제 |
+
+LTE monitor는 `PWS_LAB_LTE_SI_MONITOR=1`로 명시적으로 켠다. 정상 종료 수정은 LTE PHY 공통 코드에 적용한다. GDB에서 main thread의 `sync::stop()`/join과 SYNC thread의 `radio_recv_fnc()`/mutex 대기가 서로 막히는 것을 확인했다. 기존 5초 signal watchdog을 늘려 숨기지 않고 lock 범위를 수정한다. eNB의 UE disconnect 이후 대기는 upstream의 `fail_on_disconnect=true,trx_timeout_ms=1000` 설정으로 제한한다. 상세 결과는 [LTE 검증](LTE_SIB12_VERIFICATION.md)을 참조한다.
+
+x86 CI의 SSE4.1 요구 조건과 build target 수정은 [CI 진단](CI_DEBUG.md)에 설명한다.

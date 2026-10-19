@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import signal
 import subprocess
+import sys
 import time
 from .reporting import audit, report, write_report
 
@@ -52,6 +53,13 @@ def main():
     write_report(args.output / f"{args.name}.json", result)
     audit(args.output, args.name, status)
     print(f"{args.name}: {status} ({code}) — {log_path}")
+    if status in {"FAIL", "BLOCKED"}:
+        # 큰 build log도 끝부분만 읽어 GitHub step에서 실패 원인을 바로 볼 수 있게 한다.
+        with log_path.open("rb") as stream:
+            stream.seek(0, os.SEEK_END)
+            stream.seek(max(0, stream.tell() - 16384))
+            tail = stream.read().decode("utf-8", errors="replace").splitlines()[-80:]
+        print("\n".join(tail), file=sys.stderr)
     return code
 
 

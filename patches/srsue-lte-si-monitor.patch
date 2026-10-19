@@ -1,0 +1,35 @@
+diff --git a/srsue/src/stack/rrc/rrc_procedures.cc b/srsue/src/stack/rrc/rrc_procedures.cc
+index 6b2de8e..c522725 100644
+--- a/srsue/src/stack/rrc/rrc_procedures.cc
++++ b/srsue/src/stack/rrc/rrc_procedures.cc
+@@ -27,6 +27,7 @@
+ #include "srsran/interfaces/ue_rlc_interfaces.h"
+ #include "srsran/interfaces/ue_usim_interfaces.h"
+ #include "srsue/hdr/stack/rrc/rrc_meas.h"
++#include <cstdlib>
+ #include <inttypes.h> // for printing uint64_t
+ 
+ #define Error(fmt, ...) rrc_ptr->logger.error("Proc \"%s\" - " fmt, name(), ##__VA_ARGS__)
+@@ -84,6 +85,11 @@ proc_outcome_t rrc::cell_search_proc::step_si_acquire()
+     search_result.cs_ret.found = cell_search_ret_t::CELL_NOT_FOUND;
+     return proc_outcome_t::success;
+   }
++  const char* monitor = std::getenv("PWS_LAB_LTE_SI_MONITOR");
++  if (monitor != nullptr && std::string(monitor) == "1") {
++    // 시험용 SI 수신만 유지하며 NAS attach 절차를 시작하지 않는다.
++    return proc_outcome_t::yield;
++  }
+   Info("Completed successfully");
+   return proc_outcome_t::success;
+ }
+@@ -117,6 +123,10 @@ proc_outcome_t rrc::cell_search_proc::step_wait_measurement()
+   }
+ 
+   if (rrc_ptr->meas_cells.serving_cell().has_sib1()) {
++    const char* monitor = std::getenv("PWS_LAB_LTE_SI_MONITOR");
++    if (monitor != nullptr && std::string(monitor) == "1") {
++      return proc_outcome_t::yield;
++    }
+     Info("Cell has SIB1");
+     return proc_outcome_t::success;
+   }

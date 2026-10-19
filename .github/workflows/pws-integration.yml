@@ -5,6 +5,9 @@ permissions:
 concurrency:
   group: pws-${{ github.ref }}
   cancel-in-progress: true
+env:
+  LAB_BUILD_JOBS: 4
+  LAB_BUILD_MEMORY: 8g
 jobs:
   pws-zmq:
     runs-on: ubuntu-24.04

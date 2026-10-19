@@ -18,6 +18,9 @@ on:
       - '.github/workflows/zmq.yml'
 permissions:
   contents: read
+env:
+  LAB_BUILD_JOBS: 4
+  LAB_BUILD_MEMORY: 8g
 jobs:
   reception:
     runs-on: ubuntu-24.04

@@ -1,0 +1,35 @@
+diff --git a/srsue/src/stack/mac/mac.cc b/srsue/src/stack/mac/mac.cc
+index 51c977d..51232bf 100644
+--- a/srsue/src/stack/mac/mac.cc
++++ b/srsue/src/stack/mac/mac.cc
+@@ -30,6 +30,7 @@
+ #include "srsran/common/pcap.h"
+ #include "srsran/interfaces/ue_phy_interfaces.h"
+ #include "srsue/hdr/stack/mac/mac.h"
++#include <cstdlib>
+ 
+ namespace srsue {
+ 
+@@ -274,6 +275,14 @@ uint16_t mac::get_ul_sched_rnti(uint32_t tti)
+ 
+ uint16_t mac::get_dl_sched_rnti(uint32_t tti)
+ {
++  static const bool lab_si_monitor = []() {
++    const char* value = std::getenv("PWS_LAB_LTE_SI_MONITOR");
++    return value != nullptr && std::string(value) == "1";
++  }();
++  if (lab_si_monitor) {
++    return SRSRAN_SIRNTI;
++  }
++
+   // Priority: SI-RNTI, P-RNTI, RA-RNTI, Temp-RNTI, CRNTI
+   if (si_window.is_in_window(tti)) {
+     // TODO: This scheduling decision belongs to RRC
+@@ -528,7 +537,6 @@ void mac::new_grant_ul(uint32_t                               cc_idx,
+   } // end of holding metrics mutex
+ }
+ 
+-
+ void mac::setup_timers(int time_alignment_timer)
+ {
+   // stop currently running time alignment timer

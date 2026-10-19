@@ -1,0 +1,68 @@
+---  Software Radio Systems LTE eNodeB  ---
+
+Reading configuration file /lab/artifacts/lte-sib12/final/boundary/enb.conf...
+Failed to `mlockall`: {}
+Built in Release mode using commit 6bcbd9e on branch HEAD.
+
+2026-10-19T17:15:48.975515 [ENB    ] [I] Using binary build/bin/srsenb-lte with arguments: /lab/artifacts/lte-sib12/final/boundary/enb.conf 
+2026-10-19T17:15:48.975892 [ENB    ] [I] Built in Release mode using commit 6bcbd9e on branch HEAD.
+2026-10-19T17:15:48.980896 [ENB    ] [I] Using sync queue size of one for ZMQ based radio.
+2026-10-19T17:15:49.113263 [RRC    ] [I] Tx Broadcast PDU - systemInformationBlockType1, cc=0, idx=0 (17 B)
+2026-10-19T17:15:49.113280 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=1 (33 B)
+2026-10-19T17:15:49.113649 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 sib_segment=0 (112 B)
+2026-10-19T17:15:49.113649 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 sib_segment=1 (111 B)
+2026-10-19T17:15:49.113650 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 sib_segment=2 (111 B)
+2026-10-19T17:15:49.113651 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 sib_segment=3 (111 B)
+2026-10-19T17:15:49.113651 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 sib_segment=4 (111 B)
+2026-10-19T17:15:49.113651 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 sib_segment=5 (111 B)
+2026-10-19T17:15:49.113652 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 sib_segment=6 (111 B)
+2026-10-19T17:15:49.113652 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 sib_segment=7 (111 B)
+2026-10-19T17:15:49.113653 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 sib_segment=8 (111 B)
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+2026-10-19T17:15:49.113653 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 sib_segment=9 (111 B)
+connect(): Connection refused
+2026-10-19T17:15:49.113653 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 sib_segment=10 (111 B)
+2026-10-19T17:15:49.113654 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 sib_segment=11 (111 B)
+2026-10-19T17:15:49.113654 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 sib_segment=12 (57 B)
+2026-10-19T17:15:49.113660 [RRC    ] [I] Allocating 1 PRBs for PUCCH
+2026-10-19T17:15:49.114838 [RRC    ] [I] T310 200, T311 10000, N310 1
+2026-10-19T17:15:49.114839 [RRC    ] [I] Inactivity timeout: 30000 ms
+Failed to initiate S1 connection. Attempting reconnection in 10 seconds
+2026-10-19T17:15:49.114839 [RRC    ] [I] Max consecutive MAC KOs: 100
+2026-10-19T17:15:49.116157 [COMN   ] [D] [    0] Opened SCTP socket=6
+2026-10-19T17:15:49.116188 [COMN   ] [D] [    0] Setting RTO_INFO options on SCTP socket. Association 0, Initial RTO 3000, Minimum RTO 1000, Maximum RTO 6000
+2026-10-19T17:15:49.116190 [COMN   ] [D] [    0] Setting SCTP_INITMSG options on SCTP socket. Max attempts 3, Max init attempts timeout 5000
+2026-10-19T17:15:49.116214 [COMN   ] [D] [    0] Successfully bound to address 127.0.1.1:2152
+2026-10-19T17:15:49.116225 [COMN   ] [D] [    0] Successfully bound to address 127.0.1.1:0
+2026-10-19T17:15:49.116232 [COMN   ] [D] [    0] RxSockets: socket fd=5 has been registered.
+2026-10-19T17:15:49.116916 [COMN   ] [I] [    0] Failed to establish socket connection to 127.0.1.100
+2026-10-19T17:15:49.122536 [COMN   ] [W] [    0] RxSockets: The socket fd=6 to be removed does not exist
+2026-10-19T17:15:49.122574 [COMN   ] [D] [    0] Socket=6 was closed.
+Opening 1 channels in RF device=zmq with args=tx_port=tcp://127.0.0.1:2100,rx_port=tcp://127.0.0.1:2101,id=enb,base_srate=23.04e6,fail_on_disconnect=true,trx_timeout_ms=1000
+Supported RF device list: zmq file
+CHx base_srate=23.04e6
+CHx id=enb
+Current sample rate is 1.92 MHz with a base rate of 23.04 MHz (x12 decimation)
+CH0 rx_port=tcp://127.0.0.1:2101
+CH0 tx_port=tcp://127.0.0.1:2100
+CH0 fail_on_disconnect=true
+CH0 trx_timeout_ms=1000
+
+Warning: TX gain was not set. Using open-loop power control (not working properly)
+
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+
+==== eNodeB started ===
+Type <t> to view trace
+Current sample rate is 5.76 MHz with a base rate of 23.04 MHz (x4 decimation)
+Current sample rate is 5.76 MHz with a base rate of 23.04 MHz (x4 decimation)
+Setting frequency: DL=2680.0 Mhz, UL=2560.0 MHz for cc_idx=0 nof_prb=25
+Closing stdin thread.
+Stopping ..
+2026-10-19T17:15:55.393050 [COMN   ] [D] [    0] RxSockets: Closing rx socket handler thread
+2026-10-19T17:15:55.393118 [COMN   ] [D] [    0] RxSockets: closed.
+---  exiting  ---2026-10-19T17:15:55.393166 [COMN   ] [D] [    0] Socket=-1 could not be closed.
+
+2026-10-19T17:15:55.398455 [COMN   ] [D] [    0] Socket=-1 could not be closed.
+2026-10-19T17:15:55.412876 [COMN   ] [D] [    0] Socket=-1 could not be closed.

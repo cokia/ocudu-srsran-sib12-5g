@@ -70,3 +70,7 @@ OCUDU의 `external/` include 경로가 우선하므로 codec는 vendored nlohman
 Upstream 자체에는 bladeRF factory가 없다. 로컬 `hardware/bladerf-x40/radio_plugin`이 기존 dynamic loader를 사용하므로 OCUDU radio source patch는 필요하지 않았다. 실제 gNB 로딩/mock streaming은 검증했고 실물 timing은 미검증이다. pinned gateway buffer는 `ci16_t`; ZMQ의 wire CF32와 구분한다.
 
 PWS 연결은 upstream `apps/units/flexible_o_du/o_du_high/du_high/du_high_config_cli11_schema.cpp`의 `cmas.test`, `du_high_config_translators.cpp`의 `create_sib8_info`/`fill_pws_si_messages`, `lib/du/du_high/du_manager/converters/asn1_sys_info_packer.cpp`의 segmentation, `cbs/cbs_encoder_impl.cpp::fill_cb_data_ucs2`를 재사용했다. static SI의 실제 ZMQ→srsUE 수신을 검증했다. 별도 NGAP WRW/F1AP 동적 warning 전달 시험을 수행한 것은 아니다. [수신 patch](PATCHES.md), [결과](RADIO_PWS_REPORT.md)를 참조한다.
+
+## LTE 추가 조사
+
+srsRAN 4G의 SIB12 ASN.1, srsENB CMAS parser/encoder/scheduler는 구현되어 있다. 기존 srsUE는 SIB12를 지원하지 않아 monitor를 추가했다. LTE 경로는 OCUDU와 독립적인 build다. exact source, 변경 patch와 검증 범위는 [LTE 가이드](LTE_SIB12.md)와 [결과](LTE_SIB12_VERIFICATION.md)에 기록한다.

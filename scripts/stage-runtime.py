@@ -10,7 +10,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 mode = sys.argv[1]
-if mode not in {"non-sdr", "sdr-bladerf-x40", "controller", "zmq", "radio-plugin"}:
+if mode not in {"non-sdr", "sdr-bladerf-x40", "controller", "zmq", "radio-plugin", "lte"}:
     raise SystemExit(2)
 stage = ROOT / "build" / "runtime" / mode
 if stage.exists():
@@ -22,6 +22,7 @@ files = {
     "sdr-bladerf-x40": ["pws-codec", "bladerf-x40-diag"],
     "controller": ["pws-codec"],
     "zmq": ["gnb-zmq", "srsue"],
+    "lte": ["srsenb-lte", "srsue-lte"],
     "radio-plugin": ["gnb-zmq"],
 }[mode]
 manifest = {"mode": mode, "pins": json.loads((ROOT / "dependencies.lock.json").read_text()), "sha256": {}}

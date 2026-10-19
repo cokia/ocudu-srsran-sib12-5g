@@ -1,0 +1,41 @@
+{
+  "application_version": "0.1.0",
+  "artifact_location": "artifacts/lte-sib12/final/english",
+  "details": {
+    "backend": "zmq",
+    "data_coding_scheme": 72,
+    "exit_codes": [
+      0,
+      0
+    ],
+    "message_identifier": 4380,
+    "payload_hex": "01005b0054004500530054005d0020004f00660066006c0069006e00650020004c0054004500200043004d0041005300200072006500630065007000740069006f006e002e000000000000000000000000000044",
+    "physical_phone": "NOT VERIFIED",
+    "plmn": "00101",
+    "received_plmn": "00101",
+    "receiver": "patched-srsUE-LTE-SI-monitor",
+    "rf_transmission": false,
+    "segments": 1,
+    "serial_number": 0,
+    "text": "[TEST] Offline LTE CMAS reception."
+  },
+  "error": null,
+  "firmware_version": null,
+  "fpga_version": null,
+  "host": {
+    "architecture": "aarch64",
+    "os": "Linux",
+    "python": "3.12.3",
+    "release": "6.8.0-117-generic"
+  },
+  "mode": "non-sdr",
+  "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+  "ocudu_used": false,
+  "rat": "LTE",
+  "report_schema_version": 1,
+  "result": "PASS",
+  "sdr_model": null,
+  "srsran4g_commit": "6bcbd9e5bf8686aa7085202cd847c5ddd64a9c16",
+  "test_name": "lte-sib12-receive",
+  "timestamp": "2026-10-19T17:15:48+00:00"
+}

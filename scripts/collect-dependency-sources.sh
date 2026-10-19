@@ -14,3 +14,10 @@ for binary in libfftw3-single3 libmbedtls14 libsctp1 libyaml-cpp0.8 libusb-1.0-0
  source_spec=$(dpkg-query -W -f='${source:Package}=${source:Version}' "$binary")
  apt-get source --download-only "$source_spec"
 done
+
+for binary in libzmq5 libboost-program-options1.83.0 libconfig++9v5; do
+ if dpkg-query -W -f='${Status}' "$binary" 2>/dev/null | grep -q 'install ok installed'; then
+  source_spec=$(dpkg-query -W -f='${source:Package}=${source:Version}' "$binary")
+  apt-get source --download-only "$source_spec"
+ fi
+done

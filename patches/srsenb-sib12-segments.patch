@@ -1,0 +1,25 @@
+diff --git a/srsenb/src/enb_cfg_parser.cc b/srsenb/src/enb_cfg_parser.cc
+index ab2d660..c52553b 100644
+--- a/srsenb/src/enb_cfg_parser.cc
++++ b/srsenb/src/enb_cfg_parser.cc
+@@ -2771,14 +2771,17 @@ int parse_sib12(std::string filename, std::vector<sib_info_item_c>& data)
+                 nof_segments,
+                 max_nof_segments);
+ 
+-  unsigned cb_data_nof_bytes = static_cast<unsigned>(cb_data.size());
++  // vector 재할당 전에 metadata를 복사하여 이전 element 참조를 보관하지 않는다.
++  const auto message_id        = sib12_first_segment.msg_id_r9;
++  const auto serial_number     = sib12_first_segment.serial_num_r9;
++  unsigned   cb_data_nof_bytes = static_cast<unsigned>(cb_data.size());
+   for (unsigned i_segment = 0, cb_data_offset = 0; i_segment != nof_segments; ++i_segment) {
+     // Copy the message ID and serial number from the first segment into all other segments.
+     if (i_segment > 0) {
+       data.emplace_back();
+       sib_type12_r9_s& segment              = data.back().set_sib12_v920();
+-      segment.msg_id_r9                     = sib12_first_segment.msg_id_r9;
+-      segment.serial_num_r9                 = sib12_first_segment.serial_num_r9;
++      segment.msg_id_r9                     = message_id;
++      segment.serial_num_r9                 = serial_number;
+       segment.data_coding_scheme_r9_present = false;
+     }
+ 

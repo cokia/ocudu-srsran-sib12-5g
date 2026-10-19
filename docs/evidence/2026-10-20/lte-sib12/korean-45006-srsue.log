@@ -1,0 +1,261 @@
+Reading configuration file /lab/artifacts/lte-sib12/final/korean-45006/ue.conf...
+Failed to `mlockall`: 122026-10-19T17:15:39.636037 [UE     ] [I] Using binary build/bin/srsue-lte with arguments: /lab/artifacts/lte-sib12/final/korean-45006/ue.conf 
+
+Built in Release mode using commit 6bcbd9e on branch HEAD.
+
+2026-10-19T17:15:39.637227 [UE     ] [I] Built in Release mode using commit 6bcbd9e on branch HEAD.
+Opening 1 channels in RF device=zmq with args=tx_port=tcp://127.0.0.1:2101,rx_port=tcp://127.0.0.1:2100,id=ue,base_srate=23.04e6,fail_on_disconnect=true,trx_timeout_ms=1000
+Supported RF device list: zmq file
+CHx base_srate=23.04e6
+CHx id=ue
+Current sample rate is 1.92 MHz with a base rate of 23.04 MHz (x12 decimation)
+CH0 rx_port=tcp://127.0.0.1:2100
+CH0 tx_port=tcp://127.0.0.1:2101
+CH0 fail_on_disconnect=true
+CH0 trx_timeout_ms=1000
+
+Warning: TX gain was not set. Using open-loop power control (not working properly)
+
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+2026-10-19T17:15:39.856901 [RRC    ] [I] using srand seed of 856900
+Waiting PHY to initialize ... Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+done!
+Attaching UE...
+Closing stdin thread.
+Current sample rate is 23.04 MHz with a base rate of 23.04 MHz (x1 decimation)
+2026-10-19T17:15:39.951702 [RRC    ] [I] Proc "PLMN Search" - Starting PLMN search
+2026-10-19T17:15:39.951703 [RRC    ] [I] Proc "Cell Search" - Starting...
+2026-10-19T17:15:39.951725 [RRC    ] [I] FSM "phy_controller" - transition detected - unknown_st -> searching_cell (cause: cell_search_cmd)
+2026-10-19T17:15:39.951726 [RRC    ] [I] FSM "phy_controller" - Initiating Cell search
+Current sample rate is 23.04 MHz with a base rate of 23.04 MHz (x1 decimation)
+Setting manual TX/RX offset to 0 samples
+.
+Found Cell:  Mode=FDD, PCI=1, PRB=25, Ports=1, CP=Normal, CFO=0.1 KHz
+2026-10-19T17:15:40.105493 [RRC    ] [I] FSM "phy_controller" - PHY cell search completed. Found cell {pci=1, dl_earfcn=3350}
+2026-10-19T17:15:40.105502 [RRC    ] [I] FSM "phy_controller" - transition detected - searching_cell -> unknown_st (cause: cell_srch_res)
+2026-10-19T17:15:40.105503 [RRC    ] [I] Proc "Cell Search" - Cell found in this frequency. Setting new serving cell EARFCN=3350 PCI=1 ...
+2026-10-19T17:15:40.105516 [RRC    ] [I] Adding neighbour cell {cell_id: 0x0, pci: 1, dl_earfcn: 3350, rsrp=+nan, cfo=+54.3}, nof_neighbours=1
+2026-10-19T17:15:40.105518 [RRC    ] [I] Setting serving cell {cell_id: 0x0, pci: 1, dl_earfcn: 3350, rsrp=+nan, cfo=+54.3}, nof_neighbours=0
+2026-10-19T17:15:40.105766 [RRC    ] [I] FSM "phy_controller" - transition detected - unknown_st -> selecting_cell (cause: cell_sel_cmd)
+2026-10-19T17:15:40.105766 [RRC    ] [I] FSM "selecting_cell" - Starting for pci=1, earfcn=3350
+2026-10-19T17:15:40.107242 [RRC    ] [I] BCCH-BCH - Rx MIB (3 B)
+Setting manual TX/RX offset to 0 samples
+2026-10-19T17:15:40.119176 [RRC    ] [I] FSM "selecting_cell" - transition detected - wait_csel_res -> wait_in_sync (cause: cell_sel_res)
+2026-10-19T17:15:40.119179 [RRC    ] [I] FSM "selecting_cell" - transition detected - wait_in_sync -> in_sync_st (cause: in_sync_ev)
+2026-10-19T17:15:40.119181 [RRC    ] [I] FSM "selecting_cell" - Cell {pci=1, dl_earfcn=3350} successfully selected
+2026-10-19T17:15:40.119182 [RRC    ] [I] Proc "Cell Search" - No valid measurement found for the serving cell. Wait for valid measurement...
+2026-10-19T17:15:40.125719 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.125719 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.125741 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.125797 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.144005 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+26.4 Hz
+2026-10-19T17:15:40.150269 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.150270 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.150273 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.150275 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.167522 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+7.0 Hz
+2026-10-19T17:15:40.176389 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.176389 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.176396 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.176398 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.181564 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (41 B)
+2026-10-19T17:15:40.193908 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (41 B)
+2026-10-19T17:15:40.194941 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+1.6 Hz
+2026-10-19T17:15:40.201085 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.201085 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.201088 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.201090 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.207687 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.207687 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.207702 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.220845 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.220846 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.220853 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.221963 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.3 Hz
+Stopping ..
+2026-10-19T17:15:40.228609 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.228609 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.228612 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.228614 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.247431 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.1 Hz
+2026-10-19T17:15:40.253647 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.253647 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.253651 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.253652 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.271294 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.278782 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.278783 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.278787 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.278788 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.296034 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.303443 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.303444 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.303447 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.303448 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.308401 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.308402 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.308407 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.320671 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.320676 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.320676 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.320680 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.328047 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.328048 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.328050 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.328051 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.345780 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.353272 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.353273 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.353275 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.353277 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.370440 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.378077 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.378078 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.378085 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.378086 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.382995 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (41 B)
+2026-10-19T17:15:40.396058 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.396074 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (41 B)
+2026-10-19T17:15:40.403915 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.403915 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.403920 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.403922 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.408704 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.408705 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.408711 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.420971 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.420981 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.420982 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.420987 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.428658 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.428658 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.428661 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.428663 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.446141 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.453900 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.453901 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.453904 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.453906 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.471751 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.479633 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.479633 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.479637 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.479638 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.496966 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.504742 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.504743 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.504747 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.504749 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.509668 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.509669 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.509674 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.522817 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.522818 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.522836 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.523935 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.530690 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.530690 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.530693 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.530698 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.547879 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.555315 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.555315 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.555318 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.555320 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.572304 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.579636 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.579636 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.579639 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.579641 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.584805 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (41 B)
+2026-10-19T17:15:40.597112 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.597122 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (41 B)
+2026-10-19T17:15:40.604707 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.604707 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.604710 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.604712 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.609668 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.609668 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.609677 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.621825 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.621830 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.621830 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.621834 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.629331 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.629332 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.629334 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.629335 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.646886 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.655435 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.655435 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.655449 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.655451 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.677970 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.686985 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.686988 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.686991 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.687001 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.706212 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.714573 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.714576 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.714586 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.714588 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.721578 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.721579 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.721593 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.737493 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.737508 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.737508 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.737515 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.744979 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.744980 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.744984 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.744986 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.762035 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.769338 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.769339 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.769342 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.769343 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.786670 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.794332 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.794332 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.794335 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.794337 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.799227 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (41 B)
+2026-10-19T17:15:40.811647 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (41 B)
+2026-10-19T17:15:40.812780 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.819155 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.819156 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.819159 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.819160 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.823842 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.823842 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.823848 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.836114 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.836115 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.836120 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+2026-10-19T17:15:40.837394 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.843618 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.843618 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.843620 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.843622 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.862344 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.869132 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.869133 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.869136 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.869138 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.886731 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.894696 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.894705 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.894708 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.894710 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.913249 [RRC    ] [I] MEAS:  New measurement serving cell: earfcn=0, pci=1, rsrp=-21.12 dBm, cfo=+0.0 Hz
+2026-10-19T17:15:40.919563 [RRC    ] [I] BCCH-DLSCH - Rx systemInformationBlockType1 (18 B)
+2026-10-19T17:15:40.919563 [RRC    ] [I] Processing SIB1 (1/1)
+2026-10-19T17:15:40.919566 [RRC    ] [I] SIB1 received, CellID=2817, si_window=20, sib2_period=16
+2026-10-19T17:15:40.919567 [RRC    ] [I] LAB_LTE_SIB1 plmn=45006
+2026-10-19T17:15:40.924455 [RRC    ] [I] BCCH-DLSCH - Rx systemInformation (105 B)
+2026-10-19T17:15:40.924456 [RRC    ] [I] Processing SIB12 (0/1)
+2026-10-19T17:15:40.924462 [RRC    ] [I] LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038
+---  exiting  ---

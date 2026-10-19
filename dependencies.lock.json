@@ -77,6 +77,41 @@
         "original_sha256": "a61c66dc7edd143551fe6582989ae0dc87508b85b8b1a67a076bb47e48963e73",
         "patched_sha256": "b27adf94a669fc2229e70b4d9baf38e58d78405bcce7fbca0c1a91deea8e4b45",
         "sha256": "e3e5f0ca0b5d24b6d53009bc4c055f310c6f0c39721c09e82d2cf5a73eba8e2d"
+      },
+      {
+        "file": "patches/srsue-lte-sib12.patch",
+        "source": "srsue/src/stack/rrc/rrc.cc",
+        "original_sha256": "c343147386ff92a308daed9ba151daaa8ee6d21c1c36e52c9a91ab6acafc945f",
+        "patched_sha256": "1085b0305ae3ecdc9dee92b4c3908725fec556e2601b801e8bb5c7cd515ccf1d",
+        "sha256": "b6914cfc7b019fbb4256227f6741661db62cc98b5dd607f431b555cf45e07326"
+      },
+      {
+        "file": "patches/srsue-lte-si-monitor.patch",
+        "source": "srsue/src/stack/rrc/rrc_procedures.cc",
+        "original_sha256": "91d323e4efb9fa394fbc06d57847a77d89effe69231175fc9d04884da8a9cfac",
+        "patched_sha256": "840a996eed896900320092bb5e27bd9d4c4e8a8e12432bf9b026ca166dce4bd2",
+        "sha256": "58fc2bb1f0dd9a6324590f50bc374359eaa5e39dc4a28929b2c93b542455f234"
+      },
+      {
+        "file": "patches/srsue-lte-si-rnti.patch",
+        "source": "srsue/src/stack/mac/mac.cc",
+        "original_sha256": "c80a383730f8d87cebff74e184a7a7450730782acf9caf34abfdb8f6463e5218",
+        "patched_sha256": "940aadfc3d1ad6f6a04d2338fbd2bb4cc86dac0bd4dce43a62b92f78ad7bed73",
+        "sha256": "07109808d41503addb771da75ce105208bb80fe562660afecef54699d5a9d02e"
+      },
+      {
+        "file": "patches/srsenb-sib12-segments.patch",
+        "source": "srsenb/src/enb_cfg_parser.cc",
+        "original_sha256": "9d538cd7a2cc4867a41bf8d771ceaa28dd0bb790348bb085a6ae6353833da705",
+        "patched_sha256": "34b4d7271f7850c4c793edff1fa1f9188587ee83e641403f80ca5a9d79f26895",
+        "sha256": "c04f08a3d42543036a99bb0508ba640b0815ee3dbdefe47b25c18560f7a89581"
+      },
+      {
+        "file": "patches/srsue-lte-stop-deadlock.patch",
+        "source": "srsue/src/phy/sync.cc",
+        "original_sha256": "1773191ca90d296bd7ff1a316190c63083d30ba98a4c7e56ca02bbee420796e0",
+        "patched_sha256": "f387d6ec69f292dd38d0a00345dd5cfbad5b9931466e7abe9a341a135a630551",
+        "sha256": "514116a8313e4b0341c357d280fadbef63aa7167579c72c04dc6ec804e2117f5"
       }
     ]
   }

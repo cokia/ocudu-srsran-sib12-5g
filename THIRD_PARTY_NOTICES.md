@@ -14,7 +14,7 @@
 | mbedTLS | Apache-2.0 | Ubuntu 패키지 copyright 보존 |
 | lksctp-tools / libsctp | LGPL-2.1-or-later 등 패키지별 고지 | runtime 라이브러리 동적 링크; 정확한 고지는 `/usr/share/doc/libsctp1/copyright` |
 | libusb | LGPL-2.1-or-later | SDR 이미지에만 shared library 포함, 고지와 source package 기록 |
-| srsRAN 4G / srsUE 25.10 | AGPL-3.0-or-later 및 원본 COPYRIGHT의 구성요소별 고지 | 선택적 ZMQ 수신 이미지에 포함. LICENSE/COPYRIGHT 보존, 고정 commit의 대응 source를 함께 제공해야 함 |
+| srsRAN 4G / srsUE / srsENB 25.10 | AGPL-3.0-or-later 및 원본 COPYRIGHT의 구성요소별 고지 | 선택적 ZMQ 수신 이미지에 포함. LICENSE/COPYRIGHT 보존, 고정 commit의 대응 source를 함께 제공해야 함 |
 | ZeroMQ / Boost.Program_options | MPL-2.0 / BSL-1.0 | ZMQ 이미지의 Ubuntu 고정 snapshot package, `/usr/share/doc/*/copyright` 보존 |
 | PyYAML, attrs, jsonschema, referencing, rpds-py | MIT | 고정 버전, 배포 wheel의 dist-info 고지 유지 |
 | Python, GNU runtime, glibc, Ubuntu 패키지 | 각 패키지의 라이선스 | 컨테이너 `/usr/share/doc/*/copyright` 및 패키지 manifest로 추적 |
@@ -28,3 +28,5 @@
 OCUDU/srsUE source의 diff 조각은 해당 upstream license를 유지하며 자체 BSD license로 바뀌지 않는다. patch 범위와 적용 hash는 [patch 문서](docs/PATCHES.md) 및 `dependencies.lock.json`에 기록한다.
 
 추가 radio plugin 자체 코드는 BSD-3-Clause이며 기존 OCUDU/libbladeRF 고지를 유지한다. srsUE SI monitor 및 PHY 수정 patch는 원본 AGPL-3.0-or-later 조건을 유지한다. C++ 정렬에 사용한 개발 도구는 clang-format 18.1.8이며 runtime에 포함하지 않는다.
+
+LTE image의 `libconfig++9v5`와 build의 `libconfig++-dev`는 Ubuntu snapshot `1.5-0.4build2`를 사용한다. libconfig library는 LGPL-2.1-or-later이며 패키지별 고지는 `/usr/share/doc/libconfig++9v5/copyright`에 보존한다. `configs/lte/*.conf`는 srsENB 원본 example의 파생 파일로 AGPL-3.0-or-later 고지를 유지한다. LTE binary를 배포할 때에도 srsRAN 고정 source와 적용 patch, libconfig source package를 함께 제공해야 한다.

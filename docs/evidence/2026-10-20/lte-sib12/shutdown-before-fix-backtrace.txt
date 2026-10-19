@@ -1,0 +1,71 @@
+[New LWP 33]
+[New LWP 30]
+[New LWP 20]
+[New LWP 19]
+[New LWP 18]
+[New LWP 9]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/aarch64-linux-gnu/libthread_db.so.1".
+0x0000e378c96a1d6c in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 7 (Thread 0xe378c884dee0 (LWP 9) "srsue-lte"):
+#0  0x0000e378c96dbd94 in clock_nanosleep () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000e378c96e60bc in nanosleep () from /lib/aarch64-linux-gnu/libc.so.6
+#2  0x0000adf2151346b8 in srslog::backend_worker::do_work() ()
+#3  0x0000e378c9901ae0 in ?? () from /lib/aarch64-linux-gnu/libstdc++.so.6
+#4  0x0000e378c96a582c [PAC] in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#5  0x0000e378c970bb4c in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 6 (Thread 0xe378bbc91ee0 (LWP 18) "ZMQbg/Reaper"):
+#0  0x0000e378c970be74 in epoll_pwait () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000e378c9da6338 in ?? () from /lib/aarch64-linux-gnu/libzmq.so.5
+#2  0x0000e378c9dd69a0 [PAC] in ?? () from /lib/aarch64-linux-gnu/libzmq.so.5
+#3  0x0000e378c96a582c [PAC] in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#4  0x0000e378c970bb4c in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 5 (Thread 0xe378bb481ee0 (LWP 19) "ZMQbg/IO/0"):
+#0  0x0000e378c970be74 in epoll_pwait () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000e378c9da6338 in ?? () from /lib/aarch64-linux-gnu/libzmq.so.5
+#2  0x0000e378c9dd69a0 [PAC] in ?? () from /lib/aarch64-linux-gnu/libzmq.so.5
+#3  0x0000e378c96a582c [PAC] in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#4  0x0000e378c970bb4c in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 4 (Thread 0xe378b4eadee0 (LWP 20) "srsue-lte"):
+#0  0x0000e378c9700bdc in poll () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000e378c9da77ec in ?? () from /lib/aarch64-linux-gnu/libzmq.so.5
+#2  0x0000e378c9dcd478 [PAC] in ?? () from /lib/aarch64-linux-gnu/libzmq.so.5
+#3  0x0000e378c9dcda5c [PAC] in ?? () from /lib/aarch64-linux-gnu/libzmq.so.5
+#4  0x0000e378c9de2ae8 [PAC] in zmq_recv () from /lib/aarch64-linux-gnu/libzmq.so.5
+#5  0x0000adf2156aef0c [PAC] in rf_zmq_async_rx_thread ()
+#6  0x0000e378c96a582c in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#7  0x0000e378c970bb4c in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 3 (Thread 0xe378a3a52ee0 (LWP 30) "WORKER0"):
+#0  0x0000e378c96a1d6c in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000e378c96a49f0 in pthread_cond_wait () from /lib/aarch64-linux-gnu/libc.so.6
+#2  0x0000adf215167658 in srsran::thread_pool::worker::wait_to_start() ()
+#3  0x0000adf21516746c in srsran::thread_pool::worker::run_thread() ()
+#4  0x0000adf214ffb578 in srsran::thread::thread_function_entry(void*) ()
+#5  0x0000e378c96a582c in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#6  0x0000e378c970bb4c in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 2 (Thread 0xe3789b378ee0 (LWP 33) "SYNC"):
+#0  0x0000e378c96a203c in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000e378c96a8b44 in pthread_mutex_lock () from /lib/aarch64-linux-gnu/libc.so.6
+#2  0x0000adf2150243e4 in srsue::sync::radio_recv_fnc(srsran::rf_buffer_t&, srsran_timestamp_t*) ()
+#3  0x0000adf215020e74 in srsue::radio_recv_callback(void*, float _Complex**, unsigned int, srsran_timestamp_t*) ()
+#4  0x0000adf2151c2468 in srsran_ue_sync_zerocopy ()
+#5  0x0000adf215023470 in srsue::sync::run_camping_state() ()
+#6  0x0000adf215023c64 in srsue::sync::run_thread() ()
+#7  0x0000adf214ffb578 in srsran::thread::thread_function_entry(void*) ()
+#8  0x0000e378c96a582c in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#9  0x0000e378c970bb4c in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 1 (Thread 0xe378c9f0d020 (LWP 8) "srsue-lte"):
+#0  0x0000e378c96a1d6c in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000e378c96a7218 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#2  0x0000adf2150212cc in srsue::sync::stop() ()
+#3  0x0000adf215012708 in srsue::phy::stop() ()
+#4  0x0000adf214ffccbc in srsue::ue::stop() ()
+#5  0x0000adf214fe2248 in main ()
+[Inferior 1 (process 8) detached]

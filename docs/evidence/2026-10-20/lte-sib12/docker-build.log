@@ -1,0 +1,83 @@
+#0 building with "colima" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.lte
+#1 transferring dockerfile: 944B done
+#1 DONE 0.0s
+
+#2 [context lab_build] load .dockerignore
+#2 transferring lab_build: 2B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/pws-lab-runtime:0.1.0
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 177B done
+#4 DONE 0.0s
+
+#5 [stage-0  1/11] FROM docker.io/library/pws-lab-runtime:0.1.0@sha256:55129085604c38e576dbc12e945005f9dfc2c80370b69ac03134ae782b7ef4c8
+#5 resolve docker.io/library/pws-lab-runtime:0.1.0@sha256:55129085604c38e576dbc12e945005f9dfc2c80370b69ac03134ae782b7ef4c8 done
+#5 DONE 0.0s
+
+#6 [context lab_build] load from client
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 15.28kB done
+#7 DONE 0.0s
+
+#8 [stage-0  2/11] RUN apt-get update -o APT::Update::Error-Mode=any &&     apt-get install -y --no-install-recommends libzmq5 libboost-program-options1.83.0 libconfig++9v5 &&     rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [stage-0  3/11] WORKDIR /lab
+#9 CACHED
+
+#10 [context lab_build] load from client
+#10 ...
+
+#11 [stage-0  4/11] COPY controller /lab/controller
+#11 DONE 0.1s
+
+#12 [stage-0  5/11] COPY configs /lab/configs
+#12 DONE 0.0s
+
+#10 [context lab_build] load from client
+#10 ...
+
+#13 [stage-0  6/11] COPY dependencies.lock.json LICENSE THIRD_PARTY_NOTICES.md /lab/
+#13 DONE 0.1s
+
+#14 [context lab_build] load from client
+#14 transferring lab_build: 14.71MB 0.2s done
+#14 DONE 0.2s
+
+#10 [context lab_build] load from client
+#10 transferring lab_build: 20.66MB 0.2s done
+#10 DONE 0.2s
+
+#15 [stage-0  7/11] COPY licenses /usr/local/share/pws-lab/licenses
+#15 DONE 0.0s
+
+#16 [stage-0  8/11] COPY --from=lab_build /bin/srsenb-lte /usr/local/bin/srsenb-lte
+#16 DONE 0.0s
+
+#17 [stage-0  9/11] COPY --from=lab_build /bin/srsue-lte /usr/local/bin/srsue-lte
+#17 DONE 0.0s
+
+#18 [stage-0 10/11] COPY --from=lab_build /manifest.json /usr/local/share/pws-lab/build-manifest.json
+#18 DONE 0.0s
+
+#19 [stage-0 11/11] RUN mkdir -p /lab/output && chown 10001:10001 /lab/output
+#19 DONE 0.2s
+
+#20 exporting to image
+#20 exporting layers
+#20 exporting layers 0.5s done
+#20 exporting manifest sha256:056c92b5a4d6a1e917096d4f10ea31cfdfd9dbaf3a0b15256e3eba13b80c4391 done
+#20 exporting config sha256:9fc879c2a7487ea98ac9808ae1ced3e7fac844f444f4fc672cfb81c9f172c032 done
+#20 exporting attestation manifest sha256:72bf1281dc4a3608a3b3a38f60ff509ee28fae0e880518eaf355bd78df485bd4 0.0s done
+#20 exporting manifest list sha256:fe799213ba2a0be7a777ef16482a04016cface544dfca51356759b8dbd1d48da done
+#20 naming to docker.io/library/pws-lab-lte:0.1.0 done
+#20 unpacking to docker.io/library/pws-lab-lte:0.1.0
+#20 unpacking to docker.io/library/pws-lab-lte:0.1.0 0.2s done
+#20 DONE 0.8s

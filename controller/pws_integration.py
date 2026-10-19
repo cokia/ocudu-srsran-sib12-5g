@@ -19,10 +19,8 @@ from .errors import LabError
 from .message_model import LaboratoryMessage
 from .reporting import audit, report, write_report
 from .zmq_rx import validate_profiles
+from .pws_profiles import PROFILES, PLMNS, DEFAULT_PLMN
 
-PROFILES = {"monthly-test": 4380, "korean-safety": 4372}
-PLMNS = {"45005": "SKT", "45008": "KT", "45006": "LG U+", "00101": "시험 PLMN"}
-DEFAULT_PLMN = "45005"
 SEGMENT = re.compile(
     r"LAB_SIB8 id=(\d+) serial=(\d+) segment=(\d+) last=([01]) dcs=(none|[0-9a-fA-F]{2}) payload=([0-9a-fA-F]+)"
 )

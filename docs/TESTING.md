@@ -99,3 +99,7 @@ C++ diagnostic은 `-Wall -Wextra -Werror`로 빌드한다. `.github/workflows/te
 - `.github/workflows/pws-integration.yml`: GitHub-hosted runner의 Docker build와 ZMQ 수신, plugin mock. USB device/self-hosted runner 요구 없음.
 
 최종 로컬 결과는 [추가 구현 보고서](RADIO_PWS_REPORT.md), 고정 원본 로그는 `docs/evidence/2026-10-19/pws-radio/`에 보존한다. API doubles, ZMQ, 실물 hardware 결과를 서로 대체하지 않는다.
+
+## LTE SIB12
+
+`scripts/test-lte-sib12.sh`는 420초 상한으로 LTE unit test, 한글 3개 PLMN, 영어 monthly-test, 615자 13-segment 재조립을 실행한다. `docker/compose.lte.yaml`은 별도 runtime image를 검사한다. native Python 결과와 실제 ZMQ 결과는 구분한다. [명령과 기대 결과](LTE_SIB12.md), [실행 증거](LTE_SIB12_VERIFICATION.md)를 참조한다.

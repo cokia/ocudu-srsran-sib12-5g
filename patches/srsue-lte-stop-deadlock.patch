@@ -1,0 +1,21 @@
+diff --git a/srsue/src/phy/sync.cc b/srsue/src/phy/sync.cc
+index c62aa6d..d63d0ab 100644
+--- a/srsue/src/phy/sync.cc
++++ b/srsue/src/phy/sync.cc
+@@ -139,10 +139,13 @@ void sync::stop()
+ {
+   running = false;
+ 
+-  std::lock_guard<std::mutex> lock(intra_freq_cfg_mutex);
+-  for (auto& q : intra_freq_meas) {
+-    q->stop();
++  {
++    std::lock_guard<std::mutex> lock(intra_freq_cfg_mutex);
++    for (auto& q : intra_freq_meas) {
++      q->stop();
++    }
+   }
++  // SYNC도 radio_recv_fnc에서 같은 mutex를 사용하므로 join 전에 해제한다.
+ 
+   // Reset (stop Rx stream) as soon as possible to avoid base-band Rx buffer overflow
+   radio_h->reset();

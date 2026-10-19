@@ -1,6 +1,6 @@
 # OCUDU PWS Laboratory
 
-OCUDU 5G NR의 **오프라인 PWS/CMAS 검증**, **ZMQ SIB8 수신**, **bladeRF x40 radio plugin 및 standalone 진단**을 제공하는 실험실 플랫폼이다. 공유 메시지 → OCUDU SI scheduler → srsUE 한글 수신을 검증했다. x40 timed USB 송신 코드는 별도 RF 활성 build에 있으며, 기본 build와 Docker는 RF OFF다. **실물 x40/휴대폰 수신은 NOT VERIFIED**다.
+OCUDU 5G NR의 **오프라인 PWS/CMAS 검증**, **NR SIB8 및 LTE SIB12 ZMQ 수신**, **bladeRF x40 radio plugin 및 standalone 진단**을 제공하는 실험실 플랫폼이다. 공유 메시지 → OCUDU SI scheduler → srsUE 한글 수신을 검증했다. x40 timed USB 송신 코드는 별도 RF 활성 build에 있으며, 기본 build와 Docker는 RF OFF다. **실물 x40/휴대폰 수신은 NOT VERIFIED**다.
 
 **5G NR CMAS는 SIB8이다.** NR SIB12-r16은 sidelink 설정 구조이므로 별도의 ASN.1 구조 검사만 제공한다. LTE SIB12를 NR 경고 메시지로 잘못 매핑하지 않는다.
 
@@ -11,6 +11,7 @@ OCUDU 5G NR의 **오프라인 PWS/CMAS 검증**, **ZMQ SIB8 수신**, **bladeRF 
 | UTF-8 YAML / JSON Schema / metadata 검사 | 지원 | 동일 공유 모듈 |
 | 한국어·영어 UCS-2 CB Data / NR SIB8 UPER | 지원 | RF와 분리하여 지원 |
 | 실제 OCUDU ASN.1 encode/decode / golden test | 지원 | 동일 codec |
+| LTE SIB12 한글 수신·최대 13 segments | 별도 ZMQ image | 필요 없음 |
 | NR SIB12 구조 round-trip | 지원 | 동일 codec |
 | gNB / Dummy RU / no-core / network isolation | 지원 | 필요 없음 |
 | Docker ZMQ / srsUE MIB·SIB1 / RRC 수신 | 별도 이미지와 Compose | 필요 없음 |
@@ -36,6 +37,18 @@ docker compose -f docker/compose.pws.yaml --profile radio-mock run --rm radio-mo
 [PWS 연동 가이드](docs/PWS_INTEGRATION.md), [radio plugin](docs/RADIO_PLUGIN.md), [실제 수신 로그·검증 보고서](docs/RADIO_PWS_REPORT.md)를 참조한다. 기본 `monthly-test`는 ID 4380, `korean-safety`는 4372다. 국내 폰의 화면 분류는 지역/통신사/단말 설정에 따라 달라진다.
 
 PWS 연동 기본 PLMN은 **`45005`(MCC 450, SKT MNC 05)**다. CLI `--plmn 45008`은 KT, `--plmn 45006`은 LG U+를 선택한다. Compose에서는 `PWS_LAB_PLMN=45008`처럼 지정한다. 실제 ZMQ 수신 SIB1의 MCC/MNC와 한글 SIB8을 함께 검사한다. [국내 PLMN 검증과 로그](docs/KOREAN_PLMN.md)를 참조한다.
+
+## LTE SIB12 수신
+
+LTE는 별도 srsENB/srsUE 경로를 사용한다. 공유 한글 YAML을 LTE SIB12로 인코딩하고 ZMQ IQ 수신 결과를 재조립한다. 기본 PLMN은 `45005`, DCS는 `0x48`, messageIdentifier는 `4372`다.
+
+```bash
+bash scripts/build-lte-docker.sh
+docker compose -f docker/compose.lte.yaml --profile lte-zmq up \
+  --abort-on-container-exit --exit-code-from lte-sib12
+```
+
+[LTE 설치·실행·제한](docs/LTE_SIB12.md), [실제 수신과 검증 결과](docs/LTE_SIB12_VERIFICATION.md)를 참조한다. LTE image에는 물리 RF backend를 빌드하지 않으며 장치와 EPC 없이 실행한다.
 
 ## 빠른 시작: Non-SDR
 

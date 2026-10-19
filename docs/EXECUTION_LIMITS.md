@@ -61,3 +61,7 @@
 - PWS 수신: 5..120초, 기본 60초. UE/gNB 종료 각 10초, 로그별 32 MiB.
 - 6개 회귀 수신 suite(RRC/영어/국내 세 PLMN 한글/615자): 360초 checkpoint. 통합 Docker build: 2700초 checkpoint.
 - 자동 reconnect, 무한 재시도, 자동 실물 RF 실행 없음. 실제 하드웨어 미연결은 PASS로 대체하지 않는다.
+
+## LTE 추가 제한
+
+Docker build 2700초, C++ build 1800초, 전체 수신 suite 420초, 단일 수신 기본 60초/최대 120초, log 32 MiB/process, 정상 종료 10초/process다. upstream srsUE 자체 5초 signal watchdog도 유지한다. [LTE 체크포인트](LTE_SIB12.md)를 참조한다.

@@ -60,3 +60,7 @@ ZMQ 확장은 별도의 Non-SDR backend로 `controller/zmq_rx.py`가 실제 gNB�
 ## OCUDU radio 통합 평가
 
 `hardware/bladerf-x40/radio_plugin`은 `radio_factory`/`radio_session`을 구현하며 upstream 수정 없이 동적 로딩된다. 고정 OCUDU gateway는 ci16_t이며 SC16_Q11 변환, timestamp 전달, continuity, event, stop/watchdog를 구현했다. 실제 gNB mock stream 및 실제 library를 링크한 API double 검사는 PASS다. USB jitter, 실제 RX/TX timestamp domain, 시작 정렬 및 RF 성능은 NOT VERIFIED다. [plugin 상세](RADIO_PLUGIN.md)를 참조한다.
+
+## LTE SIB12 경로
+
+`controller/lte_sib12.py`는 공유 schema와 `LaboratoryMessage`, `cb_data`를 사용하고 srsENB의 LTE SIB12 encoder/scheduler를 호출한다. ZMQ IQ를 받은 srsUE가 실제 LTE ASN.1을 unpack한 뒤 metadata/payload를 기록한다. LTE segment 재조립은 NR SIB8의 규칙과 별도다. `controller/pws_profiles.py`의 실험용 ID/PLMN만 두 경로가 공유한다. [LTE 구성도](LTE_SIB12.md)를 참조한다. LTE build는 OCUDU와 bladeRF에 의존하지 않는다.

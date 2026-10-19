@@ -1,0 +1,10 @@
+ Container ocudu-lte-sib12-lab-lte-sib12-1 Creating 
+ Container ocudu-lte-sib12-lab-lte-sib12-1 Created 
+Attaching to lte-sib12-1
+ Container ocudu-lte-sib12-lab-lte-sib12-1 Starting 
+ Container ocudu-lte-sib12-lab-lte-sib12-1 Started 
+lte-sib12-1  | {"report_schema_version": 1, "mode": "non-sdr", "application_version": "0.1.0", "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70", "host": {"os": "Linux", "release": "6.8.0-117-generic", "architecture": "aarch64", "python": "3.12.3"}, "sdr_model": null, "firmware_version": null, "fpga_version": null, "test_name": "lte-sib12-receive", "result": "PASS", "error": null, "timestamp": "2026-10-19T17:17:13+00:00", "artifact_location": "/lab/output/lte-sib12", "details": {"text": "[시험 데이터] PWS 프로토콜 검증 메시지입니다.", "payload_hex": "01005bc2dcd5d80020b370c774d130005d00200050005700530020d504b85cd1a0cf5c0020ac80c99d0020ba54c2dcc9c0c785b2c8b2e4002e000000000000000000000000000000000000000000000000000038", "segments": 1, "exit_codes": [0, 0], "message_identifier": 4372, "serial_number": 0, "data_coding_scheme": 72, "plmn": "45005", "received_plmn": "45005", "backend": "zmq", "rf_transmission": false, "receiver": "patched-srsUE-LTE-SI-monitor", "physical_phone": "NOT VERIFIED"}, "rat": "LTE", "srsran4g_commit": "6bcbd9e5bf8686aa7085202cd847c5ddd64a9c16", "ocudu_used": false}
+[Klte-sib12-1 exited with code 0
+ Compose Stopping Aborting on container exit...
+ Container ocudu-lte-sib12-lab-lte-sib12-1 Stopping 
+ Container ocudu-lte-sib12-lab-lte-sib12-1 Stopped 

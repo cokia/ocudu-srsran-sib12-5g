@@ -1,0 +1,25 @@
+{
+  "application_version": "0.1.0",
+  "artifact_location": "artifacts/checkpoints/lte-sib12.log",
+  "details": {
+    "elapsed_seconds": 38.814,
+    "exit_code": 0,
+    "timeout_seconds": 420
+  },
+  "error": null,
+  "firmware_version": null,
+  "fpga_version": null,
+  "host": {
+    "architecture": "aarch64",
+    "os": "Linux",
+    "python": "3.12.3",
+    "release": "6.8.0-117-generic"
+  },
+  "mode": "non-sdr",
+  "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+  "report_schema_version": 1,
+  "result": "PASS",
+  "sdr_model": null,
+  "test_name": "lte-sib12",
+  "timestamp": "2026-10-19T17:15:55+00:00"
+}

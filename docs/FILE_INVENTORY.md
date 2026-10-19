@@ -1,10 +1,11 @@
 # 소스 저장소 파일 목록
 
-관리 대상 파일 247개다. upstream checkout, build, 일반 artifacts는 제외하며 선택한 실제 로그만 `docs/evidence/`에 보존한다. 초기 구현은 [최초 보고서](IMPLEMENTATION_REPORT.md), driver/PWS 연결은 [구현 보고서](RADIO_PWS_REPORT.md), driver 수정은 [디버깅](RELATED_PROJECTS_DEBUG.md), 국내 MCC/MNC 추가는 [PLMN 검증](KOREAN_PLMN.md)을 참조한다.
+관리 대상 파일 304개다. upstream checkout, build, 일반 artifacts는 제외하며 선택한 실제 로그만 `docs/evidence/`에 보존한다. [LTE 구현·검증](LTE_SIB12_VERIFICATION.md), [CI 진단](CI_DEBUG.md), [기존 NR·radio 보고서](RADIO_PWS_REPORT.md)를 참조한다.
 
 ```text
 .dockerignore
 .github/workflows/build.yml
+.github/workflows/lte-sib12.yml
 .github/workflows/pws-integration.yml
 .github/workflows/test.yml
 .github/workflows/zmq.yml
@@ -17,6 +18,10 @@ configs/bladerf-x40.schema.json
 configs/bladerf-x40.yaml
 configs/gnb.non-sdr.yaml
 configs/gnb.zmq.yaml
+configs/lte/rb.conf
+configs/lte/rr.conf
+configs/lte/sha256.json
+configs/lte/sib.conf
 configs/pws.example.yaml
 configs/pws.schema.json
 configs/srsue.zmq.conf
@@ -30,17 +35,21 @@ controller/gnb.py
 controller/hardware.py
 controller/libbladerf_tests.py
 controller/logging.py
+controller/lte_sib12.py
 controller/message_model.py
 controller/offline_codec/CMakeLists.txt
 controller/offline_codec/main.cpp
 controller/protocol.py
 controller/pws_integration.py
+controller/pws_profiles.py
 controller/radio_smoke.py
 controller/reporting.py
 controller/zmq_rx.py
 dependencies.lock.json
 docker/Dockerfile.build
 docker/Dockerfile.controller
+docker/Dockerfile.lte
+docker/Dockerfile.lte-build
 docker/Dockerfile.non-sdr
 docker/Dockerfile.radio-plugin
 docker/Dockerfile.runtime
@@ -48,11 +57,13 @@ docker/Dockerfile.sdr
 docker/Dockerfile.zmq
 docker/Dockerfile.zmq-build
 docker/compose.hardware.yaml
+docker/compose.lte.yaml
 docker/compose.pws.yaml
 docker/compose.yaml
 docker/compose.zmq.yaml
 docs/ARCHITECTURE.md
 docs/BLADERF_X40.md
+docs/CI_DEBUG.md
 docs/CONFIGURATION.md
 docs/DOCKER.md
 docs/DOMESTIC_PHONE_TESTING.md
@@ -63,6 +74,8 @@ docs/IMPLEMENTATION_REPORT.md
 docs/INSTALLATION.md
 docs/KOREAN_PLMN.md
 docs/LIBBLADERF_TESTING.md
+docs/LTE_SIB12.md
+docs/LTE_SIB12_VERIFICATION.md
 docs/NON_SDR_GUIDE.md
 docs/PATCHES.md
 docs/PWS_INTEGRATION.md
@@ -160,6 +173,38 @@ docs/evidence/2026-10-20/korean-plmn/images.json
 docs/evidence/2026-10-20/korean-plmn/python-tests.log
 docs/evidence/2026-10-20/korean-plmn/python-tests.xml
 docs/evidence/2026-10-20/korean-plmn/suite-checkpoint.json
+docs/evidence/2026-10-20/lte-sib12/SHA256SUMS
+docs/evidence/2026-10-20/lte-sib12/boundary-lte-sib12.json
+docs/evidence/2026-10-20/lte-sib12/boundary-srsenb.log
+docs/evidence/2026-10-20/lte-sib12/boundary-srsue.log
+docs/evidence/2026-10-20/lte-sib12/build-final.log
+docs/evidence/2026-10-20/lte-sib12/compose.log
+docs/evidence/2026-10-20/lte-sib12/docker-build.log
+docs/evidence/2026-10-20/lte-sib12/docker-lte-sib12.json
+docs/evidence/2026-10-20/lte-sib12/docker-srsenb.log
+docs/evidence/2026-10-20/lte-sib12/docker-srsue.log
+docs/evidence/2026-10-20/lte-sib12/english-lte-sib12.json
+docs/evidence/2026-10-20/lte-sib12/english-srsenb.log
+docs/evidence/2026-10-20/lte-sib12/english-srsue.log
+docs/evidence/2026-10-20/lte-sib12/expected-early-exit.json
+docs/evidence/2026-10-20/lte-sib12/korean-45005-lte-sib12.json
+docs/evidence/2026-10-20/lte-sib12/korean-45005-srsenb.log
+docs/evidence/2026-10-20/lte-sib12/korean-45005-srsue.log
+docs/evidence/2026-10-20/lte-sib12/korean-45006-lte-sib12.json
+docs/evidence/2026-10-20/lte-sib12/korean-45006-srsenb.log
+docs/evidence/2026-10-20/lte-sib12/korean-45006-srsue.log
+docs/evidence/2026-10-20/lte-sib12/korean-45008-lte-sib12.json
+docs/evidence/2026-10-20/lte-sib12/korean-45008-srsenb.log
+docs/evidence/2026-10-20/lte-sib12/korean-45008-srsue.log
+docs/evidence/2026-10-20/lte-sib12/lte-sib12.json
+docs/evidence/2026-10-20/lte-sib12/lte-unit.xml
+docs/evidence/2026-10-20/lte-sib12/manifest.json
+docs/evidence/2026-10-20/lte-sib12/nr-baseline.json
+docs/evidence/2026-10-20/lte-sib12/nr-pws.json
+docs/evidence/2026-10-20/lte-sib12/python-tests.log
+docs/evidence/2026-10-20/lte-sib12/python.xml
+docs/evidence/2026-10-20/lte-sib12/shutdown-before-fix-backtrace.txt
+docs/evidence/2026-10-20/lte-sib12/shutdown-before-fix.json
 docs/verification-2026-10-19.json
 docs/verification-followup-2026-10-19.json
 hardware/bladerf-x40/88-pws-bladerf-x40.rules
@@ -195,7 +240,12 @@ licenses/srsRAN4G-LICENSE
 patches/bladerf-x40-only.patch
 patches/ocudu-empty-cpu-features.patch
 patches/ocudu-main-pool.patch
+patches/srsenb-sib12-segments.patch
 patches/srsue-fftw-estimate.patch
+patches/srsue-lte-si-monitor.patch
+patches/srsue-lte-si-rnti.patch
+patches/srsue-lte-sib12.patch
+patches/srsue-lte-stop-deadlock.patch
 patches/srsue-other-si-dmrs.patch
 patches/srsue-si-dci.patch
 patches/srsue-si-monitor.patch
@@ -206,6 +256,8 @@ requirements-dev.txt
 requirements.txt
 scripts/bootstrap-python.sh
 scripts/build-docker.sh
+scripts/build-lte-docker.sh
+scripts/build-lte.sh
 scripts/build-non-sdr.sh
 scripts/build-pws-integration-docker.sh
 scripts/build-radio-plugin.sh
@@ -220,6 +272,7 @@ scripts/healthcheck.py
 scripts/install-deps.sh
 scripts/install-runtime.sh
 scripts/package-source.sh
+scripts/run-lte-sib12.sh
 scripts/run-non-sdr.sh
 scripts/run-pws-integration.sh
 scripts/run-sdr-diag.sh
@@ -227,12 +280,14 @@ scripts/run-zmq-rx.sh
 scripts/stage-runtime.py
 scripts/stop.sh
 scripts/test-libbladerf.sh
+scripts/test-lte-sib12.sh
 scripts/test-non-sdr.sh
 scripts/test-pws-integration.sh
 scripts/test-radio-plugin.sh
 scripts/test-sdr.sh
 tests/conftest.py
 tests/fixtures/pws.english.yaml
+tests/fixtures/srsue-lte-sib12-45005.txt
 tests/fixtures/srsue-sib1-45005.txt
 tests/integration/test_cli.py
 tests/integration/test_protocol.py
@@ -245,8 +300,10 @@ tests/radio/usb_test.cpp
 tests/sdr/test_diagnostics.py
 tests/sdr/test_hardware_config.py
 tests/unit/test_cb_data.py
+tests/unit/test_checkpoint_logs.py
 tests/unit/test_config.py
 tests/unit/test_logging.py
+tests/unit/test_lte_sib12.py
 tests/unit/test_pws_integration.py
 tests/unit/test_radio_smoke.py
 tests/unit/test_upstream_patches.py

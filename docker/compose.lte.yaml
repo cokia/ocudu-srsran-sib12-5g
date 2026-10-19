@@ -1,0 +1,20 @@
+name: ocudu-lte-sib12-lab
+services:
+  lte-sib12:
+    profiles: [lte-zmq]
+    image: pws-lab-lte:0.1.0
+    command: [receive, --profile, korean-safety, --plmn, '${PWS_LAB_PLMN:-45005}', --timeout, '60', --output, /lab/output/lte-sib12]
+    network_mode: none
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    read_only: true
+    tmpfs: [/tmp]
+    mem_limit: 3g
+    cpus: 4
+    pids_limit: 256
+    stop_grace_period: 25s
+    volumes:
+      - ../configs:/lab/configs:ro
+      - lte-output:/lab/output
+volumes:
+  lte-output:
