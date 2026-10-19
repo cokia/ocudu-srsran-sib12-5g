@@ -1,0 +1,25 @@
+{
+  "application_version": "0.1.0",
+  "artifact_location": "artifacts/libbladerf/adapter-contract.log",
+  "details": {
+    "actual_library": true,
+    "device_api_double": true,
+    "hardware_verified": false
+  },
+  "error": null,
+  "firmware_version": null,
+  "fpga_version": null,
+  "host": {
+    "architecture": "x86_64",
+    "os": "Linux",
+    "python": "3.12.3",
+    "release": "6.17.0-1022-azure"
+  },
+  "mode": "sdr-bladerf-x40",
+  "ocudu_commit": "e0db566aac6e6376ddd60e83c84f58698fcc4d70",
+  "report_schema_version": 1,
+  "result": "PASS",
+  "sdr_model": null,
+  "test_name": "adapter-contract",
+  "timestamp": "2026-10-19T17:29:54+00:00"
+}

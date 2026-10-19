@@ -1,6 +1,6 @@
 # 소스 저장소 파일 목록
 
-관리 대상 파일 304개다. upstream checkout, build, 일반 artifacts는 제외하며 선택한 실제 로그만 `docs/evidence/`에 보존한다. [LTE 구현·검증](LTE_SIB12_VERIFICATION.md), [CI 진단](CI_DEBUG.md), [기존 NR·radio 보고서](RADIO_PWS_REPORT.md)를 참조한다.
+관리 대상 파일 331개다. upstream checkout, build, 일반 artifacts는 제외하며 선택한 실제 로그만 `docs/evidence/`에 보존한다. [LTE 구현·검증](LTE_SIB12_VERIFICATION.md), [CI 진단](CI_DEBUG.md), [기존 NR·radio 보고서](RADIO_PWS_REPORT.md)를 참조한다.
 
 ```text
 .dockerignore
@@ -150,6 +150,33 @@ docs/evidence/2026-10-19/srsue.log
 docs/evidence/2026-10-19/validate-non-sdr.json
 docs/evidence/2026-10-19/validate-sdr-bladerf-x40.json
 docs/evidence/2026-10-19/zmq-rx.json
+docs/evidence/2026-10-20/github-ci/SHA256SUMS
+docs/evidence/2026-10-20/github-ci/artifact-permissions.txt
+docs/evidence/2026-10-20/github-ci/libbladerf-adapter-contract.json
+docs/evidence/2026-10-20/github-ci/libbladerf-adapter.xml
+docs/evidence/2026-10-20/github-ci/libbladerf-upstream-c.json
+docs/evidence/2026-10-20/github-ci/libbladerf-upstream-cpp.json
+docs/evidence/2026-10-20/github-ci/libbladerf-upstream-interleaver.json
+docs/evidence/2026-10-20/github-ci/libbladerf-upstream-parse.json
+docs/evidence/2026-10-20/github-ci/libbladerf-upstream-version.json
+docs/evidence/2026-10-20/github-ci/lte-lte-sib12.json
+docs/evidence/2026-10-20/github-ci/lte-srsenb.log
+docs/evidence/2026-10-20/github-ci/lte-srsue.log
+docs/evidence/2026-10-20/github-ci/non-sdr-gnb.json
+docs/evidence/2026-10-20/github-ci/non-sdr-pws.json
+docs/evidence/2026-10-20/github-ci/nr-gnb.log
+docs/evidence/2026-10-20/github-ci/nr-pws-integration.json
+docs/evidence/2026-10-20/github-ci/nr-srsue.log
+docs/evidence/2026-10-20/github-ci/pws-build-checkpoint.json
+docs/evidence/2026-10-20/github-ci/radio-mock-gnb.log
+docs/evidence/2026-10-20/github-ci/radio-mock-radio-smoke.json
+docs/evidence/2026-10-20/github-ci/radio-plugin.xml
+docs/evidence/2026-10-20/github-ci/radio-usb.xml
+docs/evidence/2026-10-20/github-ci/results.json
+docs/evidence/2026-10-20/github-ci/sdr-mock-loopback.json
+docs/evidence/2026-10-20/github-ci/sdr-mock-pws.json
+docs/evidence/2026-10-20/github-ci/software-non-sdr.xml
+docs/evidence/2026-10-20/github-ci/software-sdr.xml
 docs/evidence/2026-10-20/korean-plmn/00101-srsue.log
 docs/evidence/2026-10-20/korean-plmn/00101.json
 docs/evidence/2026-10-20/korean-plmn/45005-srsue.log

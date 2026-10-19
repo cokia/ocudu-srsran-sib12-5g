@@ -152,3 +152,5 @@ bash scripts/stop.sh
 - [라이선스/제3자 배포 조건](THIRD_PARTY_NOTICES.md)
 
 GitHub Actions는 software build, lint, ASN.1, mock, Docker runtime을 검사한다. normal PR에 self-hosted runner나 실제 SDR이 필요하지 않다. GitLab CI 파일은 만들지 않는다. 원본 source는 고정 commit으로 가져오고, 필요한 최소 변경은 hash를 검증하는 [패치](docs/PATCHES.md)로 관리한다. source 공개와 binary/container release는 구분하며, 재배포 조건은 제3자 고지를 따른다.
+
+2026-10-20 코드 commit `5db83a8`의 GitHub workflow 4개가 모두 통과했다. x86 SIMD 설정과 Docker 출력 권한의 수정 내용, 실제 LTE/NR 한글 수신 로그는 [CI 검증 보고서](docs/CI_DEBUG.md)에 있다.

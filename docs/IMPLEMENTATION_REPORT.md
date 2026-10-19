@@ -4,6 +4,8 @@
 
 이 문서는 최초 구현 검증 기록이다. 이후 추가한 실제 libbladeRF software 검사와 ZMQ/srsUE 결과는 [추가 검증 보고서](FOLLOWUP_REPORT.md)를 참조한다.
 
+2026-10-20 추가 구현은 [LTE SIB12 검증 보고서](LTE_SIB12_VERIFICATION.md), GitHub x86-64의 최종 workflow 4개 PASS와 수정 원인은 [CI 진단·검증](CI_DEBUG.md)을 참조한다. 아래 최초 구현 시점의 미구현 항목은 이후 보고서와 구분한다.
+
 공유 offline protocol engine, Dummy RU gNB 실행 환경, bladeRF x40 standalone diagnostic, 세 Docker runtime 이미지, 두 Compose profile, 테스트와 한국어 문서를 구현했다. 실제 software build와 runtime 검증을 수행했다. 실제 x40는 연결되어 있지 않아 hardware 검증은 **BLOCKED**이며 OCUDU bladeRF RU 통합은 **NOT VERIFIED / 미구현**이다.
 
 NR CMAS의 올바른 ASN.1 type은 **SIB8**이다. NR SIB12-r16은 sidelink 구조이므로 별도의 구조 round-trip만 제공한다. PWS에서 gNB broadcast scheduler 또는 hardware stream으로 이어지는 연결은 구현하지 않았다.

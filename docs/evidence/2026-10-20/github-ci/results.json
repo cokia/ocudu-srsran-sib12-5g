@@ -1,0 +1,587 @@
+{
+  "commit": "5db83a8be254c6ac23b4442b1f60d41a7ca97896",
+  "checked_at": "2026-10-19T18:08:40.423622+00:00",
+  "runs": [
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-19T17:28:18Z",
+      "databaseId": 39294395549,
+      "headSha": "5db83a8be254c6ac23b4442b1f60d41a7ca97896",
+      "jobs": [
+        {
+          "completedAt": "2026-10-19T17:28:35Z",
+          "conclusion": "success",
+          "databaseId": 118203027197,
+          "name": "lint",
+          "startedAt": "2026-10-19T17:28:21Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-19T17:28:22Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-19T17:28:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:23Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 2,
+              "startedAt": "2026-10-19T17:28:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:31Z",
+              "conclusion": "success",
+              "name": "Run bash scripts/bootstrap-python.sh",
+              "number": 3,
+              "startedAt": "2026-10-19T17:28:23Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:31Z",
+              "conclusion": "success",
+              "name": "Run .venv/bin/ruff check controller tests scripts",
+              "number": 4,
+              "startedAt": "2026-10-19T17:28:31Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:31Z",
+              "conclusion": "success",
+              "name": "Run .venv/bin/ruff format --check controller tests scripts",
+              "number": 5,
+              "startedAt": "2026-10-19T17:28:31Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:31Z",
+              "conclusion": "success",
+              "name": "Run for file in scripts/*.sh; do bash -n \"$file\"; done",
+              "number": 6,
+              "startedAt": "2026-10-19T17:28:31Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:32Z",
+              "conclusion": "success",
+              "name": "Run .venv/bin/python -m pytest tests/unit tests/non-sdr",
+              "number": 7,
+              "startedAt": "2026-10-19T17:28:31Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:32Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 14,
+              "startedAt": "2026-10-19T17:28:32Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:32Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 15,
+              "startedAt": "2026-10-19T17:28:32Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/cokia/ocudu-srsran-sib12-5g/actions/runs/39294395549/job/118203027197"
+        },
+        {
+          "completedAt": "2026-10-19T17:30:05Z",
+          "conclusion": "success",
+          "databaseId": 118203027468,
+          "name": "libbladerf-api",
+          "startedAt": "2026-10-19T17:28:21Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-19T17:28:22Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-19T17:28:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:23Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 2,
+              "startedAt": "2026-10-19T17:28:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:29:36Z",
+              "conclusion": "success",
+              "name": "Run docker build -f docker/Dockerfile.build -t pws-lab-toolchain:0.1.0 .",
+              "number": 3,
+              "startedAt": "2026-10-19T17:28:23Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:29:46Z",
+              "conclusion": "success",
+              "name": "실제 libbladeRF 빌드",
+              "number": 4,
+              "startedAt": "2026-10-19T17:29:36Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:29:54Z",
+              "conclusion": "success",
+              "name": "USB 없는 library 및 adapter contract 검사",
+              "number": 5,
+              "startedAt": "2026-10-19T17:29:46Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:30:03Z",
+              "conclusion": "success",
+              "name": "OCUDU radio plugin 및 실제 libbladeRF timed API contract",
+              "number": 6,
+              "startedAt": "2026-10-19T17:29:54Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:30:03Z",
+              "conclusion": "success",
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "number": 7,
+              "startedAt": "2026-10-19T17:30:03Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:30:04Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 14,
+              "startedAt": "2026-10-19T17:30:03Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:30:04Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 15,
+              "startedAt": "2026-10-19T17:30:04Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/cokia/ocudu-srsran-sib12-5g/actions/runs/39294395549/job/118203027468"
+        },
+        {
+          "completedAt": "2026-10-19T17:31:07Z",
+          "conclusion": "success",
+          "databaseId": 118203027511,
+          "name": "protocol-and-mocks",
+          "startedAt": "2026-10-19T17:28:21Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-19T17:28:24Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-19T17:28:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:25Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 2,
+              "startedAt": "2026-10-19T17:28:24Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:29:35Z",
+              "conclusion": "success",
+              "name": "Run docker build -f docker/Dockerfile.build -t pws-lab-toolchain:0.1.0 .",
+              "number": 3,
+              "startedAt": "2026-10-19T17:28:25Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:30:59Z",
+              "conclusion": "success",
+              "name": "ASN.1 및 mock executable 빌드",
+              "number": 4,
+              "startedAt": "2026-10-19T17:29:35Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:31:04Z",
+              "conclusion": "success",
+              "name": "두 모드의 공유 테스트와 mock 테스트",
+              "number": 5,
+              "startedAt": "2026-10-19T17:30:59Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:31:05Z",
+              "conclusion": "success",
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "number": 6,
+              "startedAt": "2026-10-19T17:31:04Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:31:05Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 12,
+              "startedAt": "2026-10-19T17:31:05Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:31:05Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 13,
+              "startedAt": "2026-10-19T17:31:05Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/cokia/ocudu-srsran-sib12-5g/actions/runs/39294395549/job/118203027511"
+        }
+      ],
+      "name": "소프트웨어 검사",
+      "status": "completed",
+      "updatedAt": "2026-10-19T17:31:08Z",
+      "url": "https://github.com/cokia/ocudu-srsran-sib12-5g/actions/runs/39294395549"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-19T17:28:18Z",
+      "databaseId": 39294395503,
+      "headSha": "5db83a8be254c6ac23b4442b1f60d41a7ca97896",
+      "jobs": [
+        {
+          "completedAt": "2026-10-19T17:32:30Z",
+          "conclusion": "success",
+          "databaseId": 118203166665,
+          "name": "mode-build (sdr-bladerf-x40)",
+          "startedAt": "2026-10-19T17:28:38Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-19T17:28:40Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-19T17:28:39Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:41Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 2,
+              "startedAt": "2026-10-19T17:28:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:32:27Z",
+              "conclusion": "success",
+              "name": "고정 소스에서 이미지 생성",
+              "number": 3,
+              "startedAt": "2026-10-19T17:28:41Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:32:27Z",
+              "conclusion": "success",
+              "name": "네트워크와 SDR 없는 runtime 검사",
+              "number": 4,
+              "startedAt": "2026-10-19T17:32:27Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:32:28Z",
+              "conclusion": "success",
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "number": 5,
+              "startedAt": "2026-10-19T17:32:27Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:32:28Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 10,
+              "startedAt": "2026-10-19T17:32:28Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:32:28Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 11,
+              "startedAt": "2026-10-19T17:32:28Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/cokia/ocudu-srsran-sib12-5g/actions/runs/39294395503/job/118203166665"
+        },
+        {
+          "completedAt": "2026-10-19T17:51:40Z",
+          "conclusion": "success",
+          "databaseId": 118203166722,
+          "name": "mode-build (non-sdr)",
+          "startedAt": "2026-10-19T17:28:39Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-19T17:28:40Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-19T17:28:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:41Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 2,
+              "startedAt": "2026-10-19T17:28:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:51:28Z",
+              "conclusion": "success",
+              "name": "고정 소스에서 이미지 생성",
+              "number": 3,
+              "startedAt": "2026-10-19T17:28:41Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:51:36Z",
+              "conclusion": "success",
+              "name": "네트워크와 SDR 없는 runtime 검사",
+              "number": 4,
+              "startedAt": "2026-10-19T17:51:28Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:51:37Z",
+              "conclusion": "success",
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "number": 5,
+              "startedAt": "2026-10-19T17:51:36Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:51:37Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 10,
+              "startedAt": "2026-10-19T17:51:37Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:51:38Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 11,
+              "startedAt": "2026-10-19T17:51:37Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/cokia/ocudu-srsran-sib12-5g/actions/runs/39294395503/job/118203166722"
+        }
+      ],
+      "name": "독립 모드 빌드 및 Docker",
+      "status": "completed",
+      "updatedAt": "2026-10-19T17:51:40Z",
+      "url": "https://github.com/cokia/ocudu-srsran-sib12-5g/actions/runs/39294395503"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-19T17:28:18Z",
+      "databaseId": 39294395555,
+      "headSha": "5db83a8be254c6ac23b4442b1f60d41a7ca97896",
+      "jobs": [
+        {
+          "completedAt": "2026-10-19T17:35:33Z",
+          "conclusion": "success",
+          "databaseId": 118203027265,
+          "name": "lte-zmq",
+          "startedAt": "2026-10-19T17:28:21Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-19T17:28:23Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-19T17:28:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:24Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 2,
+              "startedAt": "2026-10-19T17:28:23Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:35:22Z",
+              "conclusion": "success",
+              "name": "Run bash scripts/build-lte-docker.sh",
+              "number": 3,
+              "startedAt": "2026-10-19T17:28:24Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:35:28Z",
+              "conclusion": "success",
+              "name": "한글 LTE SIB12 수신과 정상 종료",
+              "number": 4,
+              "startedAt": "2026-10-19T17:35:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:35:28Z",
+              "conclusion": "success",
+              "name": "성공·실패 원본 로그 보존",
+              "number": 5,
+              "startedAt": "2026-10-19T17:35:28Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:35:29Z",
+              "conclusion": "success",
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "number": 6,
+              "startedAt": "2026-10-19T17:35:28Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:35:29Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 12,
+              "startedAt": "2026-10-19T17:35:29Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:35:29Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 13,
+              "startedAt": "2026-10-19T17:35:29Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/cokia/ocudu-srsran-sib12-5g/actions/runs/39294395555/job/118203027265"
+        }
+      ],
+      "name": "LTE SIB12 ZMQ 수신",
+      "status": "completed",
+      "updatedAt": "2026-10-19T17:35:34Z",
+      "url": "https://github.com/cokia/ocudu-srsran-sib12-5g/actions/runs/39294395555"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-19T17:28:18Z",
+      "databaseId": 39294395537,
+      "headSha": "5db83a8be254c6ac23b4442b1f60d41a7ca97896",
+      "jobs": [
+        {
+          "completedAt": "2026-10-19T18:07:13Z",
+          "conclusion": "success",
+          "databaseId": 118203165956,
+          "name": "pws-zmq",
+          "startedAt": "2026-10-19T17:28:38Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-19T17:28:39Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-19T17:28:39Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T17:28:40Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 2,
+              "startedAt": "2026-10-19T17:28:39Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T18:06:54Z",
+              "conclusion": "success",
+              "name": "Run bash scripts/build-pws-integration-docker.sh",
+              "number": 3,
+              "startedAt": "2026-10-19T17:28:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T18:07:02Z",
+              "conclusion": "success",
+              "name": "한글 SIB8 실제 수신",
+              "number": 4,
+              "startedAt": "2026-10-19T18:06:54Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T18:07:11Z",
+              "conclusion": "success",
+              "name": "plugin mock stream",
+              "number": 5,
+              "startedAt": "2026-10-19T18:07:02Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T18:07:11Z",
+              "conclusion": "success",
+              "name": "성공·실패 원본 로그 보존",
+              "number": 6,
+              "startedAt": "2026-10-19T18:07:11Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T18:07:12Z",
+              "conclusion": "success",
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "number": 7,
+              "startedAt": "2026-10-19T18:07:11Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T18:07:12Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 14,
+              "startedAt": "2026-10-19T18:07:12Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-19T18:07:12Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 15,
+              "startedAt": "2026-10-19T18:07:12Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/cokia/ocudu-srsran-sib12-5g/actions/runs/39294395537/job/118203165956"
+        }
+      ],
+      "name": "PWS ZMQ 수신과 radio plugin",
+      "status": "completed",
+      "updatedAt": "2026-10-19T18:07:14Z",
+      "url": "https://github.com/cokia/ocudu-srsran-sib12-5g/actions/runs/39294395537"
+    }
+  ]
+}

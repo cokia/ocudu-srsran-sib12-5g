@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="22" failures="0" disabled="0" errors="0" time="0.003" timestamp="2026-10-19T17:29:54.669" name="AllTests">
+  <testsuite name="Adapter" tests="22" failures="0" disabled="0" skipped="0" errors="0" time="0.003" timestamp="2026-10-19T17:29:54.669">
+    <testcase name="ActualLibraryVersionAndParser" file="/lab/tests/libbladerf/adapter_test.cpp" line="111" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.669" classname="Adapter" />
+    <testcase name="DiscoveryError" file="/lab/tests/libbladerf/adapter_test.cpp" line="118" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.669" classname="Adapter" />
+    <testcase name="EmptyDiscovery" file="/lab/tests/libbladerf/adapter_test.cpp" line="119" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.669" classname="Adapter" />
+    <testcase name="AmbiguousDevices" file="/lab/tests/libbladerf/adapter_test.cpp" line="120" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.669" classname="Adapter" />
+    <testcase name="InvalidSerial" file="/lab/tests/libbladerf/adapter_test.cpp" line="121" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.669" classname="Adapter" />
+    <testcase name="InvalidSerialRejectedBeforeUsbDiscovery" file="/lab/tests/libbladerf/adapter_test.cpp" line="122" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.669" classname="Adapter" />
+    <testcase name="HexSerialIsCaseInsensitive" file="/lab/tests/libbladerf/adapter_test.cpp" line="125" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.669" classname="Adapter" />
+    <testcase name="MissingSerial" file="/lab/tests/libbladerf/adapter_test.cpp" line="129" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.669" classname="Adapter" />
+    <testcase name="OpenFailure" file="/lab/tests/libbladerf/adapter_test.cpp" line="130" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.669" classname="Adapter" />
+    <testcase name="ProbeDoesNotStream" file="/lab/tests/libbladerf/adapter_test.cpp" line="131" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.669" classname="Adapter" />
+    <testcase name="TxRequiresIsolationAtEveryBoundary" file="/lab/tests/libbladerf/adapter_test.cpp" line="135" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.669" classname="Adapter" />
+    <testcase name="UnsupportedFirmwareLoopbackNeverEnablesTx" file="/lab/tests/libbladerf/adapter_test.cpp" line="142" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.669" classname="Adapter" />
+    <testcase name="AnyExternalPaBitBlocksLoopback" file="/lab/tests/libbladerf/adapter_test.cpp" line="146" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.669" classname="Adapter" />
+    <testcase name="LoopbackUsesBoundedProfileAndCleansUp" file="/lab/tests/libbladerf/adapter_test.cpp" line="152" status="run" result="completed" time="0.001" timestamp="2026-10-19T17:29:54.670" classname="Adapter" />
+    <testcase name="RxUsesMetadataAndNeverEnablesTx" file="/lab/tests/libbladerf/adapter_test.cpp" line="156" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.671" classname="Adapter" />
+    <testcase name="ShortReadRejectedAndCleanupRuns" file="/lab/tests/libbladerf/adapter_test.cpp" line="160" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.671" classname="Adapter" />
+    <testcase name="UsbTimeoutPreservedAndCleanupRuns" file="/lab/tests/libbladerf/adapter_test.cpp" line="164" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.671" classname="Adapter" />
+    <testcase name="FirmwareModeCannotFakeTimestampTest" file="/lab/tests/libbladerf/adapter_test.cpp" line="168" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.671" classname="Adapter" />
+    <testcase name="RxOverrunRejected" file="/lab/tests/libbladerf/adapter_test.cpp" line="172" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.671" classname="Adapter" />
+    <testcase name="DisconnectPreservesDriverCode" file="/lab/tests/libbladerf/adapter_test.cpp" line="176" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.671" classname="Adapter" />
+    <testcase name="ActualSampleRateMustMatchRequestedRate" file="/lab/tests/libbladerf/adapter_test.cpp" line="180" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.671" classname="Adapter" />
+    <testcase name="IsolationLostAfterEnableBlocksSampleTransfer" file="/lab/tests/libbladerf/adapter_test.cpp" line="184" status="run" result="completed" time="0." timestamp="2026-10-19T17:29:54.671" classname="Adapter" />
+  </testsuite>
+</testsuites>

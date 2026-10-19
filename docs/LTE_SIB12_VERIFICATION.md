@@ -70,4 +70,6 @@ LAB_LTE_SIB12 id=4372 serial=0 segment=0 last=1 dcs=48 payload=01005bc2dcd5d8...
 
 ## GitHub CI
 
-별도 `.github/workflows/lte-sib12.yml`은 Ubuntu x86-64 runner에서 image build와 한글 수신을 수행한다. 기존 CI의 SIMD compile 오류, CPU 배정 및 오류 log 출력 개선은 [CI_DEBUG](CI_DEBUG.md)에 기록한다. local ARM64 성공과 GitHub x86-64 성공을 혼동하지 않으며 새 CI 결과를 확인한 뒤 추가 기록한다.
+별도 `.github/workflows/lte-sib12.yml`은 Ubuntu x86-64 runner에서 image build와 한글 수신을 수행한다. 코드 commit `5db83a8be254c6ac23b4442b1f60d41a7ca97896`의 [GitHub run 39294395555](https://github.com/cokia/ocudu-srsran-sib12-5g/actions/runs/39294395555)는 PASS다. 실제 srsUE가 PLMN `45005`, ID `4372`, DCS `0x48`, 한글 원문을 수신했고 srsENB/srsUE 종료 코드는 모두 0이었다. [GitHub 수신 JSON](evidence/2026-10-20/github-ci/lte-lte-sib12.json)과 [srsUE 원본 로그](evidence/2026-10-20/github-ci/lte-srsue.log)를 보존한다.
+
+위 GitHub 검사는 기본 한글 메시지 한 건이다. PLMN 45008/45006, 영어, 13-segment 경계값 검사는 앞서 기록한 local ARM64 결과다. 기존 CI의 SIMD compile 오류, Docker 출력 폴더 권한 및 오류 log 출력 개선은 [CI_DEBUG](CI_DEBUG.md)에 기록한다.

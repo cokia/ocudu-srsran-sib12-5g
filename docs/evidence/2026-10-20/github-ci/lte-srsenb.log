@@ -1,0 +1,56 @@
+---  Software Radio Systems LTE eNodeB  ---
+
+Reading configuration file /lab/output/lte-sib12/enb.conf...
+Failed to `mlockall`: {}
+Built in Release mode using commit 6bcbd9e on branch HEAD.
+
+2026-10-19T17:35:22.831002 [ENB    ] [I] Using binary /usr/local/bin/srsenb-lte with arguments: /lab/output/lte-sib12/enb.conf 
+2026-10-19T17:35:22.831136 [ENB    ] [I] Built in Release mode using commit 6bcbd9e on branch HEAD.
+2026-10-19T17:35:22.832076 [ENB    ] [I] Using sync queue size of one for ZMQ based radio.
+2026-10-19T17:35:22.891321 [RRC    ] [I] Tx Broadcast PDU - systemInformationBlockType1, cc=0, idx=0 (17 B)
+2026-10-19T17:35:22.891332 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=1 (33 B)
+2026-10-19T17:35:22.891336 [RRC    ] [I] Tx Broadcast PDU - systemInformation-r8, cc=0, idx=2 (96 B)
+2026-10-19T17:35:22.891340 [RRC    ] [I] Allocating 1 PRBs for PUCCH
+2026-10-19T17:35:22.891611 [RRC    ] [I] T310 200, T311 10000, N310 1
+2026-10-19T17:35:22.891612 [RRC    ] [I] Inactivity timeout: 30000 ms
+2026-10-19T17:35:22.891612 [RRC    ] [I] Max consecutive MAC KOs: 100
+2026-10-19T17:35:22.891707 [COMN   ] [D] [    0] Successfully bound to address 127.0.1.1:2152
+2026-10-19T17:35:22.891719 [COMN   ] [D] [    0] RxSockets: socket fd=5 has been registered.
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+Opening 1 channels in RF device=zmq with args=tx_port=tcp://127.0.0.1:2100,rx_port=tcp://127.0.0.1:2101,id=enb,base_srate=23.04e6,fail_on_disconnect=true,trx_timeout_ms=1000
+Supported RF device list: zmq file
+CHx base_srate=23.04e6
+CHx id=enb
+Current sample rate is 1.92 MHz with a base rate of 23.04 MHz (x12 decimation)
+CH0 rx_port=tcp://127.0.0.1:2101
+CH0 tx_port=tcp://127.0.0.1:2100
+CH0 fail_on_disconnect=true
+CH0 trx_timeout_ms=1000
+
+Warning: TX gain was not set. Using open-loop power control (not working properly)
+
+connect(): Connection refused
+2026-10-19T17:35:22.988576 [COMN   ] [D] [    0] Opened SCTP socket=16
+2026-10-19T17:35:22.988589 [COMN   ] [D] [    0] Setting RTO_INFO options on SCTP socket. Association 0, Initial RTO 3000, Minimum RTO 1000, Maximum RTO 6000
+2026-10-19T17:35:22.988592 [COMN   ] [D] [    0] Setting SCTP_INITMSG options on SCTP socket. Max attempts 3, Max init attempts timeout 5000
+2026-10-19T17:35:22.988606 [COMN   ] [D] [    0] Successfully bound to address 127.0.1.1:0
+2026-10-19T17:35:22.988675 [COMN   ] [I] [    0] Failed to establish socket connection to 127.0.1.100
+Failed to initiate S1 connection. Attempting reconnection in 10 seconds
+2026-10-19T17:35:22.988785 [COMN   ] [W] [    0] RxSockets: The socket fd=16 to be removed does not exist
+2026-10-19T17:35:22.988798 [COMN   ] [D] [    0] Socket=16 was closed.
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+Warning: Failed to create thread with real-time priority. Creating it with normal priority: Operation not permitted
+
+==== eNodeB started ===
+Type <t> to view trace
+Current sample rate is 5.76 MHz with a base rate of 23.04 MHz (x4 decimation)
+Current sample rate is 5.76 MHz with a base rate of 23.04 MHz (x4 decimation)
+Setting frequency: DL=2680.0 Mhz, UL=2560.0 MHz for cc_idx=0 nof_prb=25
+Closing stdin thread.
+Stopping ..
+2026-10-19T17:35:28.154522 [COMN   ] [D] [    0] RxSockets: Closing rx socket handler thread
+2026-10-19T17:35:28.154574 [COMN   ] [D] [    0] RxSockets: closed.
+2026-10-19T17:35:28.154577 [COMN   ] [D] [    0] Socket=-1 could not be closed.
+---  exiting  ---
+2026-10-19T17:35:28.154767 [COMN   ] [D] [    0] Socket=-1 could not be closed.
+2026-10-19T17:35:28.155128 [COMN   ] [D] [    0] Socket=-1 could not be closed.
