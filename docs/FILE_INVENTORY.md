@@ -1,6 +1,6 @@
 # 소스 저장소 파일 목록
 
-관리 대상 파일 188개다. upstream checkout, build, 일반 artifacts는 제외하며 선택한 실제 로그만 `docs/evidence/`에 보존한다. 초기 구현은 [최초 보고서](IMPLEMENTATION_REPORT.md), 기존 수신 검증은 [수신·한글](SRSUE_RX_CAPTURE.md), 최신 driver/PWS 연결은 [추가 구현 보고서](RADIO_PWS_REPORT.md)를 참조한다.
+관리 대상 파일 222개다. upstream checkout, build, 일반 artifacts는 제외하며 선택한 실제 로그만 `docs/evidence/`에 보존한다. 초기 구현은 [최초 보고서](IMPLEMENTATION_REPORT.md), 수신 검증은 [수신·한글](SRSUE_RX_CAPTURE.md), driver/PWS 연결은 [추가 구현 보고서](RADIO_PWS_REPORT.md), 최신 수정은 [관련 프로젝트 비교와 디버깅](RELATED_PROJECTS_DEBUG.md)을 참조한다.
 
 ```text
 .dockerignore
@@ -68,6 +68,7 @@ docs/PWS_INTEGRATION.md
 docs/PWS_TESTING.md
 docs/RADIO_PLUGIN.md
 docs/RADIO_PWS_REPORT.md
+docs/RELATED_PROJECTS_DEBUG.md
 docs/SDR_BLADERF_X40_GUIDE.md
 docs/SRSUE_RX_CAPTURE.md
 docs/TESTING.md
@@ -77,6 +78,38 @@ docs/ZMQ_SRSUE.md
 docs/dependencies.python-linux.txt
 docs/dependencies.ubuntu-arm64.tsv
 docs/dependencies.zmq-arm64.tsv
+docs/evidence/2026-10-19/debug-research/SHA256SUMS
+docs/evidence/2026-10-19/debug-research/baseline.json
+docs/evidence/2026-10-19/debug-research/boundary-srsue.log
+docs/evidence/2026-10-19/debug-research/boundary.json
+docs/evidence/2026-10-19/debug-research/ctest-rf.log
+docs/evidence/2026-10-19/debug-research/docker-korean-gnb.log
+docs/evidence/2026-10-19/debug-research/docker-korean-srsue.log
+docs/evidence/2026-10-19/debug-research/docker-korean.json
+docs/evidence/2026-10-19/debug-research/docker-radio-build.log
+docs/evidence/2026-10-19/debug-research/docker-radio-gnb.log
+docs/evidence/2026-10-19/debug-research/docker-radio.json
+docs/evidence/2026-10-19/debug-research/docker-results.json
+docs/evidence/2026-10-19/debug-research/docker-zmq-build.log
+docs/evidence/2026-10-19/debug-research/english-srsue.log
+docs/evidence/2026-10-19/debug-research/english.json
+docs/evidence/2026-10-19/debug-research/images.json
+docs/evidence/2026-10-19/debug-research/korean-gnb.log
+docs/evidence/2026-10-19/debug-research/korean-srsue.log
+docs/evidence/2026-10-19/debug-research/korean.json
+docs/evidence/2026-10-19/debug-research/plugin.xml
+docs/evidence/2026-10-19/debug-research/python-all.log
+docs/evidence/2026-10-19/debug-research/python-all.xml
+docs/evidence/2026-10-19/debug-research/radio-build-manifest.json
+docs/evidence/2026-10-19/debug-research/radio-gnb.log
+docs/evidence/2026-10-19/debug-research/radio.json
+docs/evidence/2026-10-19/debug-research/references.json
+docs/evidence/2026-10-19/debug-research/smoke-before.log
+docs/evidence/2026-10-19/debug-research/suite-checkpoint.json
+docs/evidence/2026-10-19/debug-research/usb-before.log
+docs/evidence/2026-10-19/debug-research/usb.xml
+docs/evidence/2026-10-19/debug-research/wrong-runtime-gnb.log
+docs/evidence/2026-10-19/debug-research/wrong-runtime.json
 docs/evidence/2026-10-19/decode-non-sdr.json
 docs/evidence/2026-10-19/decode-sdr-bladerf-x40.json
 docs/evidence/2026-10-19/gnb.log
@@ -190,5 +223,6 @@ tests/unit/test_cb_data.py
 tests/unit/test_config.py
 tests/unit/test_logging.py
 tests/unit/test_pws_integration.py
+tests/unit/test_radio_smoke.py
 tests/unit/test_upstream_patches.py
 ```

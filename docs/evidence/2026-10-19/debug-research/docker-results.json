@@ -1,0 +1,18 @@
+[
+  {
+    "case": "pws",
+    "result": "PASS",
+    "exit_code": 0,
+    "source_mount": false,
+    "usb_mapping": false,
+    "timeout_seconds": 100
+  },
+  {
+    "case": "radio",
+    "result": "PASS",
+    "exit_code": 0,
+    "source_mount": false,
+    "usb_mapping": false,
+    "timeout_seconds": 45
+  }
+]

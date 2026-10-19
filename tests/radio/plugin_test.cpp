@@ -140,10 +140,14 @@ TEST(RadioPlugin, LateTransmissionRaisesEvent)
   Events   events;
   auto     f = create_dynamic_radio_factory();
   auto     s = f->create(config(), executor, events);
+  testing::internal::CaptureStderr();
   s->start(100);
   baseband_gateway_buffer_dynamic tx(1, 8);
   s->get_baseband_gateway(0).get_transmitter().transmit(tx.get_reader(), {99, false, {}, {}});
   s->stop();
+  s.reset();
+  auto log = testing::internal::GetCapturedStderr();
+  EXPECT_NE(log.find("errors=0 late=1 overflow=0 underflow=0"), std::string::npos);
   ASSERT_EQ(events.events.size(), 1U);
   EXPECT_EQ(events.events[0].type, radio_event_type::LATE);
 }
@@ -155,11 +159,62 @@ TEST(RadioPlugin, WatchdogStopsStream)
   auto     c = config();
   c.args     = "mode=mock,max_seconds=1";
   auto s     = f->create(c, executor, events);
+  testing::internal::CaptureStderr();
   s->start(100);
   std::this_thread::sleep_for(std::chrono::milliseconds(1100));
   s->stop();
+  s.reset();
+  auto log = testing::internal::GetCapturedStderr();
+  EXPECT_NE(log.find("errors=1 late=0 overflow=0 underflow=0"), std::string::npos);
   ASSERT_EQ(events.events.size(), 1U);
   EXPECT_EQ(events.events[0].source, radio_event_source::OTHER);
+}
+TEST(RadioPlugin, FatalTransmitAfterValidSamplesIsReportedAndStopsStream)
+{
+  Executor executor;
+  Events   events;
+  auto     f = create_dynamic_radio_factory();
+  auto     s = f->create(config(), executor, events);
+  testing::internal::CaptureStderr();
+  s->start(100);
+  baseband_gateway_buffer_dynamic tx(1, 8), rx(1, 8);
+  auto&                           g = s->get_baseband_gateway(0);
+  g.get_transmitter().transmit(tx.get_reader(), {100, false, {}, {}});
+  g.get_receiver().receive(rx.get_writer());
+  g.get_transmitter().transmit(tx.get_reader(), {108, false, 5, 2});
+  g.get_transmitter().transmit(tx.get_reader(), {108, false, {}, {}});
+  s->stop();
+  s.reset();
+  auto log = testing::internal::GetCapturedStderr();
+  EXPECT_NE(log.find("E_BUFFER"), std::string::npos);
+  EXPECT_NE(log.find("tx_samples=8 rx_samples=8 errors=1"), std::string::npos);
+  ASSERT_EQ(events.events.size(), 1U);
+  EXPECT_EQ(events.events[0].type, radio_event_type::OTHER);
+}
+TEST(RadioPlugin, FatalReceiveAfterValidSamplesIsReportedAndZeroFilled)
+{
+  Executor executor;
+  Events   events;
+  auto     f = create_dynamic_radio_factory();
+  auto     s = f->create(config(), executor, events);
+  testing::internal::CaptureStderr();
+  s->start(100);
+  baseband_gateway_buffer_dynamic tx(1, 8), rx(1, 8), invalid(2, 8);
+  auto&                           g = s->get_baseband_gateway(0);
+  g.get_transmitter().transmit(tx.get_reader(), {100, false, {}, {}});
+  g.get_receiver().receive(rx.get_writer());
+  for (auto& sample : invalid[0]) {
+    sample = {1, 1};
+  }
+  g.get_receiver().receive(invalid.get_writer());
+  s->stop();
+  s.reset();
+  auto log = testing::internal::GetCapturedStderr();
+  EXPECT_NE(log.find("E_BUFFER"), std::string::npos);
+  EXPECT_NE(log.find("tx_samples=8 rx_samples=8 errors=1"), std::string::npos);
+  for (auto sample : invalid[0]) {
+    EXPECT_EQ(sample, ci16_t{});
+  }
 }
 #ifndef LAB_ENABLE_BLADERF_RF
 TEST(RadioPlugin, HardwareDisabledBuildDoesNotOpenUsb)

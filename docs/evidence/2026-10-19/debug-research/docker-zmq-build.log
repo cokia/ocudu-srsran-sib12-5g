@@ -1,0 +1,104 @@
+#0 building with "colima" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.zmq
+#1 transferring dockerfile: 930B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/pws-lab-runtime:0.1.0
+#2 ...
+
+#3 [context lab_build] load .dockerignore
+#3 transferring lab_build: 2B done
+#3 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/pws-lab-runtime:0.1.0
+#2 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 177B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [zmq-runtime 1/2] FROM docker.io/library/pws-lab-runtime:0.1.0@sha256:55129085604c38e576dbc12e945005f9dfc2c80370b69ac03134ae782b7ef4c8
+#6 ...
+
+#7 [context lab_build] load from client
+#7 DONE 0.0s
+
+#8 [context lab_build] load from client
+#8 DONE 0.0s
+
+#9 [context lab_build] load from client
+#9 DONE 0.0s
+
+#6 [zmq-runtime 1/2] FROM docker.io/library/pws-lab-runtime:0.1.0@sha256:55129085604c38e576dbc12e945005f9dfc2c80370b69ac03134ae782b7ef4c8
+#6 resolve docker.io/library/pws-lab-runtime:0.1.0@sha256:55129085604c38e576dbc12e945005f9dfc2c80370b69ac03134ae782b7ef4c8
+#6 resolve docker.io/library/pws-lab-runtime:0.1.0@sha256:55129085604c38e576dbc12e945005f9dfc2c80370b69ac03134ae782b7ef4c8 0.2s done
+#6 DONE 0.3s
+
+#5 [internal] load build context
+#5 transferring context: 22.57kB 0.1s done
+#5 DONE 0.2s
+
+#9 [context lab_build] load from client
+#9 transferring lab_build: 58B 0.0s done
+#9 DONE 0.2s
+
+#7 [context lab_build] load from client
+#7 ...
+
+#10 [zmq-runtime 2/2] RUN apt-get update -o APT::Update::Error-Mode=any &&     apt-get install -y --no-install-recommends libzmq5 libboost-program-options1.83.0 libfftw3-single3 &&     rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [stage-1 1/9] WORKDIR /lab
+#11 CACHED
+
+#7 [context lab_build] load from client
+#7 transferring lab_build: 14.28kB 0.2s done
+#7 DONE 0.6s
+
+#8 [context lab_build] load from client
+#8 ...
+
+#12 [stage-1 2/9] COPY controller /lab/controller
+#12 DONE 1.0s
+
+#8 [context lab_build] load from client
+#8 transferring lab_build: 14.71MB 1.9s done
+#8 DONE 2.0s
+
+#13 [stage-1 3/9] COPY configs /lab/configs
+#13 DONE 0.8s
+
+#14 [stage-1 4/9] COPY dependencies.lock.json LICENSE THIRD_PARTY_NOTICES.md /lab/
+#14 DONE 0.1s
+
+#15 [stage-1 5/9] COPY licenses /usr/local/share/pws-lab/licenses
+#15 DONE 0.2s
+
+#16 [stage-1 6/9] COPY --from=lab_build /bin/gnb-zmq /usr/local/bin/gnb-zmq
+#16 DONE 3.9s
+
+#17 [stage-1 7/9] COPY --from=lab_build /bin/srsue /usr/local/bin/srsue
+#17 DONE 0.4s
+
+#18 [stage-1 8/9] COPY --from=lab_build /manifest.json /usr/local/share/pws-lab/build-manifest.json
+#18 DONE 0.1s
+
+#19 [stage-1 9/9] RUN mkdir -p /lab/output && chown 10001:10001 /lab/output
+#19 DONE 1.4s
+
+#20 exporting to image
+#20 exporting layers
+#20 exporting layers 4.5s done
+#20 exporting manifest sha256:70163350996cc5a1824af37ae3b233838644518897261d33fb4bc9ad655e1f42 0.1s done
+#20 exporting config sha256:4b690637df0cee1b9922c897aa3d691a4b07c217312c9a8bd3cdab4154a13183 0.0s done
+#20 exporting attestation manifest sha256:368101634d56442a1692603836da7baa6e89b59d9b73d663c842ef45d5e011dd
+#20 exporting attestation manifest sha256:368101634d56442a1692603836da7baa6e89b59d9b73d663c842ef45d5e011dd 0.2s done
+#20 exporting manifest list sha256:65fa891881bafa224f5ecd0acb823e9bbacdaa062f340baafa8db2c4c2cbed80 0.0s done
+#20 naming to docker.io/library/pws-lab-zmq:0.1.0 0.0s done
+#20 unpacking to docker.io/library/pws-lab-zmq:0.1.0
+#20 unpacking to docker.io/library/pws-lab-zmq:0.1.0 2.0s done
+#20 DONE 7.3s

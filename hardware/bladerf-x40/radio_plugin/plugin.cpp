@@ -142,6 +142,7 @@ class Session final : public radio_session,
   bool                       started = false, first_tx = true;
   bool                       hardware = false;
   std::atomic<uint64_t>      tx_samples{0}, rx_samples{0};
+  std::atomic<uint64_t>      errors{0}, late{0}, overflow{0}, underflow{0};
   uint64_t                   rx_next = 0, tx_next = 0;
   std::vector<int16_t>       tx_iq = std::vector<int16_t>(2 * max_block), rx_iq = std::vector<int16_t>(2 * max_block);
   std::mutex                 tx_mutex, rx_mutex, timer_mutex;
@@ -149,6 +150,13 @@ class Session final : public radio_session,
   std::thread                watchdog;
   void                       event(radio_event_source source, radio_event_type type, uint64_t timestamp)
   {
+    if (type == radio_event_type::LATE) {
+      ++late;
+    } else if (type == radio_event_type::OVERFLOW) {
+      ++overflow;
+    } else if (type == radio_event_type::UNDERFLOW) {
+      ++underflow;
+    }
     notifier.on_radio_rt_event({0, 0, source, type, timestamp});
   }
   void halt() noexcept
@@ -170,10 +178,15 @@ public:
   {
     stop();
     std::fprintf(stderr,
-                 "LAB_RADIO_STOP hardware=%u tx_samples=%llu rx_samples=%llu\n",
+                 "LAB_RADIO_STOP hardware=%u tx_samples=%llu rx_samples=%llu "
+                 "errors=%llu late=%llu overflow=%llu underflow=%llu\n",
                  unsigned(hardware),
                  static_cast<unsigned long long>(tx_samples.load()),
-                 static_cast<unsigned long long>(rx_samples.load()));
+                 static_cast<unsigned long long>(rx_samples.load()),
+                 static_cast<unsigned long long>(errors.load()),
+                 static_cast<unsigned long long>(late.load()),
+                 static_cast<unsigned long long>(overflow.load()),
+                 static_cast<unsigned long long>(underflow.load()));
   }
   radio_management_plane& get_management_plane() override { return *this; }
   baseband_gateway&       get_baseband_gateway(unsigned stream) override
@@ -208,6 +221,7 @@ public:
       lock.unlock();
       halt();
       if (expired) {
+        ++errors;
         event(radio_event_source::OTHER, radio_event_type::OTHER, 0);
         std::fprintf(stderr, "bladeRF x40 plugin: E_DURATION stream stopped\n");
       }
@@ -254,6 +268,7 @@ public:
       tx_next  = metadata.ts + count;
       tx_samples += count;
     } catch (const Error& e) {
+      ++errors;
       diagnostic(e);
       running = false;
       timer.notify_all();
@@ -294,6 +309,7 @@ public:
       rx_samples += count;
       return {got.timestamp};
     } catch (const Error& e) {
+      ++errors;
       diagnostic(e);
       running = false;
       timer.notify_all();

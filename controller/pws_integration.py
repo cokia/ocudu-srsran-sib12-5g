@@ -50,6 +50,7 @@ def prepare(config, profile, backend, output, serial=""):
             {
                 "device_driver": "bladerf_x40",
                 "device_args": f"mode=hardware,rf=off,serial={serial.lower()},max_seconds=20",
+                "tx_gain": 17,
             }
         )
     elif backend != "zmq":

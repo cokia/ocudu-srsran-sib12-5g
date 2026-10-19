@@ -17,6 +17,23 @@ from .pws_integration import prepare
 from .reporting import audit, report, write_report
 
 
+def stream_evidence(text):
+    summaries = [line for line in text.splitlines() if "LAB_RADIO_STOP" in line]
+    pattern = (
+        r"LAB_RADIO_STOP hardware=0 tx_samples=(\d+) rx_samples=(\d+) "
+        r"errors=(\d+) late=(\d+) overflow=(\d+) underflow=(\d+)"
+    )
+    count = re.fullmatch(pattern, summaries[0]) if len(summaries) == 1 else None
+    if count is None or re.search(r"bladeRF x40 plugin: E_[A-Z_]+", text):
+        raise LabError("E_STREAM_EVIDENCE", "정상 stream 종료 증거가 없거나 plugin 오류가 있습니다.", 1)
+    evidence = dict(
+        zip(("tx_samples", "rx_samples", "errors", "late", "overflow", "underflow"), map(int, count.groups()))
+    )
+    if min(evidence["tx_samples"], evidence["rx_samples"]) == 0 or any(list(evidence.values())[2:]):
+        raise LabError("E_STREAM_EVIDENCE", "sample이 없거나 stream 오류/event가 있습니다.", 1)
+    return evidence
+
+
 def main():
     parser = argparse.ArgumentParser(description="USB 없는 OCUDU bladeRF plugin smoke test")
     parser.add_argument("--gnb", default=os.environ.get("GNB_ZMQ_BINARY", "build/bin/gnb-zmq"))
@@ -81,16 +98,13 @@ def main():
             if rc != 0:
                 raise LabError("E_GNB_EXIT", str(rc), 1)
         text = log_path.read_text(errors="replace")
-        count = re.search(r"LAB_RADIO_STOP hardware=0 tx_samples=(\d+) rx_samples=(\d+)", text)
-        if count is None or not all(int(n) > 0 for n in count.groups()) or "E_DURATION" in text:
-            raise LabError("E_STREAM_EVIDENCE", "plugin sample 처리 또는 정상 종료 증거가 없습니다.", 1)
+        evidence = stream_evidence(text)
         result = report(
             "non-sdr",
             "ocudu-bladerf-plugin-mock",
             "PASS",
             {
-                "tx_samples": int(count[1]),
-                "rx_samples": int(count[2]),
+                **evidence,
                 "exit_code": rc,
                 "backend": "bladerf_x40",
                 "transport": "mock",

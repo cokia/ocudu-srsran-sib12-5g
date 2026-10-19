@@ -1,0 +1,69 @@
+Running main() from ./googletest/src/gtest_main.cc
+[==========] Running 13 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 13 tests from UsbTest
+[ RUN      ] UsbTest.ActualLibraryVersionAndConfigureWithoutEnable
+[       OK ] UsbTest.ActualLibraryVersionAndConfigureWithoutEnable (0 ms)
+[ RUN      ] UsbTest.TimedMetadataAndNoTxNowOrPerBlockBurstEnd
+[       OK ] UsbTest.TimedMetadataAndNoTxNowOrPerBlockBurstEnd (0 ms)
+[ RUN      ] UsbTest.VersionModelAndRateFailuresCloseDevice
+[       OK ] UsbTest.VersionModelAndRateFailuresCloseDevice (1 ms)
+[ RUN      ] UsbTest.InvalidSerialFailsBeforeOpen
+[       OK ] UsbTest.InvalidSerialFailsBeforeOpen (0 ms)
+[ RUN      ] UsbTest.EnableFailureDisablesBothDirections
+[       OK ] UsbTest.EnableFailureDisablesBothDirections (0 ms)
+[ RUN      ] UsbTest.LateTimestampAndDisconnectedDeviceAreExplicit
+[       OK ] UsbTest.LateTimestampAndDisconnectedDeviceAreExplicit (0 ms)
+[ RUN      ] UsbTest.ShortReceiveAndOverrunStatusReachSession
+[       OK ] UsbTest.ShortReceiveAndOverrunStatusReachSession (0 ms)
+[ RUN      ] UsbTest.Q11SaturationAndIntegerScale
+[       OK ] UsbTest.Q11SaturationAndIntegerScale (0 ms)
+[ RUN      ] UsbTest.GainIsManualAndReadBackBeforeEnable
+/lab/tests/radio/usb_test.cpp:279: Failure
+Expected equality of these values:
+  state.gain_modes
+    Which is: 0
+  1U
+    Which is: 1
+
+/lab/tests/radio/usb_test.cpp:280: Failure
+Expected equality of these values:
+  state.gain_reads
+    Which is: 0
+  2U
+    Which is: 2
+
+[  FAILED  ] UsbTest.GainIsManualAndReadBackBeforeEnable (0 ms)
+[ RUN      ] UsbTest.InvalidGainCannotBeSilentlyClamped
+/lab/tests/radio/usb_test.cpp:39: Failure
+Failed
+
+[  FAILED  ] UsbTest.InvalidGainCannotBeSilentlyClamped (0 ms)
+[ RUN      ] UsbTest.GainReadbackMismatchClosesWithoutEnable
+/lab/tests/radio/usb_test.cpp:39: Failure
+Failed
+
+[  FAILED  ] UsbTest.GainReadbackMismatchClosesWithoutEnable (0 ms)
+[ RUN      ] UsbTest.AutomaticGainModeIsRejected
+/lab/tests/radio/usb_test.cpp:39: Failure
+Failed
+
+[  FAILED  ] UsbTest.AutomaticGainModeIsRejected (0 ms)
+[ RUN      ] UsbTest.ManualGainModeDriverFailureClosesWithoutEnable
+/lab/tests/radio/usb_test.cpp:39: Failure
+Failed
+
+[  FAILED  ] UsbTest.ManualGainModeDriverFailureClosesWithoutEnable (0 ms)
+[----------] 13 tests from UsbTest (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 13 tests from 1 test suite ran. (3 ms total)
+[  PASSED  ] 8 tests.
+[  FAILED  ] 5 tests, listed below:
+[  FAILED  ] UsbTest.GainIsManualAndReadBackBeforeEnable
+[  FAILED  ] UsbTest.InvalidGainCannotBeSilentlyClamped
+[  FAILED  ] UsbTest.GainReadbackMismatchClosesWithoutEnable
+[  FAILED  ] UsbTest.AutomaticGainModeIsRejected
+[  FAILED  ] UsbTest.ManualGainModeDriverFailureClosesWithoutEnable
+
+ 5 FAILED TESTS

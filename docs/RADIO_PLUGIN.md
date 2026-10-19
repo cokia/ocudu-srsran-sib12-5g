@@ -24,6 +24,7 @@ loader는 `libocudu_radio_bladerf_x40.so`와 `ocudu::create_dynamic_radio_factor
 - `SC16_Q11_META`, 16 buffers, 4096 samples/buffer, 8 transfers, USB timeout 250 ms. gNB optimal buffer는 4096 samples, 한 callback 최대 65,536 samples.
 - TX는 최초 `TX_BURST_START`, 이후 `TX_UPDATE_TIMESTAMP`; 매 callback의 `TX_BURST_END`로 생기는 flush gap을 피한다. RX는 `RX_NOW` 없이 요청 timestamp를 사용한다.
 - RX actual_count/역행 timestamp 오류는 stream 중단, 전진 gap은 OVERFLOW event. TX late는 LATE, 기타 library 오류는 OTHER. flags의 overflow/underrun은 event로 전달한다.
+- 종료 시 `LAB_RADIO_STOP`에 TX/RX sample 수와 `errors`, `late`, `overflow`, `underflow` 누적값을 기록한다. mock smoke는 단일 종료 기록, 양방향 sample > 0, 모든 오류/event = 0을 요구한다. 누락·중복 기록 및 중간 plugin 오류도 FAIL이다.
 - `BLADERF_META_STATUS_UNDERRUN`은 고정 libbladeRF header에 현재 보고되지 않는 상태로 설명되어 있다. 따라서 코드의 flag mapping 검사는 실제 TX underrun 검출 보장이 아니다.
 - USB 오류와 watchdog 만료 시 RX/TX disable을 시도한다. disconnect/강제 kill 이후 장치 상태를 보장하지 않는다. stop 호출 자체의 반환 오류를 상위 OCUDU stop interface로 전달하지 못하는 한계가 있다.
 - runtime gain/frequency 변경, LO offset, external clock/PPS, TDD, 다중 channel/stream, 자동 reconnect/firmware flash는 지원하지 않는다. 설정상의 sample rate 범위는 USB 지속 처리 성능 보장이 아니다.
@@ -61,7 +62,9 @@ bash scripts/build-radio-plugin.sh --enable-rf
 | `serial` | hardware에서 필수, 32 hex | 임의 첫 장치 선택 없음 |
 | `max_seconds` | 1..60, 기본 20 | 시작 후 watchdog의 wall time 한도 |
 
-알 수 없는 key와 중복 key를 거부한다. 주파수/gain은 upstream `ru_sdr`와 `cell_cfg`에서 받아 libbladeRF에 전달한다. 주파수는 x40 범위, gain은 유한 정수 여부를 먼저 검사하며 실제 장치 설정 실패는 library error로 중단한다. 모든 허용 gain이 실제 장치에서 유효함을 보장하지 않는다.
+알 수 없는 key와 중복 key를 거부한다. 주파수/gain은 upstream `ru_sdr`와 `cell_cfg`에서 받는다. hardware transport는 `bladerf_get_gain_range`의 min/max/step/scale을 검사하고, RX `BLADERF_GAIN_MGC` 설정 및 readback 후 gain을 적용한다. `bladerf_get_gain` 결과가 요청과 다르면 module enable 전에 중단한다. 잘못된 gain의 암묵적 clamp는 허용하지 않는다.
+
+고정 x40 driver의 system gain은 TX 17..73 dB, RX -1..60 dB, step 1이다. hardware YAML의 `tx_gain` 기본값은 17이다. 이 숫자는 **보정된 RF 출력 dBm 값이 아니다.** ZMQ/mock의 기존 gain 0은 가상 backend 설정이다. 오류 코드는 범위/step `E_GAIN_RANGE`, RX mode 불일치 `E_GAIN_MODE`, gain 불일치 `E_GAIN_READBACK`, library 실패 `E_USB`다. [관련 프로젝트 비교와 회귀 검사](RELATED_PROJECTS_DEBUG.md)에 근거와 실행 결과를 정리했다.
 
 `controller.pws_integration prepare --backend bladerf-x40 --serial <32-hex>`는 검토용 `rf=off` YAML을 만든다. 실제 송신 연결 코드는 RF 활성 build와 명시적 `mode=hardware,rf=on` 설정에서 사용된다. 이 조합은 normal RF mode에서 TX를 활성화하며 firmware loopback이 아니다. 실물 시험은 주파수 조건, 차폐/전도 연결, 외부 누설 확인 및 단말 정보를 확인한 환경에서만 별도 실행·판정한다. 이번 작업에서는 실물 실행을 하지 않았다.
 

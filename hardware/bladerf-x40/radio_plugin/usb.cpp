@@ -3,10 +3,11 @@
 #include <libbladeRF.h>
 
 // bladeRF1.h는 libbladeRF.h의 API_EXPORT 및 공통 type 정의가 필요하다.
-#include <bladeRF1.h>
 #include <algorithm>
+#include <bladeRF1.h>
 #include <cctype>
 #include <cmath>
+#include <limits>
 namespace lab::radio {
 namespace {
 void check(int rc, const char* operation)
@@ -16,6 +17,38 @@ void check(int rc, const char* operation)
         rc == BLADERF_ERR_TIME_PAST ? "E_LATE" : "E_USB", std::string(operation) + ": " + bladerf_strerror(rc), rc);
   }
 }
+#ifdef LAB_ENABLE_BLADERF_RF
+void configure_gain(bladerf* device, bladerf_channel channel, double requested)
+{
+  const bladerf_range* range = nullptr;
+  check(bladerf_get_gain_range(device, channel, &range), "gain-range");
+  if (!range || !std::isfinite(range->scale) || range->scale <= 0 || range->step <= 0 || !std::isfinite(requested) ||
+      std::floor(requested) != requested || requested < std::numeric_limits<int>::min() ||
+      requested > std::numeric_limits<int>::max() || requested < range->min * double(range->scale) ||
+      requested > range->max * double(range->scale)) {
+    throw Error("E_GAIN_RANGE", "요청 gain이 장치 범위를 벗어났습니다.");
+  }
+  const double steps = (requested - range->min * double(range->scale)) / (range->step * double(range->scale));
+  if (std::abs(steps - std::round(steps)) > 1e-6) {
+    throw Error("E_GAIN_RANGE", "요청 gain이 장치 step에 맞지 않습니다.");
+  }
+  if (channel == BLADERF_CHANNEL_RX(0)) {
+    check(bladerf_set_gain_mode(device, channel, BLADERF_GAIN_MGC), "gain-mode");
+    bladerf_gain_mode mode{};
+    check(bladerf_get_gain_mode(device, channel, &mode), "gain-mode-readback");
+    if (mode != BLADERF_GAIN_MGC) {
+      throw Error("E_GAIN_MODE", "RX manual gain mode가 적용되지 않았습니다.");
+    }
+  }
+  const auto gain = static_cast<bladerf_gain>(requested);
+  check(bladerf_set_gain(device, channel, gain), "gain");
+  bladerf_gain actual{};
+  check(bladerf_get_gain(device, channel, &actual), "gain-readback");
+  if (actual != gain) {
+    throw Error("E_GAIN_READBACK", "실제 gain이 요청과 다릅니다.");
+  }
+}
+#endif
 class Usb final : public Transport
 {
   bladerf* device = nullptr;
@@ -68,7 +101,7 @@ public:
         const bool tx = channel == BLADERF_CHANNEL_TX(0);
         check(bladerf_set_frequency(device, channel, static_cast<uint64_t>(tx ? s.tx_frequency : s.rx_frequency)),
               "frequency");
-        check(bladerf_set_gain(device, channel, static_cast<int>(tx ? s.tx_gain : s.rx_gain)), "gain");
+        configure_gain(device, channel, tx ? s.tx_gain : s.rx_gain);
         check(
             bladerf_set_bandwidth(device, channel, static_cast<unsigned>(std::min(28000000.0, s.rate * 0.8)), &actual),
             "bandwidth");

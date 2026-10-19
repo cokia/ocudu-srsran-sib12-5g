@@ -1,0 +1,79 @@
+
+--== OCUDU gNB (commit e0db566) ==--
+
+2026-10-19T11:24:11.574266 [GNB     ] [I] Built in Release mode using commit e0db566 on branch HEAD
+2026-10-19T11:24:11.575136 [CONFIG  ] [I] gNB input configuration (only non-default values): 
+log:
+  filename: stdout
+  all_level: info
+buffer_pool:
+  nof_segments: 16384
+  segment_size: 2048
+expert_execution:
+  threads:
+    main_pool:
+      nof_threads: 2
+cu_cp:
+  amf:
+    no_core: true
+    addrs: 127.0.0.1
+    bind_addrs: 127.0.0.1
+    supported_tracking_areas: "plmn_list:\n  - plmn: 00101\n    tai_slice_support_list:\n      - sst: 1\ntac: 7"
+pcap:
+  ngap_enable: false
+  mac_enable: false
+cell_cfg:
+  pci: 1
+  dl_arfcn: 368500
+  band: 3
+  common_scs: 15
+  channel_bandwidth_MHz: 20
+  plmn: 00101
+  tac: 7
+  sib:
+    si_window_length: 10
+    cmas:
+      si_period: 8
+      test:
+        message_id: 4372
+        serial_num: 0
+        data_coding_scheme: 72
+        warning_message: "[시험 데이터] PWS 프로토콜 검증 메시지입니다."
+  pdcch:
+    common:
+      coreset0_index: 12
+      ss0_index: 0
+    dedicated:
+      dci_format_0_1_and_1_1: false
+      ss2_type: common
+  pdsch:
+    mcs_table: qam64
+  pusch:
+    mcs_table: qam64
+  prach:
+    prach_config_index: 1
+ru_sdr:
+  srate: 23.04
+  device_driver: bladerf_x40
+  device_args: mode=mock,rf=off,max_seconds=45
+  tx_gain: 0
+  rx_gain: 0
+2026-10-19T11:24:11.626746 [GNB     ] [W] Could not check scaling governor. filename=/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor error=No such file or directory
+2026-10-19T11:24:11.626853 [GNB     ] [W] Could not check DRM KMS polling. filename=/sys/module/drm_kms_helper/parameters/poll error=Permission denied
+Warning: Scheduling priority of thread "main_pool#0" not changed. Cause: Not enough privileges.
+Warning: Scheduling priority of thread "main_pool#1" not changed. Cause: Not enough privileges.
+2026-10-19T11:24:11.636179 [CONFIG  ] [I] Worker pool "main_pool" instantiated with #workers=2, task_queue_size=2048, backoff_period=50us and priority=96.
+Warning: Scheduling priority of thread "lower_phy_tx#0" not changed. Cause: Not enough privileges.
+Warning: Scheduling priority of thread "io_broker_epoll" not changed. Cause: Not enough privileges.
+Warning: Scheduling priority of thread "lower_phy_rx#0" not changed. Cause: Not enough privileges.
+Lower PHY in dual baseband executor mode.
+2026-10-19T11:24:11.775971 [GTPU    ] [I] GTP-U demux. lif=NG-U name=NG-U-DEMUX queue_size=2046 batch_size=256 warn_on_drop=false test_mode=false
+2026-10-19T11:24:11.777017 [GTPU    ] [I] Tunnel added. teid=0x000000
+2026-10-19T11:24:12.223823 [CONFIG  ] [I] The upper-bound on the number of UEs supported by cell {pci=1, du_cell_index=0} is 160 (the actual number might be lower than that). This is determined by the lowest of the following limits: SR (160), CSI (160), SRS (n/a) and UE contexts per cell (1984). Up to 224 UE contexts can be created in the cell, the extra ones being used to RRC Reject UEs.
+Available radio types: zmq and realtime_loopback.
+2026-10-19T11:24:12.224959 [DU      ] [I] DU created successfully
+2026-10-19T11:24:12.224977 [DU      ] [I] O-DU created successfully
+Failed to load RF plugin libocudu_radio_bladerf_x40.so: libusb-1.0.so.0: cannot open shared object file: No such file or directory
+Factory for radio type bladerf_x40 not found. Make sure to select a valid type.
+2026-10-19T11:24:12.228632 [APP     ] [E] Emergency flush of the logger
+OCUDU ERROR: Unable to create radio session.

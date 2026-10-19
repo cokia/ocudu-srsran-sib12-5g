@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="13" failures="0" disabled="0" errors="0" time="0.002" timestamp="2026-10-19T11:26:36.909" name="AllTests">
+  <testsuite name="UsbTest" tests="13" failures="0" disabled="0" skipped="0" errors="0" time="0.001" timestamp="2026-10-19T11:26:36.909">
+    <testcase name="ActualLibraryVersionAndConfigureWithoutEnable" file="/lab/tests/radio/usb_test.cpp" line="187" status="run" result="completed" time="0." timestamp="2026-10-19T11:26:36.909" classname="UsbTest" />
+    <testcase name="TimedMetadataAndNoTxNowOrPerBlockBurstEnd" file="/lab/tests/radio/usb_test.cpp" line="201" status="run" result="completed" time="0." timestamp="2026-10-19T11:26:36.909" classname="UsbTest" />
+    <testcase name="VersionModelAndRateFailuresCloseDevice" file="/lab/tests/radio/usb_test.cpp" line="217" status="run" result="completed" time="0." timestamp="2026-10-19T11:26:36.909" classname="UsbTest" />
+    <testcase name="InvalidSerialFailsBeforeOpen" file="/lab/tests/radio/usb_test.cpp" line="228" status="run" result="completed" time="0." timestamp="2026-10-19T11:26:36.909" classname="UsbTest" />
+    <testcase name="EnableFailureDisablesBothDirections" file="/lab/tests/radio/usb_test.cpp" line="235" status="run" result="completed" time="0." timestamp="2026-10-19T11:26:36.910" classname="UsbTest" />
+    <testcase name="LateTimestampAndDisconnectedDeviceAreExplicit" file="/lab/tests/radio/usb_test.cpp" line="243" status="run" result="completed" time="0." timestamp="2026-10-19T11:26:36.910" classname="UsbTest" />
+    <testcase name="ShortReceiveAndOverrunStatusReachSession" file="/lab/tests/radio/usb_test.cpp" line="252" status="run" result="completed" time="0." timestamp="2026-10-19T11:26:36.910" classname="UsbTest" />
+    <testcase name="Q11SaturationAndIntegerScale" file="/lab/tests/radio/usb_test.cpp" line="262" status="run" result="completed" time="0." timestamp="2026-10-19T11:26:36.910" classname="UsbTest" />
+    <testcase name="GainIsManualAndReadBackBeforeEnable" file="/lab/tests/radio/usb_test.cpp" line="276" status="run" result="completed" time="0." timestamp="2026-10-19T11:26:36.910" classname="UsbTest" />
+    <testcase name="InvalidGainCannotBeSilentlyClamped" file="/lab/tests/radio/usb_test.cpp" line="283" status="run" result="completed" time="0." timestamp="2026-10-19T11:26:36.910" classname="UsbTest" />
+    <testcase name="GainReadbackMismatchClosesWithoutEnable" file="/lab/tests/radio/usb_test.cpp" line="291" status="run" result="completed" time="0." timestamp="2026-10-19T11:26:36.910" classname="UsbTest" />
+    <testcase name="AutomaticGainModeIsRejected" file="/lab/tests/radio/usb_test.cpp" line="298" status="run" result="completed" time="0." timestamp="2026-10-19T11:26:36.911" classname="UsbTest" />
+    <testcase name="ManualGainModeDriverFailureClosesWithoutEnable" file="/lab/tests/radio/usb_test.cpp" line="305" status="run" result="completed" time="0." timestamp="2026-10-19T11:26:36.911" classname="UsbTest" />
+  </testsuite>
+</testsuites>

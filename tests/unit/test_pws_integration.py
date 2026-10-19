@@ -74,6 +74,7 @@ def test_prepare_reuses_actual_ocudu_options(config, tmp_path, profile, identifi
     }
     assert gnb["cu_cp"]["amf"]["no_core"] is True
     assert gnb["ru_sdr"]["device_driver"] == "zmq"
+    assert gnb["ru_sdr"]["tx_gain"] == 0
     first = path.read_bytes()
     pws.prepare(config, profile, "zmq", tmp_path)
     assert path.read_bytes() == first
@@ -84,6 +85,7 @@ def test_hardware_template_does_not_enable_rf(config, tmp_path):
     radio = load_yaml(path)["ru_sdr"]
     assert radio["device_driver"] == "bladerf_x40"
     assert "rf=off" in radio["device_args"]
+    assert radio["tx_gain"] == 17
 
 
 def test_no_implicit_hardware_receive(tmp_path, monkeypatch):

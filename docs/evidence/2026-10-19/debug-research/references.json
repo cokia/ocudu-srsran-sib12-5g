@@ -1,0 +1,45 @@
+[
+  {
+    "repo": "pothosware/SoapyBladeRF",
+    "commit": "d0279d584daef1a90daee3703216627de7de1bae",
+    "files": [
+      {
+        "source": "bladeRF_Streaming.cpp",
+        "sha256": "8042e0235aeba43494acb2aba341e8e09f97c7b6c8202a862e2ae94a98275c8e",
+        "url": "https://github.com/pothosware/SoapyBladeRF/blob/d0279d584daef1a90daee3703216627de7de1bae/bladeRF_Streaming.cpp"
+      },
+      {
+        "source": "bladeRF_Settings.cpp",
+        "sha256": "a2d10c005191da49cf495626fc51211ac8bf03476c877257de30c3010e929c65",
+        "url": "https://github.com/pothosware/SoapyBladeRF/blob/d0279d584daef1a90daee3703216627de7de1bae/bladeRF_Settings.cpp"
+      }
+    ]
+  },
+  {
+    "repo": "osmocom/gr-osmosdr",
+    "commit": "2f230c42d2e7471769041430973776250b8f6d1d",
+    "files": [
+      {
+        "source": "lib/bladerf/bladerf_sink_c.cc",
+        "sha256": "3a4d17ec95418ac93889f468fd7f61c1f0d6f7f0b911b49c6ff15320fa0f2921",
+        "url": "https://github.com/osmocom/gr-osmosdr/blob/2f230c42d2e7471769041430973776250b8f6d1d/lib/bladerf/bladerf_sink_c.cc"
+      },
+      {
+        "source": "lib/bladerf/bladerf_source_c.cc",
+        "sha256": "28cd9d7318229960ee8e2480d23cdab3a5ade033b11a3db2d55865c5e7882b57",
+        "url": "https://github.com/osmocom/gr-osmosdr/blob/2f230c42d2e7471769041430973776250b8f6d1d/lib/bladerf/bladerf_source_c.cc"
+      }
+    ]
+  },
+  {
+    "repo": "Nuand/bladeRF",
+    "commit": "35174c30b009cdb335800c411f3c14d45283f12b",
+    "files": [
+      {
+        "source": "host/libraries/libbladeRF/src/streaming/sync.c",
+        "sha256": "91a4b2736dc8e63be0c890da475ef2bbef5c9e571f0ba35df18634217d53f1ec",
+        "url": "https://github.com/Nuand/bladeRF/blob/35174c30b009cdb335800c411f3c14d45283f12b/host/libraries/libbladeRF/src/streaming/sync.c"
+      }
+    ]
+  }
+]

@@ -130,6 +130,7 @@ bash scripts/stop.sh
 - [Upstream 분석과 #540](docs/UPSTREAM_ANALYSIS.md)
 - [설정 전체 참조](docs/CONFIGURATION.md), [PWS 테스트](docs/PWS_TESTING.md)
 - [bladeRF 기술 조사](docs/BLADERF_X40.md), [Docker](docs/DOCKER.md)
+- [관련 프로젝트 비교와 radio driver 디버깅 결과](docs/RELATED_PROJECTS_DEBUG.md)
 - [테스트 절차](docs/TESTING.md), [문제 해결](docs/TROUBLESHOOTING.md)
 - [국내 휴대폰 안전안내문자 시험의 호환성 평가](docs/DOMESTIC_PHONE_TESTING.md)
 - [최종 구현·검증 보고서](docs/IMPLEMENTATION_REPORT.md)

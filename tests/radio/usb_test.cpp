@@ -14,7 +14,11 @@ struct State {
   int      rate_error = 0, tx_error = 0, rx_error = 0, enable_error = 0;
   bool     wrong_board = false, wrong_fpga = false, wrong_rate = false, short_rx = false;
   uint64_t tx_time = 0, rx_time = 0;
-  uint32_t status = 0;
+  uint32_t status     = 0;
+  int      gains[2]   = {0, 17};
+  unsigned gain_modes = 0, gain_reads = 0;
+  bool     gain_mismatch = false, wrong_gain_mode = false;
+  int      gain_mode_error = 0;
 } state;
 int token;
 class UsbTest : public testing::Test
@@ -104,8 +108,34 @@ int __wrap_bladerf_set_frequency(bladerf*, bladerf_channel, bladerf_frequency f)
   EXPECT_GT(f, 237500000U);
   return 0;
 }
-int __wrap_bladerf_set_gain(bladerf*, bladerf_channel, int)
+int __wrap_bladerf_set_gain(bladerf*, bladerf_channel channel, int gain)
 {
+  state.gains[channel] = gain;
+  return 0;
+}
+int __wrap_bladerf_get_gain_range(bladerf*, bladerf_channel channel, const bladerf_range** range)
+{
+  static const bladerf_range rx{-1, 60, 1, 1};
+  static const bladerf_range tx{17, 73, 1, 1};
+  *range = channel == BLADERF_CHANNEL_RX(0) ? &rx : &tx;
+  return 0;
+}
+int __wrap_bladerf_get_gain(bladerf*, bladerf_channel channel, bladerf_gain* gain)
+{
+  ++state.gain_reads;
+  *gain = state.gains[channel] + (state.gain_mismatch ? 1 : 0);
+  return 0;
+}
+int __wrap_bladerf_set_gain_mode(bladerf*, bladerf_channel channel, bladerf_gain_mode mode)
+{
+  EXPECT_EQ(channel, BLADERF_CHANNEL_RX(0));
+  EXPECT_EQ(mode, BLADERF_GAIN_MGC);
+  ++state.gain_modes;
+  return state.gain_mode_error;
+}
+int __wrap_bladerf_get_gain_mode(bladerf*, bladerf_channel, bladerf_gain_mode* mode)
+{
+  *mode = state.wrong_gain_mode ? BLADERF_GAIN_DEFAULT : BLADERF_GAIN_MGC;
   return 0;
 }
 int __wrap_bladerf_set_bandwidth(bladerf*, bladerf_channel, unsigned b, unsigned* actual)
@@ -242,4 +272,40 @@ TEST_F(UsbTest, Q11SaturationAndIntegerScale)
   from_q11(iq, output, 2);
   EXPECT_EQ(output[0].imag(), -32767);
   EXPECT_EQ(output[1].real(), 0);
+}
+TEST_F(UsbTest, GainIsManualAndReadBackBeforeEnable)
+{
+  auto usb = make_usb(settings());
+  EXPECT_EQ(state.gain_modes, 1U);
+  EXPECT_EQ(state.gain_reads, 2U);
+  EXPECT_EQ(state.enabled, 0U);
+}
+TEST_F(UsbTest, InvalidGainCannotBeSilentlyClamped)
+{
+  auto s    = settings();
+  s.tx_gain = 0;
+  failure([&] { make_usb(s); }, "E_GAIN_RANGE");
+  EXPECT_EQ(state.enabled, 0U);
+  EXPECT_EQ(state.closes, 1U);
+}
+TEST_F(UsbTest, GainReadbackMismatchClosesWithoutEnable)
+{
+  state.gain_mismatch = true;
+  failure([] { make_usb(settings()); }, "E_GAIN_READBACK");
+  EXPECT_EQ(state.enabled, 0U);
+  EXPECT_EQ(state.closes, 1U);
+}
+TEST_F(UsbTest, AutomaticGainModeIsRejected)
+{
+  state.wrong_gain_mode = true;
+  failure([] { make_usb(settings()); }, "E_GAIN_MODE");
+  EXPECT_EQ(state.enabled, 0U);
+  EXPECT_EQ(state.closes, 1U);
+}
+TEST_F(UsbTest, ManualGainModeDriverFailureClosesWithoutEnable)
+{
+  state.gain_mode_error = BLADERF_ERR_IO;
+  failure([] { make_usb(settings()); }, "E_USB");
+  EXPECT_EQ(state.enabled, 0U);
+  EXPECT_EQ(state.closes, 1U);
 }

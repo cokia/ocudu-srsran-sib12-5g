@@ -1,0 +1,10 @@
+Internal ctest changing into directory: /lab/build/radio-plugin-rf
+Test project /lab/build/radio-plugin-rf
+    Start 1: radio-plugin
+1/2 Test #1: radio-plugin .....................   Passed    1.12 sec
+    Start 2: radio-usb-contract
+2/2 Test #2: radio-usb-contract ...............   Passed    0.01 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   1.15 sec

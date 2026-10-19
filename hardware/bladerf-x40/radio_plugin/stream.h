@@ -19,7 +19,7 @@ struct Error : std::runtime_error {
 };
 struct Settings {
   double      rate = 23040000, tx_frequency = 1842500000, rx_frequency = 1747500000;
-  double      tx_gain = 0, rx_gain = 0;
+  double      tx_gain = 17, rx_gain = 0;
   std::string serial;
   unsigned    max_seconds = 20;
 };

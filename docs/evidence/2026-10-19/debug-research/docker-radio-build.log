@@ -1,0 +1,110 @@
+#0 building with "colima" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.radio-plugin
+#1 transferring dockerfile: 1.08kB 0.0s done
+#1 DONE 0.0s
+
+#2 [context lab_build] load .dockerignore
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/pws-lab-toolchain:0.1.0
+#3 DONE 0.1s
+
+#2 [context lab_build] load .dockerignore
+#2 transferring lab_build: 2B done
+#2 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/pws-lab-zmq:0.1.0
+#4 DONE 0.1s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 177B done
+#5 DONE 0.0s
+
+#6 [context lab_build] load from client
+#6 DONE 0.0s
+
+#7 [context lab_build] load from client
+#7 DONE 0.0s
+
+#8 [context lab_build] load from client
+#8 DONE 0.0s
+
+#9 [internal] load build context
+#9 DONE 0.0s
+
+#10 [usb-runtime 1/1] FROM docker.io/library/pws-lab-toolchain:0.1.0@sha256:fb283f70c81b1adea5f08bff034230a7c8b3343ce6c9f51f66e76cf288763d5c
+#10 resolve docker.io/library/pws-lab-toolchain:0.1.0@sha256:fb283f70c81b1adea5f08bff034230a7c8b3343ce6c9f51f66e76cf288763d5c 0.1s done
+#10 CACHED
+
+#9 [internal] load build context
+#9 transferring context: 2.39kB 0.0s done
+#9 DONE 0.1s
+
+#8 [context lab_build] load from client
+#8 transferring lab_build: 14.43kB 0.1s done
+#8 DONE 0.2s
+
+#6 [context lab_build] load from client
+#6 transferring lab_build: 970.87kB 0.3s done
+#6 DONE 0.4s
+
+#7 [context lab_build] load from client
+#7 ...
+
+#11 [stage-1  1/12] FROM docker.io/library/pws-lab-zmq:0.1.0@sha256:65fa891881bafa224f5ecd0acb823e9bbacdaa062f340baafa8db2c4c2cbed80
+#11 resolve docker.io/library/pws-lab-zmq:0.1.0@sha256:65fa891881bafa224f5ecd0acb823e9bbacdaa062f340baafa8db2c4c2cbed80 0.1s done
+#11 DONE 0.7s
+
+#7 [context lab_build] load from client
+#7 transferring lab_build: 56.58MB 2.6s done
+#7 DONE 2.8s
+
+#12 [stage-1  2/12] COPY --from=usb-runtime /usr/lib/*-linux-gnu/libusb-1.0.so.0* /usr/local/lib/
+#12 DONE 2.2s
+
+#13 [stage-1  3/12] COPY --from=usb-runtime /usr/share/doc/libusb-1.0-0/copyright /usr/local/share/pws-lab/licenses/libusb-copyright
+#13 DONE 0.2s
+
+#14 [stage-1  4/12] WORKDIR /lab
+#14 DONE 0.1s
+
+#15 [stage-1  5/12] COPY controller /lab/controller
+#15 DONE 0.2s
+
+#16 [stage-1  6/12] COPY configs /lab/configs
+#16 DONE 0.2s
+
+#17 [stage-1  7/12] COPY dependencies.lock.json LICENSE THIRD_PARTY_NOTICES.md /lab/
+#17 DONE 1.1s
+
+#18 [stage-1  8/12] COPY licenses /usr/local/share/pws-lab/licenses
+#18 DONE 3.0s
+
+#19 [stage-1  9/12] COPY --from=lab_build /bin/gnb-zmq /usr/local/bin/gnb-zmq
+#19 DONE 0.5s
+
+#20 [stage-1 10/12] COPY --from=lab_build /lib/ /usr/local/lib/
+#20 DONE 0.3s
+
+#21 [stage-1 11/12] COPY --from=lab_build /manifest.json /usr/local/share/pws-lab/build-manifest.json
+#21 DONE 0.2s
+
+#22 [stage-1 12/12] RUN ldconfig && mkdir -p /lab/output && chown 10001:10001 /lab/output
+#22 1.664 /sbin/ldconfig.real: /usr/local/lib/libusb-1.0.so.0 is not a symbolic link
+#22 1.664 
+#22 DONE 1.8s
+
+#23 exporting to image
+#23 exporting layers
+#23 exporting layers 1.3s done
+#23 exporting manifest sha256:54ad18bd4e9463b9fe0f3cde45181b2e93d04217896ca17dfa00283e42aa01f7 0.1s done
+#23 exporting config sha256:e16501862880d50de868eaee12f8d17918aeab8d2f0bc93c6df3974029182b37 0.1s done
+#23 exporting attestation manifest sha256:4de387a79f19d8e33b4927fc8c995afac36ba2162cd9c459f142fd194dfcaa33
+#23 exporting attestation manifest sha256:4de387a79f19d8e33b4927fc8c995afac36ba2162cd9c459f142fd194dfcaa33 0.2s done
+#23 exporting manifest list sha256:7adc53be08fbd07d42320a05bd916ec10a90a00695bda45c9cb33ed76571c0c0
+#23 exporting manifest list sha256:7adc53be08fbd07d42320a05bd916ec10a90a00695bda45c9cb33ed76571c0c0 0.1s done
+#23 naming to docker.io/library/pws-lab-radio-plugin:0.1.0 0.0s done
+#23 unpacking to docker.io/library/pws-lab-radio-plugin:0.1.0
+#23 unpacking to docker.io/library/pws-lab-radio-plugin:0.1.0 0.9s done
+#23 DONE 2.8s

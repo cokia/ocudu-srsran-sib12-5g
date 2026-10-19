@@ -33,7 +33,8 @@ target_compile_definitions(radio-usb-tests PRIVATE LAB_ENABLE_BLADERF_RF=1)
 target_compile_options(radio-usb-tests PRIVATE -Wall -Wextra -Werror)
 target_link_libraries(radio-usb-tests PRIVATE GTest::gtest_main PkgConfig::BLADERF Threads::Threads)
 foreach(fn set_usb_reset_on_open open close get_fpga_size get_board_name device_speed fw_version fpga_version
-  get_loopback enable_module set_sample_rate set_frequency set_gain set_bandwidth sync_config get_timestamp sync_tx sync_rx)
+  get_loopback enable_module set_sample_rate set_frequency set_gain get_gain get_gain_range set_gain_mode get_gain_mode
+  set_bandwidth sync_config get_timestamp sync_tx sync_rx)
   target_link_options(radio-usb-tests PRIVATE "-Wl,--wrap=bladerf_${fn}")
 endforeach()
 add_test(NAME radio-usb-contract COMMAND radio-usb-tests)
