@@ -19,3 +19,7 @@ rg 'FAILED:|error:' artifacts/ci-debug/build-53ecdd7
 GitHub build에는 명시적으로 4 jobs / 4 CPUs / 8 GiB를 배정한다. native와 기본 Docker build는 2 jobs / 4 GiB를 유지하며 `LAB_BUILD_JOBS=1..4`, `LAB_BUILD_MEMORY=4g|6g|8g` 범위만 받는다. 기존 x86 실패가 934/1444 compile 단계까지 28분 걸렸으므로, gNB와 srsUE를 연속 빌드하는 PWS 작업이 동일한 2 CPUs/45분 제한에 걸릴 가능성도 줄인다. 총 실행 제한은 늘리지 않는다.
 
 실패한 checkpoint는 마지막 80줄(최대 16 KiB)을 GitHub step stderr에 출력한다. 전체 원본은 artifact에 그대로 남긴다. 컴파일 오류를 다운로드 후에만 볼 수 있었던 문제를 개선한다.
+
+## 출력 폴더 소유권
+
+`6cf85fb`의 LTE run `39292864371`은 x86-64 C++ 및 Docker build를 완료했으나 runtime 직전 `mkdir artifacts/lte-sib12/docker: Permission denied`로 실패했다. build container가 root 소유로 만든 bind-mount 출력 폴더가 원인이다. host build wrapper에서 결과 폴더를 먼저 만들어 runner의 소유권을 유지한다. 같은 구조의 NR PWS/radio-plugin, ZMQ, 독립 mode wrapper에도 적용한다. `chmod 777`, privileged runtime 또는 sudo로 수신 시험을 실행하는 방법을 사용하지 않는다.

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
+# bind mount 안의 build가 root로 실행되기 전에 host 사용자 소유로 생성한다.
+mkdir -p artifacts/pws-integration artifacts/radio-plugin
 if [[ "${LAB_PWS_BUILD_LIMIT:-0}" != 1 ]]; then
   exec python3 -m controller.checkpoints --name docker-pws-integration --timeout 2700 -- \
     env LAB_PWS_BUILD_LIMIT=1 bash scripts/build-pws-integration-docker.sh

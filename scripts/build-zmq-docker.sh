@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
+# bind mount 안의 build가 root로 실행되기 전에 host 사용자 소유로 생성한다.
+mkdir -p artifacts/zmq artifacts/zmq-runtime
 jobs=${LAB_BUILD_JOBS:-2}
 memory=${LAB_BUILD_MEMORY:-4g}
 [[ "$jobs" =~ ^[1-4]$ && "$memory" =~ ^[468]g$ ]] || exit 2
